@@ -11,9 +11,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getLogoutAction } from "../../redux/actions";
 import Cookies from "js-cookie";
 
-import Login from "../../pages/Login";
-import Register from "../../pages/Register";
-
 //images
 import userIcon from "../../img/user_icon.svg";
 
@@ -24,8 +21,6 @@ const Header = () => {
   const isAuthenticated = Cookies.get("refresh-token");
 
   const [show, setShow] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("en");
 
@@ -170,10 +165,10 @@ const Header = () => {
           {/* Auth Buttons Desktop */}
           {!isAuthenticated && (
             <div className="auth-buttons-desktop">
-              <button onClick={() => setShowLogin(true)} className="auth-btn-outline">
+              <button onClick={() => navigate("/login")} className="auth-btn-outline">
                 Login
               </button>
-              <button onClick={() => setShowRegister(true)} className="auth-btn-filled">
+              <button onClick={() => navigate("/register")} className="auth-btn-filled">
                 Sign Up
               </button>
             </div>
@@ -208,8 +203,8 @@ const Header = () => {
             <button onClick={() => { navigate("/faq"); setMobileMenuOpen(false); }} className="mobile-nav-link">FAQ</button>
             {!isAuthenticated ? (
               <>
-                <button onClick={() => { setShowLogin(true); setMobileMenuOpen(false); }} className="mobile-nav-link login-btn">Login</button>
-                <button onClick={() => { setShowRegister(true); setMobileMenuOpen(false); }} className="mobile-nav-link login-btn">Sign Up</button>
+                <button onClick={() => { navigate("/login"); setMobileMenuOpen(false); }} className="mobile-nav-link login-btn">Login</button>
+                <button onClick={() => { navigate("/register"); setMobileMenuOpen(false); }} className="mobile-nav-link login-btn">Sign Up</button>
               </>
             ) : (
               <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="mobile-nav-link logout-btn">Logout</button>
@@ -244,9 +239,6 @@ const Header = () => {
         </div>
       )}
 
-      {/* Login/Register Modals */}
-      {showLogin && <Login onClick={setShowLogin} />}
-      {showRegister && <Register onClick={setShowRegister} />}
     </header>
   );
 };

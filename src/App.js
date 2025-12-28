@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "./pages/Home";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "./api/profileAPI";
 import {
@@ -16,8 +16,8 @@ import SupportEngine from "./components/ChatSupport/SupportEngine/index";
 import Cookies from "js-cookie";
 
 //Pages
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+import GovLogin from "./pages/GovLogin";
+import DepartmentRegistration from "./pages/DepartmentRegistration";
 import Help from "./pages/Help";
 import Header from "./components/header/Header";
 import FAQ from "./pages/FAQ";
@@ -27,7 +27,6 @@ import AddProduct from "./pages/addProduct/AddProduct";
 import VerifyOTP from "./components/verify-otp";
 import Product from "./pages/product/Product";
 import PartnerDispute from "./pages/PartnerDispute";
-import CancellationForm from "./components/cancellationForm";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import Chat from "./pages/chat/Chat";
 import BookingRequest from "./pages/bookingRequest/BookingRequest";
@@ -35,13 +34,9 @@ import CancellationPolicy from "./pages/cancellationPage/CancellationPolicy";
 import UpdateProfile from "./pages/updateProfile/index";
 import BookingHistory from "./pages/bookingHistory";
 import Feedback from "./pages/feedback/Feedback";
-import SpeechRecognition, {
-  useSpeechRecognition
-} from "react-speech-recognition";
 import EquipmentReport from "./pages/EquipmentReport";
 
 function App() {
-  const authState = useSelector((state) => state.authReducer);
   const tokenState = useSelector((state) => state.tokenReducer);
   const dispatch = useDispatch();
 
@@ -54,21 +49,24 @@ function App() {
         refreshToken: refresh
       })
     );
-  }, [tokenState.token.accessToken]);
+  }, [tokenState.token.accessToken, dispatch]);
 
-  useEffect(async () => {
-    const access = Cookies.get("access-token");
-    if (access) {
-      const uuid = Cookies.get("uuid");
-      dispatch(getLoginAction());
-      const data = await getProfile({
-        uuid: uuid,
-        accessToken: access
-      });
-      console.log(data);
-      dispatch(getSaveProfileAction(data));
-    }
-  }, []);
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const access = Cookies.get("access-token");
+      if (access) {
+        const uuid = Cookies.get("uuid");
+        dispatch(getLoginAction());
+        const data = await getProfile({
+          uuid: uuid,
+          accessToken: access
+        });
+        console.log(data);
+        dispatch(getSaveProfileAction(data));
+      }
+    };
+    fetchProfile();
+  }, [dispatch]);
 
   return (
     <>
@@ -79,8 +77,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route path="login" element={<GovLogin />} />
+        <Route path="register" element={<DepartmentRegistration />} />
         <Route path="verify-otp" element={<VerifyOTP />} />
         <Route path="help" element={<Help />} />
         <Route path="Dashboard" element={<Dashboard />} />

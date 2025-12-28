@@ -1,0 +1,429 @@
+/**
+ * Department Registration Form Styles
+ * Government-standard design for department onboarding
+ */
+
+.dept-reg-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.dept-reg-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dept-header-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.dept-logo {
+  height: 80px;
+  width: auto;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.dept-header-text {
+  text-align: center;
+}
+
+.dept-header-text h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.dept-header-text h2 {
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin: 0.25rem 0;
+  opacity: 0.95;
+}
+
+/* Main */
+.dept-reg-main {
+  flex: 1;
+  padding: 2rem 1rem;
+}
+
+.dept-reg-box {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  border-top: 4px solid #1e3a8a;
+}
+
+/* Intro Section */
+.dept-reg-intro {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.dept-reg-intro h3 {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.dept-reg-intro p {
+  font-size: 0.9375rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+/* Alert */
+.dept-alert {
+  padding: 1rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.dept-alert-info {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.dept-alert-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  margin-bottom: 1.5rem;
+}
+
+.dept-alert-icon {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+/* Form */
+.dept-reg-form {
+  margin-top: 2rem;
+}
+
+.dept-fieldset {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dept-fieldset legend {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  padding: 0 0.5rem;
+}
+
+.dept-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.dept-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.dept-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.dept-required {
+  color: #dc2626;
+  margin-left: 0.125rem;
+}
+
+.dept-input,
+.dept-select,
+.dept-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: white;
+  color: #1f2937;
+  transition: border-color 0.15s ease;
+  font-family: inherit;
+}
+
+.dept-input:focus,
+.dept-select:focus,
+.dept-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.dept-input:disabled,
+.dept-select:disabled,
+.dept-textarea:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.dept-input-error {
+  border-color: #dc2626;
+}
+
+.dept-input-error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.dept-error-text {
+  display: block;
+  color: #dc2626;
+  font-size: 0.8125rem;
+  margin-top: 0.375rem;
+}
+
+.dept-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.dept-select {
+  cursor: pointer;
+}
+
+/* Form Actions */
+.dept-form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dept-btn {
+  padding: 0.875rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dept-btn-primary {
+  background-color: #1e3a8a;
+  color: white;
+}
+
+.dept-btn-primary:hover:not(:disabled) {
+  background-color: #1e40af;
+}
+
+.dept-btn-secondary {
+  background-color: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.dept-btn-secondary:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.dept-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.dept-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success Box */
+.dept-success-box {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  border-top: 4px solid #059669;
+}
+
+.dept-success-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #d1fae5;
+  color: #059669;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 auto 1.5rem;
+}
+
+.dept-success-box h2 {
+  font-size: 1.75rem;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.dept-success-box p {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0.75rem 0;
+}
+
+.dept-success-box strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.dept-success-info {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.dept-success-info h3 {
+  font-size: 1.125rem;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.dept-success-info ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #4b5563;
+}
+
+.dept-success-info li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.dept-success-box .dept-btn {
+  margin: 2rem auto 0;
+  min-width: 200px;
+}
+
+/* Footer */
+.dept-reg-footer-bar {
+  background-color: #1f2937;
+  color: #d1d5db;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.8125rem;
+}
+
+.dept-reg-footer-bar p {
+  margin: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dept-header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .dept-logo {
+    height: 60px;
+  }
+
+  .dept-header-text h1 {
+    font-size: 1.25rem;
+  }
+
+  .dept-header-text h2 {
+    font-size: 0.875rem;
+  }
+
+  .dept-reg-box,
+  .dept-success-box {
+    padding: 1.5rem;
+  }
+
+  .dept-fieldset {
+    padding: 1rem;
+  }
+
+  .dept-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .dept-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .dept-form-actions .dept-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Accessibility */
+.dept-input:focus-visible,
+.dept-select:focus-visible,
+.dept-textarea:focus-visible,
+.dept-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}

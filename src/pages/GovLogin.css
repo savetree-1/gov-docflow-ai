@@ -1,0 +1,399 @@
+/**
+ * Government Login Page Styles
+ * Minimal, professional, government-standard design
+ * No animations, clean typography, accessibility-focused
+ */
+
+.gov-login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.gov-login-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gov-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.gov-logo {
+  height: 80px;
+  width: auto;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.gov-header-text {
+  text-align: center;
+}
+
+.gov-header-text h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+  letter-spacing: 0.5px;
+}
+
+.gov-header-text h2 {
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin: 0.25rem 0;
+  opacity: 0.95;
+}
+
+/* Main Content */
+.gov-login-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.gov-login-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  border-top: 4px solid #1e3a8a;
+}
+
+.gov-login-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.gov-login-title h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.gov-login-title p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Alert */
+.gov-alert {
+  padding: 0.875rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.gov-alert-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.gov-alert-icon {
+  font-size: 1.25rem;
+}
+
+/* Form */
+.gov-login-form {
+  margin-bottom: 1.5rem;
+}
+
+.gov-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.gov-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.gov-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: white;
+  color: #1f2937;
+  transition: border-color 0.15s ease;
+}
+
+.gov-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.gov-input:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.gov-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Password Field */
+.gov-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gov-password-wrapper .gov-input {
+  padding-right: 4rem;
+}
+
+.gov-password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+}
+
+.gov-password-toggle:hover {
+  color: #1f2937;
+}
+
+/* CAPTCHA Placeholder */
+.gov-captcha-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+}
+
+.gov-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+}
+
+.gov-checkbox-label {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Button */
+.gov-btn {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.gov-btn-primary {
+  background-color: #1e3a8a;
+  color: white;
+}
+
+.gov-btn-primary:hover:not(:disabled) {
+  background-color: #1e40af;
+}
+
+.gov-btn-primary:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.gov-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Footer Section */
+.gov-login-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.gov-divider {
+  text-align: center;
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.gov-divider span {
+  background: white;
+  padding: 0 1rem;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 1;
+}
+
+.gov-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.gov-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  color: #1e3a8a;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  margin-bottom: 1.5rem;
+}
+
+.gov-link:hover {
+  background-color: #f3f4f6;
+  border-color: #1e3a8a;
+}
+
+.gov-link-icon {
+  font-size: 1rem;
+}
+
+.gov-info-text {
+  margin-top: 1.5rem;
+}
+
+.gov-info-text p {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+
+.gov-info-text strong {
+  color: #374151;
+  font-weight: 600;
+}
+
+.gov-help-text {
+  font-style: italic;
+  color: #9ca3af;
+}
+
+/* Bottom Footer Bar */
+.gov-login-footer-bar {
+  background-color: #1f2937;
+  color: #d1d5db;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.8125rem;
+}
+
+.gov-login-footer-bar p {
+  margin: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .gov-header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .gov-logo {
+    height: 60px;
+  }
+
+  .gov-header-text h1 {
+    font-size: 1.25rem;
+  }
+
+  .gov-header-text h2 {
+    font-size: 0.875rem;
+  }
+
+  .gov-login-box {
+    padding: 1.5rem;
+  }
+
+  .gov-login-title h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Accessibility */
+.gov-input:focus-visible,
+.gov-btn:focus-visible,
+.gov-link:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .gov-login-container {
+    display: none;
+  }
+}
