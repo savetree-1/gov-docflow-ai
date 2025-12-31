@@ -35,9 +35,6 @@ import UpdateProfile from "./pages/updateProfile/index";
 import BookingHistory from "./pages/bookingHistory";
 import Feedback from "./pages/feedback/Feedback";
 import EquipmentReport from "./pages/EquipmentReport";
-import Search from "./pages/Search";
-import Audit from "./pages/Audit";
-import Settings from "./pages/Settings";
 
 function App() {
   const tokenState = useSelector((state) => state.tokenReducer);
@@ -99,9 +96,6 @@ function App() {
         <Route path="equipment-report/:id" element={<EquipmentReport />} />
         <Route path="feedback" element={<Feedback />} />
         <Route path="*" element={<div>Not Found</div>} />
-        <Route path="/search" element={<Search/>}/>
-        <Route path="/audit" element={<Audit/>}/>
-        <Route path="/settings" element={<Settings/>}/>
       </Routes>
 
       <Footer />

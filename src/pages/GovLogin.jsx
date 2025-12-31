@@ -13,12 +13,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { login, getCurrentUser } from "../api/authenticationAPI";
-import { getSaveTokenAction, getSaveProfileAction } from "../redux/actions";
+import { postLoginDataEmail } from "../api/authAPI";
+import { getProfile } from "../api/profileAPI";
+import { getSaveTokenAction, getSaveProfileAction, getLoginAction } from "../redux/actions";
+import Cookies from "js-cookie";
 import "./GovLogin.css";
 
 // Government Logo
-import govLogo from "../img/ukgov.png";
+import govLogo from "../img/ourlogo.png";
 
 const GovLogin = () => {
   const [credentials, setCredentials] = useState({
@@ -56,91 +58,47 @@ const GovLogin = () => {
     setLoading(true);
 
     try {
-      // Call authentication API
-      const response = await login(credentials);
+      // Call authentication API using existing authAPI
+      const response = await postLoginDataEmail({ 
+        email: credentials.emailOrEmployeeId, 
+        password: credentials.password 
+      });
 
       if (response.success) {
+        // Store tokens in cookies
+        Cookies.set("access-token", response.data.access);
+        Cookies.set("refresh-token", response.data.refresh);
+        Cookies.set("uuid", response.data.uuid);
+
         // Store token in Redux
-        dispatch(getSaveTokenAction(response.token));
+        dispatch(getSaveTokenAction({
+          accessToken: response.data.access,
+          refreshToken: response.data.refresh
+        }));
+        dispatch(getLoginAction());
         
         // Fetch and store user profile
-        const userResponse = await getCurrentUser();
-        if (userResponse.success) {
-          dispatch(getSaveProfileAction(userResponse.user));
+        const userResponse = await getProfile({
+          uuid: response.data.uuid,
+          accessToken: response.data.access
+        });
+        
+        if (userResponse) {
+          dispatch(getSaveProfileAction(userResponse));
         }
 
-        // Redirect based on role
-        redirectBasedOnRole(response.user.role);
+        // Redirect to dashboard
+        navigate("/dashboard");
       } else {
         // Show error message
         setError(response.error || "Login failed. Please check your credentials.");
       }
     } catch (err) {
       console.error("Login error:", err);
-      setError("An error occurred during login. Please try again.");
+      setError(err || "An error occurred during login. Please try again.");
     } finally {
       setLoading(false);
     }
-  };
-
-  const redirectBasedOnRole = (role) => {
-    switch (role) {
-      case "SUPER_ADMIN":
-        navigate("/admin/dashboard");
-        break;
-      case "DEPARTMENT_ADMIN":
-        navigate("/department/dashboard");
-        break;
-      case "OFFICER":
-        navigate("/dashboard");
-        break;
-      case "AUDITOR":
-        navigate("/audit/search");
-        break;
-      default:
-        navigate("/");
-    }
-  };
-
-  // DEVELOPMENT TESTING: Quick login as any role
-  const handleTestLogin = (role, roleName) => {
-    console.log('Test login clicked:', role);
-    
-    const testUser = {
-      role: role,
-      first_name: `Test ${roleName}`,
-      email: `${role.toLowerCase()}@test.gov.in`,
-      employee_id: `EMP${role.substring(0, 3)}001`,
-      department: role === 'SUPER_ADMIN' ? 'State IT Cell' : 'Test Department'
-    };
-
-    const testToken = {
-      accessToken: 'test-token-' + Date.now(),
-      refreshToken: 'test-refresh-token'
-    };
-
-    // Store in localStorage for persistence
-    localStorage.setItem('authToken', testToken.accessToken);
-    localStorage.setItem('userRole', role);
-    localStorage.setItem('userData', JSON.stringify(testUser));
-
-    // Set Redux state - Login action
-    dispatch({ type: 'LOGIN' });
-    
-    // Save token
-    dispatch(getSaveTokenAction(testToken));
-    
-    // Save user profile
-    dispatch(getSaveProfileAction({
-      data: testUser
-    }));
-
-    console.log('Redux state updated, navigating to dashboard for role:', role);
-    
-    // Small delay to ensure state is set
-    setTimeout(() => {
-      redirectBasedOnRole(role);
-    }, 100);
   };
 
   return (
@@ -253,90 +211,6 @@ const GovLogin = () => {
           <div className="gov-login-footer">
             <div className="gov-divider">
               <span>or</span>
-            </div>
-            
-            {/* DEVELOPMENT TESTING - Remove in production */}
-            <div style={{ 
-              padding: '20px', 
-              backgroundColor: '#fff3cd', 
-              borderRadius: '4px',
-              marginBottom: '20px',
-              border: '1px solid #ffc107'
-            }}>
-              <p style={{ 
-                fontSize: '12px', 
-                fontWeight: 'bold', 
-                marginBottom: '10px',
-                color: '#856404'
-              }}>
-                🔧 DEVELOPMENT TESTING - Quick Login
-              </p>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: '1fr 1fr', 
-                gap: '10px' 
-              }}>
-                <button
-                  type="button"
-                  onClick={() => handleTestLogin('SUPER_ADMIN', 'Super Admin')}
-                  style={{
-                    padding: '8px 12px',
-                    backgroundColor: '#0f5e59',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '12px'
-                  }}
-                >
-                  Login as Super Admin
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleTestLogin('DEPARTMENT_ADMIN', 'Dept Admin')}
-                  style={{
-                    padding: '8px 12px',
-                    backgroundColor: '#0f5e59',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '12px'
-                  }}
-                >
-                  Login as Dept Admin
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleTestLogin('OFFICER', 'Officer')}
-                  style={{
-                    padding: '8px 12px',
-                    backgroundColor: '#0f5e59',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '12px'
-                  }}
-                >
-                  Login as Officer
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleTestLogin('AUDITOR', 'Auditor')}
-                  style={{
-                    padding: '8px 12px',
-                    backgroundColor: '#0f5e59',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '12px'
-                  }}
-                >
-                  Login as Auditor
-                </button>
-              </div>
             </div>
             
             <Link to="/department-registration" className="gov-link">
