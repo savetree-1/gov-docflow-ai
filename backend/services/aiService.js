@@ -22,8 +22,8 @@ async function analyzeDocumentText(documentText, documentMetadata = {}) {
   try {
     const ai = getGeminiClient();
     
-    console.log('🤖 Sending text to Gemini for analysis...');
-    console.log(`📊 Text length: ${documentText.length} characters`);
+    console.log('Sending text to Gemini for analysis...');
+    console.log(`Text length: ${documentText.length} characters`);
 
     const response = await ai.models.generateContent({
       model: "gemini-flash-latest",
@@ -60,7 +60,7 @@ Return ONLY this JSON structure:
       ]
     });
 
-    console.log('✅ Gemini analysis received');
+    console.log('Gemini analysis received');
     
     // Get response text
     let text = response.text || '';

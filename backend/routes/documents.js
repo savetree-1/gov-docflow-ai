@@ -19,18 +19,18 @@ const {
   notifyCommentAdded
 } = require('../utils/notificationHelper');
 
-// AI Processing Function - NEW PIPELINE
+// AI Processing Function
 async function processDocumentWithAI(documentId, filePath, mimeType) {
   try {
-    console.log(`🤖 Starting AI processing for document ${documentId}`);
-    console.log(`📄 File: ${path.basename(filePath)}`);
-    console.log(`📋 Type: ${mimeType}`);
+    console.log(`Starting AI processing for document ${documentId}`);
+    console.log(`File: ${path.basename(filePath)}`);
+    console.log(`Type: ${mimeType}`);
     
-    // STEP 1: Extract text (PDF → pdf-parse, if < 100 chars → OCR, Image → OCR)
+    // STEP 1: Extracting text (PDF --> pdf-parse, if < 100 chars → OCR, Image → OCR)
     const documentText = await extractText(filePath, mimeType);
     
     if (!documentText || documentText.length < 50) {
-      console.log(`⚠️  Minimal text extracted (${documentText.length} chars) - creating metadata summary`);
+      console.log(`Minimal text extracted (${documentText.length} chars) - creating metadata summary`);
       
       // For scanned/image documents with no extractable text
       const document = await Document.findById(documentId);
@@ -42,20 +42,20 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
         'Scanned document - manual review required'
       ];
       await document.save();
-      console.log('📝 Created metadata-based summary');
+      console.log('Created metadata-based summary');
       return;
     }
 
-    console.log(`✅ Extracted ${documentText.length} characters`);
+    console.log(`Extracted ${documentText.length} characters`);
 
-    // STEP 2: Send text to Gemini for AI analysis
+    // STEP 2: Sending text to Gemini for AI analysis
     const document = await Document.findById(documentId);
     const aiAnalysis = await analyzeDocumentText(documentText, {
       title: document.title,
       category: document.category
     });
 
-    console.log(`🤖 AI generated summary (${aiAnalysis.summary?.length || 0} chars, ${aiAnalysis.keyPoints?.length || 0} points)`);
+    console.log(`AI generated summary (${aiAnalysis.summary?.length || 0} chars, ${aiAnalysis.keyPoints?.length || 0} points)`);
 
     // STEP 3: Get routing suggestions (department assignment)
     const routingSuggestion = await suggestRouting(documentText, {
@@ -63,7 +63,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
       category: document.category
     });
 
-    console.log(`📍 AI Routing suggestion: ${routingSuggestion.primaryDepartment} (${routingSuggestion.reasoning})`);
+    console.log(`AI Routing suggestion: ${routingSuggestion.primaryDepartment} (${routingSuggestion.reasoning})`);
 
     // STEP 4: SAVE routing suggestion (NOT auto-assign)
     // Officer must confirm routing - this is AI-ASSISTED, not fully automatic
@@ -72,13 +72,13 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     document.routingConfidence = 85; // High confidence for Gemini analysis
     document.routingConfirmed = false; // Requires officer confirmation
     
-    console.log(`💡 Routing suggestion saved - awaiting officer confirmation`);
+    console.log(`Routing suggestion saved - awaiting officer confirmation`);
 
     // STEP 5: Save AI results to database
     document.summary = aiAnalysis.summary;
     document.keyPoints = aiAnalysis.keyPoints;
     
-    // Validate deadline before setting
+    // Validating deadline before setting
     if (aiAnalysis.deadlines?.[0]) {
       const deadlineDate = new Date(aiAnalysis.deadlines[0]);
       document.deadline = !isNaN(deadlineDate.getTime()) ? deadlineDate : null;
@@ -91,7 +91,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     
     await document.save();
     
-    console.log(`✅ AI processing completed for document ${documentId}`);
+    console.log(`AI processing completed for document ${documentId}`);
 
     // STEP 6: Send email notification if assigned
     if (document.assignedTo) {
@@ -103,7 +103,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
           `${assignedUser.firstName} ${assignedUser.lastName}`,
           document
         );
-        console.log(`📧 Email sent to ${assignedUser.email}`);
+        console.log(`Email sent to ${assignedUser.email}`);
       }
     }
 
@@ -112,7 +112,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
   }
 }
 
-// Configure multer for file uploads
+// Configuring out the multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = 'uploads/documents';
@@ -145,7 +145,7 @@ const upload = multer({
   fileFilter
 });
 
-// Upload new document
+// Uploading the new document
 router.post('/upload', authMiddleware, upload.single('file'), async (req, res) => {
   try {
     const { title, category, urgency, tags, description, initialDepartment } = req.body;
@@ -158,17 +158,17 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
       return res.status(400).json({ success: false, message: 'Department selection is required' });
     }
 
-    // Verify department exists
+    // Verifying department exists
     const Department = require('../models/Department');
     const dept = await Department.findById(initialDepartment);
     if (!dept || !dept.isActive) {
       return res.status(400).json({ success: false, message: 'Invalid or inactive department' });
     }
 
-    // Generate reference number
+    // Generating reference number
     const refNumber = 'DOC-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 
-    // Create document
+    // Creating a document
     const document = new Document({
       title,
       referenceNumber: refNumber,
@@ -193,7 +193,7 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
 
     await document.save();
 
-    // Log audit
+    // Loging audit
     await AuditLog.create({
       action: 'DOCUMENT_UPLOAD',
       performedBy: req.user.userId,
@@ -204,7 +204,7 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
       userAgent: req.get('user-agent')
     });
 
-    // Populate references before sending response
+    // Populating references before sending response
     await document.populate(['uploadedBy', 'initialDepartment', 'department', 'assignedTo']);
 
     // Trigger AI processing in background (don't wait for it)
@@ -436,7 +436,7 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
       }
     }
 
-    // Add to action history
+    // Adding to action history
     document.actionHistory.push({
       action,
       performedBy: req.user.userId,
@@ -446,7 +446,7 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
 
     await document.save();
 
-    // Log audit with appropriate action type
+    // Loging audit with appropriate action type
     const auditActionMap = {
       'Approve': 'DOCUMENT_APPROVE',
       'Reject': 'DOCUMENT_REJECT',
@@ -470,7 +470,7 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
 
 
 
-    // Populate references
+    // Populating the references
     await document.populate(['uploadedBy', 'assignedTo', 'department', 'actionHistory.performedBy']);
 
     res.json({
@@ -484,7 +484,7 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
   }
 });
 
-// Confirm AI routing suggestion
+// Confirming the AI routing suggestion
 router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
   try {
     const { confirmed, modifiedDepartment } = req.body;
@@ -495,7 +495,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Document not found' });
     }
 
-    // Check permission - only uploader or admin can confirm routing
+    // Checking permission - only uploader or admin can confirm routing
     if (document.uploadedBy.toString() !== req.user.userId && req.user.role !== 'SUPER_ADMIN') {
       return res.status(403).json({ success: false, message: 'Not authorized to confirm routing' });
     }
@@ -523,7 +523,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
       document.routingConfirmedAt = new Date();
       document.status = 'In_Progress';
 
-      // Add action to history
+      // Adding action to history
       document.actionHistory.push({
         action: 'ConfirmRouting',
         performedBy: req.user.userId,
@@ -531,7 +531,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
         timestamp: new Date()
       });
 
-      console.log(`✅ Routing confirmed: ${finalDepartment.name}`);
+      console.log(` Routing confirmed: ${finalDepartment.name}`);
 
     } else if (modifiedDepartment) {
       // OFFICER MODIFIED ROUTING
@@ -552,7 +552,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
           timestamp: new Date()
         });
 
-        console.log(`✏️ Routing modified: ${finalDepartment.name}`);
+        console.log(` Routing modified: ${finalDepartment.name}`);
       }
     }
 
@@ -602,7 +602,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
           role: { $in: ['DEPARTMENT_ADMIN', 'OFFICER'] }
         }).select('_id email firstName lastName role');
 
-        console.log(`📧 Sending routing notifications to ${departmentUsers.length} users in ${finalDepartment.name}`);
+        console.log(` Sending routing notifications to ${departmentUsers.length} users in ${finalDepartment.name}`);
 
         // Get the user who confirmed routing
         const routingUser = await User.findById(req.user.userId);
@@ -619,7 +619,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
             documentId: document._id,
             priority: document.urgency === 'High' ? 'high' : document.urgency === 'Medium' ? 'medium' : 'low'
           });
-          console.log(`✅ In-app notification created for ${user.firstName} ${user.lastName}`);
+          console.log(` In-app notification created for ${user.firstName} ${user.lastName}`);
 
           // Send email if user has email
           if (user.email) {
@@ -630,14 +630,14 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
               routedBy
             );
             if (result.success) {
-              console.log(`✅ Email sent to ${user.firstName} ${user.lastName} (${user.role})`);
+              console.log(` Email sent to ${user.firstName} ${user.lastName} (${user.role})`);
             } else {
-              console.error(`❌ Failed to send email to ${user.email}:`, result.error);
+              console.error(` Failed to send email to ${user.email}:`, result.error);
             }
           }
         }
       } catch (emailError) {
-        console.error('❌ Email notification error:', emailError.message);
+        console.error(' Email notification error:', emailError.message);
         // Don't fail the request if email fails
       }
     }
@@ -672,7 +672,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
   }
 });
 
-// Verify document on blockchain
+// Verifying document on blockchain
 router.get('/:id/verify', authMiddleware, async (req, res) => {
   try {
     const document = await Document.findById(req.params.id);

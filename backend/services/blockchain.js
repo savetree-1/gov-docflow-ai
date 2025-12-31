@@ -26,7 +26,7 @@ class BlockchainService {
       // Load deployment info
       const deploymentPath = path.join(__dirname, '../blockchain/deployment.json');
       if (!fs.existsSync(deploymentPath)) {
-        console.warn('⚠️ Blockchain not configured. Run: node blockchain/deploy.js');
+        console.warn('Blockchain not configured. Run: node blockchain/deploy.js');
         return;
       }
 
@@ -44,10 +44,10 @@ class BlockchainService {
       );
 
       this.isInitialized = true;
-      console.log('✅ Blockchain service initialized');
-      console.log('📋 Contract:', deployment.contractAddress);
+      console.log('Blockchain service initialized');
+      console.log('Contract:', deployment.contractAddress);
     } catch (error) {
-      console.error('❌ Blockchain initialization failed:', error.message);
+      console.error('Blockchain initialization failed:', error.message);
     }
   }
 
@@ -69,7 +69,7 @@ class BlockchainService {
       }
 
       if (!this.contract) {
-        console.warn('⚠️ Blockchain not available, skipping...');
+        console.warn('Blockchain not available, skipping...');
         return { success: false, reason: 'Blockchain not configured' };
       }
 
@@ -83,7 +83,7 @@ class BlockchainService {
         previousActionHash = ''
       } = actionData;
 
-      console.log(`📝 Logging to blockchain: ${actionType} for ${documentId}`);
+      console.log(`Logging to blockchain: ${actionType} for ${documentId}`);
 
       // Send transaction
       const tx = await this.contract.logAction(
@@ -96,10 +96,10 @@ class BlockchainService {
         previousActionHash
       );
 
-      console.log('⏳ Transaction sent:', tx.hash);
+      console.log('Transaction sent:', tx.hash);
       const receipt = await tx.wait();
 
-      console.log('✅ Blockchain logged:', receipt.hash);
+      console.log('Blockchain logged:', receipt.hash);
 
       return {
         success: true,
@@ -109,7 +109,7 @@ class BlockchainService {
       };
 
     } catch (error) {
-      console.error('❌ Blockchain logging failed:', error.message);
+      console.error('Blockchain logging failed:', error.message);
       return { success: false, error: error.message };
     }
   }
@@ -150,7 +150,7 @@ class BlockchainService {
       };
 
     } catch (error) {
-      console.error('❌ Verification failed:', error.message);
+      console.error('Verification failed:', error.message);
       return { verified: false, error: error.message };
     }
   }
@@ -187,7 +187,7 @@ class BlockchainService {
       return trail;
 
     } catch (error) {
-      console.error('❌ Audit trail fetch failed:', error.message);
+      console.error('Audit trail fetch failed:', error.message);
       return [];
     }
   }

@@ -18,7 +18,7 @@ const execPromise = util.promisify(exec);
  * @returns {Promise<string>} - Extracted text
  */
 async function runTesseractOCR(filePath, fileType) {
-  console.log(`🔍 Starting OCR for ${fileType}: ${path.basename(filePath)}`);
+  console.log(`Starting OCR for ${fileType}: ${path.basename(filePath)}`);
   
   try {
     let imagePath = filePath;
@@ -40,11 +40,11 @@ async function runTesseractOCR(filePath, fileType) {
       }
     }
 
-    console.log(`✅ OCR completed: ${text.length} characters extracted`);
+    console.log(`OCR completed: ${text.length} characters extracted`);
     return text;
 
   } catch (error) {
-    console.error('❌ OCR failed:', error.message);
+    console.error('OCR failed:', error.message);
     throw new Error(`OCR processing failed: ${error.message}`);
   }
 }
@@ -68,7 +68,7 @@ async function convertPDFToImage(pdfPath) {
     // Verify image was created
     await fs.access(imagePath);
     
-    console.log(`📄 PDF converted to image: ${path.basename(imagePath)}`);
+    console.log(`PDF converted to image: ${path.basename(imagePath)}`);
     return imagePath;
 
   } catch (error) {
@@ -84,7 +84,7 @@ async function performOCR(imagePath) {
   const worker = await createWorker('eng');
   
   try {
-    console.log('🔄 Running Tesseract OCR...');
+    console.log('Running Tesseract OCR...');
     
     const { data: { text } } = await worker.recognize(imagePath);
     
@@ -112,7 +112,7 @@ async function checkOCRDependencies() {
     await execPromise('pdftoppm -h');
     dependencies.poppler = true;
   } catch (error) {
-    console.warn('⚠️  pdftoppm not found. Install poppler: brew install poppler');
+    console.warn('pdftoppm not found. Install poppler: brew install poppler');
   }
 
   // Tesseract.js doesn't need system tesseract

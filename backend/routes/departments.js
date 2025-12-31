@@ -4,12 +4,12 @@ const Department = require('../models/Department');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 
-// Register new department
+// Registering a new department
 router.post('/register', authMiddleware, roleMiddleware('DEPARTMENT_ADMIN', 'SUPER_ADMIN'), async (req, res) => {
   try {
     const { name, code, nodalOfficer } = req.body;
 
-    // Check if department already exists
+    // Checking if the department already exists in the system
     const existingDept = await Department.findOne({ $or: [{ name }, { code }] });
     if (existingDept) {
       return res.status(400).json({ 
@@ -18,7 +18,7 @@ router.post('/register', authMiddleware, roleMiddleware('DEPARTMENT_ADMIN', 'SUP
       });
     }
 
-    // Create new department
+    // Creating a new department
     const department = new Department({
       name,
       code,
@@ -58,14 +58,14 @@ router.post('/register', authMiddleware, roleMiddleware('DEPARTMENT_ADMIN', 'SUP
   }
 });
 
-// Get all departments (public endpoint - no auth required)
+// Geting all departments with no authentication required
 router.get('/', async (req, res) => {
   try {
     const { status, isActive, search, page = 1, limit = 20 } = req.query;
 
     const query = {};
 
-    // Apply filters
+    // Applying filters
     if (status) query.status = status;
     if (isActive !== undefined) query.isActive = isActive === 'true';
     if (search) {
@@ -98,7 +98,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get department by ID
+// Geting department by ID
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
     const department = await Department.findById(req.params.id)
@@ -115,7 +115,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Approve department (super admin only)
+// Approving department (super admin only)
 router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const department = await Department.findById(req.params.id);
@@ -157,7 +157,7 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
   }
 });
 
-// Reject department (super admin only)
+// Rejecting department (super admin only)
 router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const { reason } = req.body;
@@ -196,7 +196,7 @@ router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (
   }
 });
 
-// Update department
+// Updating the department
 router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'), async (req, res) => {
   try {
     const { name, nodalOfficer, isActive } = req.body;
@@ -207,7 +207,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
       return res.status(404).json({ success: false, message: 'Department not found' });
     }
 
-    // Update fields
+    // Updating fields
     if (name) department.name = name;
     if (nodalOfficer) {
       department.nodalOfficer = {
@@ -234,7 +234,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
   }
 });
 
-// Get department statistics (super admin only)
+// Getting department statistics (super admin only)
 router.get('/stats/overview', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const [total, active, pending, approved, rejected] = await Promise.all([

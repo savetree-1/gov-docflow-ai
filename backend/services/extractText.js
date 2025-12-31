@@ -11,8 +11,8 @@ const path = require('path');
 
 async function extractText(filePath, fileType) {
   try {
-    console.log(`📄 Extracting text from: ${path.basename(filePath)}`);
-    console.log(`📋 File type: ${fileType}`);
+    console.log(`Extracting text from: ${path.basename(filePath)}`);
+    console.log(`File type: ${fileType}`);
 
     let text = '';
 
@@ -23,12 +23,12 @@ async function extractText(filePath, fileType) {
       
       // If PDF has very little text, it might be scanned - use OCR
       if (text.length < 100) {
-        console.log('⚠️  PDF has little text, trying OCR fallback...');
+        console.log('PDF has little text, trying OCR fallback...');
         text = await runTesseractOCR(filePath, 'pdf');
       }
     } else if (isImageFile(fileType)) {
       // Direct OCR for images
-      console.log('🖼️  Image detected, using OCR...');
+      console.log('Image detected, using OCR...');
       text = await runTesseractOCR(filePath, 'image');
     } else {
       throw new Error(`Unsupported file type: ${fileType}`);
@@ -37,11 +37,11 @@ async function extractText(filePath, fileType) {
     // STEP 2: Clean extracted text
     text = cleanText(text);
 
-    console.log(`✅ Extracted ${text.length} characters`);
+    console.log(`Extracted ${text.length} characters`);
     return text;
 
   } catch (error) {
-    console.error('❌ Text extraction failed:', error.message);
+    console.error('Text extraction failed:', error.message);
     throw new Error(`Text extraction failed: ${error.message}`);
   }
 }
@@ -55,7 +55,7 @@ async function extractFromPDF(filePath) {
     const data = await pdfParse(dataBuffer);
     
     const text = data.text || '';
-    console.log(`📖 PDF text extraction: ${text.length} characters`);
+    console.log(`PDF text extraction: ${text.length} characters`);
     
     return text;
   } catch (error) {
