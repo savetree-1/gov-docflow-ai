@@ -17,29 +17,29 @@ const Department = require('./models/Department');
 
 async function createWeatherAdmin() {
   try {
-    // Connect to MongoDB
-    console.log('🔗 Connecting to MongoDB...');
+    // Connecting to MongoDB
+    console.log('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('✅ MongoDB Connected');
+    console.log('MongoDB Connected');
 
     // Find Meteorology Department
     const weatherDept = await Department.findOne({ code: 'MET' });
     
     if (!weatherDept) {
-      console.log('❌ Meteorology department not found. Please run seedDepartments.js first!');
+      console.log('Meteorology department not found. Please run seedDepartments.js first!');
       process.exit(1);
     }
 
-    console.log(`✅ Found department: ${weatherDept.name} (${weatherDept.code})`);
+    console.log(`Found department: ${weatherDept.name} (${weatherDept.code})`);
 
     // Check if user already exists
     const existingUser = await User.findOne({ email: 'ukweatherdept.gov@gmail.com' });
     
     if (existingUser) {
-      console.log('⚠️  User already exists. Updating details...');
+      console.log('User already exists. Updating details...');
       
       existingUser.firstName = 'Weather';
       existingUser.lastName = 'Department Admin';
@@ -50,18 +50,18 @@ async function createWeatherAdmin() {
       
       await existingUser.save();
       
-      console.log('✅ User updated successfully!');
+      console.log('User updated successfully!');
       console.log('-----------------------------------');
-      console.log('📧 Email: ukweatherdept.gov@gmail.com');
-      console.log('👤 Name: Weather Department Admin');
-      console.log('🏢 Department: Meteorology');
-      console.log('👔 Role: DEPARTMENT_ADMIN');
-      console.log('🆔 Employee ID: UKWD-001');
-      console.log('🔑 Password: (unchanged)');
+      console.log('Email: ukweatherdept.gov@gmail.com');
+      console.log('Name: Weather Department Admin');
+      console.log('Department: Meteorology');
+      console.log('Role: DEPARTMENT_ADMIN');
+      console.log('Employee ID: UKWD-001');
+      console.log('Password: (unchanged)');
       console.log('-----------------------------------');
       
     } else {
-      // Create new user
+      // Creating a new user
       const hashedPassword = await bcrypt.hash('Weather@123', 10);
       
       const weatherAdmin = new User({
@@ -78,31 +78,31 @@ async function createWeatherAdmin() {
 
       await weatherAdmin.save();
 
-      console.log('✅ Weather Department Admin created successfully!');
+      console.log('Weather Department Admin created successfully!');
       console.log('-----------------------------------');
-      console.log('📧 Email: ukweatherdept.gov@gmail.com');
-      console.log('🔑 Password: Weather@123');
-      console.log('👤 Name: Weather Department Admin');
-      console.log('🏢 Department: Meteorology');
-      console.log('👔 Role: DEPARTMENT_ADMIN');
-      console.log('🆔 Employee ID: UKWD-001');
+      console.log('Email: ukweatherdept.gov@gmail.com');
+      console.log('Password: Weather@123');
+      console.log('Name: Weather Department Admin');
+      console.log('Department: Meteorology');
+      console.log('Role: DEPARTMENT_ADMIN');
+      console.log('Employee ID: UKWD-001');
       console.log('-----------------------------------');
     }
 
-    console.log('\n📝 Important Notes:');
+    console.log('\nImportant Notes:');
     console.log('1. This email will receive notifications when documents are routed to Meteorology dept');
     console.log('2. AI will suggest "Disaster Management" or "Meteorology" for weather-related documents');
     console.log('3. Login with: ukweatherdept.gov@gmail.com / Weather@123');
     console.log('4. Check this Gmail inbox for email notifications\n');
 
-    console.log('🎉 Setup completed!');
+    console.log('Setup completed!');
     process.exit(0);
 
   } catch (error) {
-    console.error('❌ Error creating weather admin:', error);
+    console.error('Error creating weather admin:', error);
     process.exit(1);
   }
 }
 
-// Run
+// Runing the function to create Weather Admin
 createWeatherAdmin();

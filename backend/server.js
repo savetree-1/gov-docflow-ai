@@ -39,15 +39,15 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 })
 .then(() => {
-  console.log('✅ MongoDB Connected');
+  console.log(' MongoDB Connected');
   
-  // Initialize blockchain service
+  // Initializing blockchain service
   const blockchainService = require('./services/blockchain');
   blockchainService.initialize().catch(err => {
-    console.warn('⚠️  Blockchain initialization failed:', err.message);
+    console.warn('  Blockchain initialization failed:', err.message);
   });
 })
-.catch((err) => console.error('❌ MongoDB Connection Error:', err));
+.catch((err) => console.error(' MongoDB Connection Error:', err));
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -76,7 +76,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;

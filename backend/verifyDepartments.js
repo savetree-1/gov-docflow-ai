@@ -7,15 +7,15 @@ const User = require('./models/User');
 const Department = require('./models/Department');
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('✅ MongoDB Connected'))
+  .then(() => console.log('MongoDB Connected'))
   .catch(err => {
-    console.error('❌ MongoDB connection error:', err);
+    console.error('MongoDB connection error:', err);
     process.exit(1);
   });
 
 async function verifyDepartments() {
   try {
-    console.log('\n📊 Department User Summary:\n');
+    console.log('\nDepartment User Summary:\n');
     console.log('='.repeat(80));
     
     const departments = await Department.find({ isActive: true });
@@ -26,7 +26,7 @@ async function verifyDepartments() {
         isActive: true 
       }).select('firstName lastName email role employeeId');
       
-      console.log(`\n🏢 ${dept.name} (${dept.code})`);
+      console.log(`\n${dept.name} (${dept.code})`);
       console.log('-'.repeat(80));
       
       if (users.length === 0) {
@@ -40,11 +40,11 @@ async function verifyDepartments() {
     }
     
     console.log('\n' + '='.repeat(80));
-    console.log('\n✅ Verification Complete!\n');
+    console.log('\nVerification Complete!\n');
     
     process.exit(0);
   } catch (error) {
-    console.error('❌ Error:', error);
+    console.error('Error:', error);
     process.exit(1);
   }
 }

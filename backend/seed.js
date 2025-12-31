@@ -14,13 +14,13 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log('✅ MongoDB Connected'))
+.then(() => console.log('MongoDB Connected'))
 .catch(err => {
-  console.error('❌ MongoDB connection error:', err);
+  console.error('MongoDB connection error:', err);
   process.exit(1);
 });
 
-// Test users data
+// Testing the users data
 const testUsers = [
   // SUPER ADMIN (1)
   {
@@ -286,21 +286,21 @@ const testDepartments = [
 
 async function seedDatabase() {
   try {
-    console.log('\n🌱 Starting database seeding...\n');
+    console.log('\nStarting database seeding...\n');
 
-    // Clear existing data
-    console.log('🗑️  Clearing existing data...');
+    // Clearing existing data
+    console.log('Clearing existing data...');
     await User.deleteMany({});
     await Department.deleteMany({});
-    console.log('✅ Existing data cleared\n');
+    console.log('Existing data cleared\n');
 
-    // Create departments
-    console.log('📁 Creating departments...');
+    // Creating departments
+    console.log(' Creating departments...');
     const departments = await Department.insertMany(testDepartments);
-    console.log(`✅ Created ${departments.length} departments\n`);
+    console.log(`Created ${departments.length} departments\n`);
 
-    // Create users and link to departments
-    console.log('👥 Creating users...');
+    // Creating users and link to departments
+    console.log(' Creating users...');
     const usersToCreate = [];
 
     for (const userData of testUsers) {
@@ -308,7 +308,7 @@ async function seedDatabase() {
       
       let departmentId = null;
       
-      // Assign department admins to their respective departments
+      // Assigning department admins to their respective departments
       if (userData.role === 'DEPARTMENT_ADMIN') {
         if (userData.email === 'finance.admin@pravah.gov.in') {
           departmentId = departments.find(d => d.code === 'FIN')._id;
@@ -322,7 +322,7 @@ async function seedDatabase() {
           departmentId = departments.find(d => d.code === 'INF')._id;
         }
       } 
-      // Assign officers to their respective departments based on employee ID prefix
+      // Assigning officers to their respective departments based on employee ID prefix
       else if (userData.role === 'OFFICER') {
         if (userData.employeeId.startsWith('FIN-')) {
           departmentId = departments.find(d => d.code === 'FIN')._id;
@@ -345,10 +345,10 @@ async function seedDatabase() {
     }
 
     const users = await User.insertMany(usersToCreate);
-    console.log(`✅ Created ${users.length} users\n`);
+    console.log(`Created ${users.length} users\n`);
 
-    // Display login credentials
-    console.log('📋 Login Credentials:\n');
+    // Displaying out the login credentials
+    console.log('Login Credentials:\n');
     console.log('=' .repeat(80));
     console.log('Role\t\t\tEmail\t\t\t\tPassword');
     console.log('='.repeat(80));
@@ -356,14 +356,14 @@ async function seedDatabase() {
       console.log(`${user.role.padEnd(20)}\t${user.email.padEnd(20)}\t${user.password}`);
     });
     console.log('='.repeat(80));
-    console.log('\n✨ Database seeding completed successfully!\n');
+    console.log('\nDatabase seeding completed successfully!\n');
 
     process.exit(0);
   } catch (error) {
-    console.error('❌ Error seeding database:', error);
+    console.error('Error seeding database:', error);
     process.exit(1);
   }
 }
 
-// Run the seeding
+// Runing the seeding function
 seedDatabase();

@@ -2,7 +2,7 @@ const axios = require('axios');
 
 async function testUserAPI() {
   try {
-    console.log('\n🔍 Testing User API Endpoint:\n');
+    console.log('\nTesting User API Endpoint:\n');
     console.log('='.repeat(80));
     
     // First, login as Finance Admin
@@ -13,7 +13,7 @@ async function testUserAPI() {
     });
     
     const accessToken = loginResponse.data.data.accessToken;
-    console.log(`✅ Login successful! Token: ${accessToken.substring(0, 20)}...`);
+    console.log(`Login successful! Token: ${accessToken.substring(0, 20)}...`);
     
     // Now fetch users with the token
     console.log('\nStep 2: Fetching users with token...');
@@ -23,13 +23,13 @@ async function testUserAPI() {
       }
     });
     
-    console.log(`✅ Users API Response:`);
+    console.log(`   Users API Response:`);
     console.log(`   Status: ${usersResponse.status}`);
     console.log(`   Success: ${usersResponse.data.success}`);
     console.log(`   Total Users: ${usersResponse.data.data.length}`);
     console.log(`   Pagination: ${JSON.stringify(usersResponse.data.pagination)}`);
     
-    console.log('\n📋 Users List:');
+    console.log('\n Users List:');
     console.log('-'.repeat(80));
     usersResponse.data.data.forEach((user, index) => {
       console.log(`${index + 1}. ${user.firstName} ${user.lastName}`);
@@ -41,10 +41,10 @@ async function testUserAPI() {
     });
     
     console.log('='.repeat(80));
-    console.log('\n✅ API Test Complete!\n');
+    console.log('\nAPI Test Complete!\n');
     
   } catch (error) {
-    console.error('\n❌ API Test Failed!');
+    console.error('\nAPI Test Failed!');
     if (error.response) {
       console.error('Error:', error.response.data);
       console.error('Status:', error.response.status);

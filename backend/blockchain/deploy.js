@@ -9,29 +9,29 @@ const path = require('path');
 const solc = require('solc');
 
 async function main() {
-  console.log('🚀 Starting AuditTrail Contract Deployment...\n');
+  console.log('Starting AuditTrail Contract Deployment...\n');
 
-  // Load environment variables from parent directory
+  // Loading environment variables from parent directory
   const envPath = path.join(__dirname, '..', '.env');
   require('dotenv').config({ path: envPath });
 
-  // 1. Connect to Polygon Amoy
+  // STEP 1: Connecting to Polygon Amoy
   const provider = new ethers.JsonRpcProvider(process.env.POLYGON_RPC_URL);
   const wallet = new ethers.Wallet(process.env.BLOCKCHAIN_PRIVATE_KEY, provider);
   
-  console.log('📡 Connected to:', process.env.POLYGON_RPC_URL);
-  console.log('👛 Deploying from:', wallet.address);
+  console.log('Connected to:', process.env.POLYGON_RPC_URL);
+  console.log('Deploying from:', wallet.address);
   
-  // Check balance
+  // Checking the balance
   const balance = await provider.getBalance(wallet.address);
-  console.log('💰 Balance:', ethers.formatEther(balance), 'POL\n');
+  console.log('Balance:', ethers.formatEther(balance), 'POL\n');
   
   if (balance === 0n) {
-    console.error('❌ ERROR: No POL tokens. Get testnet tokens from https://faucet.polygon.technology/');
+    console.error('ERROR: No POL tokens. Get testnet tokens from https://faucet.polygon.technology/');
     process.exit(1);
   }
 
-  // 2. Compile contract
+  // STEP 2: Compiling the contract
   console.log('🔨 Compiling smart contract...');
   const contractPath = path.join(__dirname, 'AuditTrail.sol');
   const source = fs.readFileSync(contractPath, 'utf8');
@@ -57,7 +57,7 @@ async function main() {
   if (output.errors) {
     output.errors.forEach(err => {
       if (err.severity === 'error') {
-        console.error('❌ Compilation error:', err.message);
+        console.error('Compilation error:', err.message);
         process.exit(1);
       }
     });
@@ -67,24 +67,24 @@ async function main() {
   const abi = contract.abi;
   const bytecode = contract.evm.bytecode.object;
   
-  console.log('✅ Contract compiled successfully\n');
+  console.log('Contract compiled successfully\n');
 
-  // 3. Deploy contract
-  console.log('📤 Deploying contract to Polygon Amoy...');
+  // STEP 3: Deploying the contract
+  console.log('Deploying contract to Polygon Amoy...');
   const factory = new ethers.ContractFactory(abi, bytecode, wallet);
   
   const deploymentTx = await factory.deploy();
-  console.log('⏳ Transaction sent:', deploymentTx.deploymentTransaction().hash);
-  console.log('⏳ Waiting for confirmation...\n');
+  console.log('Transaction sent:', deploymentTx.deploymentTransaction().hash);
+  console.log('Waiting for confirmation...\n');
   
   await deploymentTx.waitForDeployment();
   const contractAddress = await deploymentTx.getAddress();
   
-  console.log('✅ CONTRACT DEPLOYED SUCCESSFULLY!\n');
-  console.log('📋 Contract Address:', contractAddress);
-  console.log('🔗 View on PolygonScan:', `https://amoy.polygonscan.com/address/${contractAddress}`);
+  console.log('CONTRACT DEPLOYED SUCCESSFULLY!\n');
+  console.log('Contract Address:', contractAddress);
+  console.log('View on PolygonScan:', `https://amoy.polygonscan.com/address/${contractAddress}`);
   
-  // 4. Save deployment info
+  // STEP 4: Saving the deployment information
   const deploymentInfo = {
     contractAddress: contractAddress,
     network: 'Polygon Amoy Testnet',
@@ -96,16 +96,16 @@ async function main() {
   
   const deploymentPath = path.join(__dirname, 'deployment.json');
   fs.writeFileSync(deploymentPath, JSON.stringify(deploymentInfo, null, 2));
-  console.log('\n💾 Deployment info saved to:', deploymentPath);
+  console.log('\nDeployment info saved to:', deploymentPath);
   
-  // 5. Update .env instruction
-  console.log('\n📝 NEXT STEP: Add this to your .env file:');
+  // STEP 5: Updateing the .env instruction
+  console.log('\nNEXT STEP: Add this to your .env file:');
   console.log(`BLOCKCHAIN_CONTRACT_ADDRESS=${contractAddress}`);
 }
 
 main()
   .then(() => process.exit(0))
   .catch(error => {
-    console.error('❌ Deployment failed:', error);
+    console.error('Deployment failed:', error);
     process.exit(1);
   });

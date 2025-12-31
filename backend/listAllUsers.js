@@ -29,25 +29,25 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     else if (user.role === 'SUPER_ADMIN') superAdmins.push(userData);
   });
   
-  console.log('📋 OFFICERS:', officers.length);
+  console.log('OFFICERS:', officers.length);
   officers.forEach(u => {
     console.log(`  - ${u.name} (${u.email})`);
     console.log(`    ID: ${u.employeeId} | Dept: ${u.department}`);
   });
   
-  console.log('\n👨‍💼 DEPARTMENT ADMINS:', deptAdmins.length);
+  console.log('\nDEPARTMENT ADMINS:', deptAdmins.length);
   deptAdmins.forEach(u => {
     console.log(`  - ${u.name} (${u.email})`);
     console.log(`    ID: ${u.employeeId} | Dept: ${u.department}`);
   });
   
-  console.log('\n🔍 AUDITORS:', auditors.length);
+  console.log('\nAUDITORS:', auditors.length);
   auditors.forEach(u => {
     console.log(`  - ${u.name} (${u.email})`);
     console.log(`    ID: ${u.employeeId}`);
   });
   
-  console.log('\n⭐ SUPER ADMINS:', superAdmins.length);
+  console.log('\nSUPER ADMINS:', superAdmins.length);
   superAdmins.forEach(u => {
     console.log(`  - ${u.name} (${u.email})`);
     console.log(`    ID: ${u.employeeId}`);

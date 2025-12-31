@@ -9,7 +9,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
   
   await Document.deleteMany({});
   
-  console.log('✅ All documents deleted successfully');
+  console.log('All documents deleted successfully');
   process.exit(0);
 }).catch(err => {
   console.error('Error:', err);
