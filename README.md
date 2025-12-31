@@ -1,10 +1,67 @@
 <div align="center">
 
-<img src="src/img/image copy.png" alt="Pravaah - AI-Powered Document Flow System" width="100%" style="max-width: 1200px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);" />
+<!-- Beautiful gradient rainbow bar -->
+<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="100%" height="5px" style="border-radius: 5px;"/>
+
+<br/>
+<br/>
+
+<!-- Logo with gradient background -->
+<img src="src/img/image copy.png" alt="Pravaah Logo" width="200" style="border-radius: 50%; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);" />
+
+<h1>
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=45&pause=1000&color=667EEA&center=true&vCenter=true&width=600&lines=Pravaah;%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%B5%E0%A4%BE%E0%A4%B9" alt="Pravaah" />
+</h1>
+
+<p>
+  <strong>/prəˈvɑː/</strong> · <em>Sanskrit: "Flow"</em>
+</p>
+
+<p align="center">
+  <a href="#-the-problem">Problem</a> •
+  <a href="#-who-we-built-this-for">Users</a> •
+  <a href="#-meet-the-team">Team</a> •
+  <a href="#-the-solution">Solution</a> •
+  <a href="#-tech-stack">Tech</a> •
+  <a href="#-key-features">Features</a> •
+  <a href="#-quick-start">Setup</a> •
+  <a href="#-live-demo">Demo</a>
+</p>
+
+<!-- Beautiful gradient bar -->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
+
+<!-- Status badges with matching colors -->
+<p>
+  <img src="https://img.shields.io/badge/AI_Powered-Google_Gemini-667EEA?style=for-the-badge&logo=google&logoColor=white" alt="AI Powered"/>
+  <img src="https://img.shields.io/badge/Blockchain-Polygon-8B5CF6?style=for-the-badge&logo=polygon&logoColor=white" alt="Blockchain"/>
+  <img src="https://img.shields.io/badge/Status-Live_Demo-10B981?style=for-the-badge" alt="Status"/>
+  <img src="https://img.shields.io/badge/Built_For-Government-3B82F6?style=for-the-badge" alt="Built For Government"/>
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/React-18.2-61DAFB?style=flat-square&logo=react&logoColor=white" alt="React"/>
+  <img src="https://img.shields.io/badge/Node.js-Express-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js"/>
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB"/>
+  <img src="https://img.shields.io/badge/Solidity-Smart_Contracts-363636?style=flat-square&logo=solidity&logoColor=white" alt="Solidity"/>
+</p>
+
+<h3 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; font-size: 1.8em; margin: 20px 0;">
+  AI-Powered Government Document Flow System
+</h3>
+
+<p style="font-size: 1.2em; color: #64748b; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+  Transforming government document management from <strong>chaos to clarity</strong> with AI summarization, smart routing, and blockchain-verified audit trails
+</p>
+
+<br/>
+
+<!-- Beautiful divider -->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 </div>
 
----
+<br/>
 
 <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 30px; border-radius: 15px; margin: 20px 0;">
 
