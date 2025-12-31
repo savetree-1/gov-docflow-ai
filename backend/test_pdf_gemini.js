@@ -10,21 +10,21 @@ const ai = new GoogleGenAI({
 async function testPDF() {
   const filePath = "/Users/anks/Documents/GitHub/krishi-sadhan/backend/uploads/documents/DOC-1767026178245-419293806.pdf";
 
-  console.log("📄 Reading PDF:", filePath);
+  console.log("Reading PDF:", filePath);
 
   // 1. Extract text from PDF
   const dataBuffer = fs.readFileSync(filePath);
   const pdfData = await pdf(dataBuffer);
 
-  console.log("📄 Pages:", pdfData.numpages);
-  console.log("📄 Characters:", pdfData.text.length);
+  console.log("Pages:", pdfData.numpages);
+  console.log("Characters:", pdfData.text.length);
 
   if (pdfData.text.length < 50) {
     throw new Error("PDF text too short – scanned PDF needs OCR");
   }
 
   // 2. Send extracted text to Gemini
-  console.log("🤖 Sending text to Gemini...");
+  console.log("Sending text to Gemini...");
 
   const response = await ai.models.generateContent({
     model: "gemini-flash-latest",
@@ -52,11 +52,11 @@ ${pdfData.text}
     ]
   });
 
-  console.log("\n✅ GEMINI OUTPUT:\n");
+  console.log("\nGEMINI OUTPUT:\n");
   console.log(response.text);
 }
 
 testPDF().catch(err => {
-  console.error("❌ ERROR:", err.message);
+  console.error("ERROR:", err.message);
   console.error(err);
 });

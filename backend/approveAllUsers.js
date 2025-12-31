@@ -4,9 +4,9 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGO_URI).then(async () => {
   const User = require('./models/User');
   
-  console.log('🔧 Approving all users...\n');
+  console.log(' Approving all users...\n');
   
-  // Update all users to be approved and active
+  // Updating all users to be approved and active to use application
   const result = await User.updateMany(
     {},
     { 
@@ -17,10 +17,10 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     }
   );
   
-  console.log(`✅ Updated ${result.modifiedCount} users`);
-  console.log('✅ All users are now approved and active!\n');
+  console.log(` Updated ${result.modifiedCount} users`);
+  console.log(' All users are now approved and active!\n');
   
-  // List all users
+  // Listing out all users
   const users = await User.find({}).select('email role isApproved isActive');
   console.log('Current User Status:\n');
   users.forEach(user => {
