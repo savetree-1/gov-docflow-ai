@@ -16,6 +16,18 @@ Let me guess...
 
 <img src="src/img/piles_of_doc2.png" alt="Stacks of unorganized documents" width="600"/>
 
+<br/>
+
+### **See The Problem In Action:**
+
+<div align="center">
+
+https://github.com/user-attachments/assets/Problem.mp4
+
+*A day in the life of a government office - document chaos, manual processes, and overwhelming workload*
+
+</div>
+
 **Exactly.**
 
 If you've watched Bollywood movies like **"Newton"** or **"Jolly LLB"**, you've seen it—the clerk drowning in files, the dusty almirahs overflowing with papers, the officer buried behind a mountain of documents, the peon running between departments with files tied in red tape. Literally.
