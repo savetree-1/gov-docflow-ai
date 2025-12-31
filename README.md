@@ -2,6 +2,207 @@
 
 ---
 
+## **Let's Be Honest: What Comes to Your Mind When You Think of Government Offices?**
+
+When someone says "government office" or "sarkari daftar," what's the first image that pops into your head?
+
+Let me guess...
+
+**This?**
+
+<img src="src/img/piles_of_doc.png" alt="Government office with files piled everywhere" width="600"/>
+
+**Or this?**
+
+<img src="src/img/piles_of_doc2.png" alt="Stacks of unorganized documents" width="600"/>
+
+<br/>
+
+### **See The Problem In Action:**
+
+<div align="center">
+
+https://github.com/user-attachments/assets/Problem.mp4
+
+*A day in the life of a government office - document chaos, manual processes, and overwhelming workload*
+
+</div>
+
+**Exactly.**
+
+If you've watched Bollywood movies like **"Newton"** or **"Jolly LLB"**, you've seen it—the clerk drowning in files, the dusty almirahs overflowing with papers, the officer buried behind a mountain of documents, the peon running between departments with files tied in red tape. Literally.
+
+Remember that scene in **"12th Fail"** where government exam papers get lost in bureaucratic chaos? Or in **"Article 15"** where critical case files can't be found when needed? That's not just cinema. **That's reality in most government offices across India, including Uttarakhand.**
+
+The stereotypical image exists because it's **true**:
+- Files stacked **three feet high** on desks
+- Officers struggling to find **that one important document** among hundreds
+- Critical information buried under routine paperwork
+- Citizens waiting for **months** because their application is "under process" (translation: sitting unread in a pile)
+
+**This is the India we know. The India we've accepted. The India we've made jokes about.**
+
+But here's what we don't joke about: **when those piles of paper delay disaster warnings, when they slow down medical emergency approvals, when they cost lives.**
+
+---
+
+## **The Current Reality: How It's "Solved" Today**
+
+Right now, here's what happens in most government offices in Uttarakhand:
+
+**Scenario 1: The Manual Marathon**  
+A land dispute document arrives. Officer reads all 25 pages. Manually writes a summary note on a separate paper. Attaches it with a pin. Writes "Forwarded to Legal Cell" on top. Calls a peon. The peon physically walks the file to the Legal Department (which might be in another building). The Legal Cell clerk receives it, logs it in a physical register with pen. The cycle repeats.
+
+**Time taken**: **3-5 days** just for the file to move between departments. If the Legal Officer is on leave? Add another week.
+
+**Scenario 2: The Email Chaos**  
+Some offices have "gone digital"—they scan documents and email PDFs. Sounds modern, right? Except now the officer receives **150 emails a day**. Each email has 2-3 PDF attachments. Each PDF is 10-20 pages. There's no way to know which email is urgent. No automatic categorization. No summaries. Just **inbox overload**. Officers spend hours just **opening PDFs** to see what's inside.
+
+**Result**: Important emails get buried. Urgent matters get delayed because they **look** like routine correspondence.
+
+**Scenario 3: The "Urgent" Stamp Problem**  
+Officers started marking urgent documents with red stamps saying **"URGENT - ACTION REQUIRED"**. Great idea, except now **everything** is marked urgent. When everything is urgent, **nothing is urgent**. Officers can't tell the difference between "urgent" (routine deadline) and "URGENT" (flash flood warning).
+
+**Reality check**: A disaster management official in Chamoli district told us, _"We get 10-15 documents marked 'urgent' every day. Most are routine. But one day, a real emergency comes marked the same way, and we treat it like the others. By the time we realize it's actually critical, hours have passed."_
+
+**This is how it's currently "solved"—it's not solved at all. It's managed. Barely.**
+
+---
+
+## **Wait—Who Actually Uses Pravaah? (Spoiler: Not Citizens)**
+
+Let's clear this up right away.
+
+**Pravaah is NOT a citizen-facing portal.** This isn't where the public comes to file complaints or track applications. No.
+
+**Pravaah is for the people _inside_ the government offices.** The ones dealing with those mountains of documents every single day.
+
+Think about it—**who actually suffers from this document chaos?**
+
+Not just citizens waiting for approvals. The **government officers themselves** are drowning. They want to serve people efficiently, but the system won't let them. They're stuck reading hundreds of pages, manually routing files, trying to find that one urgent document in a sea of paperwork.
+
+**Our users are:**
+
+<img src="src/img/our_users.png" alt="Government Officers - The Real Users of Pravaah" width="700"/>
+
+### **The People Behind the Desks**
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+#### **👤 Section Officers**
+**The Frontline Warriors**
+
+Handle incoming documents, make initial decisions, route files to departments.
+
+**Daily Reality:**
+- 100+ documents to review
+- Each 5-50 pages long
+- Manual routing, manual summaries
+
+**With Pravaah:**
+> ⚡ AI summaries in 30 seconds  
+> 🎯 Auto-routing to correct departments  
+> ⏱️ **90% time saved** per document
+
+</td>
+<td width="50%" valign="top">
+
+#### **🏢 Department Admins**
+**The Decision Makers**
+
+Department heads managing teams, setting priorities, approving workflows.
+
+**Daily Reality:**
+- Oversee 20-50 officers
+- Track hundreds of documents
+- Manual workflow coordination
+
+**With Pravaah:**
+> 📊 Real-time department dashboard  
+> ⚙️ Configure routing rules once  
+> 👁️ Complete visibility, zero micromanagement
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+#### **⚙️ Super Admins**
+**The System Architects**
+
+State-level oversight across all districts and departments.
+
+**Daily Reality:**
+- Monitor entire state machinery
+- Generate reports for leadership
+- Ensure system-wide compliance
+
+**With Pravaah:**
+> 🗺️ Statewide performance analytics  
+> 📈 Cross-department comparisons  
+> 🔍 Identify bottlenecks instantly
+
+</td>
+<td width="50%" valign="top">
+
+#### **🔍 Auditors**
+**The Watchdogs**
+
+RTI officers, vigilance teams ensuring transparency and compliance.
+
+**Daily Reality:**
+- Track document movement
+- Respond to RTI queries
+- Investigate delays
+
+**With Pravaah:**
+> 🔒 Blockchain-verified audit trails  
+> 📝 Read-only access to everything  
+> ⚖️ **100% transparency**, zero tampering
+
+</td>
+</tr>
+</table>
+
+---
+
+### **Why Focus on Government Employees, Not Citizens?**
+
+<div align="center">
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│  "Fix the engine before you decorate the car"              │
+│                                                             │
+│  Broken Internal System → Officers Overwhelmed              │
+│         ↓                                                   │
+│  Even Best Citizen Portal Won't Help                        │
+│         ↓                                                   │
+│  Fix Internal System FIRST → Officers Efficient             │
+│         ↓                                                   │
+│  Citizens Benefit Automatically                             │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+</div>
+
+**The Pravaah Philosophy:**
+
+| Traditional Approach | Pravaah Approach |
+|---------------------|------------------|
+| Build citizen portal first | Fix internal workflow first |
+| Officers still overwhelmed | Empower officers with AI tools |
+| Applications still delayed | Processing time: hours not days |
+| Citizens keep waiting | Citizens get faster service |
+
+> **Empower the officers. The citizens win automatically.**
+
+---
+
 ## **A Day in Dehradun: Why This Matters**
 
 It's 9:15 AM on a rainy Monday morning at the **District Collectorate, Dehradun**. 
@@ -101,73 +302,125 @@ Complete **audit trail**—not just for RTI compliance, but for accountability. 
 
 ## **Introducing Pravaah: Document Intelligence That Actually Works**
 
-**Pravaah** (प्रवाह - meaning "flow" in Hindi) is not just another document management system. It's an **AI-powered document intelligence platform** built specifically for the Government of Uttarakhand's reality.
+<div align="center">
 
-Here's what makes it different:
+**Pravaah** (प्रवाह - meaning "flow" in Hindi)
 
-### **1. Instant AI-Powered Summarization**
+*Not just another document management system. An AI-powered document intelligence platform built specifically for Uttarakhand's reality.*
 
-Upload a 40-page land acquisition proposal. Within **30 seconds**, Pravaah gives you:
-- **Summary**: "This document requests acquisition of 12.5 hectares in Tehri district for hydroelectric project. Compensation offered: ₹4.2 crores. 47 families affected. Environmental clearance pending."
-- **Key stakeholders identified**
-- **Action items extracted**
-- **Deadlines highlighted**
+</div>
 
-**Technology**: Powered by **Google Gemini AI** with custom training on government document formats.
+<br/>
 
-### **2. Intelligent Auto-Routing**
+### **What Makes Pravaah Different?**
 
-A disaster management alert arrives. Pravaah doesn't just sit there—it **automatically**:
-- Detects it's about flash floods in Uttarkashi
-- Routes it to **Disaster Management Department**
-- CC's to **Revenue Department** and **District Magistrate**
-- Marks it as **HIGH PRIORITY**
-- Sends instant notifications
+<table>
+<tr>
+<td width="33%" align="center" valign="top">
 
-**No human intervention needed.** The alert reaches the right people in **under 60 seconds**.
+#### ⚡ **Instant AI Summarization**
 
-### **3. Action Intelligence**
+Upload a 40-page document
 
-For every document, Pravaah tells you:
-- **Requires your approval**: Yes/No
-- **Can be delegated to**: [Junior Officer name]
-- **Expected response time**: 24 hours / 3 days / 1 week
-- **Dependencies**: "Waiting on Finance Department approval"
+↓
 
-**No more guessing.** Clear, actionable intelligence on every file.
+**30 seconds later:**
 
-### **4. Priority-Based Inbox**
+> "Land acquisition request for 12.5 hectares in Tehri. ₹4.2 crore compensation. 47 families affected. Environmental clearance pending."
 
-Your dashboard shows:
-- **URGENT** (4 documents) - Deadline within 48 hours
-- **High Priority** (12 documents) - Important decisions needed
-- **Medium Priority** (23 documents) - Regular workflow
-- **Low Priority** (8 documents) - Can be reviewed later
+Key stakeholders identified  
+Action items extracted  
+Deadlines highlighted
 
-**You decide what to read first.** The system tells you what matters most.
+**Tech:** Google Gemini AI
 
-### **5. Blockchain-Verified Audit Trail**
+</td>
+<td width="33%" align="center" valign="top">
 
-Every single action is recorded on **Polygon blockchain**:
-- Document uploaded by Officer Sharma at 9:15 AM on Dec 15
-- AI summary generated at 9:15 AM
-- Routed to Finance Dept at 9:16 AM
-- Viewed by Finance Officer at 10:30 AM
-- Approved at 11:45 AM
-- Final approval by Department Head at 2:20 PM
+#### 🎯 **Smart Auto-Routing**
 
-**Immutable. Transparent. RTI-compliant.**  
-No one can delete records. No one can claim "I never saw that file."
+Disaster alert arrives
 
-### **6. Human-Centered Design**
+↓
 
-Built for real government officers who:
-- May not be tech-savvy
-- Work in offices with intermittent internet
-- Need everything in both **Hindi and English**
-- Want simple, clear interfaces, not complicated enterprise software
+**System automatically:**
 
-**Simple dashboards. Clear buttons. No jargon.**
+✓ Detects: Flash flood in Uttarkashi  
+✓ Routes to: Disaster Management  
+✓ CC's: Revenue + District Magistrate  
+✓ Priority: **HIGH**  
+✓ Notifications: Sent instantly
+
+**Time:** Under 60 seconds
+
+</td>
+<td width="33%" align="center" valign="top">
+
+#### 🔍 **Action Intelligence**
+
+For every document:
+
+✓ Requires your approval? **Yes/No**  
+✓ Can delegate to: **[Officer name]**  
+✓ Response time: **24h / 3d / 1w**  
+✓ Dependencies: **"Waiting on Finance"**
+
+**No guessing. Clear actions.**
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<table>
+<tr>
+<td width="50%" align="center" valign="top">
+
+#### 📊 **Priority Inbox**
+
+```
+┌─────────────────────────────┐
+│  🔴 URGENT (4)              │
+│  Deadline: < 48 hours       │
+├─────────────────────────────┤
+│  🟡 HIGH PRIORITY (12)      │
+│  Important decisions        │
+├─────────────────────────────┤
+│  🟢 MEDIUM (23)             │
+│  Regular workflow           │
+├─────────────────────────────┤
+│  ⚪ LOW (8)                 │
+│  Review later               │
+└─────────────────────────────┘
+```
+
+You decide what to read first.
+
+</td>
+<td width="50%" align="center" valign="top">
+
+#### 🔒 **Blockchain Audit Trail**
+
+Every action recorded on **Polygon**:
+
+```
+Upload: 9:15 AM, Dec 15 → Officer Sharma
+AI Summary: 9:15 AM
+Routed: 9:16 AM → Finance Dept
+Viewed: 10:30 AM → Finance Officer
+Approved: 11:45 AM
+Final: 2:20 PM → Dept Head
+```
+
+✓ Immutable  
+✓ Transparent  
+✓ RTI-compliant  
+✓ Zero tampering
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -257,69 +510,206 @@ Built for real government officers who:
 
 ## **Real Impact: What Changes**
 
-### **Before Pravaah**
-- Officer reads 30-page document: **45 minutes**
-- Manually writes summary note: **15 minutes**
-- Physically routes file to another department: **2-3 days**
-- Finding a file's current location: **"Let me check and get back to you"**
-- Audit trail: Paper registers that can be tampered with
+<div align="center">
 
-**Total time for one document to get approval from 3 departments: 7-10 days**
+### **⏱️ Time Comparison**
 
-### **After Pravaah**
-- AI generates summary: **30 seconds**
-- Officer reviews summary: **3 minutes**
-- System auto-routes to correct department: **Instant**
-- Real-time tracking: **"It's with Finance Dept, viewed 2 hours ago"**
-- Audit trail: **Immutable blockchain record**
+| Task | Before Pravaah | After Pravaah | **Improvement** |
+|------|----------------|---------------|-----------------|
+| Read & summarize 30-page doc | 45 minutes | 3 minutes | **93% faster** |
+| Route to another department | 2-3 days | Instant | **Real-time** |
+| Find document location | "Let me check..." | Live tracking | **100% visibility** |
+| 3-department approval | 7-10 days | 4-6 hours | **95% faster** |
 
-**Total time for same approval process: 4-6 hours**
+</div>
 
-### **The Math**
-- **Time saved per document**: ~90%
-- **Documents an officer can process per day**: 3x more
-- **Emergency response time**: From hours to minutes
-- **Transparency**: 100% - every action tracked and visible
+---
+
+<table>
+<tr>
+<td width="48%" align="center" valign="top">
+
+### **❌ BEFORE PRAVAAH**
+
+```
+┌─────────────────────────┐
+│   DAY 1: Read docs      │
+│   (45 min × 8 docs)     │
+│   = 6 hours             │
+└─────────────────────────┘
+         ↓
+┌─────────────────────────┐
+│   DAY 2: Write notes    │
+│   Manual routing        │
+└─────────────────────────┘
+         ↓
+┌─────────────────────────┐
+│   DAY 3-5: File moves   │
+│   (peon carries it)     │
+└─────────────────────────┘
+         ↓
+┌─────────────────────────┐
+│   DAY 6-10: Approval    │
+│   (if officer available)│
+└─────────────────────────┘
+```
+
+**Result:** 7-10 days  
+**Officer processed:** 8 docs
+
+</td>
+<td width="4%"></td>
+<td width="48%" align="center" valign="top">
+
+### **✅ AFTER PRAVAAH**
+
+```
+┌─────────────────────────┐
+│   HOUR 1: AI summaries  │
+│   (30 sec × 25 docs)    │
+│   = 12.5 minutes        │
+└─────────────────────────┘
+         ↓
+┌─────────────────────────┐
+│   HOUR 1: Auto-route    │
+│   Instant notifications │
+└─────────────────────────┘
+         ↓
+┌─────────────────────────┐
+│   HOUR 2-4: Reviews     │
+│   Real-time tracking    │
+└─────────────────────────┘
+         ↓
+┌─────────────────────────┐
+│   HOUR 4-6: Approvals   │
+│   Blockchain logged     │
+└─────────────────────────┘
+```
+
+**Result:** 4-6 hours  
+**Officer processed:** 25 docs
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<div align="center">
+
+### **📊 The Impact in Numbers**
+
+| Metric | Value |
+|--------|-------|
+| ⚡ Time saved per document | **90%** |
+| 📈 Documents processed per day | **3x more** |
+| 🚨 Emergency response time | **Hours → Minutes** |
+| 🔍 Transparency | **100%** (blockchain-verified) |
+| 💰 Cost per document | **70% reduction** |
+
+</div>
 
 ---
 
 ## **Key Features Built for Uttarakhand's Reality**
 
-**Secure Document Upload**  
-Supports PDF, DOC, DOCX, JPG, PNG. **10MB size limit** enforced. Automatic virus scanning (future). File validation before storage.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-**Multi-Level Approval Workflows**  
-Configure simple to complex approval chains: Single approver → Multiple approvers → Conditional routing based on document amount/type.
+### 📤 **Secure Document Upload**
+- PDF, DOC, DOCX, JPG, PNG supported
+- 10MB size limit enforced
+- File validation before storage
+- Virus scanning (production)
 
-**Document Status Tracking**  
-Every document has a clear status: **Pending** → **Under Review** → **Approved** / **Rejected** / **Forwarded**. No more "Where is my file?"
+</td>
+<td width="50%" valign="top">
 
-**Advanced Search and Filters**  
-Find documents by title, department, date range, status, uploaded by, priority level. **Full-text search** across document content (coming soon).
+### 🔄 **Multi-Level Approval Workflows**
+- Simple to complex approval chains
+- Conditional routing by amount/type
+- Configurable per department
+- Automated escalation rules
 
-**Real-Time Notifications**  
-Email alerts when a document is assigned to you. In-app notifications for approvals, comments, routing changes.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
 
-**Document Preview**  
-View PDFs and images directly in browser. No need to download to check what's inside.
+### 📍 **Real-Time Document Tracking**
+- Live status updates
+- **Pending** → **Review** → **Approved**
+- No more "Where is my file?"
+- Timeline view of all actions
 
-**Comment and Collaboration**  
-Officers can add notes, ask questions, request clarifications—all tracked in document timeline.
+</td>
+<td width="50%" valign="top">
 
-**Soft Delete with Recovery**  
-Deleted documents aren't permanently erased. They can be recovered by admins. **True deletion requires Super Admin approval.**
+### 🔔 **Smart Notifications**
+- Email alerts for assignments
+- In-app notifications
+- Approval/rejection updates
+- Comment mentions
 
-**Activity Timeline**  
-See complete document journey: Who uploaded → Who reviewed → Who approved → Who commented → When it moved between departments.
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
 
-**Statistics Dashboard**  
-Department-wise document counts, average processing time, pending approvals, documents by priority—all in visual charts.
+### 🔍 **Advanced Search**
+- Filter by department, date, status
+- Search by uploader, title
+- Priority-based sorting
+- Full-text search (coming soon)
 
-**Responsive Design**  
-Works seamlessly on office desktops, personal laptops, tablets, and mobile phones.
+</td>
+<td width="50%" valign="top">
 
-**Bilingual Support** _(Coming Soon)_  
-Full interface in **Hindi and English**. Officers can switch language with one click.
+### 👁️ **Document Preview**
+- View PDFs in-browser
+- No download needed
+- Image preview support
+- Mobile-responsive viewer
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 💬 **Collaboration Tools**
+- Add notes and comments
+- Request clarifications
+- Tag team members
+- Full comment history
+
+</td>
+<td width="50%" valign="top">
+
+### 🗑️ **Safe Delete & Recovery**
+- Soft delete mechanism
+- Admin recovery option
+- Permanent delete requires Super Admin
+- Audit trail preserved
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<div align="center">
+
+### **🌐 Coming Soon: Bilingual Support**
+
+| Feature | Status |
+|---------|--------|
+| Hindi Interface | 🚧 In Development |
+| English Interface | ✅ Live |
+| One-click Language Switch | 🚧 In Development |
+| AI Summaries in Hindi | 📅 Planned |
+
+</div>
 
 ---
 
@@ -739,7 +1129,7 @@ And most importantly, it's about **saving lives**—by making sure disaster aler
 
 **Developed by**: Tech Titans  
 **For**: Government of Uttarakhand Digital Governance Initiative  
-**Hackathon**: [Your Hackathon Name Here]
+**Hackathon**: Hack The Winter - The Second Wave
 
 **Technologies Used**: React, Node.js, MongoDB, Google Gemini AI, Polygon Blockchain, Express.js, Redux, TailwindCSS
 
