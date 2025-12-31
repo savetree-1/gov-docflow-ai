@@ -794,7 +794,7 @@ And most importantly, it's about **saving lives**—by making sure disaster aler
 
 **Developed by**: Tech Titans  
 **For**: Government of Uttarakhand Digital Governance Initiative  
-**Hackathon**: [Your Hackathon Name Here]
+**Hackathon**: Hack The Winter - The Second Wave
 
 **Technologies Used**: React, Node.js, MongoDB, Google Gemini AI, Polygon Blockchain, Express.js, Redux, TailwindCSS
 
