@@ -14,38 +14,38 @@ const { sendRoutingNotification } = require('./services/emailService');
 
 async function createNotificationForExisting() {
   try {
-    // Connect to MongoDB
+    // Connecting to MongoDB
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/krishi-sadhan');
-    console.log('✅ MongoDB Connected');
+    console.log('MongoDB Connected');
 
-    // Find the "Agro Bulletci" document
+    // Finding the "Agro Bulletci" document
     const document = await Document.findOne({ title: /Agro Bulletci/i })
       .populate('department')
       .populate('uploadedBy');
 
     if (!document) {
-      console.log('❌ Document not found');
+      console.log('Document not found');
       process.exit(1);
     }
 
-    console.log('\n📄 Found Document:');
+    console.log('\n Found Document:');
     console.log(`   Title: ${document.title}`);
     console.log(`   Department: ${document.department?.name}`);
     console.log(`   Status: ${document.status}`);
 
     if (!document.department) {
-      console.log('❌ Document not routed to any department');
+      console.log(' Document not routed to any department');
       process.exit(1);
     }
 
-    // Get all users in the department
+    // Geting all users in the department
     const departmentUsers = await User.find({
       department: document.department._id,
       isActive: true,
       role: { $in: ['DEPARTMENT_ADMIN', 'OFFICER'] }
     }).select('_id email firstName lastName role');
 
-    console.log(`\n👥 Found ${departmentUsers.length} users in ${document.department.name}:`);
+    console.log(`\n Found ${departmentUsers.length} users in ${document.department.name}:`);
     departmentUsers.forEach(u => {
       console.log(`   - ${u.firstName} ${u.lastName} (${u.role}) - ${u.email}`);
     });
@@ -54,11 +54,11 @@ async function createNotificationForExisting() {
       ? `${document.uploadedBy.firstName} ${document.uploadedBy.lastName}`
       : 'System';
 
-    // Create notifications and send emails
-    console.log('\n📧 Creating notifications and sending emails...\n');
+    // Creating the notifications and send emails
+    console.log('\n Creating notifications and sending emails...\n');
 
     for (const user of departmentUsers) {
-      // Create in-app notification
+      // Creating in-app notification
       const notification = await Notification.create({
         user: user._id,
         type: 'document_routed',
@@ -68,9 +68,9 @@ async function createNotificationForExisting() {
         priority: document.urgency === 'High' ? 'high' : document.urgency === 'Medium' ? 'medium' : 'low'
       });
 
-      console.log(`✅ In-app notification created for ${user.firstName} ${user.lastName}`);
+      console.log(` In-app notification created for ${user.firstName} ${user.lastName}`);
 
-      // Send email
+      // Sending email to user for the routed document
       if (user.email) {
         try {
           const result = await sendRoutingNotification(
@@ -81,18 +81,18 @@ async function createNotificationForExisting() {
           );
           
           if (result.success) {
-            console.log(`✅ Email sent to ${user.email}`);
+            console.log(`Email sent to ${user.email}`);
           } else {
-            console.log(`❌ Email failed for ${user.email}: ${result.error}`);
+            console.log(`Email failed for ${user.email}: ${result.error}`);
           }
         } catch (emailError) {
-          console.error(`❌ Email error for ${user.email}:`, emailError.message);
+          console.error(`Email error for ${user.email}:`, emailError.message);
         }
       }
     }
 
-    console.log('\n✅ All notifications created and emails sent!');
-    console.log('\n📝 Summary:');
+    console.log('\n All notifications created and emails sent!');
+    console.log('\n Summary:');
     console.log(`   Document: ${document.title}`);
     console.log(`   Department: ${document.department.name}`);
     console.log(`   Users notified: ${departmentUsers.length}`);
@@ -102,10 +102,10 @@ async function createNotificationForExisting() {
     process.exit(0);
 
   } catch (error) {
-    console.error('❌ Error:', error);
+    console.error(' Error:', error);
     process.exit(1);
   }
 }
 
-// Run the function
+// Runing the function for creating notifications
 createNotificationForExisting();

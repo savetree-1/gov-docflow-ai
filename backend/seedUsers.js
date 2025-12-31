@@ -6,9 +6,9 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
   const User = require('./models/User');
   const Department = require('./models/Department');
   
-  console.log('🗑️  Deleting all existing users...');
+  console.log('Deleting all existing users...');
   await User.deleteMany({});
-  console.log('✅ All users deleted\n');
+  console.log('All users deleted\n');
 
   // Fetch departments
   const finance = await Department.findOne({ code: 'FIN' });
@@ -271,26 +271,26 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Insert all users
+  // Inserting all users
   await User.insertMany(users);
 
-  console.log('\n✅ USER CREATION COMPLETE!\n');
+  console.log('\n USER CREATION COMPLETE!\n');
   console.log('═══════════════════════════════════════════════════════════\n');
   
-  console.log('🔑 LOGIN CREDENTIALS:\n');
+  console.log(' LOGIN CREDENTIALS:\n');
   
-  console.log('⭐ SUPER ADMIN:');
+  console.log(' SUPER ADMIN:');
   console.log('   Email: admin@pravah.gov.in');
   console.log('   Password: Admin@2025\n');
   
-  console.log('👨‍💼 DEPARTMENT ADMINS:');
+  console.log('   DEPARTMENT ADMINS:');
   console.log('   Finance: finance.admin@pravah.gov.in / Finance@123');
   console.log('   Disaster: disaster.admin@pravah.gov.in / Disaster@123');
   console.log('   Weather: ukweatherdept.gov@gmail.com / Weather@123 (Real Gmail)');
   console.log('   Agriculture: agriculture.admin@pravah.gov.in / Agri@123');
   console.log('   Infrastructure: infra.admin@pravah.gov.in / Infra@123\n');
   
-  console.log('📋 OFFICERS (2 per department):');
+  console.log('   OFFICERS (2 per department):');
   console.log('   Finance: finance.officer1@pravah.gov.in / Officer@123');
   console.log('   Finance: finance.officer2@pravah.gov.in / Officer@123');
   console.log('   Disaster: disaster.officer1@pravah.gov.in / Officer@123');
@@ -302,7 +302,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
   console.log('   Infrastructure: infra.officer1@pravah.gov.in / Officer@123');
   console.log('   Infrastructure: infra.officer2@pravah.gov.in / Officer@123\n');
   
-  console.log('🔍 AUDITORS:');
+  console.log('   AUDITORS:');
   console.log('   Auditor 1: auditor1@pravah.gov.in / Auditor@123');
   console.log('   Auditor 2: auditor2@pravah.gov.in / Auditor@123\n');
   
