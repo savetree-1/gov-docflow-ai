@@ -10,11 +10,20 @@
 <img src="src/img/image copy.png" alt="Pravaah Logo" width="200" style="border-radius: 50%; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);" />
 
 <h1>
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=45&pause=1000&color=667EEA&center=true&vCenter=true&width=600&lines=Pravaah;%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%B5%E0%A4%BE%E0%A4%B9" alt="Pravaah" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=48&color=667EEA&center=true&vCenter=true&width=800&lines=Pravaah;प्रवाह;AI-powered+Document+Intelligence" alt="Pravaah" />
 </h1>
 
 <p>
   <strong>/prəˈvɑː/</strong> · <em>Sanskrit: "Flow"</em>
+</p>
+
+<p align="center" style="margin-top:12px;">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&color=5b21b6&center=true&vCenter=true&width=700&lines=Android+Engineer+%7C+Kotlin+%26+Java.;Backend+Developer.;Research+%26+Policy" alt="roles-typing" />
+</p>
+
+<p align="center" style="margin-top:10px;">
+  <img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="64" alt="sparkle" />
+  <em style="color:#475569; font-weight:600; margin-left:10px;">I love connecting with different people — say hi!</em>
 </p>
 
 <p align="center">
@@ -1621,6 +1630,485 @@ React Native app for Android and iOS. Officers can review and approve documents 
 - **Priority override**: Disaster documents bypass all queues
 - **Geo-location tracking**: Show which officers are in affected areas
 - **Mass notification**: Alert all departments with one click
+
+---
+
+<div style="background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%); padding: 50px; border-radius: 20px; margin: 50px 0; box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);">
+
+<h2 align="center" style="color: white; font-weight: 900; font-size: 2.5em; margin-bottom: 15px;">Phase 2: The Next Frontier</h2>
+
+<p align="center" style="color: #e9d5ff; font-size: 1.3em; font-weight: 600; margin-bottom: 35px;">Taking Pravaah from Uttarakhand to All of India</p>
+
+<div style="background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 15px; margin: 25px 0;">
+
+<h3 align="center" style="color: #581c87; font-weight: 800; margin-bottom: 30px;">Vision for Phase 2</h3>
+
+<p style="color: #1e293b; font-size: 1.15em; line-height: 1.8; text-align: center; margin-bottom: 25px;">
+Phase 2 transforms Pravaah from a **state-level prototype** into a **national-scale government infrastructure**. Our goal: Deploy across all 28 states and 8 union territories, serving <strong style="color: #7c3aed;">100,000+ government officers</strong> and processing <strong style="color: #7c3aed;">1 million+ documents daily</strong>.
+</p>
+
+<div align="center" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 12px; margin: 30px 0; border-left: 5px solid #f59e0b;">
+<p style="color: #78350f; font-size: 1.2em; font-weight: 700; margin: 0;">Timeline: 12-18 months | Investment Required: ₹2.5-3 crores | Impact: 500+ districts nationwide</p>
+</div>
+
+</div>
+
+<div style="background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 15px; margin: 25px 0;">
+
+<h3 align="center" style="color: #581c87; font-weight: 800; margin-bottom: 35px;">What We're Building in Phase 2</h3>
+
+<table style="width: 100%; border-collapse: separate; border-spacing: 20px;">
+<tr>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #1e3a8a; font-weight: 800; font-size: 1.4em; margin-bottom: 20px;">1. Mobile-First Experience</h4>
+
+<p style="color: #1e40af; font-weight: 700; font-size: 1.05em; margin-bottom: 15px;">React Native Apps (Android + iOS)</p>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">Why Mobile?</p>
+<p style="color: #6b7280; font-size: 0.95em; line-height: 1.6;">65% of government officers in tier-2/tier-3 cities use smartphones as their primary device. Many don't have dedicated desktop computers.</p>
+</div>
+
+<div style="background: #eff6ff; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #1e3a8a; font-weight: 700; margin-bottom: 10px;">Features:</p>
+<ul style="color: #475569; line-height: 1.8; margin-left: 20px;">
+<li>Offline document viewing and annotation</li>
+<li>Push notifications for urgent documents</li>
+<li>Voice-to-text for adding comments (Hindi + English)</li>
+<li>Biometric authentication (fingerprint/face unlock)</li>
+<li>Quick approval with one-tap actions</li>
+<li>Camera integration for document scanning</li>
+<li>Battery-optimized background sync</li>
+</ul>
+</div>
+
+<div style="background: #1e3a8a; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center;">
+<p style="font-weight: 700; margin: 0;">Timeline: Q1-Q2 2026 (6 months)</p>
+</div>
+
+</td>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #78350f; font-weight: 800; font-size: 1.4em; margin-bottom: 20px;">2. Advanced AI Capabilities</h4>
+
+<p style="color: #92400e; font-weight: 700; font-size: 1.05em; margin-bottom: 15px;">Next-Generation Document Intelligence</p>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">OCR for Handwritten Documents</p>
+<p style="color: #6b7280; font-size: 0.95em; line-height: 1.6;">40% of government documents are handwritten. Custom OCR trained on Indian handwriting styles (Hindi, Tamil, Bengali, etc.)</p>
+</div>
+
+<div style="background: #fffbeb; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #78350f; font-weight: 700; margin-bottom: 10px;">AI Enhancements:</p>
+<ul style="color: #475569; line-height: 1.8; margin-left: 20px;">
+<li><strong>Multi-language NLP</strong>: Process docs in 22 official languages</li>
+<li><strong>Sentiment analysis</strong>: Detect urgent/distressed citizen complaints</li>
+<li><strong>Auto-classification</strong>: Categorize docs by type (legal, medical, financial)</li>
+<li><strong>Smart extraction</strong>: Pull names, dates, amounts, locations automatically</li>
+<li><strong>Duplicate detection</strong>: Identify resubmitted applications</li>
+<li><strong>Fraud detection</strong>: Flag suspicious patterns in documents</li>
+</ul>
+</div>
+
+<div style="background: #78350f; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center;">
+<p style="font-weight: 700; margin: 0;">Timeline: Q2-Q3 2026 (6 months)</p>
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #581c87; font-weight: 800; font-size: 1.4em; margin-bottom: 20px;">3. Citizen Portal</h4>
+
+<p style="color: #6b21a8; font-weight: 700; font-size: 1.05em; margin-bottom: 15px;">Bridging the Gap Between Officers and Citizens</p>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">Why Now?</p>
+<p style="color: #6b7280; font-size: 0.95em; line-height: 1.6;">Phase 1 fixed internal workflows. Phase 2 extends benefits to citizens. Officers can now handle 3x more applications—time to open the gates.</p>
+</div>
+
+<div style="background: #fdf4ff; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #581c87; font-weight: 700; margin-bottom: 10px;">Citizen Features:</p>
+<ul style="color: #475569; line-height: 1.8; margin-left: 20px;">
+<li><strong>Submit applications online</strong>: Upload docs directly to departments</li>
+<li><strong>Real-time tracking</strong>: See exactly where application is</li>
+<li><strong>AI-powered guidance</strong>: Chatbot helps fill forms correctly</li>
+<li><strong>Document checklist</strong>: Know what docs are needed before visiting office</li>
+<li><strong>SMS/WhatsApp updates</strong>: Get notified at each step</li>
+<li><strong>RTI integration</strong>: File RTI requests digitally</li>
+<li><strong>Grievance redressal</strong>: Track complaint status</li>
+<li><strong>Payment gateway</strong>: Pay fees online (UPI/cards)</li>
+</ul>
+</div>
+
+<div style="background: #581c87; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center;">
+<p style="font-weight: 700; margin: 0;">Timeline: Q3-Q4 2026 (6 months)</p>
+</div>
+
+</td>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #7f1d1d; font-weight: 800; font-size: 1.4em; margin-bottom: 20px;">4. WhatsApp Integration</h4>
+
+<p style="color: #991b1b; font-weight: 700; font-size: 1.05em; margin-bottom: 15px;">Meeting Officers Where They Are</p>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">The WhatsApp Reality</p>
+<p style="color: #6b7280; font-size: 0.95em; line-height: 1.6;">85% of government officers use WhatsApp daily. It's their primary communication tool. Email? Not so much.</p>
+</div>
+
+<div style="background: #fef2f2; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #7f1d1d; font-weight: 700; margin-bottom: 10px;">WhatsApp Features:</p>
+<ul style="color: #475569; line-height: 1.8; margin-left: 20px;">
+<li><strong>Instant notifications</strong>: New document alerts via WhatsApp</li>
+<li><strong>Document summaries</strong>: AI summary sent to WhatsApp</li>
+<li><strong>Quick actions</strong>: Approve/reject with button clicks</li>
+<li><strong>Status queries</strong>: Ask "Where is file #12345?" and get instant answer</li>
+<li><strong>Daily digest</strong>: Morning summary of pending work</li>
+<li><strong>Emergency alerts</strong>: Critical disaster docs sent immediately</li>
+<li><strong>Voice messages</strong>: Officers can reply with voice notes</li>
+<li><strong>Group coordination</strong>: Department WhatsApp groups for collaboration</li>
+</ul>
+</div>
+
+<div style="background: #7f1d1d; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center;">
+<p style="font-weight: 700; margin: 0;">Timeline: Q2 2026 (3 months)</p>
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #14532d; font-weight: 800; font-size: 1.4em; margin-bottom: 20px;">5. Advanced Analytics & BI</h4>
+
+<p style="color: #166534; font-weight: 700; font-size: 1.05em; margin-bottom: 15px;">Data-Driven Governance</p>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">For Decision Makers</p>
+<p style="color: #6b7280; font-size: 0.95em; line-height: 1.6;">Chief Secretaries, District Magistrates need dashboards showing bottlenecks, performance metrics, and predictive insights.</p>
+</div>
+
+<div style="background: #f0fdf4; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #14532d; font-weight: 700; margin-bottom: 10px;">Analytics Features:</p>
+<ul style="color: #475569; line-height: 1.8; margin-left: 20px;">
+<li><strong>Performance dashboards</strong>: Real-time dept/officer efficiency metrics</li>
+<li><strong>Bottleneck detection</strong>: AI identifies where files get stuck</li>
+<li><strong>Predictive analytics</strong>: Forecast processing times, workload spikes</li>
+<li><strong>Comparative analysis</strong>: Benchmark across districts/states</li>
+<li><strong>Custom reports</strong>: Generate monthly/quarterly/annual reports</li>
+<li><strong>Heatmaps</strong>: Visualize document flow patterns</li>
+<li><strong>Trend analysis</strong>: Identify seasonal patterns, recurring issues</li>
+<li><strong>Export capabilities</strong>: CSV/Excel/PDF for external analysis</li>
+</ul>
+</div>
+
+<div style="background: #14532d; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center;">
+<p style="font-weight: 700; margin: 0;">Timeline: Q3 2026 (4 months)</p>
+</div>
+
+</td>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #1e1b4b; font-weight: 800; font-size: 1.4em; margin-bottom: 20px;">6. Digital Signatures & Legal Validity</h4>
+
+<p style="color: #312e81; font-weight: 700; font-size: 1.05em; margin-bottom: 15px;">Making Digital Documents Legally Binding</p>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">The Legal Challenge</p>
+<p style="color: #6b7280; font-size: 0.95em; line-height: 1.6;">Digital approvals need legal validity. Integration with Aadhaar eSign, DigiLocker for government-compliant digital signatures.</p>
+</div>
+
+<div style="background: #eef2ff; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #1e1b4b; font-weight: 700; margin-bottom: 10px;">Digital Signature Features:</p>
+<ul style="color: #475569; line-height: 1.8; margin-left: 20px;">
+<li><strong>Aadhaar eSign</strong>: Officers sign with Aadhaar-based PKI</li>
+<li><strong>DigiLocker integration</strong>: Fetch verified citizen documents</li>
+<li><strong>Timestamp authority</strong>: Legal timestamp for all signatures</li>
+<li><strong>Certificate management</strong>: Automated DSC renewal tracking</li>
+<li><strong>Multi-party signing</strong>: Sequential/parallel signature workflows</li>
+<li><strong>Signature verification</strong>: Instant validation of signed docs</li>
+<li><strong>Compliance</strong>: IT Act 2000 compliant digital signatures</li>
+<li><strong>Audit trail</strong>: Who signed what, when—blockchain verified</li>
+</ul>
+</div>
+
+<div style="background: #1e1b4b; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center;">
+<p style="font-weight: 700; margin: 0;">Timeline: Q4 2026 (4 months)</p>
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #7f1d1d; font-weight: 800; font-size: 1.4em; margin-bottom: 20px;">7. Disaster Management Mode</h4>
+
+<p style="color: #991b1b; font-weight: 700; font-size: 1.05em; margin-bottom: 15px;">Emergency Response at Lightning Speed</p>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">When Seconds Matter</p>
+<p style="color: #6b7280; font-size: 0.95em; line-height: 1.6;">During floods, earthquakes, landslides—every second counts. Special mode for disaster response.</p>
+</div>
+
+<div style="background: #fef2f2; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #7f1d1d; font-weight: 700; margin-bottom: 10px;">Emergency Features:</p>
+<ul style="color: #475569; line-height: 1.8; margin-left: 20px;">
+<li><strong>Red alert mode</strong>: System-wide emergency activation</li>
+<li><strong>Priority override</strong>: Disaster docs bypass all queues</li>
+<li><strong>Mass notification</strong>: Alert all officers instantly (SMS/WhatsApp/call)</li>
+<li><strong>Geo-tracking</strong>: See which officers are in affected areas</li>
+<li><strong>Rapid approval</strong>: One-click emergency fund releases</li>
+<li><strong>Coordination center</strong>: Real-time command dashboard</li>
+<li><strong>Resource tracking</strong>: Monitor relief materials, personnel deployment</li>
+<li><strong>Situation reports</strong>: Auto-generate hourly status updates</li>
+</ul>
+</div>
+
+<div style="background: #7f1d1d; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center;">
+<p style="font-weight: 700; margin: 0;">Timeline: Q1 2026 (High Priority - 3 months)</p>
+</div>
+
+</td>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #7c2d12; font-weight: 800; font-size: 1.4em; margin-bottom: 20px;">8. Infrastructure & Scalability</h4>
+
+<p style="color: #9a3412; font-weight: 700; font-size: 1.05em; margin-bottom: 15px;">Enterprise-Grade Architecture</p>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">Scaling from 1,000 to 100,000 Users</p>
+<p style="color: #6b7280; font-size: 0.95em; line-height: 1.6;">Current setup handles Uttarakhand. National deployment needs enterprise infrastructure.</p>
+</div>
+
+<div style="background: #fffbeb; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #7c2d12; font-weight: 700; margin-bottom: 10px;">Infrastructure Upgrades:</p>
+<ul style="color: #475569; line-height: 1.8; margin-left: 20px;">
+<li><strong>Microservices architecture</strong>: Break monolith into scalable services</li>
+<li><strong>Kubernetes deployment</strong>: Auto-scaling, load balancing</li>
+<li><strong>Multi-region CDN</strong>: Fast access from any corner of India</li>
+<li><strong>Redis caching</strong>: Sub-second response times</li>
+<li><strong>PostgreSQL sharding</strong>: Handle millions of documents</li>
+<li><strong>S3-compatible storage</strong>: Secure, redundant file storage</li>
+<li><strong>API rate limiting</strong>: Prevent abuse, ensure fair usage</li>
+<li><strong>99.9% uptime SLA</strong>: Government-grade reliability</li>
+</ul>
+</div>
+
+<div style="background: #7c2d12; color: white; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center;">
+<p style="font-weight: 700; margin: 0;">Timeline: Q1-Q2 2026 (Ongoing - 6 months)</p>
+</div>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+<div style="background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 15px; margin: 25px 0;">
+
+<h3 align="center" style="color: #581c87; font-weight: 800; margin-bottom: 30px;">Phase 2 Development Roadmap</h3>
+
+<table style="width: 100%; margin: 20px 0;">
+<tr>
+<td style="padding: 20px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 10px; margin: 10px;">
+<h4 style="color: #78350f; font-weight: 700; margin-bottom: 10px;">Q1 2026 (Jan-Mar)</h4>
+<ul style="color: #92400e; line-height: 1.8;">
+<li>Mobile app development (React Native)</li>
+<li>Disaster Management Mode implementation</li>
+<li>Infrastructure migration to microservices</li>
+<li>WhatsApp Business API integration</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding: 20px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 10px; margin: 10px;">
+<h4 style="color: #1e3a8a; font-weight: 700; margin-bottom: 10px;">Q2 2026 (Apr-Jun)</h4>
+<ul style="color: #1e40af; line-height: 1.8;">
+<li>Advanced AI features (OCR, multi-language NLP)</li>
+<li>Mobile app beta testing with 500 officers</li>
+<li>Performance optimization & load testing</li>
+<li>Security audit & penetration testing</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding: 20px; background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); border-radius: 10px; margin: 10px;">
+<h4 style="color: #581c87; font-weight: 700; margin-bottom: 10px;">Q3 2026 (Jul-Sep)</h4>
+<ul style="color: #6b21a8; line-height: 1.8;">
+<li>Citizen Portal development & launch</li>
+<li>Analytics dashboards for decision makers</li>
+<li>Pilot in 5 additional states (Maharashtra, Karnataka, Tamil Nadu, Gujarat, Rajasthan)</li>
+<li>Partnership with NIC (National Informatics Centre)</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding: 20px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 10px; margin: 10px;">
+<h4 style="color: #14532d; font-weight: 700; margin-bottom: 10px;">Q4 2026 (Oct-Dec)</h4>
+<ul style="color: #166534; line-height: 1.8;">
+<li>Digital signature integration (Aadhaar eSign)</li>
+<li>National rollout preparation</li>
+<li>Training programs for 50,000+ officers</li>
+<li>MeitY (Ministry of Electronics & IT) certification</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</div>
+
+<div style="background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 15px; margin: 25px 0;">
+
+<h3 align="center" style="color: #581c87; font-weight: 800; margin-bottom: 30px;">Expected Impact: Phase 2</h3>
+
+<table style="width: 100%; border-collapse: separate; border-spacing: 15px;">
+<tr>
+<td align="center" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 25px; border-radius: 12px;">
+<h2 style="color: #7f1d1d; margin: 0;">100,000+</h2>
+<p style="color: #991b1b; font-weight: 600; margin-top: 10px;">Officers Onboarded</p>
+<p style="color: #7f1d1d; font-size: 0.9em;">Across all 28 states & 8 UTs</p>
+</td>
+<td align="center" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 25px; border-radius: 12px;">
+<h2 style="color: #1e3a8a; margin: 0;">1M+</h2>
+<p style="color: #1e40af; font-weight: 600; margin-top: 10px;">Documents/Day</p>
+<p style="color: #1e3a8a; font-size: 0.9em;">National processing capacity</p>
+</td>
+<td align="center" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 12px;">
+<h2 style="color: #78350f; margin: 0;">₹500 Cr+</h2>
+<p style="color: #92400e; font-weight: 600; margin-top: 10px;">Savings/Year</p>
+<p style="color: #78350f; font-size: 0.9em;">Reduced paperwork costs</p>
+</td>
+<td align="center" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 25px; border-radius: 12px;">
+<h2 style="color: #14532d; margin: 0;">50M+</h2>
+<p style="color: #166534; font-weight: 600; margin-top: 10px;">Citizens Benefited</p>
+<p style="color: #14532d; font-size: 0.9em;">Faster government services</p>
+</td>
+</tr>
+</table>
+
+</div>
+
+<div style="background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 15px; margin: 25px 0;">
+
+
+<!-- Beautiful divider -->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
+
+<h2 align="center" style="color: #581c87; font-weight: 900; font-size: 2.1em; margin: 30px 0 10px 0; letter-spacing: 1px;">Tech Stack & Tools</h2>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Express-000000?logo=express&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Solidity-363636?logo=solidity&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Polygon-8B5CF6?logo=polygon&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Redux-764ABC?logo=redux&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/React_Query-FF4154?logo=reactquery&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Expo-000020?logo=expo&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Heroku-430098?logo=heroku&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Kubernetes-326CE5?logo=kubernetes&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/AWS-232F3E?logo=amazonaws&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Azure-0078D4?logo=microsoftazure&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Elasticsearch-005571?logo=elasticsearch&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Grafana-F46800?logo=grafana&logoColor=white&style=for-the-badge"/>
+</p>
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=js,ts,html,css,react,redux,nodejs,express,mongodb,solidity,polygon,tailwind,heroku,docker,kubernetes,aws,azure,redis,postgres,graphql,python,java,github,git,figma,expo,vercel,linux,bash&perline=10" alt="Skill Icons" width="100%"/>
+  </a>
+</p>
+
+<!-- Colorful divider -->
+<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="100%" height="5px" style="border-radius: 5px;"/>
+
+<h3 align="center" style="color: #581c87; font-weight: 800; margin: 30px 0 20px 0;">Screenshots</h3>
+<table align="center">
+  <tr>
+    <td align="center"><img src="src/img/ss_1.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/><br/><sub>Officer Dashboard</sub></td>
+    <td align="center"><img src="src/img/ss_2.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/><br/><sub>Document Upload</sub></td>
+    <td align="center"><img src="src/img/ss_3.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/><br/><sub>AI Summarization</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="src/img/ss_4.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/><br/><sub>Smart Routing</sub></td>
+    <td align="center"><img src="src/img/ss_5.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/><br/><sub>Blockchain Audit Trail</sub></td>
+    <td align="center"><img src="src/img/ss_6.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/><br/><sub>Mobile App (Preview)</sub></td>
+  </tr>
+</table>
+
+<!-- Colorful divider -->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
+
+<!-- Projects -->
+<div align="center" style="margin: 40px 0;">
+  <h2 style="color:#1e293b; font-weight:800;">Featured Projects</h2>
+  <p style="color:#475569; max-width:900px;">Selected prototypes and live demos that demonstrate Pravaah's core capabilities.</p>
+
+  <table style="margin-top:18px;">
+    <tr>
+      <td align="center" style="padding:12px;">
+        <a href="https://galsenapi.lassanasiby.com">
+          <img src="https://lassanasiby.com/assets/img/GalsenApi.png" width="220" style="border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12);" alt="GalsenAPI"/><br/>
+          <b>GalsenAPI</b>
+        </a>
+      </td>
+      <td align="center" style="padding:12px;">
+        <a href="https://dembancane.pythonanywhere.com">
+          <img src="https://lassanasiby.com/assets/img/webdembancane.png" width="220" style="border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12);" alt="Mairie Dembancane"/><br/>
+          <b>Mairie Dembancane</b>
+        </a>
+      </td>
+      <td align="center" style="padding:12px;">
+        <a href="https://sibyshop.vercel.app/">
+          <img src="https://lassanasiby.com/assets/img/sibyshop.png" width="220" style="border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12);" alt="SIBYSHOP"/><br/>
+          <b>SIBYSHOP</b>
+        </a>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<!-- Stats & Analytics -->
+<div align="center" style="background: linear-gradient(135deg,#f8fafc,#eef2ff); padding:22px; border-radius:12px; margin:30px 0;">
+  <h3 style="color:#0f172a; font-weight:800;">Stats & Activity</h3>
+  <p style="color:#475569; margin-bottom:12px;">Quick glance at repository activity, CI status, and community signals.</p>
+
+  <p>
+    <img src="https://github-readme-stats.vercel.app/api?username=your-github-username&show_icons=true&theme=midnight-purple&hide_border=true" alt="GitHub stats" width="420" />
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=your-github-username&layout=compact&theme=midnight-purple&hide_border=true" alt="Top languages" width="320" />
+  </p>
+
+  <p style="margin-top:12px;">
+    <a href="https://github.com/guilyx/guilyx/actions"><img src="https://github.com/guilyx/guilyx/workflows/wakatime-stats/badge.svg" alt="Actions Status"/></a>
+    <img src="https://visitor-badge.glitch.me/badge?page_id=guilyx.guilyx" alt="visitors" style="margin-left:12px;"/>
+  </p>
+
+  <p style="margin-top:16px; color:#475569;">StackOverflow / community stats:</p>
+  <a href="https://github.com/kurt-project/so-stats"><img height="140" src="https://so-stats-kurt-liao.vercel.app/api?user=8212847&theme=swift" alt="stack overflow stat"></a>
+
+</div>
+
+<div align="center" style="background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); padding: 30px; border-radius: 12px; margin: 30px 0;">
+<p style="color: white; font-size: 1.3em; font-weight: 800; line-height: 1.7; margin: 0;">
+Phase 2 isn't just an upgrade—it's a revolution in how India's government operates.
+</p>
+<p style="color: #e9d5ff; font-size: 1.1em; margin-top: 15px;">
+From 47 documents on one officer's desk in Dehradun to 1 million documents flowing seamlessly across India.
+</p>
+</div>
+
+</div>
+
+</div>
 
 ---
 
