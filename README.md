@@ -1,170 +1,222 @@
-# Pravaah - AI-Powered Document Intelligence for Uttarakhand Government
-
----
-
-## **Let's Be Honest: What Comes to Your Mind When You Think of Government Offices?**
-
-When someone says "government office" or "sarkari daftar," what's the first image that pops into your head?
-
-Let me guess...
-
-**This?**
-
-<img src="src/img/piles_of_doc.png" alt="Government office with files piled everywhere" width="600"/>
-
-**Or this?**
-
-<img src="src/img/piles_of_doc2.png" alt="Stacks of unorganized documents" width="600"/>
-
-<br/>
-
-### **See The Problem In Action:**
-
 <div align="center">
 
-https://github.com/user-attachments/assets/Problem.mp4
+<h1 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3em; font-weight: 900;">
+  Pravaah
+</h1>
 
-*A day in the life of a government office - document chaos, manual processes, and overwhelming workload*
+<h3 style="color: #4a5568; font-weight: 600;">AI-Powered Document Intelligence for Uttarakhand Government</h3>
 
 </div>
 
-**Exactly.**
-
-If you've watched Bollywood movies like **"Newton"** or **"Jolly LLB"**, you've seen it—the clerk drowning in files, the dusty almirahs overflowing with papers, the officer buried behind a mountain of documents, the peon running between departments with files tied in red tape. Literally.
-
-Remember that scene in **"12th Fail"** where government exam papers get lost in bureaucratic chaos? Or in **"Article 15"** where critical case files can't be found when needed? That's not just cinema. **That's reality in most government offices across India, including Uttarakhand.**
-
-The stereotypical image exists because it's **true**:
-- Files stacked **three feet high** on desks
-- Officers struggling to find **that one important document** among hundreds
-- Critical information buried under routine paperwork
-- Citizens waiting for **months** because their application is "under process" (translation: sitting unread in a pile)
-
-**This is the India we know. The India we've accepted. The India we've made jokes about.**
-
-But here's what we don't joke about: **when those piles of paper delay disaster warnings, when they slow down medical emergency approvals, when they cost lives.**
-
 ---
 
-## **The Current Reality: How It's "Solved" Today**
+<div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 30px; border-radius: 15px; margin: 20px 0;">
 
-Right now, here's what happens in most government offices in Uttarakhand:
+<h2 align="center" style="color: #2d3748; font-weight: 700;">Let's Be Honest: What Comes to Your Mind When You Think of Government Offices?</h2>
 
-**Scenario 1: The Manual Marathon**  
-A land dispute document arrives. Officer reads all 25 pages. Manually writes a summary note on a separate paper. Attaches it with a pin. Writes "Forwarded to Legal Cell" on top. Calls a peon. The peon physically walks the file to the Legal Department (which might be in another building). The Legal Cell clerk receives it, logs it in a physical register with pen. The cycle repeats.
+<p align="center" style="font-size: 1.1em; color: #4a5568;">When someone says <strong>"government office"</strong> or <strong>"sarkari daftar,"</strong> what's the first image that pops into your head?</p>
 
-**Time taken**: **3-5 days** just for the file to move between departments. If the Legal Officer is on leave? Add another week.
+</div>
 
-**Scenario 2: The Email Chaos**  
-Some offices have "gone digital"—they scan documents and email PDFs. Sounds modern, right? Except now the officer receives **150 emails a day**. Each email has 2-3 PDF attachments. Each PDF is 10-20 pages. There's no way to know which email is urgent. No automatic categorization. No summaries. Just **inbox overload**. Officers spend hours just **opening PDFs** to see what's inside.
+<div align="center" style="margin: 30px 0;">
 
-**Result**: Important emails get buried. Urgent matters get delayed because they **look** like routine correspondence.
+<p style="font-size: 1.2em; font-weight: 600; color: #2d3748;">Let me guess...</p>
 
-**Scenario 3: The "Urgent" Stamp Problem**  
-Officers started marking urgent documents with red stamps saying **"URGENT - ACTION REQUIRED"**. Great idea, except now **everything** is marked urgent. When everything is urgent, **nothing is urgent**. Officers can't tell the difference between "urgent" (routine deadline) and "URGENT" (flash flood warning).
+<div style="display: inline-block; margin: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden;">
+  <img src="src/img/piles_of_doc.png" alt="Government office with files piled everywhere" width="600" style="border-radius: 20px;"/>
+</div>
 
-**Reality check**: A disaster management official in Chamoli district told us, _"We get 10-15 documents marked 'urgent' every day. Most are routine. But one day, a real emergency comes marked the same way, and we treat it like the others. By the time we realize it's actually critical, hours have passed."_
+<p style="font-size: 1.1em; font-weight: 600; color: #2d3748; margin: 20px 0;">Or this?</p>
 
-**This is how it's currently "solved"—it's not solved at all. It's managed. Barely.**
+<div style="display: inline-block; margin: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden;">
+  <img src="src/img/piles_of_doc2.png" alt="Stacks of unorganized documents" width="600" style="border-radius: 20px;"/>
+</div>
 
----
+</div>
 
-## **Wait—Who Actually Uses Pravaah? (Spoiler: Not Citizens)**
+<div align="center" style="background: #f7fafc; padding: 25px; border-radius: 15px; margin: 30px 0; border-left: 5px solid #667eea;">
 
-Let's clear this up right away.
+<h3 style="color: #2d3748; font-weight: 700; margin-bottom: 15px;">See The Problem In Action</h3>
 
-**Pravaah is NOT a citizen-facing portal.** This isn't where the public comes to file complaints or track applications. No.
+https://github.com/user-attachments/assets/Problem.mp4
 
-**Pravaah is for the people _inside_ the government offices.** The ones dealing with those mountains of documents every single day.
+<p style="color: #718096; font-style: italic; margin-top: 10px;">A day in the life of a government office - document chaos, manual processes, overwhelming workload</p>
 
-Think about it—**who actually suffers from this document chaos?**
+</div>
 
-Not just citizens waiting for approvals. The **government officers themselves** are drowning. They want to serve people efficiently, but the system won't let them. They're stuck reading hundreds of pages, manually routing files, trying to find that one urgent document in a sea of paperwork.
+<div align="center" style="margin: 20px 0;">
+  <p style="font-size: 1.3em; font-weight: 700; color: #e53e3e;">Exactly.</p>
+</div>
 
-**Our users are:**
+<div style="background: #fff5f5; border-left: 5px solid #fc8181; padding: 25px; border-radius: 10px; margin: 25px 0;">
 
-<img src="src/img/our_users.png" alt="Government Officers - The Real Users of Pravaah" width="700"/>
+<p style="color: #2d3748; line-height: 1.8; font-size: 1.05em;">Bollywood movies like <strong>Newton</strong>, <strong>Jolly LLB</strong>, <strong>12th Fail</strong>, and <strong>Article 15</strong> show it perfectly—clerks drowning in files, dusty almirahs overflowing with papers, officers buried under documents, peons running between departments with files tied in literal red tape.</p>
 
-### **The People Behind the Desks**
+</div>
 
-<table>
+<div style="background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%); padding: 20px; border-radius: 12px; margin: 20px 0;">
+
+<h4 style="color: #2d3748; margin-bottom: 15px;">The Reality:</h4>
+
+<table style="width: 100%; border-collapse: collapse;">
 <tr>
-<td width="50%" valign="top">
+<td style="padding: 10px; color: #4a5568;"><strong>Files stacked three feet high</strong> on every desk</td>
+</tr>
+<tr>
+<td style="padding: 10px; color: #4a5568;">Officers can't find <strong>critical documents</strong> among hundreds</td>
+</tr>
+<tr>
+<td style="padding: 10px; color: #4a5568;">Applications sit <strong>unread for months</strong></td>
+</tr>
+<tr>
+<td style="padding: 10px; color: #4a5568;">Disaster warnings <strong>delayed</strong>, medical approvals <strong>slowed</strong></td>
+</tr>
+</table>
 
-#### **👤 Section Officers**
-**The Frontline Warriors**
+</div>
 
-Handle incoming documents, make initial decisions, route files to departments.
+<div align="center" style="background: #fed7d7; padding: 20px; border-radius: 10px; margin: 20px 0;">
+  <p style="font-size: 1.2em; font-weight: 700; color: #c53030;">This isn't just bureaucracy. When paperwork delays disaster warnings, lives are at stake.</p>
+</div>
 
-**Daily Reality:**
-- 100+ documents to review
-- Each 5-50 pages long
-- Manual routing, manual summaries
+<div style="background: #2d3748; color: white; padding: 30px; border-radius: 15px; margin: 30px 0;">
 
-**With Pravaah:**
-> ⚡ AI summaries in 30 seconds  
-> 🎯 Auto-routing to correct departments  
-> ⏱️ **90% time saved** per document
+<h2 align="center" style="color: #fff; font-weight: 700; margin-bottom: 20px;">The Current Reality: How It's "Solved" Today</h2>
+
+<p align="center" style="color: #e2e8f0; font-size: 1.1em;">Here's what happens in most government offices in Uttarakhand right now:</p>
+
+</div>
+
+<table style="width: 100%; border-collapse: separate; border-spacing: 15px;">
+<tr>
+<td style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); padding: 25px; border-radius: 12px; border-left: 5px solid #0284c7;">
+<h3 style="color: #0c4a6e; margin-bottom: 10px;">Scenario 1: The Manual Marathon</h3>
+<p style="color: #164e63; line-height: 1.7;">Land dispute arrives → Officer reads 25 pages → Writes summary → Calls peon → File physically walks to Legal Department → Logged in register → Cycle repeats.</p>
+<p style="color: #dc2626; font-weight: 700; margin-top: 10px;">Time: 3-5 days (+ 1 week if officer on leave)</p>
+</td>
+</tr>
+<tr>
+<td style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 12px; border-left: 5px solid #d97706;">
+<h3 style="color: #92400e; margin-bottom: 10px;">Scenario 2: The Email Chaos</h3>
+<p style="color: #78350f; line-height: 1.7;">150 emails/day → Each with 2-3 PDFs → Each PDF 10-20 pages → No categorization → Hours spent opening files to see what's inside.</p>
+<p style="color: #dc2626; font-weight: 700; margin-top: 10px;">Result: Important emails buried, urgent matters delayed</p>
+</td>
+</tr>
+<tr>
+<td style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 25px; border-radius: 12px; border-left: 5px solid #dc2626;">
+<h3 style="color: #7f1d1d; margin-bottom: 10px;">Scenario 3: The "Urgent" Stamp Problem</h3>
+<p style="color: #991b1b; line-height: 1.7;">Everything marked URGENT → Nothing is actually urgent → Flash flood warnings look like routine files.</p>
+<p style="color: #dc2626; font-weight: 700; margin-top: 10px; font-style: italic;">"10-15 urgent docs daily. By the time we realize one is critical, hours have passed." - Chamoli District Official</p>
+</td>
+</tr>
+</table>
+
+<div align="center" style="background: #1e293b; color: white; padding: 20px; border-radius: 10px; margin: 25px 0;">
+<p style="font-size: 1.2em; font-weight: 700;">This is how it's currently "solved" — it's not solved at all. It's managed. Barely.</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%); padding: 35px; border-radius: 15px; margin: 30px 0; border: 3px solid #f59e0b;">
+
+<h2 align="center" style="color: #92400e; font-weight: 700; margin-bottom: 15px;">Wait—Who Actually Uses Pravaah?</h2>
+
+<p align="center" style="color: #78350f; font-size: 1.1em; font-weight: 600;">Spoiler: Not Citizens</p>
+
+<div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+<p style="color: #2d3748; line-height: 1.8; font-size: 1.05em;"><strong>Pravaah is NOT a citizen-facing portal.</strong> It's for the people <em>inside</em> government offices—the ones dealing with mountains of documents daily. Government officers themselves are drowning, wanting to serve efficiently but stuck reading hundreds of pages, manually routing files.</p>
+
+</div>
+
+</div>
+
+<div align="center" style="margin: 30px 0;">
+  <img src="src/img/our_users.png" alt="Government Officers - The Real Users of Pravaah" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
+
+<div style="background: white; padding: 30px; border-radius: 15px; margin: 30px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+
+<h3 align="center" style="color: #2d3748; font-weight: 700; margin-bottom: 25px;">The People Behind the Desks</h3>
+
+<table style="width: 100%; border-collapse: separate; border-spacing: 15px;">
+<tr>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 20px; border-radius: 12px;">
+
+<h4 style="color: #1e3a8a; margin-bottom: 10px; font-weight: 700;">Section Officers</h4>
+<p style="color: #1e40af; font-weight: 600; font-size: 0.95em; margin-bottom: 15px;">The Frontline Warriors</p>
+
+<p style="color: #374151; font-size: 0.95em; margin-bottom: 10px;">Handle incoming documents, make decisions, route files to departments.</p>
+
+<div style="background: white; padding: 12px; border-radius: 8px; margin: 10px 0;">
+<p style="color: #6b7280; font-weight: 600; font-size: 0.9em;">Daily Reality:</p>
+<p style="color: #4b5563; font-size: 0.85em;">100+ documents • 5-50 pages each • Manual routing & summaries</p>
+</div>
+
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; margin: 10px 0; border-left: 3px solid #16a34a;">
+<p style="color: #15803d; font-weight: 600; font-size: 0.9em;">With Pravaah:</p>
+<p style="color: #166534; font-size: 0.85em;">AI summaries in 30 seconds • Auto-routing • 90% time saved per document</p>
+</div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 12px;">
 
-#### **🏢 Department Admins**
-**The Decision Makers**
+<h4 style="color: #92400e; margin-bottom: 10px; font-weight: 700;">Department Admins</h4>
+<p style="color: #b45309; font-weight: 600; font-size: 0.95em; margin-bottom: 15px;">The Decision Makers</p>
 
-Department heads managing teams, setting priorities, approving workflows.
+<p style="color: #374151; font-size: 0.95em; margin-bottom: 10px;">Department heads managing teams, setting priorities, approving workflows.</p>
 
-**Daily Reality:**
-- Oversee 20-50 officers
-- Track hundreds of documents
-- Manual workflow coordination
+<div style="background: white; padding: 12px; border-radius: 8px; margin: 10px 0;">
+<p style="color: #6b7280; font-weight: 600; font-size: 0.9em;">Daily Reality:</p>
+<p style="color: #4b5563; font-size: 0.85em;">Oversee 20-50 officers • Track hundreds of docs • Manual coordination</p>
+</div>
 
-**With Pravaah:**
-> 📊 Real-time department dashboard  
-> ⚙️ Configure routing rules once  
-> 👁️ Complete visibility, zero micromanagement
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; margin: 10px 0; border-left: 3px solid #16a34a;">
+<p style="color: #15803d; font-weight: 600; font-size: 0.9em;">With Pravaah:</p>
+<p style="color: #166534; font-size: 0.85em;">Real-time dashboards • Configure rules once • Complete visibility</p>
+</div>
 
 </td>
 </tr>
 <tr>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%); padding: 20px; border-radius: 12px;">
 
-#### **⚙️ Super Admins**
-**The System Architects**
+<h4 style="color: #581c87; margin-bottom: 10px; font-weight: 700;">Super Admins</h4>
+<p style="color: #6b21a8; font-weight: 600; font-size: 0.95em; margin-bottom: 15px;">The System Architects</p>
 
-State-level oversight across all districts and departments.
+<p style="color: #374151; font-size: 0.95em; margin-bottom: 10px;">State-level oversight across all districts and departments.</p>
 
-**Daily Reality:**
-- Monitor entire state machinery
-- Generate reports for leadership
-- Ensure system-wide compliance
+<div style="background: white; padding: 12px; border-radius: 8px; margin: 10px 0;">
+<p style="color: #6b7280; font-weight: 600; font-size: 0.9em;">Daily Reality:</p>
+<p style="color: #4b5563; font-size: 0.85em;">Monitor state machinery • Generate reports • Ensure compliance</p>
+</div>
 
-**With Pravaah:**
-> 🗺️ Statewide performance analytics  
-> 📈 Cross-department comparisons  
-> 🔍 Identify bottlenecks instantly
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; margin: 10px 0; border-left: 3px solid #16a34a;">
+<p style="color: #15803d; font-weight: 600; font-size: 0.9em;">With Pravaah:</p>
+<p style="color: #166534; font-size: 0.85em;">Statewide analytics • Cross-department comparisons • Instant bottleneck detection</p>
+</div>
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%); padding: 20px; border-radius: 12px;">
 
-#### **🔍 Auditors**
-**The Watchdogs**
+<h4 style="color: #7f1d1d; margin-bottom: 10px; font-weight: 700;">Auditors</h4>
+<p style="color: #991b1b; font-weight: 600; font-size: 0.95em; margin-bottom: 15px;">The Watchdogs</p>
 
-RTI officers, vigilance teams ensuring transparency and compliance.
+<p style="color: #374151; font-size: 0.95em; margin-bottom: 10px;">RTI officers, vigilance teams ensuring transparency and compliance.</p>
 
-**Daily Reality:**
-- Track document movement
-- Respond to RTI queries
-- Investigate delays
+<div style="background: white; padding: 12px; border-radius: 8px; margin: 10px 0;">
+<p style="color: #6b7280; font-weight: 600; font-size: 0.9em;">Daily Reality:</p>
+<p style="color: #4b5563; font-size: 0.85em;">Track document movement • Respond to RTI • Investigate delays</p>
+</div>
 
-**With Pravaah:**
-> 🔒 Blockchain-verified audit trails  
-> 📝 Read-only access to everything  
-> ⚖️ **100% transparency**, zero tampering
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; margin: 10px 0; border-left: 3px solid #16a34a;">
+<p style="color: #15803d; font-weight: 600; font-size: 0.9em;">With Pravaah:</p>
+<p style="color: #166534; font-size: 0.85em;">Blockchain-verified audit trails • Read-only access • 100% transparency</p>
+</div>
 
 </td>
 </tr>
 </table>
+
+</div>
 
 ---
 
@@ -1111,6 +1163,206 @@ React Native app for Android and iOS. Officers can review and approve documents 
 
 ---
 
+## **Meet The Team Behind Pravaah**
+
+<div align="center">
+
+### **Four Students, One Mission: Fix Government Document Chaos**
+
+We're a team of third-year Computer Science students from **Graphic Era Hill University (GEHU), Dehradun**—not just developers, but problem solvers who saw a real issue and decided to build a real solution.
+
+</div>
+
+<br/>
+
+<table>
+<tr>
+<td width="25%" align="center">
+<img src="src/img/Abhay Kanojia.jpeg" width="150" style="border-radius: 50%;" alt="Abhay Kanojia"/>
+
+### **Abhay Kanojia**
+**Team Lead**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Abhay--k12-181717?style=for-the-badge&logo=github)](https://github.com/Abhay-k12)
+
+**What I Built:**
+- Blockchain integration with Polygon
+- Smart contract development
+- Audit trail system
+- Ensured every document action is tamper-proof
+
+📧 abhaykanojiak12@gmail.com
+
+</td>
+<td width="25%" align="center">
+<img src="src/img/Ankush Rawat.jpeg" width="150" style="border-radius: 50%;" alt="Ankush Rawat"/>
+
+### **Ankush Rawat**
+**Frontend Architect**
+
+[![GitHub](https://img.shields.io/badge/GitHub-savetree--1-181717?style=for-the-badge&logo=github)](https://github.com/savetree-1)
+
+**What I Built:**
+- Complete React frontend
+- System architecture design
+- Responsive UI/UX for all roles
+- Dashboard interfaces
+
+📧 ankurawat8844@gmail.com
+
+</td>
+<td width="25%" align="center">
+<img src="src/img/Ankush Malik" width="150" style="border-radius: 50%;" alt="Ankush Malik"/>
+
+### **Ankush Malik**
+**AI & Auth Specialist**
+
+[![GitHub](https://img.shields.io/badge/GitHub-AnkushMalik-181717?style=for-the-badge&logo=github)](https://github.com/AnkushMalik)
+
+**What I Built:**
+- Google Gemini AI integration
+- Document summarization engine
+- JWT authentication system
+- Role-based access control
+
+📧 anitamalik.2016am@gmail.com
+
+</td>
+<td width="25%" align="center">
+<img src="src/img/Priyanshu Bisht.jpg" width="150" style="border-radius: 50%;" alt="Priyanshu Bisht"/>
+
+### **Priyanshu Bisht**
+**Backend Engineer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-PriyanshuBisht-181717?style=for-the-badge&logo=github)](https://github.com/PriyanshuBisht)
+
+**What I Built:**
+- MongoDB database schema
+- RESTful API development
+- Document routing logic
+- File upload handling
+
+📧 priyanshubisht304@gmail.com
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<div align="center">
+
+### **🎯 Our Collective Achievement**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│  Lines of Code Written:        15,000+                          │
+│  Late Nights:                  Too many to count                │
+│  Government Officers Interviewed:  12                           │
+│  Problem Statements Analyzed:  Uttarakhand Document Management  │
+│  Technologies Mastered:        8 (MERN + AI + Blockchain)       │
+│  Days to Build MVP:            45                               │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+</div>
+
+---
+
+## **See Pravaah In Action**
+
+<div align="center">
+
+### **📹 Complete System Walkthrough**
+
+[![Pravaah Demo Video](src/img/Thumbnail.png)](https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU)
+
+**👆 Click to watch our full demonstration** (1080p HD)
+
+*See how Pravaah transforms document chaos into streamlined workflows—from upload to approval in under 5 minutes*
+
+</div>
+
+<br/>
+
+<div align="center">
+
+### **🎬 Watch Now:**
+
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
+  <img src="src/img/Thumbnail.png" alt="Pravaah System Demo" width="800"/>
+</a>
+
+**In this video you'll see:**
+- ✅ Real-time AI document summarization
+- ✅ Automatic smart routing in action
+- ✅ Blockchain audit trail verification
+- ✅ All 4 role-based dashboards
+- ✅ Complete document lifecycle (upload → approval)
+
+</div>
+
+---
+
+## **Why We Built This**
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### **The Personal Connection**
+
+We're from Uttarakhand. We've seen our parents, relatives, friends struggle with government offices. We've heard stories of:
+
+- Medical approvals taking weeks when hours matter
+- Disaster alerts getting lost in paperwork
+- Officers working late nights, still unable to catch up
+- Citizens waiting months for simple applications
+
+**We knew technology could fix this. So we built it.**
+
+</td>
+<td width="50%" valign="top">
+
+### **The Technical Challenge**
+
+This wasn't just about building another app. We had to:
+
+- Integrate cutting-edge AI (Google Gemini) for NLP
+- Implement blockchain for government-grade security
+- Design for low-tech literacy users
+- Handle sensitive government data responsibly
+- Make it scalable across departments and districts
+
+**We learned more in 45 days than in 3 years of college.**
+
+</td>
+</tr>
+</table>
+
+---
+
+## **Our Journey in Numbers**
+
+<div align="center">
+
+| Milestone | Status | Impact |
+|-----------|--------|--------|
+| 🎯 Problem Identification | ✅ Complete | Interviewed 12 govt officers |
+| 🏗️ System Architecture | ✅ Complete | Designed scalable MERN + Blockchain |
+| 🤖 AI Integration | ✅ Complete | 30-second document summaries |
+| ⛓️ Blockchain Deployment | ✅ Complete | Immutable audit trails |
+| 🎨 Frontend Development | ✅ Complete | 4 role-based dashboards |
+| 🔧 Backend APIs | ✅ Complete | 35+ RESTful endpoints |
+| 🧪 Testing | ✅ Complete | Real document workflows tested |
+| 📊 Documentation | ✅ Complete | Complete technical guides |
+
+</div>
+
+---
+
 ## **The Bottom Line**
 
 Pravaah isn't just software. It's about **giving time back to government officers** so they can focus on what matters—making decisions, helping citizens, responding to emergencies.
@@ -1125,37 +1377,95 @@ And most importantly, it's about **saving lives**—by making sure disaster aler
 
 ---
 
-## **Team & Acknowledgments**
+## **Connect With Us**
 
-**Developed by**: Tech Titans  
-**For**: Government of Uttarakhand Digital Governance Initiative  
-**Hackathon**: Hack The Winter - The Second Wave
+<div align="center">
 
-**Technologies Used**: React, Node.js, MongoDB, Google Gemini AI, Polygon Blockchain, Express.js, Redux, TailwindCSS
+### **We're Open to Collaboration, Feedback, and Opportunities**
 
-**Special Thanks**: All the government officers we interviewed who shared their daily challenges and helped us understand the real problems that needed solving.
+<table>
+<tr>
+<td align="center" width="25%">
+
+**Abhay Kanojia**  
+Team Lead & Blockchain
+
+[![Email](https://img.shields.io/badge/Email-abhaykanojiak12%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:abhaykanojiak12@gmail.com)
+
+</td>
+<td align="center" width="25%">
+
+**Ankush Rawat**  
+Frontend & Architecture
+
+[![Email](https://img.shields.io/badge/Email-ankurawat8844%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ankurawat8844@gmail.com)
+
+</td>
+<td align="center" width="25%">
+
+**Ankush Malik**  
+AI & Authentication
+
+[![Email](https://img.shields.io/badge/Email-anitamalik.2016am%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:anitamalik.2016am@gmail.com)
+
+</td>
+<td align="center" width="25%">
+
+**Priyanshu Bisht**  
+Backend & Database
+
+[![Email](https://img.shields.io/badge/Email-priyanshubisht304%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:priyanshubisht304@gmail.com)
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+### **Project Links**
+
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/savetree-1/gov-docflow-ai)
+[![Watch Demo](https://img.shields.io/badge/YouTube-Demo_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-00C7B7?style=for-the-badge&logo=vercel&logoColor=white)](#)
+
+</div>
+
+---
+
+## **Acknowledgments**
+
+**Institution**: Graphic Era Hill University (GEHU), Dehradun  
+**Hackathon**: Hack The Winter - The Second Wave  
+**Mentors**: Faculty advisors who guided our technical decisions  
+**Inspiration**: Real government officers of Uttarakhand who shared their struggles
+
+**Special Thanks**:  
+All the government officers we interviewed who opened up about their daily challenges. Your insights shaped Pravaah into what it is today.
 
 ---
 
 ## **License & Usage**
 
-This project is **proprietary software** developed for the Government of Uttarakhand.  
-All rights reserved.
+This project is developed for educational and demonstration purposes as part of **Hack The Winter - The Second Wave** hackathon.
+
+For deployment in actual government offices, please contact the team for licensing and customization.
+
+**© 2025 Team Tech Titans - GEHU Dehradun**
 
 ---
 
-## **Contact & Support**
+<div align="center">
 
-**Technical Support**: support@pravah.gov.in  
-**Documentation**: See `/docs/guides/` for detailed technical guides  
-**Issues & Bugs**: Report via GitHub Issues (for authorized developers)
+### **Built with ❤️ in the Himalayas**
 
----
-
-**Version**: 1.0.0  
-**Last Updated**: December 31, 2025  
-**Status**: Production Ready, Deployed for Pilot Testing
+**Graphic Era Hill University, Dehradun, Uttarakhand**
 
 ---
 
 _"Technology should serve people, not the other way around. Pravaah makes government work for citizens, one document at a time."_
+
+<br/>
+
+**Version**: 1.0.0 | **Last Updated**: December 31, 2025 | **Status**: Hackathon Submission Ready
+
+</div>
