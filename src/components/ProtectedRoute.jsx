@@ -13,18 +13,11 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   const isLoggedIn = useSelector((state) => state.authReducer?.isLoggedIn);
 
   // Fallback to localStorage if Redux is empty
-  const finalToken = token || localStorage.getItem('authToken');
-  const finalUser = user || (localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null);
-
-  console.log('ProtectedRoute check:');
-  console.log('  token:', finalToken);
-  console.log('  user:', finalUser);
-  console.log('  isLoggedIn:', isLoggedIn);
-  console.log('  allowedRoles:', allowedRoles);
+  const finalToken = token || localStorage.getItem('accessToken');
+  const finalUser = user || (localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null);
 
   // Check if user is authenticated
   if (!finalToken || !isLoggedIn) {
-    console.log('Not authenticated, redirecting to login');
     return <Navigate to="/login" replace />;
   }
 

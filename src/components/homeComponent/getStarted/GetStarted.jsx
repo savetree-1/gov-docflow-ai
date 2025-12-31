@@ -12,7 +12,7 @@ const GetStarted = () => {
         {/* Compact Heading */}
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold mb-3">
-            Access the <span className="text-[#0f5e59]">Document One</span> Platform
+            Access the <span className="text-[#0f5e59]">Pravaah</span> Platform
           </h2>
           <p className="text-lg text-gray-700 leading-relaxed" style={{ lineHeight: '1.8' }}>
             Internal document management and routing system for Uttarakhand Government departments.

@@ -13,14 +13,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { postLoginDataEmail } from "../api/authAPI";
-import { getProfile } from "../api/profileAPI";
+import { login } from "../api/authenticationAPI";
 import { getSaveTokenAction, getSaveProfileAction, getLoginAction } from "../redux/actions";
-import Cookies from "js-cookie";
 import "./GovLogin.css";
 
 // Government Logo
-import govLogo from "../img/ourlogo.png";
+import govLogo from "../img/ukgov.png";
 
 const GovLogin = () => {
   const [credentials, setCredentials] = useState({
@@ -58,52 +56,76 @@ const GovLogin = () => {
     setLoading(true);
 
     try {
-      // Call authentication API using existing authAPI
-      const response = await postLoginDataEmail({ 
-        email: credentials.emailOrEmployeeId, 
-        password: credentials.password 
-      });
+      // Call authentication API
+      const response = await login(credentials);
 
       if (response.success) {
-        // Store tokens in cookies
-        Cookies.set("access-token", response.data.access);
-        Cookies.set("refresh-token", response.data.refresh);
-        Cookies.set("uuid", response.data.uuid);
-
-        // Store token in Redux
-        dispatch(getSaveTokenAction({
-          accessToken: response.data.access,
-          refreshToken: response.data.refresh
-        }));
+        // Store token in Redux with correct structure
+        const tokens = {
+          accessToken: response.token,
+          refreshToken: localStorage.getItem('refreshToken')
+        };
+        dispatch(getSaveTokenAction(tokens));
+        
+        // Store user profile from login response
+        dispatch(getSaveProfileAction(response.user));
+        
+        // Trigger login state
         dispatch(getLoginAction());
-        
-        // Fetch and store user profile
-        const userResponse = await getProfile({
-          uuid: response.data.uuid,
-          accessToken: response.data.access
-        });
-        
-        if (userResponse) {
-          dispatch(getSaveProfileAction(userResponse));
-        }
 
-        // Redirect to dashboard
-        navigate("/dashboard");
+        // Redirect based on role
+        redirectBasedOnRole(response.user.role);
       } else {
         // Show error message
         setError(response.error || "Login failed. Please check your credentials.");
       }
     } catch (err) {
       console.error("Login error:", err);
-      setError(err || "An error occurred during login. Please try again.");
+      setError("An error occurred during login. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
+  const redirectBasedOnRole = (role) => {
+    switch (role) {
+      case "SUPER_ADMIN":
+        navigate("/admin/dashboard");
+        break;
+      case "DEPARTMENT_ADMIN":
+        navigate("/department/dashboard");
+        break;
+      case "OFFICER":
+        navigate("/dashboard");
+        break;
+      case "AUDITOR":
+        navigate("/audit/search");
+        break;
+      default:
+        navigate("/");
+    }
+  };
+
   return (
     <div className="gov-login-container">
-      <div className="gov-login-header">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0
+        }}
+      >
+        <source src="/login-bg.mp4" type="video/mp4" />
+      </video>
+      <div className="gov-login-header" style={{ position: 'relative', zIndex: 1 }}>
         <div className="gov-header-content">
           <img src={govLogo} alt="Government of Uttarakhand" className="gov-logo" />
           <div className="gov-header-text">
@@ -115,7 +137,7 @@ const GovLogin = () => {
         </div>
       </div>
 
-      <div className="gov-login-main">
+      <div className="gov-login-main" style={{ position: 'relative', zIndex: 1 }}>
         <div className="gov-login-box">
           <div className="gov-login-title">
             <h3>Authorized Personnel Login</h3>
@@ -209,10 +231,6 @@ const GovLogin = () => {
           </form>
 
           <div className="gov-login-footer">
-            <div className="gov-divider">
-              <span>or</span>
-            </div>
-            
             <Link to="/department-registration" className="gov-link">
               <span className="gov-link-icon">📋</span>
               Department Registration Request

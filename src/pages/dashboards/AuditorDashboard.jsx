@@ -3,13 +3,17 @@
  * Read-only compliance and audit support
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/dashboardSidebar/Sidebar';
 import { DataTable, StatusBadge } from '../../components/dashboardShared/SharedComponents';
+import { documentAPI, auditAPI } from '../../api/backendAPI';
+import { ErrorMsg } from '../../components/alerts';
 import '../dashboards/SuperAdminDashboard.css';
 import './AuditorDashboard.css';
 
 const AuditorDashboard = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFilters, setSearchFilters] = useState({
     department: '',
@@ -18,65 +22,80 @@ const AuditorDashboard = () => {
     category: ''
   });
 
-  const [recentDocuments] = useState([
-    {
-      id: 1,
-      title: 'Budget Allocation Request FY 2025-26',
-      department: 'Agriculture',
-      category: 'Finance',
-      uploadedBy: 'Ramesh Verma',
-      uploadDate: '2025-12-28',
-      status: 'Approved',
-      accessedBy: 5
-    },
-    {
-      id: 2,
-      title: 'Land Acquisition Proposal',
-      department: 'Revenue',
-      category: 'Land Records',
-      uploadedBy: 'Priya Singh',
-      uploadDate: '2025-12-27',
-      status: 'Pending',
-      accessedBy: 3
-    },
-    {
-      id: 3,
-      title: 'Staff Transfer Orders Q1 2026',
-      department: 'Agriculture',
-      category: 'HR',
-      uploadedBy: 'Amit Kumar',
-      uploadDate: '2025-12-26',
-      status: 'Completed',
-      accessedBy: 8
-    }
-  ]);
+  const [recentDocuments, setRecentDocuments] = useState([]);
+  const [auditLogs, setAuditLogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  const [auditLogs] = useState([
-    {
-      id: 1,
-      action: 'Document Viewed',
-      user: 'Ramesh Verma',
-      document: 'Budget Allocation Request',
-      timestamp: '2025-12-28 14:35:22',
-      ipAddress: '192.168.1.45'
-    },
-    {
-      id: 2,
-      action: 'Document Approved',
-      user: 'Dept Admin',
-      document: 'Land Survey Report',
-      timestamp: '2025-12-28 13:20:15',
-      ipAddress: '192.168.1.50'
-    },
-    {
-      id: 3,
-      action: 'User Login',
-      user: 'Priya Singh',
-      document: '-',
-      timestamp: '2025-12-28 09:15:08',
-      ipAddress: '192.168.1.52'
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
+
+  const fetchDashboardData = async () => {
+    try {
+      setLoading(true);
+      const [docsRes, auditRes] = await Promise.all([
+        documentAPI.getAll({ limit: 10, sortBy: '-createdAt' }),
+        auditAPI.getAll({ limit: 10, sortBy: '-timestamp' })
+      ]);
+
+      if (docsRes.data.success) {
+        setRecentDocuments(docsRes.data.data.map(doc => ({
+          id: doc._id,
+          title: doc.title,
+          department: doc.department?.name || 'N/A',
+          category: doc.category,
+          uploadedBy: doc.uploadedBy ? `${doc.uploadedBy.firstName} ${doc.uploadedBy.lastName}` : 'N/A',
+          uploadDate: new Date(doc.createdAt).toLocaleDateString(),
+          status: doc.status,
+          accessedBy: doc.actionHistory?.length || 0
+        })));
+      }
+
+      if (auditRes.data.success) {
+        setAuditLogs(auditRes.data.data.map(log => ({
+          id: log._id,
+          action: log.action,
+          user: log.userEmail || 'System',
+          document: log.resource || '-',
+          timestamp: new Date(log.timestamp).toLocaleString(),
+          ipAddress: log.ipAddress || 'N/A'
+        })));
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to fetch dashboard data');
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
+
+  const handleSearch = async () => {
+    try {
+      setLoading(true);
+      const params = {
+        search: searchQuery,
+        ...searchFilters,
+        limit: 50
+      };
+      const response = await documentAPI.getAll(params);
+      if (response.data.success) {
+        setRecentDocuments(response.data.data.map(doc => ({
+          id: doc._id,
+          title: doc.title,
+          department: doc.department?.name || 'N/A',
+          category: doc.category,
+          uploadedBy: doc.uploadedBy ? `${doc.uploadedBy.firstName} ${doc.uploadedBy.lastName}` : 'N/A',
+          uploadDate: new Date(doc.createdAt).toLocaleDateString(),
+          status: doc.status,
+          accessedBy: doc.actionHistory?.length || 0
+        })));
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Search failed');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const documentColumns = [
     { header: 'Title', field: 'title' },
@@ -91,7 +110,12 @@ const AuditorDashboard = () => {
     {
       header: 'Actions',
       render: (row) => (
-        <button className="table-action-btn view">View Details</button>
+        <button 
+          className="table-action-btn view"
+          onClick={() => navigate(`/document/${row.id || row._id}`)}
+        >
+          View Details
+        </button>
       )
     }
   ];
@@ -110,10 +134,12 @@ const AuditorDashboard = () => {
       
       <div className="dashboard-content">
         <div className="dashboard-header">
-          <h1>Auditor Dashboard</h1>
-          <p className="dashboard-subtitle">Read-Only Access - Compliance & Audit Support</p>
+          <div>
+            <h1>Auditor <span className="dashboard-highlight">Dashboard</span></h1>
+            <p className="dashboard-subtitle">Read-Only Access - Compliance & Audit Support</p>
+          </div>
         </div>
-
+        {error && <ErrorMsg message={error} />}
         {/* Search Section */}
         <div className="dashboard-section">
           <div className="section-header">
@@ -129,7 +155,9 @@ const AuditorDashboard = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button className="search-btn">Search</button>
+              <button className="search-btn" onClick={handleSearch}>
+                {loading ? 'Searching...' : 'Search'}
+              </button>
             </div>
 
             <div className="search-filters">

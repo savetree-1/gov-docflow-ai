@@ -18,7 +18,10 @@ const authReducer = (state = initialstate, action) => {
     case "SAVE_PROFILE":
       return {
         ...state,
-        user: { ...state.user, ...action.payload },
+        user: {
+          ...state.user,
+          data: action.payload,
+        },
       };
 
     case "LOGOUT":

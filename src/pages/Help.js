@@ -1,88 +1,88 @@
 import React from "react";
 
+//Components
+import ExpandDropdown from "../components/expandText";
+
 const Help = () => {
-  const helpData = [
+  const document_help = [
     {
-      heading: "Q: How do I get started with Gov DocFlow AI? 🚀",
-      answer:
-        "A: Simply register for an account, verify your email with OTP, and log in to access your dashboard. From there, you can start uploading and managing documents immediately.",
+      heading: "Q: How do I upload a document to the system?",
+      content:
+        "A: Navigate to the 'Upload Document' page, select your PDF file, fill in the required metadata (title, category, urgency), and submit. The AI will automatically process and route your document.",
     },
     {
-      heading: "Q: How do I upload a document? 📤",
-      answer:
-        "A: Navigate to your dashboard and click on the 'Upload Document' or 'Add Document' button. Select the file from your device, add relevant details, and submit. The system will automatically process and categorize your document.",
+      heading: "Q: What happens if I submit a document without proper metadata?",
+      content:
+        "A: All required fields (title, category) must be filled. The system will prompt you to complete any missing information before submission.",
     },
     {
-      heading: "Q: Can I collaborate with team members? 👥",
-      answer:
-        "A: Yes! Gov DocFlow AI includes built-in collaboration tools and chat support that allow you to communicate with team members and stakeholders in real-time.",
+      heading: "Q: How do I track my document status?",
+      content:
+        "A: You can track all your documents by visiting the 'My Documents' page, which shows current status, routing history, and any actions taken.",
+    },
+  ];
+  const system_help = [
+    {
+      heading: "Q: How do I access documents routed to my department?",
+      content: "A: Go to the Dashboard where you'll see all documents assigned to your department. You can filter by status, urgency, or category.",
     },
     {
-      heading: "Q: What types of documents can I manage? 📋",
-      answer:
-        "A: You can manage all types of government documents including official forms, reports, applications, permits, licenses, and more. The AI automatically classifies documents for better organization.",
+      heading: "Q: How do I search for a specific document?",
+      content:
+        "A: Use the search functionality on the Dashboard to find documents by title, reference number, category, or department. You can also apply multiple filters.",
     },
     {
-      heading: "Q: How does the AI processing work? 🤖",
-      answer:
-        "A: Our AI automatically analyzes uploaded documents, extracts key information, categorizes them, and suggests relevant actions. This reduces manual work and speeds up your workflow significantly.",
-    },
-    {
-      heading: "Q: Can I track the status of my documents? 🔍",
-      answer:
-        "A: Absolutely! The dashboard provides real-time tracking of all your documents, showing their current status, who has accessed them, and any pending actions.",
-    },
-    {
-      heading: "Q: Is there mobile support? 📱",
-      answer:
-        "A: Yes, Gov DocFlow AI is fully responsive and works seamlessly on all devices including smartphones, tablets, and desktops.",
-    },
-    {
-      heading: "Q: How do I reset my password? 🔑",
-      answer:
-        "A: Click on 'Forgot Password' on the login page, enter your registered email, and follow the OTP verification process to reset your password securely.",
+      heading: "Q: What types of documents can I upload to the system?",
+      content:
+        "A: The system accepts PDF files for all government document categories including Disaster Management, Finance & Budget, HR & Administration, Legal & Compliance, Public Works, and Revenue.",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Help Center 💡
-          </h1>
-          <p className="text-lg text-gray-600">
-            Find answers to common questions and learn how to make the most of Gov DocFlow AI
-          </p>
+    <div className="min-h-screen bg-government-lightBg">
+      <div style={{ background: 'linear-gradient(135deg, #0f5e59 0%, #1a8a7f 100%)' }} className="py-16 px-8">
+        <h1 className="font-bold text-5xl text-center text-white mb-4">
+          Help & Support
+        </h1>
+        <p className="text-center text-white text-lg opacity-90">Government Document Management System</p>
+      </div>
+      <div className="bg-white rounded-xl mx-auto max-w-6xl p-10 -mt-8 mb-8 shadow-xl border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="text-left">
+            <h1 className="text-2xl font-semibold mb-6 pb-3 border-b-2" style={{ color: '#0f5e59', borderColor: '#0f5e59' }}>Document Management Help</h1>
+            {document_help.map((item, i) => {
+              return (
+                <ExpandDropdown
+                  key={i}
+                  heading={item.heading}
+                  content={item.content}
+                />
+              );
+            })}
+          </div>
+          <div className="text-left">
+            <h1 className="text-2xl font-semibold mb-6 pb-3 border-b-2" style={{ color: '#0f5e59', borderColor: '#0f5e59' }}>System Help</h1>
+            {system_help.map((item, i) => {
+              return (
+                <ExpandDropdown
+                  key={i}
+                  heading={item.heading}
+                  content={item.content}
+                />
+              );
+            })}
+          </div>
         </div>
-
-        <div className="space-y-6">
-          {helpData.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
-            >
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                {item.heading}
-              </h3>
-              <p className="text-gray-700 leading-relaxed">{item.answer}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 bg-blue-50 rounded-lg p-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Still need help? 🤝
-          </h2>
-          <p className="text-gray-700 mb-6">
-            Our support team is here to assist you with any questions or concerns.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-md hover:bg-blue-700 transition-colors duration-300"
-          >
+      </div>
+      <div className="max-w-6xl mx-auto pb-12 px-4">
+        <div className="p-8 flex flex-col md:flex-row items-center justify-between rounded-lg border" style={{ backgroundColor: 'rgba(15, 94, 89, 0.08)', borderColor: 'rgba(15, 94, 89, 0.2)' }}>
+          <div className="mb-4 md:mb-0">
+            <h1 className="text-2xl font-semibold mb-1" style={{ color: '#0f5e59' }}>Still need help?</h1>
+            <p className="text-gray-600">Contact your department administrator or the State IT Cell</p>
+          </div>
+          <button className="px-8 py-3 rounded-lg text-white text-lg font-semibold hover:opacity-90 transition shadow-md" style={{ backgroundColor: '#0f5e59' }}>
             Contact Support
-          </a>
+          </button>
         </div>
       </div>
     </div>

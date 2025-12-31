@@ -1,0 +1,921 @@
+/**
+ * Document Upload Styles
+ * Apple HIG Standards - macOS Inspired, Government Professional
+ * Design Principles: Calm, Minimal, Accessible, Trustworthy
+ */
+
+/* ========================================
+   PROGRESS STEPPER - Soft Pill Design
+   ======================================== */
+.upload-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  padding: 32px 24px;
+  background: #fafafa;
+  border-radius: 12px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.45;
+  transition: opacity 180ms ease-out;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.04);
+  color: #8e8e93;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  transition: all 180ms ease-out;
+}
+
+.step.active .step-number {
+  background: #0f5e59;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 94, 89, 0.16);
+  font-weight: 600;
+}
+
+.step-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  color: #8e8e93;
+  font-weight: 400;
+  letter-spacing: -0.078px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.step.active .step-label {
+  color: #1d1d1f;
+  font-weight: 500;
+}
+
+.step-line {
+  width: 88px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 0 20px;
+  align-self: flex-start;
+  margin-top: 22px;
+  transition: background 180ms ease-out;
+}
+
+.step.active + .step-line {
+  background: rgba(15, 94, 89, 0.24);
+}
+
+/* ========================================
+   UPLOAD AREA - macOS Finder Style
+   ======================================== */
+.upload-area {
+  margin-bottom: 32px;
+}
+
+.upload-box {
+  border: 1.5px dashed rgba(15, 94, 89, 0.24);
+  border-radius: 12px;
+  padding: 64px 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 180ms ease-out;
+  display: block;
+  background: rgba(15, 94, 89, 0.015);
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-box:hover {
+  border-color: rgba(15, 94, 89, 0.48);
+  background: rgba(15, 94, 89, 0.03);
+  transform: translateY(-1px);
+}
+
+.upload-box:focus-visible {
+  outline: 2px solid #0f5e59;
+  outline-offset: 2px;
+  border-color: #0f5e59;
+}
+
+.upload-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  color: rgba(15, 94, 89, 0.32);
+  transition: all 180ms ease-out;
+}
+
+.upload-box:hover .upload-icon {
+  color: rgba(15, 94, 89, 0.56);
+  transform: translateY(-2px);
+}
+
+.upload-box h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.408px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.upload-box p {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  color: #8e8e93;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.154px;
+  line-height: 1.52857;
+}
+
+.supported-formats {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.format-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: rgba(15, 94, 89, 0.06);
+  border: none;
+  border-radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  color: #0f5e59;
+  font-weight: 500;
+  letter-spacing: 0.06px;
+  text-transform: uppercase;
+  transition: background 150ms ease-out;
+}
+
+.format-badge:hover {
+  background: rgba(15, 94, 89, 0.1);
+}
+
+/* ========================================
+   FILE LOADING & PREVIEW
+   ======================================== */
+.file-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 64px 40px;
+  background: rgba(15, 94, 89, 0.015);
+  border: 1.5px dashed rgba(15, 94, 89, 0.24);
+  border-radius: 12px;
+}
+
+.file-loading p {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  color: #8e8e93;
+  margin: 0;
+  letter-spacing: -0.154px;
+}
+
+.file-preview {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+}
+
+.preview-content {
+  margin-bottom: 24px;
+}
+
+.image-preview-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.image-preview-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.image-preview-container:hover .image-preview-overlay {
+  opacity: 1;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 480px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 180ms ease-out;
+}
+
+.preview-image:hover {
+  transform: scale(1.01);
+}
+
+.pdf-preview-container {
+  width: 100%;
+  height: 560px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: #fafafa;
+  position: relative;
+}
+
+.pdf-preview {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.pdf-preview-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 12px;
+  z-index: 10;
+}
+
+.btn-preview-action {
+  padding: 8px 16px;
+  background: #0f5e59;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.078px;
+  cursor: pointer;
+  transition: all 180ms ease-out;
+  min-height: 44px;
+  min-width: 44px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-preview-action:hover {
+  background: #0d4d47;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 94, 89, 0.2);
+}
+
+.btn-preview-action:active {
+  transform: translateY(0);
+}
+
+.btn-preview-action:focus-visible {
+  outline: 2px solid #0f5e59;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   FILE INFO & METADATA
+   ======================================== */
+.preview-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #fafafa;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  text-align: left;
+}
+
+.file-icon-small {
+  font-size: 32px;
+  flex-shrink: 0;
+  opacity: 0.56;
+  filter: grayscale(80%);
+}
+
+.preview-placeholder {
+  padding: 40px;
+}
+
+.file-icon {
+  font-size: 72px;
+  margin-bottom: 16px;
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+.file-name {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  color: #1d1d1f;
+  font-weight: 600;
+  margin-bottom: 4px;
+  word-break: break-word;
+  letter-spacing: -0.32px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.file-size {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  color: #8e8e93;
+  margin-bottom: 8px;
+  letter-spacing: -0.078px;
+}
+
+.file-type-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(15, 94, 89, 0.08);
+  color: #0f5e59;
+  border-radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.preview-note {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  color: #8e8e93;
+  margin: 16px 0 0 0;
+  font-style: normal;
+  letter-spacing: -0.078px;
+  line-height: 1.46154;
+}
+
+/* ========================================
+   BUTTONS - Apple macOS Style
+   ======================================== */
+.btn-remove {
+  padding: 10px 20px;
+  background: #ffffff;
+  color: #ff3b30;
+  border: 1px solid rgba(255, 59, 48, 0.2);
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 180ms ease-out;
+  min-height: 44px;
+  letter-spacing: -0.154px;
+}
+
+.btn-remove:hover {
+  background: rgba(255, 59, 48, 0.04);
+  border-color: rgba(255, 59, 48, 0.32);
+}
+
+.btn-remove:focus-visible {
+  outline: 2px solid #ff3b30;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   FORM ELEMENTS
+   ======================================== */
+.upload-form {
+  max-width: 800px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  font-family: inherit;
+}
+
+label {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+  letter-spacing: -0.154px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  color: #1d1d1f;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: all 180ms ease-out;
+  min-height: 44px;
+  letter-spacing: -0.154px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #8e8e93;
+}
+
+.form-input:hover,
+.form-select:hover,
+.form-textarea:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #0f5e59;
+  box-shadow: 0 0 0 3px rgba(15, 94, 89, 0.08);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.52857;
+}
+
+/* ========================================
+   ACTION BUTTONS
+   ======================================== */
+.upload-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.btn-primary {
+  padding: 12px 24px;
+  background: #0f5e59;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 180ms ease-out;
+  min-height: 44px;
+  letter-spacing: -0.154px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-primary:hover {
+  background: #0d4d47;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 94, 89, 0.2);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid #0f5e59;
+  outline-offset: 2px;
+}
+
+.btn-primary:disabled {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.24);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-secondary {
+  padding: 12px 24px;
+  background: #ffffff;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 180ms ease-out;
+  min-height: 44px;
+  letter-spacing: -0.154px;
+}
+
+.btn-secondary:hover {
+  background: #fafafa;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid #0f5e59;
+  outline-offset: 2px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: #f5f5f5;
+  border-color: #b0b0b0;
+}
+
+.btn-secondary:disabled {
+  background: #fafafa;
+  color: #cccccc;
+  cursor: not-allowed;
+  border-color: #e0e0e0;
+}
+
+.upload-progress-container {
+  background: #ffffff;
+  border: 2px solid #0f5e59;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 24px 0;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.upload-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.upload-progress-text {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 600;
+}
+
+.upload-progress-percent {
+  font-size: 16px;
+  color: #0f5e59;
+  font-weight: 700;
+}
+
+.upload-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.upload-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0f5e59 0%, #1a8a7f 100%);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.upload-progress-info {
+  font-size: 12px;
+  color: #666666;
+  margin: 12px 0 0 0;
+  text-align: center;
+}
+
+.review-section h3 {
+  font-size: 18px;
+  color: #333333;
+  margin: 0 0 24px 0;
+}
+
+.review-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.review-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.review-label {
+  font-size: 13px;
+  color: #666666;
+  font-weight: 500;
+}
+
+.review-value {
+  font-size: 14px;
+  color: #333333;
+}
+
+.routing-preview {
+  background: #f0f9f8;
+  border: 1px solid #c7e6e3;
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 30px;
+}
+
+.routing-preview h4 {
+  font-size: 16px;
+  color: #0f5e59;
+  margin: 0 0 16px 0;
+  font-weight: 700;
+}
+
+.routing-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e0e0;
+  border-top-color: #0f5e59;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.routing-loading p {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+}
+
+.routing-info {
+  font-size: 14px;
+  color: #333333;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.routing-description {
+  font-size: 13px;
+  color: #666666;
+  margin: 0 0 20px 0;
+}
+
+.routing-path {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.routing-step {
+  flex: 1;
+  min-width: 180px;
+  max-width: 250px;
+  padding: 16px;
+  background: #ffffff;
+  border: 2px solid #d0d0d0;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.routing-step.highlighted {
+  border-color: #0f5e59;
+  background: #e8f5f4;
+  box-shadow: 0 4px 8px rgba(15, 94, 89, 0.15);
+}
+
+.step-header {
+  font-size: 11px;
+  color: #999999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.step-content {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 600;
+}
+
+.step-role {
+  font-size: 12px;
+  color: #666666;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.step-id {
+  font-size: 11px;
+  color: #999999;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.routing-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  color: #0f5e59;
+  font-weight: 700;
+}
+
+.routing-priority {
+  font-size: 13px;
+  color: #0f5e59;
+  margin: 16px 0 0 0;
+  padding: 12px;
+  background: #e8f5f4;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.routing-note {
+  font-size: 12px;
+  color: #666666;
+  margin: 16px 0 0 0;
+  padding: 12px;
+  background: #fef9e7;
+  border-left: 3px solid #f39c12;
+  border-radius: 4px;
+  font-style: italic;
+}
+
+.routing-matched,
+.routing-default {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .upload-steps {
+    padding: 20px 0;
+  }
+
+  .step-line {
+    width: 40px;
+    margin: 0 10px;
+  }
+
+  .routing-path {
+    flex-direction: column;
+  }
+
+  .routing-arrow {
+    transform: rotate(90deg);
+  }
+
+  .pdf-preview-container {
+    height: 400px;
+  }
+
+  .preview-image {
+    max-height: 300px;
+  }
+
+  .upload-box {
+    padding: 40px 20px;
+  }
+
+  .upload-box h3 {
+    font-size: 16px;
+  }
+}

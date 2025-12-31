@@ -1,4 +1,14 @@
-/* Government-Style Header for Gov DocFlow AI */
+/* Government-Style Header for Krishi Sadhan */
+
+/* Samarkand Font */
+@font-face {
+  font-family: 'Samarkand';
+  src: url('../../assets/fonts/Samarkand.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .govt-header-wrapper {
   width: 100%;
   background: white;
@@ -247,16 +257,18 @@
 }
 
 .title-main {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
   color: #0f5e59;
   margin: 0;
   line-height: 1.1;
-  letter-spacing: -0.3px;
+  letter-spacing: 2px;
+  font-family: 'Samarkand', serif;
+  text-transform: uppercase;
 }
 
 .title-subtitle {
-  font-size: 12px;
+  font-size: 16px;
   color: #666;
   margin: 0;
   line-height: 1.1;
@@ -306,7 +318,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: none;
+  background: none !important;
   border: none;
   color: white;
   cursor: pointer;
@@ -314,14 +326,19 @@
   font-weight: 500;
   padding: 14px 18px;
   text-decoration: none;
-  transition: background-color 0.15s;
-  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
   white-space: nowrap;
+  outline: none;
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-bottom-color: #7fc99f;
+  transform: translateY(-2px) scale(1.05);
+  background: none !important;
+}
+
+.nav-link:focus {
+  outline: none;
+  background: none !important;
 }
 
 .nav-link svg {
@@ -391,6 +408,121 @@
   top: 140px;
   right: 32px;
   z-index: 100;
+}
+
+/* User Profile in Navigation Bar */
+.user-profile-nav {
+  position: relative;
+  margin-left: 20px;
+}
+
+.user-info-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+  color: white;
+  font: inherit;
+}
+
+.user-info-nav:hover,
+.user-info-nav:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+.user-avatar-nav {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: white;
+  padding: 3px;
+}
+
+.user-details-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-name-nav {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.user-role-nav {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.user-dropdown-nav {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 1000;
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item-nav {
+  width: 100%;
+  background: white;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-align: left;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item-nav:hover {
+  background: #f5f5f5;
+  color: #219653;
+}
+
+.dropdown-item-nav.logout-nav:hover {
+  background: #fff5f5;
+  color: #dc2626;
+}
+
+.dropdown-divider-nav {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 4px 0;
 }
 
 .user-profile-trigger {
@@ -661,4 +793,26 @@ a:focus-visible {
   .inPhone {
     display: block !important;
   }
+}
+/* REMOVE white hover/focus rectangle in nav */
+.nav-item,
+.nav-item:hover,
+.nav-item:focus,
+.nav-item:focus-within {
+  background: transparent !important;
+}
+
+.nav-link,
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:focus-visible,
+.nav-link:active {
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* If nav-link is a button */
+.nav-link::-moz-focus-inner {
+  border: 0;
 }

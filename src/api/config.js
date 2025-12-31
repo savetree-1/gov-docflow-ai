@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { renewAccessToken } from "./authAPI";
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000",
+  baseURL: "http://localhost:5001",
 });
 
 instance.interceptors.response.use(

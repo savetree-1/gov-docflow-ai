@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Banner.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import home1 from "../../../img/bg_1.webp";
-import slider2 from "../../../img/bg_1.webp";
-import slider3 from "../../../img/bg_1.webp";
+import home_bg0 from "../../../img/bg_1.webp";
+import home_bg1 from "../../../img/home_bg_order2.jpg";
+import home_bg2 from "../../../img/home_bg_order3.jpg";
+import home_bg3 from "../../../img/home_bg_order4.jpg";
+import home_bg4 from "../../../img/home_bg_order5.jpg";
 import { useNavigate, Navigate } from "react-router-dom";
 import SpeechRecognition, {
   useSpeechRecognition
@@ -12,6 +14,17 @@ import SpeechRecognition, {
 
 const Banner = () => {
   const navigate = useNavigate();
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const backgroundImages = [home_bg0, home_bg1, home_bg2, home_bg3, home_bg4];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBgIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+    }, 5500); // Change every 5.5 seconds
+
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
+
   const commands = [
     {
       command: ["Go to * page", "Go to *", "Open * page", "Open *"],
@@ -67,15 +80,26 @@ const Banner = () => {
     <>
       {redirect}
       <div className="relative banner-container">
-        <div className="absolute w-full h-full bg-gradient-to-r from-white/20 to-white/20 bottom-0 z-20" />
-        <img src={home1} className="home1Img" alt="Document One Banner" />
+        <div className="absolute w-full h-full bg-black/40 z-20" />
+        {backgroundImages.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            className={`home1Img ${index === currentBgIndex ? 'active' : ''}`}
+            alt={`Pravaah Banner ${index + 1}`}
+            style={{
+              opacity: index === currentBgIndex ? 1 : 0,
+              transition: 'opacity 1.5s ease-in-out'
+            }}
+          />
+        ))}
         <div className="absolute w-full h-full flex items-center justify-center z-30 top-0">
           <div className="flex flex-col justify-center items-center text-center px-6 max-w-4xl mx-auto">
             <p className="text-2xl font-normal text-white mb-4">
-              Welcome to Document One.
+              Welcome to Pravaah.
             </p>
             <h1 className="text-5xl font-bold text-white mb-4 leading-tight">
-              <span className="text-[#0d5a4d]">Integrated Government Document Portal</span> for
+              <span className="text-[#00ff88]">Integrated Government Document Portal</span> for
               seamless and secure document management.
             </h1>
             <p className="text-xl font-normal mt-2 mb-6 text-white">

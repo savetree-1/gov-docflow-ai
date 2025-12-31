@@ -12,7 +12,7 @@
 import axios from 'axios';
 import { AUTH_EVENTS, USER_STATUS, AUTH_STATUS_CODES } from '../constants/auth';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 // Create axios instance with default config
 const authClient = axios.create({
@@ -57,23 +57,22 @@ authClient.interceptors.response.use(
 export const login = async (credentials) => {
   try {
     const response = await authClient.post('/auth/login', {
-      emailOrEmployeeId: credentials.emailOrEmployeeId,
+      email: credentials.emailOrEmployeeId,
       password: credentials.password,
       captchaToken: credentials.captchaToken  // Optional
     });
 
-    const { token, user, expiresIn } = response.data;
+    const { accessToken, refreshToken, user } = response.data.data;
 
-    // Store token and user info
-    localStorage.setItem('authToken', token);
+    // Store tokens
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
     localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('tokenExpiry', Date.now() + expiresIn * 1000);
 
     return {
       success: true,
-      token,
-      user,
-      expiresIn
+      token: accessToken,
+      user
     };
   } catch (error) {
     const errorMessage = error.response?.data?.message || 'Login failed';

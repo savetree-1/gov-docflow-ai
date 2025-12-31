@@ -22,7 +22,7 @@ const Footer = () => {
             <img src={logo} className="footerLogo" alt="" />
             <div className="ml-4">
               <h3 className="text-2xl text-white font-bold mt-4">
-                Document <br /> One
+                Pravaah
               </h3>
               <p className="text-md font-normal text-white mt-2">
                 Integrated Government Document Portal
@@ -40,7 +40,7 @@ const Footer = () => {
                 Home
               </li>
               <li className="text-lg text-white font-medium cursor-pointer">
-                About Pravah
+                About Pravaah
               </li>
             </ul>
             <ul>

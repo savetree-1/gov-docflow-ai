@@ -8,16 +8,19 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
+  background-color: #000;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Header */
 .gov-login-header {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%);
   color: white;
   padding: 1.5rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .gov-header-content {
@@ -68,13 +71,14 @@
 }
 
 .gov-login-box {
-  background: white;
+  background: rgba(255, 255, 255, 0.98);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 2.5rem;
   width: 100%;
   max-width: 480px;
   border-top: 4px solid #1e3a8a;
+  backdrop-filter: blur(10px);
 }
 
 .gov-login-title {

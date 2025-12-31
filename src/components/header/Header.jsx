@@ -9,7 +9,6 @@ import ourLogo from "../../img/ourlogo.png";
 import wheelchairIcon from "../../img/icons8-wheelchair-24.png";
 import { useSelector, useDispatch } from "react-redux";
 import { getLogoutAction } from "../../redux/actions";
-import Cookies from "js-cookie";
 
 //images
 import userIcon from "../../img/user_icon.svg";
@@ -17,17 +16,20 @@ import userIcon from "../../img/user_icon.svg";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const authState = useSelector((state) => state.authReducer);
-  const isAuthenticated = Cookies.get("refresh-token");
+
+  const user = useSelector((state) => state.authReducer?.user?.data);
+  const isLoggedIn = useSelector((state) => state.authReducer?.isLoggedIn);
+  const token = useSelector((state) => state.tokenReducer?.token?.accessToken);
+  const isAuthenticated = isLoggedIn && (token || localStorage.getItem('accessToken'));
 
   const [show, setShow] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("en");
 
   const handleLogout = () => {
-    Cookies.remove("access-token");
-    Cookies.remove("refresh-token");
-    Cookies.remove("uuid");
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('user');
     dispatch(getLogoutAction());
     navigate("/");
   };
@@ -42,24 +44,55 @@ const Header = () => {
       <div className="utility-strip">
         <div className="utility-container">
           <div className="utility-left">
-            <a href="#main-content" className="utility-link">Skip to main content</a>
-            <a href="/sitemap" className="utility-link">Sitemap</a>
+            <a href="#main-content" className="utility-link" aria-label="Skip to main content">Skip to main content</a>
+            <a href="/sitemap" className="utility-link" aria-label="View sitemap">Sitemap</a>
           </div>
           <div className="utility-right">
-            <div className="language-toggle">
-              <span className="lang-label">English</span>
-              <div className="toggle-switch" onClick={() => setLanguage(language === "en" ? "hi" : "en")}>
+            <div className="language-toggle" role="group" aria-label="Language selection">
+              <span className="lang-label" id="lang-en">English</span>
+              <button 
+                className="toggle-switch" 
+                onClick={() => setLanguage(language === "en" ? "hi" : "en")}
+                aria-label={`Switch to ${language === "en" ? "Hindi" : "English"}`}
+                aria-checked={language === "hi"}
+                role="switch"
+              >
                 <div className={`toggle-slider ${language === "hi" ? "active" : ""}`}></div>
-              </div>
-              <span className="lang-label">हिंदी</span>
+              </button>
+              <span className="lang-label" id="lang-hi">हिंदी</span>
             </div>
-            <div className="font-controls">
-              <button onClick={() => changeFontSize("large")} className="font-btn" title="Increase font size">A+</button>
-              <button onClick={() => changeFontSize("normal")} className="font-btn font-btn-equal" title="Normal font size">A=</button>
-              <button onClick={() => changeFontSize("small")} className="font-btn" title="Decrease font size">A-</button>
+            <div className="font-controls" role="group" aria-label="Font size controls">
+              <button 
+                onClick={() => changeFontSize("large")} 
+                className="font-btn" 
+                aria-label="Increase font size"
+                title="Increase font size"
+              >
+                A+
+              </button>
+              <button 
+                onClick={() => changeFontSize("normal")} 
+                className="font-btn font-btn-equal" 
+                aria-label="Reset to normal font size"
+                title="Normal font size"
+              >
+                A=
+              </button>
+              <button 
+                onClick={() => changeFontSize("small")} 
+                className="font-btn" 
+                aria-label="Decrease font size"
+                title="Decrease font size"
+              >
+                A-
+              </button>
             </div>
-            <button className="accessibility-btn" title="Accessibility">
-              <img src={wheelchairIcon} alt="Accessibility" width="18" height="18" />
+            <button 
+              className="accessibility-btn" 
+              aria-label="Accessibility options"
+              title="Accessibility"
+            >
+              <img src={wheelchairIcon} alt="" width="18" height="18" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -89,13 +122,13 @@ const Header = () => {
             <div className="branding-divider"></div>
             {/* Our Logo */}
             <div className="our-logo-wrapper">
-              <img src={ourLogo} alt="Document One Logo" />
+              <img src={ourLogo} alt="Pravaah Logo" />
             </div>
             {/* Divider */}
             <div className="branding-divider"></div>
             {/* Project Title */}
             <div className="project-title">
-              <h1 className="title-main">Document One</h1>
+              <h1 className="title-main">Pravaah</h1>
               <p className="title-subtitle">Integrated Government Document Portal</p>
             </div>
           </div>
@@ -109,52 +142,82 @@ const Header = () => {
       </div>
 
       {/* Row 3: Main Navigation Bar */}
-      <nav className="main-navigation">
+      <nav className="main-navigation" aria-label="Main navigation">
         <div className="nav-container">
-          <ul className="nav-menu">
-            <li className="nav-item">
-              <button onClick={() => navigate("/")} className="nav-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <ul className="nav-menu" role="menubar">
+            <li className="nav-item" role="none">
+              <button 
+                onClick={() => navigate("/")} 
+                className="nav-link"
+                role="menuitem"
+                aria-label="Home page"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z"/>
                 </svg>
                 <span>Home</span>
               </button>
             </li>
-            <li className="nav-item">
-              <button onClick={() => navigate("/about")} className="nav-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <li className="nav-item" role="none">
+              <button 
+                onClick={() => navigate("/about")} 
+                className="nav-link"
+                role="menuitem"
+                aria-label="About Pravaah"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM13 17H11V11H13V17ZM13 9H11V7H13V9Z"/>
                 </svg>
-                <span>About Pravah</span>
+                <span>About Pravaah</span>
               </button>
             </li>
-            <li className="nav-item">
-              <button onClick={() => navigate("/how-it-works")} className="nav-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <li className="nav-item" role="none">
+              <button 
+                onClick={() => navigate("/how-it-works")} 
+                className="nav-link"
+                role="menuitem"
+                aria-label="How It Works"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z"/>
                 </svg>
                 <span>How It Works</span>
               </button>
             </li>
-            <li className="nav-item">
-              <button onClick={() => navigate("/departments")} className="nav-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <li className="nav-item" role="none">
+              <button 
+                onClick={() => navigate("/departments")} 
+                className="nav-link"
+                role="menuitem"
+                aria-label="View Departments"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 7V3H2V21H22V7H12ZM6 19H4V17H6V19ZM6 15H4V13H6V15ZM6 11H4V9H6V11ZM6 7H4V5H6V7ZM10 19H8V17H10V19ZM10 15H8V13H10V15ZM10 11H8V9H10V11ZM10 7H8V5H10V7ZM20 19H12V17H14V15H12V13H14V11H12V9H20V19ZM18 11H16V13H18V11ZM18 15H16V17H18V15Z"/>
                 </svg>
                 <span>Departments</span>
               </button>
             </li>
-            <li className="nav-item">
-              <button onClick={() => navigate("/whats-new")} className="nav-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <li className="nav-item" role="none">
+              <button 
+                onClick={() => navigate("/whats-new")} 
+                className="nav-link"
+                role="menuitem"
+                aria-label="What's New"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M20 2H4C3 2 2 2.9 2 4V7C2 7.55 2.45 8 3 8C3.55 8 4 7.55 4 7V4H20V7C20 7.55 20.45 8 21 8C21.55 8 22 7.55 22 7V4C22 2.9 21 2 20 2ZM11.8 20.9L8 17L9.4 15.6L11 17.2V9H13V17.2L14.6 15.6L16 17L12.2 20.9C12.1 21 11.9 21 11.8 20.9Z"/>
                 </svg>
                 <span>What's New</span>
               </button>
             </li>
-            <li className="nav-item">
-              <button onClick={() => navigate("/help")} className="nav-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <li className="nav-item" role="none">
+              <button 
+                onClick={() => navigate("/help")} 
+                className="nav-link"
+                role="menuitem"
+                aria-label="Help and Support"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M11 18H13V16H11V18ZM12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20ZM12 6C9.79 6 8 7.79 8 10H10C10 8.9 10.9 8 12 8S14 8.9 14 10C14 12 11 11.75 11 15H13C13 12.75 16 12.5 16 10C16 7.79 14.21 6 12 6Z"/>
                 </svg>
                 <span>Help</span>
@@ -162,14 +225,98 @@ const Header = () => {
             </li>
           </ul>
 
-          {/* Auth Buttons Desktop */}
-          {!isAuthenticated && (
+          {/* Auth Section Desktop */}
+          {isAuthenticated ? (
+            <div 
+              className="user-profile-nav"
+              onMouseEnter={() => setShow(true)}
+              onMouseLeave={() => setShow(false)}
+              role="navigation"
+              aria-label="User menu"
+            >
+              <button
+                className="user-info-nav"
+                onClick={() => setShow(!show)}
+                aria-expanded={show}
+                aria-haspopup="true"
+                aria-label={`User menu for ${user?.firstName} ${user?.lastName}`}
+              >
+                <img 
+                  className="user-avatar-nav" 
+                  src={user?.profilePhoto || userIcon} 
+                  alt="" 
+                  aria-hidden="true"
+                  style={{ objectFit: 'cover' }}
+                />
+                <div className="user-details-nav">
+                  <p className="user-name-nav">{user?.firstName} {user?.lastName}</p>
+                  <span className="user-role-nav">{user?.role?.replace(/_/g, ' ')}</span>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style={{marginLeft: '8px', transition: 'transform 0.2s', transform: show ? 'rotate(180deg)' : 'rotate(0deg)'}} aria-hidden="true">
+                  <path d="M7 10L12 15L17 10H7Z"/>
+                </svg>
+              </button>
+              {show && (
+                <div className="user-dropdown-nav" role="menu" aria-label="User menu options">
+                  <button 
+                    onClick={() => { 
+                      const roleRoute = user?.role === 'SUPER_ADMIN' ? '/admin/dashboard' : 
+                                       user?.role === 'DEPARTMENT_ADMIN' ? '/department/dashboard' : 
+                                       user?.role === 'AUDITOR' ? '/auditor/dashboard' : 
+                                       '/officer/dashboard';
+                      navigate(roleRoute); 
+                      setShow(false); 
+                    }} 
+                    className="dropdown-item-nav"
+                    role="menuitem"
+                    aria-label="Go to dashboard"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{marginRight: '8px'}} aria-hidden="true">
+                      <path d="M3 13H11V3H3V13ZM3 21H11V15H3V21ZM13 21H21V11H13V21ZM13 3V9H21V3H13Z"/>
+                    </svg>
+                    Dashboard
+                  </button>
+                  <button 
+                    onClick={() => { navigate("/settings"); setShow(false); }} 
+                    className="dropdown-item-nav"
+                    role="menuitem"
+                    aria-label="Go to profile settings"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{marginRight: '8px'}} aria-hidden="true">
+                      <path d="M12 12C14.21 12 16 10.21 16 8S14.21 4 12 4 8 5.79 8 8 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+                    </svg>
+                    Profile & Settings
+                  </button>
+                  <div className="dropdown-divider-nav" role="separator"></div>
+                  <button 
+                    onClick={() => { handleLogout(); setShow(false); }} 
+                    className="dropdown-item-nav logout-nav"
+                    role="menuitem"
+                    aria-label="Logout from account"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{marginRight: '8px'}} aria-hidden="true">
+                      <path d="M17 7L15.59 8.41L18.17 11H8V13H18.17L15.59 15.59L17 17L22 12L17 7ZM4 5H12V3H4C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H12V19H4V5Z"/>
+                    </svg>
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
             <div className="auth-buttons-desktop">
-              <button onClick={() => navigate("/login")} className="auth-btn-outline">
+              <button 
+                onClick={() => navigate("/login")} 
+                className="auth-btn-outline"
+                aria-label="Login to your account"
+              >
                 Login
               </button>
-              <button onClick={() => navigate("/register")} className="auth-btn-filled">
-                Sign Up
+              <button 
+                onClick={() => navigate("/department-registration")} 
+                className="auth-btn-filled"
+                aria-label="Register your department"
+              >
+                Register Department
               </button>
             </div>
           )}
@@ -178,6 +325,9 @@ const Header = () => {
           <button 
             className="mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               {mobileMenuOpen ? (
@@ -191,53 +341,75 @@ const Header = () => {
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
-          <div className="mobile-menu">
-            <button onClick={() => { navigate("/"); setMobileMenuOpen(false); }} className="mobile-nav-link">Home</button>
+          <div className="mobile-menu" id="mobile-navigation" role="navigation" aria-label="Mobile navigation">
+            <button 
+              onClick={() => { navigate("/"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to Home"
+            >
+              Home
+            </button>
             {isAuthenticated && (
               <>
-                <button onClick={() => { navigate("/dashboard"); setMobileMenuOpen(false); }} className="mobile-nav-link">Dashboard</button>
-                <button onClick={() => { navigate("/addProduct"); setMobileMenuOpen(false); }} className="mobile-nav-link">Add Product</button>
+                <button 
+                  onClick={() => { navigate("/dashboard"); setMobileMenuOpen(false); }} 
+                  className="mobile-nav-link"
+                  aria-label="Navigate to Dashboard"
+                >
+                  Dashboard
+                </button>
+                <button 
+                  onClick={() => { navigate("/addProduct"); setMobileMenuOpen(false); }} 
+                  className="mobile-nav-link"
+                  aria-label="Add new product"
+                >
+                  Add Product
+                </button>
               </>
             )}
-            <button onClick={() => { navigate("/help"); setMobileMenuOpen(false); }} className="mobile-nav-link">Help</button>
-            <button onClick={() => { navigate("/faq"); setMobileMenuOpen(false); }} className="mobile-nav-link">FAQ</button>
+            <button 
+              onClick={() => { navigate("/help"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to Help"
+            >
+              Help
+            </button>
+            <button 
+              onClick={() => { navigate("/faq"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to FAQ"
+            >
+              FAQ
+            </button>
             {!isAuthenticated ? (
               <>
-                <button onClick={() => { navigate("/login"); setMobileMenuOpen(false); }} className="mobile-nav-link login-btn">Login</button>
-                <button onClick={() => { navigate("/register"); setMobileMenuOpen(false); }} className="mobile-nav-link login-btn">Sign Up</button>
+                <button 
+                  onClick={() => { navigate("/login"); setMobileMenuOpen(false); }} 
+                  className="mobile-nav-link login-btn"
+                  aria-label="Login to your account"
+                >
+                  Login
+                </button>
+                <button 
+                  onClick={() => { navigate("/department-registration"); setMobileMenuOpen(false); }} 
+                  className="mobile-nav-link login-btn"
+                  aria-label="Register your department"
+                >
+                  Register Department
+                </button>
               </>
             ) : (
-              <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} className="mobile-nav-link logout-btn">Logout</button>
+              <button 
+                onClick={() => { handleLogout(); setMobileMenuOpen(false); }} 
+                className="mobile-nav-link logout-btn"
+                aria-label="Logout from account"
+              >
+                Logout
+              </button>
             )}
           </div>
         )}
       </nav>
-
-      {/* User Profile Section - Fixed Position Desktop Only */}
-      {isAuthenticated && (
-        <div
-          onMouseOver={() => setShow(true)}
-          onMouseLeave={() => setShow(false)}
-          className="user-profile-section"
-        >
-          <div className="user-profile-trigger">
-            <img className="user-avatar" src={userIcon} alt="profile" />
-            <p className="user-name">
-              {"Hi, " + (authState?.user?.data?.first_name || "User")}
-            </p>
-          </div>
-          {show && (
-            <div className="user-dropdown">
-              <button onClick={() => navigate("/update-profile")} className="dropdown-item">
-                Profile
-              </button>
-              <button onClick={handleLogout} className="dropdown-item logout">
-                Logout
-              </button>
-            </div>
-          )}
-        </div>
-      )}
 
     </header>
   );
