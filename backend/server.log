@@ -1,8 +1,0 @@
-
-> pravah-backend@1.0.0 start
-> node server.js
-
-🚀 Server running on port 5001
-✅ MongoDB Connected
-✅ Blockchain service initialized
-📋 Contract: 0x1C10cF7771B783a40c9599B673e18C641DcEd89a
