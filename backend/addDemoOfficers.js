@@ -10,30 +10,30 @@ async function addDemoUsers() {
       useUnifiedTopology: true
     });
 
-    console.log('✅ Connected to MongoDB\n');
+    console.log('Connected to MongoDB\n');
 
-    // Find Finance Department
+    // Finding the Finance Department
     const financeDept = await Department.findOne({ code: 'FIN' });
     
     if (!financeDept) {
-      console.log('❌ Finance Department not found!');
-      console.log('💡 Run: node seed.js first');
+      console.log('Finance Department not found!');
+      console.log('Run: node seed.js first');
       mongoose.connection.close();
       return;
     }
 
-    console.log(`📁 Found Finance Department: ${financeDept.name}`);
+    console.log(`Found Finance Department: ${financeDept.name}`);
     console.log(`   ID: ${financeDept._id}\n`);
 
-    // Check existing officers
+    // Checking for the existing officers
     const existingOfficers = await User.find({ 
       department: financeDept._id,
       role: 'OFFICER'
     });
     
-    console.log(`👥 Existing Officers in Finance: ${existingOfficers.length}\n`);
+    console.log(`Existing Officers in Finance: ${existingOfficers.length}\n`);
 
-    // Demo officers to add
+    // Adding the Demo officers
     const demoOfficers = [
       {
         firstName: 'Ramesh',
@@ -73,21 +73,21 @@ async function addDemoUsers() {
       }
     ];
 
-    console.log('➕ Adding demo officers...\n');
+    console.log('Adding demo officers...\n');
 
     for (const officer of demoOfficers) {
       const existing = await User.findOne({ email: officer.email });
       
       if (existing) {
-        console.log(`   ⏭️  ${officer.firstName} ${officer.lastName} already exists`);
+        console.log(`     ${officer.firstName} ${officer.lastName} already exists`);
       } else {
         await User.create(officer);
-        console.log(`   ✅ Created ${officer.firstName} ${officer.lastName} (${officer.email})`);
+        console.log(`    Created ${officer.firstName} ${officer.lastName} (${officer.email})`);
       }
     }
 
     console.log('\n' + '='.repeat(60));
-    console.log('\n📊 Final Count:');
+    console.log('\n Final Count:');
     
     const totalOfficers = await User.countDocuments({
       department: financeDept._id,
@@ -96,14 +96,14 @@ async function addDemoUsers() {
     
     console.log(`   Officers in Finance Department: ${totalOfficers}`);
     
-    console.log('\n🎯 Now login as:');
+    console.log('\n Now login as:');
     console.log('   Email: finance@gov.in');
     console.log('   Password: Finance@123');
     console.log(`   You should see ${totalOfficers} users!\n`);
 
     mongoose.connection.close();
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error(' Error:', error.message);
     process.exit(1);
   }
 }

@@ -10,8 +10,8 @@ const {sendDocumentAssignment} = require('./services/emailService');
   console.log('║       PRAVAH AI-POWERED DOCUMENT PROCESSING WORKFLOW         ║');
   console.log('╚═══════════════════════════════════════════════════════════════╝\n');
   
-  console.log('📄 Government Document:', filePath.split('/').pop());
-  console.log('⏰ Started at:', new Date().toLocaleString(), '\n');
+  console.log(' Government Document:', filePath.split('/').pop());
+  console.log(' Started at:', new Date().toLocaleString(), '\n');
   
   // STEP 1: OCR - Extract Text
   console.log('╔═══════════════════════════════════════════════════════════════╗');
@@ -21,12 +21,12 @@ const {sendDocumentAssignment} = require('./services/emailService');
   const result = await extractText(filePath, 'application/pdf');
   
   if (!result.success || !result.text) {
-    console.log('❌ OCR Failed:', result.error);
+    console.log(' OCR Failed:', result.error);
     process.exit(1);
   }
   
-  console.log('✅ Text Extracted:', result.text.length, 'characters');
-  console.log('📖 Document Preview:\n');
+  console.log('Text Extracted:', result.text.length, 'characters');
+  console.log('Document Preview:\n');
   console.log('─'.repeat(65));
   console.log(result.text.substring(0, 400));
   console.log('...');
@@ -43,18 +43,18 @@ const {sendDocumentAssignment} = require('./services/emailService');
       category: 'policy'
     });
     
-    console.log('🤖 AI SUMMARY:\n');
+    console.log('AI SUMMARY:\n');
     console.log(aiResult.summary);
     
-    console.log('\n🔑 KEY POINTS IDENTIFIED:');
+    console.log('\nKEY POINTS IDENTIFIED:');
     aiResult.keyPoints.forEach((point, i) => {
       console.log(`   ${i+1}. ${point}`);
     });
     
-    console.log('\n📊 AI ANALYSIS:');
-    console.log('   ⚡ Priority Level:', aiResult.priority);
-    console.log('   📅 Deadlines:', aiResult.deadlines?.join(', ') || 'None specified');
-    console.log('   ✅ Action Items:', aiResult.actionItems?.length || 0);
+    console.log('\n AI ANALYSIS:');
+    console.log('    Priority Level:', aiResult.priority);
+    console.log('    Deadlines:', aiResult.deadlines?.join(', ') || 'None specified');
+    console.log('    Action Items:', aiResult.actionItems?.length || 0);
     
     // STEP 3: Intelligent Routing
     console.log('\n╔═══════════════════════════════════════════════════════════════╗');
@@ -66,11 +66,11 @@ const {sendDocumentAssignment} = require('./services/emailService');
       category: 'policy'
     });
     
-    console.log('🎯 ROUTING ANALYSIS:\n');
-    console.log('   📍 PRIMARY DEPARTMENT:', routing.primaryDepartment);
-    console.log('   📋 SECONDARY DEPARTMENTS:', routing.secondaryDepartments?.join(', ') || 'None');
-    console.log('   🚨 URGENCY LEVEL:', routing.urgency);
-    console.log('\n   💡 AI REASONING:');
+    console.log(' ROUTING ANALYSIS:\n');
+    console.log('    PRIMARY DEPARTMENT:', routing.primaryDepartment);
+    console.log('    SECONDARY DEPARTMENTS:', routing.secondaryDepartments?.join(', ') || 'None');
+    console.log('    URGENCY LEVEL:', routing.urgency);
+    console.log('\n    AI REASONING:');
     console.log('   ', routing.reasoning);
     
     // STEP 4: Email Notifications
@@ -90,7 +90,7 @@ const {sendDocumentAssignment} = require('./services/emailService');
       createdAt: new Date()
     };
     
-    console.log('📧 EMAIL NOTIFICATION PREPARED:');
+    console.log('   EMAIL NOTIFICATION PREPARED:');
     console.log('   To:', 'ankurawat8844@gmail.com');
     console.log('   Subject: New Document Assigned:', mockDocument.title);
     console.log('   Priority:', mockDocument.urgency);
@@ -103,9 +103,9 @@ const {sendDocumentAssignment} = require('./services/emailService');
         'Department Admin',
         mockDocument
       );
-      console.log('   ✅ Email sent successfully!');
+      console.log('    Email sent successfully!');
     } catch (emailError) {
-      console.log('   ⚠️  Email simulation (SMTP config needed)');
+      console.log('     Email simulation (SMTP config needed)');
     }
     
     // STEP 5: Suggested Actions
@@ -113,14 +113,14 @@ const {sendDocumentAssignment} = require('./services/emailService');
     console.log('║ STEP 5: RECOMMENDED ACTIONS                                  ║');
     console.log('╚═══════════════════════════════════════════════════════════════╝\n');
     
-    console.log('✅ ACTIONS TO TAKE:\n');
+    console.log(' ACTIONS TO TAKE:\n');
     
-    console.log('   1️⃣  ASSIGN TO DEPARTMENT');
+    console.log('   1️:  ASSIGN TO DEPARTMENT');
     console.log('       → Department:', routing.primaryDepartment);
     console.log('       → Role: Department Admin');
     console.log('       → Email: ankurawat8844@gmail.com');
     
-    console.log('\n   2️⃣  NOTIFY SECONDARY DEPARTMENTS');
+    console.log('\n   2️:  NOTIFY SECONDARY DEPARTMENTS');
     if (routing.secondaryDepartments && routing.secondaryDepartments.length > 0) {
       routing.secondaryDepartments.forEach(dept => {
         console.log(`       → ${dept} (CC)`);
@@ -129,11 +129,11 @@ const {sendDocumentAssignment} = require('./services/emailService');
       console.log('       → None required');
     }
     
-    console.log('\n   3️⃣  SET PRIORITY & DEADLINE');
+    console.log('\n   3️:  SET PRIORITY & DEADLINE');
     console.log('       → Priority:', routing.urgency);
     console.log('       → Suggested Deadline:', aiResult.deadlines?.[0] || 'Within 7 days');
     
-    console.log('\n   4️⃣  REQUIRED ACTIONS BY ASSIGNEE');
+    console.log('\n   4️:  REQUIRED ACTIONS BY ASSIGNEE');
     if (aiResult.actionItems && aiResult.actionItems.length > 0) {
       aiResult.actionItems.forEach((action, i) => {
         console.log(`       ${i+1}. ${action}`);
@@ -149,24 +149,24 @@ const {sendDocumentAssignment} = require('./services/emailService');
     console.log('║ WORKFLOW COMPLETED                                           ║');
     console.log('╚═══════════════════════════════════════════════════════════════╝\n');
     
-    console.log('📊 PROCESSING SUMMARY:');
-    console.log('   ✅ OCR Extraction: SUCCESS');
-    console.log('   ✅ AI Summary: GENERATED');
-    console.log('   ✅ Routing Analysis: COMPLETE');
-    console.log('   ✅ Email Notification: QUEUED');
-    console.log('   ⏱️  Total Time: < 5 seconds');
+    console.log(' PROCESSING SUMMARY:');
+    console.log('    OCR Extraction: SUCCESS');
+    console.log('    AI Summary: GENERATED');
+    console.log('    Routing Analysis: COMPLETE');
+    console.log('    Email Notification: QUEUED');
+    console.log('     Total Time: < 5 seconds');
     
-    console.log('\n🎉 Document ready for officer review!\n');
+    console.log('\n Document ready for officer review!\n');
     
   } catch (error) {
     if (error.message.includes('429')) {
-      console.log('\n⚠️  GEMINI API RATE LIMIT REACHED');
+      console.log('\n  GEMINI API RATE LIMIT REACHED');
       console.log('   The API quota has been exceeded.');
       console.log('   Please wait 1-2 minutes and try again.\n');
-      console.log('   📌 Note: OCR extraction was SUCCESSFUL');
-      console.log('   📌 Only AI analysis is temporarily unavailable\n');
+      console.log('    Note: OCR extraction was SUCCESSFUL');
+      console.log('   Only AI analysis is temporarily unavailable\n');
     } else {
-      console.error('\n❌ Error:', error.message);
+      console.error('\n Error:', error.message);
     }
   }
   

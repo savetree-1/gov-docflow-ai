@@ -2,7 +2,7 @@ require('dotenv').config();
 const { sendDocumentAssignment, sendStatusUpdate } = require('./services/emailService');
 
 async function testEmail() {
-  console.log('📧 Testing Pravah Email System...\n');
+  console.log('Testing Pravah Email System...\n');
   
   // Test document data
   const testDocument = {
@@ -15,10 +15,10 @@ async function testEmail() {
 
   const assignedBy = 'System Administrator';
   
-  console.log('📤 Sending test assignment email to: ankurawat8844@gmail.com');
-  console.log('📄 Document:', testDocument.title);
-  console.log('⚡ Urgency:', testDocument.urgency);
-  console.log('\n⏳ Sending...\n');
+  console.log('Sending test assignment email to: ankurawat8844@gmail.com');
+  console.log('Document:', testDocument.title);
+  console.log('Urgency:', testDocument.urgency);
+  console.log('\nSending...\n');
 
   try {
     // Send assignment email
@@ -29,13 +29,13 @@ async function testEmail() {
     );
 
     if (result.success) {
-      console.log('✅ SUCCESS! Test email sent successfully!');
-      console.log('📬 Message ID:', result.messageId);
-      console.log('\n💡 Check your inbox at: ankurawat8844@gmail.com');
-      console.log('📁 Check spam folder if not in inbox');
+      console.log('SUCCESS! Test email sent successfully!');
+      console.log('Message ID:', result.messageId);
+      console.log('\nCheck your inbox at: ankurawat8844@gmail.com');
+      console.log('Check spam folder if not in inbox');
       
       // Send status update email after 2 seconds
-      console.log('\n⏳ Sending status update email in 2 seconds...\n');
+      console.log('\nSending status update email in 2 seconds...\n');
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       const statusResult = await sendStatusUpdate(
@@ -46,17 +46,17 @@ async function testEmail() {
       );
       
       if (statusResult.success) {
-        console.log('✅ SUCCESS! Status update email sent!');
-        console.log('📬 Message ID:', statusResult.messageId);
+        console.log('SUCCESS! Status update email sent!');
+        console.log('Message ID:', statusResult.messageId);
       }
       
     } else {
-      console.log('❌ FAILED to send email');
+      console.log('FAILED to send email');
       console.log('Error:', result.error);
     }
 
   } catch (error) {
-    console.error('❌ ERROR:', error.message);
+    console.error('ERROR:', error.message);
     console.error('\nTroubleshooting:');
     console.error('1. Check .env file has correct email credentials');
     console.error('2. Verify email: pravah.docflow.noreply@gmail.com');
