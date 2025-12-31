@@ -1111,6 +1111,206 @@ React Native app for Android and iOS. Officers can review and approve documents 
 
 ---
 
+## **Meet The Team Behind Pravaah**
+
+<div align="center">
+
+### **Four Students, One Mission: Fix Government Document Chaos**
+
+We're a team of third-year Computer Science students from **Graphic Era Hill University (GEHU), Dehradun**—not just developers, but problem solvers who saw a real issue and decided to build a real solution.
+
+</div>
+
+<br/>
+
+<table>
+<tr>
+<td width="25%" align="center">
+<img src="src/img/Abhay Kanojia.jpeg" width="150" style="border-radius: 50%;" alt="Abhay Kanojia"/>
+
+### **Abhay Kanojia**
+**Team Lead**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Abhay--k12-181717?style=for-the-badge&logo=github)](https://github.com/Abhay-k12)
+
+**What I Built:**
+- Blockchain integration with Polygon
+- Smart contract development
+- Audit trail system
+- Ensured every document action is tamper-proof
+
+📧 abhaykanojiak12@gmail.com
+
+</td>
+<td width="25%" align="center">
+<img src="src/img/Ankush Rawat.jpeg" width="150" style="border-radius: 50%;" alt="Ankush Rawat"/>
+
+### **Ankush Rawat**
+**Frontend Architect**
+
+[![GitHub](https://img.shields.io/badge/GitHub-savetree--1-181717?style=for-the-badge&logo=github)](https://github.com/savetree-1)
+
+**What I Built:**
+- Complete React frontend
+- System architecture design
+- Responsive UI/UX for all roles
+- Dashboard interfaces
+
+📧 ankurawat8844@gmail.com
+
+</td>
+<td width="25%" align="center">
+<img src="src/img/Ankush Malik" width="150" style="border-radius: 50%;" alt="Ankush Malik"/>
+
+### **Ankush Malik**
+**AI & Auth Specialist**
+
+[![GitHub](https://img.shields.io/badge/GitHub-AnkushMalik-181717?style=for-the-badge&logo=github)](https://github.com/AnkushMalik)
+
+**What I Built:**
+- Google Gemini AI integration
+- Document summarization engine
+- JWT authentication system
+- Role-based access control
+
+📧 anitamalik.2016am@gmail.com
+
+</td>
+<td width="25%" align="center">
+<img src="src/img/Priyanshu Bisht.jpg" width="150" style="border-radius: 50%;" alt="Priyanshu Bisht"/>
+
+### **Priyanshu Bisht**
+**Backend Engineer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-PriyanshuBisht-181717?style=for-the-badge&logo=github)](https://github.com/PriyanshuBisht)
+
+**What I Built:**
+- MongoDB database schema
+- RESTful API development
+- Document routing logic
+- File upload handling
+
+📧 priyanshubisht304@gmail.com
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<div align="center">
+
+### **🎯 Our Collective Achievement**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│  Lines of Code Written:        15,000+                          │
+│  Late Nights:                  Too many to count                │
+│  Government Officers Interviewed:  12                           │
+│  Problem Statements Analyzed:  Uttarakhand Document Management  │
+│  Technologies Mastered:        8 (MERN + AI + Blockchain)       │
+│  Days to Build MVP:            45                               │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+</div>
+
+---
+
+## **See Pravaah In Action**
+
+<div align="center">
+
+### **📹 Complete System Walkthrough**
+
+[![Pravaah Demo Video](src/img/Thumbnail.png)](https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU)
+
+**👆 Click to watch our full demonstration** (1080p HD)
+
+*See how Pravaah transforms document chaos into streamlined workflows—from upload to approval in under 5 minutes*
+
+</div>
+
+<br/>
+
+<div align="center">
+
+### **🎬 Watch Now:**
+
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
+  <img src="src/img/Thumbnail.png" alt="Pravaah System Demo" width="800"/>
+</a>
+
+**In this video you'll see:**
+- ✅ Real-time AI document summarization
+- ✅ Automatic smart routing in action
+- ✅ Blockchain audit trail verification
+- ✅ All 4 role-based dashboards
+- ✅ Complete document lifecycle (upload → approval)
+
+</div>
+
+---
+
+## **Why We Built This**
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### **The Personal Connection**
+
+We're from Uttarakhand. We've seen our parents, relatives, friends struggle with government offices. We've heard stories of:
+
+- Medical approvals taking weeks when hours matter
+- Disaster alerts getting lost in paperwork
+- Officers working late nights, still unable to catch up
+- Citizens waiting months for simple applications
+
+**We knew technology could fix this. So we built it.**
+
+</td>
+<td width="50%" valign="top">
+
+### **The Technical Challenge**
+
+This wasn't just about building another app. We had to:
+
+- Integrate cutting-edge AI (Google Gemini) for NLP
+- Implement blockchain for government-grade security
+- Design for low-tech literacy users
+- Handle sensitive government data responsibly
+- Make it scalable across departments and districts
+
+**We learned more in 45 days than in 3 years of college.**
+
+</td>
+</tr>
+</table>
+
+---
+
+## **Our Journey in Numbers**
+
+<div align="center">
+
+| Milestone | Status | Impact |
+|-----------|--------|--------|
+| 🎯 Problem Identification | ✅ Complete | Interviewed 12 govt officers |
+| 🏗️ System Architecture | ✅ Complete | Designed scalable MERN + Blockchain |
+| 🤖 AI Integration | ✅ Complete | 30-second document summaries |
+| ⛓️ Blockchain Deployment | ✅ Complete | Immutable audit trails |
+| 🎨 Frontend Development | ✅ Complete | 4 role-based dashboards |
+| 🔧 Backend APIs | ✅ Complete | 35+ RESTful endpoints |
+| 🧪 Testing | ✅ Complete | Real document workflows tested |
+| 📊 Documentation | ✅ Complete | Complete technical guides |
+
+</div>
+
+---
+
 ## **The Bottom Line**
 
 Pravaah isn't just software. It's about **giving time back to government officers** so they can focus on what matters—making decisions, helping citizens, responding to emergencies.
@@ -1125,37 +1325,95 @@ And most importantly, it's about **saving lives**—by making sure disaster aler
 
 ---
 
-## **Team & Acknowledgments**
+## **Connect With Us**
 
-**Developed by**: Tech Titans  
-**For**: Government of Uttarakhand Digital Governance Initiative  
-**Hackathon**: Hack The Winter - The Second Wave
+<div align="center">
 
-**Technologies Used**: React, Node.js, MongoDB, Google Gemini AI, Polygon Blockchain, Express.js, Redux, TailwindCSS
+### **We're Open to Collaboration, Feedback, and Opportunities**
 
-**Special Thanks**: All the government officers we interviewed who shared their daily challenges and helped us understand the real problems that needed solving.
+<table>
+<tr>
+<td align="center" width="25%">
+
+**Abhay Kanojia**  
+Team Lead & Blockchain
+
+[![Email](https://img.shields.io/badge/Email-abhaykanojiak12%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:abhaykanojiak12@gmail.com)
+
+</td>
+<td align="center" width="25%">
+
+**Ankush Rawat**  
+Frontend & Architecture
+
+[![Email](https://img.shields.io/badge/Email-ankurawat8844%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ankurawat8844@gmail.com)
+
+</td>
+<td align="center" width="25%">
+
+**Ankush Malik**  
+AI & Authentication
+
+[![Email](https://img.shields.io/badge/Email-anitamalik.2016am%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:anitamalik.2016am@gmail.com)
+
+</td>
+<td align="center" width="25%">
+
+**Priyanshu Bisht**  
+Backend & Database
+
+[![Email](https://img.shields.io/badge/Email-priyanshubisht304%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:priyanshubisht304@gmail.com)
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+### **Project Links**
+
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/savetree-1/gov-docflow-ai)
+[![Watch Demo](https://img.shields.io/badge/YouTube-Demo_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-00C7B7?style=for-the-badge&logo=vercel&logoColor=white)](#)
+
+</div>
+
+---
+
+## **Acknowledgments**
+
+**Institution**: Graphic Era Hill University (GEHU), Dehradun  
+**Hackathon**: Hack The Winter - The Second Wave  
+**Mentors**: Faculty advisors who guided our technical decisions  
+**Inspiration**: Real government officers of Uttarakhand who shared their struggles
+
+**Special Thanks**:  
+All the government officers we interviewed who opened up about their daily challenges. Your insights shaped Pravaah into what it is today.
 
 ---
 
 ## **License & Usage**
 
-This project is **proprietary software** developed for the Government of Uttarakhand.  
-All rights reserved.
+This project is developed for educational and demonstration purposes as part of **Hack The Winter - The Second Wave** hackathon.
+
+For deployment in actual government offices, please contact the team for licensing and customization.
+
+**© 2025 Team Tech Titans - GEHU Dehradun**
 
 ---
 
-## **Contact & Support**
+<div align="center">
 
-**Technical Support**: support@pravah.gov.in  
-**Documentation**: See `/docs/guides/` for detailed technical guides  
-**Issues & Bugs**: Report via GitHub Issues (for authorized developers)
+### **Built with ❤️ in the Himalayas**
 
----
-
-**Version**: 1.0.0  
-**Last Updated**: December 31, 2025  
-**Status**: Production Ready, Deployed for Pilot Testing
+**Graphic Era Hill University, Dehradun, Uttarakhand**
 
 ---
 
 _"Technology should serve people, not the other way around. Pravaah makes government work for citizens, one document at a time."_
+
+<br/>
+
+**Version**: 1.0.0 | **Last Updated**: December 31, 2025 | **Status**: Hackathon Submission Ready
+
+</div>
