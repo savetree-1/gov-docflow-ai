@@ -10,11 +10,11 @@ Let me guess...
 
 **This?**
 
-![Piles of Documents in Government Office](src/img/piles_of_doc.png)
+<img src="src/img/piles_of_doc.png" alt="Government office with files piled everywhere" width="600"/>
 
 **Or this?**
 
-![More Document Piles](src/img/piles_of_doc2.png)
+<img src="src/img/piles_of_doc2.png" alt="Stacks of unorganized documents" width="600"/>
 
 **Exactly.**
 
