@@ -537,9 +537,9 @@ https://github.com/user-attachments/assets/Problem.mp4
 <tr>
 <td width="25%" align="center" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
 
-<img src="src/img/Abhay Kanojia.jpeg" width="140" style="border-radius: 50%; border: 5px solid #3b82f6; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);" alt="Abhay Kanojia"/>
+<img src="src/img/Abhay Kanojia.jpeg" width="150" height="150" style="border-radius: 50%; border: 5px solid #3b82f6; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); object-fit: cover;" alt="Abhay Kanojia"/>
 
-<h3 style="color: #1e3a8a; font-weight: 700; margin: 20px 0 10px 0;">Abhay Kanojia</h3>
+<h3 style="color: #1e3a8a; font-weight: 700; margin: 20px 0 10px 0; font-size: 1.3em;">Abhay Kanojia</h3>
 <p style="color: #3b82f6; font-weight: 700; font-size: 1.05em; margin: 5px 0;">Team Lead</p>
 
 <a href="https://github.com/Abhay-k12"><img src="https://img.shields.io/badge/GitHub-Abhay--k12-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
@@ -554,9 +554,9 @@ https://github.com/user-attachments/assets/Problem.mp4
 </td>
 <td width="25%" align="center" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
 
-<img src="src/img/Ankush Rawat.jpeg" width="140" style="border-radius: 50%; border: 5px solid #f59e0b; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);" alt="Ankush Rawat"/>
+<img src="src/img/Ankush Rawat.jpeg" width="150" height="150" style="border-radius: 50%; border: 5px solid #f59e0b; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3); object-fit: cover;" alt="Ankush Rawat"/>
 
-<h3 style="color: #78350f; font-weight: 700; margin: 20px 0 10px 0;">Ankush Rawat</h3>
+<h3 style="color: #78350f; font-weight: 700; margin: 20px 0 10px 0; font-size: 1.3em;">Ankush Rawat</h3>
 <p style="color: #f59e0b; font-weight: 700; font-size: 1.05em; margin: 5px 0;">Frontend Architect</p>
 
 <a href="https://github.com/savetree-1"><img src="https://img.shields.io/badge/GitHub-savetree--1-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
@@ -571,9 +571,9 @@ https://github.com/user-attachments/assets/Problem.mp4
 </td>
 <td width="25%" align="center" style="background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
 
-<img src="src/img/Ankush Malik" width="140" style="border-radius: 50%; border: 5px solid #a855f7; box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);" alt="Ankush Malik"/>
+<img src="src/img/Ankush Malik" width="150" height="150" style="border-radius: 50%; border: 5px solid #a855f7; box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3); object-fit: cover;" alt="Ankush Malik"/>
 
-<h3 style="color: #581c87; font-weight: 700; margin: 20px 0 10px 0;">Ankush Malik</h3>
+<h3 style="color: #581c87; font-weight: 700; margin: 20px 0 10px 0; font-size: 1.3em;">Ankush Malik</h3>
 <p style="color: #a855f7; font-weight: 700; font-size: 1.05em; margin: 5px 0;">AI & Auth Specialist</p>
 
 <a href="https://github.com/AnkushMalik"><img src="https://img.shields.io/badge/GitHub-AnkushMalik-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
@@ -588,9 +588,9 @@ https://github.com/user-attachments/assets/Problem.mp4
 </td>
 <td width="25%" align="center" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
 
-<img src="src/img/Priyanshu Bisht.jpg" width="140" style="border-radius: 50%; border: 5px solid #16a34a; box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);" alt="Priyanshu Bisht"/>
+<img src="src/img/Priyanshu Bisht.jpg" width="150" height="150" style="border-radius: 50%; border: 5px solid #16a34a; box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3); object-fit: cover;" alt="Priyanshu Bisht"/>
 
-<h3 style="color: #14532d; font-weight: 700; margin: 20px 0 10px 0;">Priyanshu Bisht</h3>
+<h3 style="color: #14532d; font-weight: 700; margin: 20px 0 10px 0; font-size: 1.3em;">Priyanshu Bisht</h3>
 <p style="color: #16a34a; font-weight: 700; font-size: 1.05em; margin: 5px 0;">Backend Engineer</p>
 
 <a href="https://github.com/PriyanshuBisht"><img src="https://img.shields.io/badge/GitHub-PriyanshuBisht-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
