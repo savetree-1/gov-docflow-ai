@@ -650,7 +650,7 @@ https://github.com/user-attachments/assets/Problem.mp4
 <h3 style="color: #14532d; font-weight: 700; margin: 20px 0 10px 0; font-size: 1.3em;">Priyanshu Bisht</h3>
 <p style="color: #16a34a; font-weight: 700; font-size: 1.05em; margin: 5px 0;">Backend Engineer</p>
 
-<a href="https://github.com/PriyanshuBisht"><img src="https://img.shields.io/badge/GitHub-PriyanshuBisht-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
+<a href="https://github.com/01priyanshubisht"><img src="https://img.shields.io/badge/GitHub-PriyanshuBisht-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
 
 <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: left;">
 <p style="color: #14532d; font-weight: 700; margin-bottom: 10px; font-size: 0.95em;">What I Built:</p>
