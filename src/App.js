@@ -7,7 +7,7 @@ import { getProfile } from "./api/profileAPI";
 import {
   getLoginAction,
   getSaveProfileAction,
-  getSaveTokenAction
+  getSaveTokenAction,
 } from "./redux/actions";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
@@ -60,27 +60,43 @@ import Departments from "./pages/Departments";
 import DepartmentManagement from "./pages/departmentManagement/DepartmentManagement";
 import SystemLogs from "./pages/systemLogs/SystemLogs";
 
+/**
+ * Main application component.
+ *
+ * This component configures top-level routes and global behaviors such as:
+ * - Restoring auth state from cookies on app load
+ * - Fetching the current user's profile if an auth token is present
+ *
+ * Contributed: added JSDoc and clarifying inline comments (docs: add JSDoc to src/App.js)
+ *
+ * @component
+ */
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // On mount, if auth tokens exist in cookies, restore login state and tokens in Redux.
+    // Note: this is a non-blocking, optimistic restore — the server will still validate tokens on requests.
     if (Cookies.get("access-token") && Cookies.get("refresh-token")) {
       dispatch(getLoginAction());
       dispatch(
         getSaveTokenAction({
           accessToken: Cookies.get("access-token"),
-          refreshToken: Cookies.get("refresh-token")
+          refreshToken: Cookies.get("refresh-token"),
         })
       );
     }
   }, [dispatch]);
 
   useEffect(() => {
+    // Try to fetch and save the user's profile when we have both UUID and an access token.
+    // If the token is missing or expired, `getProfile` should handle and return an appropriate error/empty response.
     const fetchProfile = async () => {
       if (Cookies.get("access-token") && Cookies.get("uuid")) {
         const uuid = Cookies.get("uuid");
         const accessToken = Cookies.get("access-token");
         const data = await getProfile({ uuid, accessToken });
+        // Persist profile data into Redux so UI components can use it.
         dispatch(getSaveProfileAction(data));
       }
     };
@@ -95,216 +111,327 @@ function App() {
       <button onClick={SpeechRecognition.startListening}>Start</button> */}
       <Header />
       <Routes>
-        <Route path="/" element={<><Home /><Footer /></>} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Home />
+              <Footer />
+            </>
+          }
+        />
         <Route path="login" element={<GovLogin />} />
-        <Route path="department-registration" element={<DepartmentRegistration />} />
-        <Route path="verify-otp" element={<><VerifyOTP /><Footer /></>} />
-        <Route path="help" element={<><Help /><Footer /></>} />
-        <Route path="whats-new" element={<><WhatsNew /><Footer /></>} />
-        <Route path="about" element={<><AboutPravaah /><Footer /></>} />
-        <Route path="how-it-works" element={<><HowItWorks /><Footer /></>} />
-        <Route path="departments" element={<><Departments /><Footer /></>} />
-        
+        <Route
+          path="department-registration"
+          element={<DepartmentRegistration />}
+        />
+        <Route
+          path="verify-otp"
+          element={
+            <>
+              <VerifyOTP />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="help"
+          element={
+            <>
+              <Help />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="whats-new"
+          element={
+            <>
+              <WhatsNew />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="about"
+          element={
+            <>
+              <AboutPravaah />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="how-it-works"
+          element={
+            <>
+              <HowItWorks />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="departments"
+          element={
+            <>
+              <Departments />
+              <Footer />
+            </>
+          }
+        />
+
         {/* Role-Based Dashboards */}
-        <Route 
-          path="/admin/dashboard" 
+        <Route
+          path="/admin/dashboard"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
+            <ProtectedRoute allowedRoles={["SUPER_ADMIN"]}>
               <SuperAdminDashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/admin/registrations" 
+        <Route
+          path="/admin/registrations"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
+            <ProtectedRoute allowedRoles={["SUPER_ADMIN"]}>
               <SuperAdminDashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/department/dashboard" 
+        <Route
+          path="/department/dashboard"
           element={
-            <ProtectedRoute allowedRoles={['DEPARTMENT_ADMIN']}>
+            <ProtectedRoute allowedRoles={["DEPARTMENT_ADMIN"]}>
               <DepartmentAdminDashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/dashboard" 
+        <Route
+          path="/dashboard"
           element={
-            <ProtectedRoute allowedRoles={['OFFICER']}>
+            <ProtectedRoute allowedRoles={["OFFICER"]}>
               <OfficerDashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/audit/search" 
+        <Route
+          path="/audit/search"
           element={
-            <ProtectedRoute allowedRoles={['AUDITOR']}>
+            <ProtectedRoute allowedRoles={["AUDITOR"]}>
               <AuditorDashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Settings - All Roles */}
-        <Route 
-          path="/settings" 
+        <Route
+          path="/settings"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN', 'DEPARTMENT_ADMIN', 'OFFICER', 'AUDITOR']}>
+            <ProtectedRoute
+              allowedRoles={[
+                "SUPER_ADMIN",
+                "DEPARTMENT_ADMIN",
+                "OFFICER",
+                "AUDITOR",
+              ]}
+            >
               <Settings />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/admin/settings" 
+        <Route
+          path="/admin/settings"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
+            <ProtectedRoute allowedRoles={["SUPER_ADMIN"]}>
               <Settings />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/department/settings" 
+        <Route
+          path="/department/settings"
           element={
-            <ProtectedRoute allowedRoles={['DEPARTMENT_ADMIN']}>
+            <ProtectedRoute allowedRoles={["DEPARTMENT_ADMIN"]}>
               <Settings />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Document Upload - Officers and Dept Admins */}
-        <Route 
-          path="/document/upload" 
+        <Route
+          path="/document/upload"
           element={
-            <ProtectedRoute allowedRoles={['OFFICER', 'DEPARTMENT_ADMIN']}>
+            <ProtectedRoute allowedRoles={["OFFICER", "DEPARTMENT_ADMIN"]}>
               <DocumentUpload />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Document Detail - All Roles */}
-        <Route 
-          path="/document/:id" 
+        <Route
+          path="/document/:id"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN', 'DEPARTMENT_ADMIN', 'OFFICER', 'AUDITOR']}>
+            <ProtectedRoute
+              allowedRoles={[
+                "SUPER_ADMIN",
+                "DEPARTMENT_ADMIN",
+                "OFFICER",
+                "AUDITOR",
+              ]}
+            >
               <DocumentDetail />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* My Documents - All Roles */}
-        <Route 
-          path="/my-documents" 
+        <Route
+          path="/my-documents"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN', 'DEPARTMENT_ADMIN', 'OFFICER', 'AUDITOR']}>
+            <ProtectedRoute
+              allowedRoles={[
+                "SUPER_ADMIN",
+                "DEPARTMENT_ADMIN",
+                "OFFICER",
+                "AUDITOR",
+              ]}
+            >
               <MyDocuments />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Department Documents */}
-        <Route 
-          path="/department/documents" 
+        <Route
+          path="/department/documents"
           element={
-            <ProtectedRoute allowedRoles={['DEPARTMENT_ADMIN']}>
+            <ProtectedRoute allowedRoles={["DEPARTMENT_ADMIN"]}>
               <MyDocuments />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Notifications - All Roles */}
-        <Route 
-          path="/notifications" 
+        <Route
+          path="/notifications"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN', 'DEPARTMENT_ADMIN', 'OFFICER', 'AUDITOR']}>
+            <ProtectedRoute
+              allowedRoles={[
+                "SUPER_ADMIN",
+                "DEPARTMENT_ADMIN",
+                "OFFICER",
+                "AUDITOR",
+              ]}
+            >
               <Notifications />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* User Management - Super Admin and Dept Admin */}
-        <Route 
-          path="/admin/users" 
+        <Route
+          path="/admin/users"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
+            <ProtectedRoute allowedRoles={["SUPER_ADMIN"]}>
               <UserManagement />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/department/users" 
+        <Route
+          path="/department/users"
           element={
-            <ProtectedRoute allowedRoles={['DEPARTMENT_ADMIN']}>
+            <ProtectedRoute allowedRoles={["DEPARTMENT_ADMIN"]}>
               <UserManagement />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Department Management - Super Admin */}
-        <Route 
-          path="/admin/departments" 
+        <Route
+          path="/admin/departments"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
+            <ProtectedRoute allowedRoles={["SUPER_ADMIN"]}>
               <DepartmentManagement />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* System Logs - Super Admin */}
-        <Route 
-          path="/admin/logs" 
+        <Route
+          path="/admin/logs"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
+            <ProtectedRoute allowedRoles={["SUPER_ADMIN"]}>
               <SystemLogs />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Department Audit Logs */}
-        <Route 
-          path="/department/audit" 
+        <Route
+          path="/department/audit"
           element={
-            <ProtectedRoute allowedRoles={['DEPARTMENT_ADMIN']}>
+            <ProtectedRoute allowedRoles={["DEPARTMENT_ADMIN"]}>
               <SystemLogs />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Auditor Logs */}
-        <Route 
-          path="/audit/logs" 
+        <Route
+          path="/audit/logs"
           element={
-            <ProtectedRoute allowedRoles={['AUDITOR']}>
+            <ProtectedRoute allowedRoles={["AUDITOR"]}>
               <SystemLogs />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Routing Configuration - Super Admin and Dept Admin */}
-        <Route 
-          path="/admin/routing" 
+        <Route
+          path="/admin/routing"
           element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
+            <ProtectedRoute allowedRoles={["SUPER_ADMIN"]}>
               <RoutingConfiguration />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/department/routing" 
+        <Route
+          path="/department/routing"
           element={
-            <ProtectedRoute allowedRoles={['DEPARTMENT_ADMIN']}>
+            <ProtectedRoute allowedRoles={["DEPARTMENT_ADMIN"]}>
               <RoutingConfiguration />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Still Useful Routes */}
-        <Route path="update-profile" element={<><UpdateProfile /><Footer /></>} />
-        <Route path="contact" element={<><ContactUs /><Footer /></>} />
-        <Route path="faq" element={<><FAQ /><Footer /></>} />
+        <Route
+          path="update-profile"
+          element={
+            <>
+              <UpdateProfile />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="contact"
+          element={
+            <>
+              <ContactUs />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="faq"
+          element={
+            <>
+              <FAQ />
+              <Footer />
+            </>
+          }
+        />
         <Route path="support" element={<SupportAdmin />} />
-        
+
         {/* ===== OLD PROJECT ROUTES - COMMENTED OUT ===== */}
         {/* These were from the agricultural equipment rental system (Krishi Sadhan) */}
         {/* <Route path="addProduct" element={<><AddProduct /><Footer /></>} /> */}
@@ -316,8 +443,16 @@ function App() {
         {/* <Route path="policy" element={<><CancellationPolicy /><Footer /></>} /> */}
         {/* <Route path="equipment-report/:id" element={<><EquipmentReport /><Footer /></>} /> */}
         {/* <Route path="feedback" element={<><Feedback /><Footer /></>} /> */}
-        
-        <Route path="*" element={<><div>Not Found</div><Footer /></>} />
+
+        <Route
+          path="*"
+          element={
+            <>
+              <div>Not Found</div>
+              <Footer />
+            </>
+          }
+        />
       </Routes>
 
       <SupportEngine />

@@ -3,6 +3,13 @@
  * Express.js setup with authentication & authorization
  * 
  * This file shows how to integrate all auth components
+ *
+ * Env vars used:
+ * - PORT: server port (optional, default 5000)
+ * - NODE_ENV: environment ('development' or 'production')
+ * - FRONTEND_URL: used to configure CORS origin when not localhost
+ *
+ * Contributed: added clarifying comments about env vars and startup flow (docs: add comments to src/server.js)
  */
 
 const express = require('express');
@@ -45,6 +52,8 @@ app.use(helmet({
 }));
 
 // CORS configuration
+// `FRONTEND_URL` can be set in env to restrict allowed origin in staging/production.
+// Defaults to localhost for local development convenience.
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
@@ -154,6 +163,8 @@ app.use((err, req, res, next) => {
 // START SERVER
 // ============================================
 
+// Start server on configured PORT (defaults to 5000). In production, run under a process manager
+// (PM2, systemd, or a container) to handle restarts and graceful shutdowns.
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
