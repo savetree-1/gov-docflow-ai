@@ -1,10 +1,6 @@
 <div align="center">
 
-<h1 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3em; font-weight: 900;">
-  Pravaah
-</h1>
-
-<h3 style="color: #4a5568; font-weight: 600;">AI-Powered Document Intelligence for Uttarakhand Government</h3>
+<img src="src/img/image copy.png" alt="Pravaah - AI-Powered Document Flow System" width="100%" style="max-width: 1200px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);" />
 
 </div>
 
@@ -902,6 +898,18 @@ Final: 2:20 PM → Dept Head
 <div align="center" style="background: white; padding: 25px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
 <h4 style="color: #14532d; font-weight: 700; margin-bottom: 15px;">Communication: Real-Time Notifications</h4>
 <p style="color: #4a5568; line-height: 1.7;"><strong style="color: #16a34a;">📧 Nodemailer</strong> for email alerts • <strong style="color: #16a34a;">🔔 Real-time in-app notifications</strong> • Future: <strong style="color: #16a34a;">WhatsApp integration</strong> for mobile-first officers</p>
+</div>
+
+<div align="center" style="background: white; padding: 30px; border-radius: 15px; margin: 30px 0; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+<h3 style="color: #14532d; font-weight: 800; margin-bottom: 20px;">System Architecture</h3>
+<img src="src/img/Architecture.png" alt="Pravaah System Architecture" width="90%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);" />
+<p style="color: #4a5568; margin-top: 15px; font-style: italic;">Complete system architecture showing frontend, backend, AI engine, blockchain layer, and database integration</p>
+</div>
+
+<div align="center" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); padding: 30px; border-radius: 15px; margin: 30px 0; border: 3px solid #0284c7;">
+<h3 style="color: #0c4a6e; font-weight: 800; margin-bottom: 20px;">Data Flow Diagram</h3>
+<img src="src/img/dfd.png" alt="Pravaah Data Flow Diagram" width="90%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); background: white; padding: 20px;" />
+<p style="color: #075985; margin-top: 15px; font-weight: 600;">Document flow from upload to approval, showing AI processing, routing, and blockchain audit trail</p>
 </div>
 
 </div>
