@@ -72,59 +72,59 @@ async function runTests() {
   console.log('"AI is used only to assist document understanding and routing suggestions.');
   console.log('All final decisions and accountability remain with authorized government officials."\n');
   
-  console.log('🧪 Running', testCases.length, 'test cases...\n');
+  console.log(' Running', testCases.length, 'test cases...\n');
   console.log('═'.repeat(70) + '\n');
   
   for (let i = 0; i < testCases.length; i++) {
     const test = testCases[i];
     
-    console.log(`\n📄 TEST ${i + 1}: ${test.name}`);
+    console.log(`\n TEST ${i + 1}: ${test.name}`);
     console.log('─'.repeat(70));
     console.log('Document Preview:', test.text.substring(0, 100) + '...\n');
     
     try {
       const result = await analyzeDocument(test.text, test.metadata);
       
-      console.log('✅ ANALYSIS RESULT:\n');
+      console.log(' ANALYSIS RESULT:\n');
       
-      console.log('🤖 AI Provider:', result.ai_provider);
-      console.log('⚡ Processing Time:', result.processing_time_ms, 'ms');
-      console.log('🎯 Hard Rule Applied:', result.hard_rule_applied ? 'YES' : 'NO');
-      console.log('👤 Requires Human Approval:', result.requires_human_approval ? 'YES (MANDATORY)' : 'NO');
+      console.log(' AI Provider:', result.ai_provider);
+      console.log(' Processing Time:', result.processing_time_ms, 'ms');
+      console.log(' Hard Rule Applied:', result.hard_rule_applied ? 'YES' : 'NO');
+      console.log(' Requires Human Approval:', result.requires_human_approval ? 'YES (MANDATORY)' : 'NO');
       
-      console.log('\n📝 SUMMARY:');
+      console.log('\n SUMMARY:');
       result.summary.forEach((point, idx) => {
         console.log(`   ${idx + 1}. ${point}`);
       });
       
-      console.log('\n📊 KEY DETAILS:');
+      console.log('\n KEY DETAILS:');
       console.log('   Subject:', result.key_details.subject);
       console.log('   Urgency:', result.key_details.urgency);
       console.log('   Deadline:', result.key_details.deadline || 'None specified');
       
-      console.log('\n🏷️  CLASSIFICATION:');
+      console.log('\n CLASSIFICATION:');
       console.log('   Category:', result.classification.category);
       console.log('   Confidence:', (result.classification.confidence * 100).toFixed(1) + '%');
       console.log('   Note:', result.ai_confidence_note);
       
-      console.log('\n🎯 ROUTING SUGGESTION (Subject to Human Approval):');
+      console.log('\n ROUTING SUGGESTION (Subject to Human Approval):');
       console.log('   Primary Department:', result.routing_suggestion.primary_department);
       console.log('   CC Departments:', result.routing_suggestion.cc_departments.length > 0 
         ? result.routing_suggestion.cc_departments.join(', ') 
         : 'None');
       console.log('   Reason:', result.routing_suggestion.reason);
       
-      console.log('\n💡 NEXT STEP: Department Admin must review and approve/modify this suggestion');
+      console.log('\n NEXT STEP: Department Admin must review and approve/modify this suggestion');
       
     } catch (error) {
-      console.log('❌ Test Failed:', error.message);
+      console.log(' Test Failed:', error.message);
     }
     
     console.log('\n' + '═'.repeat(70));
     
     // Add delay to avoid rate limits
     if (i < testCases.length - 1) {
-      console.log('\n⏳ Waiting 3 seconds before next test to avoid API rate limits...');
+      console.log('\n Waiting 3 seconds before next test to avoid API rate limits...');
       await new Promise(resolve => setTimeout(resolve, 3000));
     }
   }
@@ -133,14 +133,14 @@ async function runTests() {
   console.log('║                      TEST SUMMARY                                 ║');
   console.log('╚═══════════════════════════════════════════════════════════════════╝\n');
   
-  console.log('✅ All tests completed!');
-  console.log('\n📌 KEY FEATURES DEMONSTRATED:');
+  console.log(' All tests completed!');
+  console.log('\n KEY FEATURES DEMONSTRATED:');
   console.log('   1. Hard routing rules for critical documents (Disaster, Finance, HR, Legal)');
   console.log('   2. AI-assisted analysis with structured JSON output');
   console.log('   3. Fallback mechanism (Gemini → HuggingFace)');
   console.log('   4. Confidence scoring and human approval requirement');
   console.log('   5. Government-compliant audit trail');
-  console.log('\n🔐 COMPLIANCE:');
+  console.log('\n COMPLIANCE:');
   console.log('   - All routing suggestions require human approval');
   console.log('   - AI provider and confidence scores logged');
   console.log('   - Hard rules override AI for critical documents');

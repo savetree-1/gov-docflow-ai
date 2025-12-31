@@ -19,7 +19,7 @@ token=$(echo "$response" | jq -r '.token')
 
 if [ "$token" != "null" ] && [ ! -z "$token" ]; then
   echo ""
-  echo "✅ Login successful! Token: ${token:0:50}..."
+  echo "Login successful! Token: ${token:0:50}..."
   echo ""
   echo "Testing Users API..."
   
@@ -29,5 +29,5 @@ if [ "$token" != "null" ] && [ ! -z "$token" ]; then
     -H "Content-Type: application/json" | jq '.'
 else
   echo ""
-  echo "❌ Login failed!"
+  echo "Login failed!"
 fi
