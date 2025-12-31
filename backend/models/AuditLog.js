@@ -60,7 +60,7 @@ const auditLogSchema = new mongoose.Schema({
     default: Date.now
   }
 }, {
-  timestamps: false // Using timestamp field instead
+  timestamps: false // Using timestamp field
 });
 
 // Indexes for efficient querying
