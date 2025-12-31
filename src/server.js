@@ -1,10 +1,9 @@
 /**
  * Backend Server Integration Example
  * Express.js setup with authentication & authorization
+ * 
  * This file shows how to integrate all auth components
  */
-
-require('dotenv').config(); // Load env vars first
 
 const express = require('express');
 const cors = require('cors');
@@ -35,38 +34,35 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
       scriptSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "https:", "blob:"], // Added 'blob:' for PDF previews
-      connectSrc: ["'self'", "https://firebasestorage.googleapis.com"] // Allow Firebase Storage
+      imgSrc: ["'self'", "data:", "https:"],
     }
   },
-  crossOriginResourcePolicy: { policy: "cross-origin" }
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true
+  }
 }));
 
 // CORS configuration
 app.use(cors({
-  // Allows localhost + your deployment URL
-  origin: [
-    'http://localhost:3000', 
-    process.env.FRONTEND_URL
-  ].filter(Boolean),
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Body parsing
-// INCREASED LIMIT: 50mb needed for PDF scans (Default 10mb is too small for some scans)
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Request logging
-app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
+app.use(morgan('combined'));
 
 // Rate limiting for auth endpoints
-// OPTIMIZED: Relaxed to 20 to prevent lockout during demo
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20, // Increased from 5 to 20
+  max: 5, // 5 requests per window
   message: {
     success: false,
     code: 'RATE_LIMIT_EXCEEDED',
@@ -79,7 +75,7 @@ const authLimiter = rateLimit({
 // General API rate limiting
 const apiLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 200, // Increased to 200 for dashboard polling
+  max: 100, // 100 requests per minute
   message: {
     success: false,
     code: 'RATE_LIMIT_EXCEEDED',
@@ -104,6 +100,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authLimiter, authRoutes);
 
 // Department routes
+// Registration is public, but approval requires auth
 app.use('/api/departments', apiLimiter, departmentRoutes);
 
 // User management routes (authenticated only)
@@ -114,7 +111,6 @@ app.get('/api/admin/stats',
   requireAuth,
   requireRole(USER_ROLES.SUPER_ADMIN),
   (req, res) => {
-    // REVERTED TO ORIGINAL LOGIC
     res.json({
       success: true,
       data: {
@@ -143,6 +139,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error('Error:', err);
 
+  // Don't leak error details in production
   const isDev = process.env.NODE_ENV === 'development';
 
   res.status(err.status || 500).json({
@@ -163,9 +160,9 @@ app.listen(PORT, () => {
   console.log(`
 ╔════════════════════════════════════════════════════════════╗
 ║  Government Platform Backend Server                        ║
-║  Environment: ${process.env.NODE_ENV || 'development'}     ║
-║  Port: ${PORT}                                             ║
-║  Started at: ${new Date().toISOString()}                   ║
+║  Environment: ${process.env.NODE_ENV || 'development'}                                 ║
+║  Port: ${PORT}                                               ║
+║  Started at: ${new Date().toISOString()}          ║
 ╚════════════════════════════════════════════════════════════╝
   `);
 });
