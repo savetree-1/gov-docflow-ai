@@ -218,210 +218,524 @@ https://github.com/user-attachments/assets/Problem.mp4
 
 </div>
 
----
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 35px; border-radius: 15px; margin: 30px 0;">
 
-### **Why Focus on Government Employees, Not Citizens?**
+<h2 align="center" style="color: white; font-weight: 700; margin-bottom: 15px;">Why Focus on Government Employees, Not Citizens?</h2>
 
-<div align="center">
+<div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 12px; margin: 20px 0;">
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│  "Fix the engine before you decorate the car"              │
-│                                                             │
-│  Broken Internal System → Officers Overwhelmed              │
-│         ↓                                                   │
-│  Even Best Citizen Portal Won't Help                        │
-│         ↓                                                   │
-│  Fix Internal System FIRST → Officers Efficient             │
-│         ↓                                                   │
-│  Citizens Benefit Automatically                             │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
+<div align="center" style="background: #f0f9ff; padding: 20px; border-radius: 10px; border: 2px dashed #0284c7; margin: 15px 0;">
+
+<p style="color: #0c4a6e; font-size: 1.3em; font-weight: 700; margin-bottom: 15px;">"Fix the engine before you decorate the car"</p>
+
+<table style="width: 100%; margin-top: 15px;">
+<tr><td style="text-align: center; padding: 10px; color: #164e63; font-weight: 600;">Broken Internal System → Officers Overwhelmed</td></tr>
+<tr><td style="text-align: center; padding: 5px; color: #0284c7; font-size: 1.5em;">↓</td></tr>
+<tr><td style="text-align: center; padding: 10px; color: #164e63; font-weight: 600;">Even Best Citizen Portal Won't Help</td></tr>
+<tr><td style="text-align: center; padding: 5px; color: #0284c7; font-size: 1.5em;">↓</td></tr>
+<tr><td style="text-align: center; padding: 10px; color: #15803d; font-weight: 700; background: #dcfce7; border-radius: 8px;">Fix Internal System FIRST → Officers Efficient</td></tr>
+<tr><td style="text-align: center; padding: 5px; color: #16a34a; font-size: 1.5em;">↓</td></tr>
+<tr><td style="text-align: center; padding: 10px; color: #15803d; font-weight: 700; background: #86efac; border-radius: 8px;">Citizens Benefit Automatically</td></tr>
+</table>
 
 </div>
 
-**The Pravaah Philosophy:**
+<h4 style="color: #2d3748; margin: 25px 0 15px 0; font-weight: 700;">The Pravaah Philosophy:</h4>
 
-| Traditional Approach | Pravaah Approach |
-|---------------------|------------------|
-| Build citizen portal first | Fix internal workflow first |
-| Officers still overwhelmed | Empower officers with AI tools |
-| Applications still delayed | Processing time: hours not days |
-| Citizens keep waiting | Citizens get faster service |
-
-> **Empower the officers. The citizens win automatically.**
-
----
-
-## **A Day in Dehradun: Why This Matters**
-
-It's 9:15 AM on a rainy Monday morning at the **District Collectorate, Dehradun**. 
-
-Rajesh Kumar, a Section Officer with twelve years of government service, sits at his desk. In front of him sits a **stack of 47 documents** that arrived over the weekend. His chai is getting cold. He hasn't even opened his email yet—there are probably another 20 documents waiting there.
-
-**Document 1**: A 23-page land acquisition proposal from Haridwar district  
-**Document 2**: A citizen complaint about irregular water supply in Mussoorie (12 pages, handwritten notes attached)  
-**Document 3**: A weather advisory from the India Meteorological Department  
-**Document 4**: Budget revision requests from five different departments  
-**Document 5**: A legal notice regarding forest land encroachment  
-...and **42 more documents** waiting to be read.
-
-Here's what keeps Rajesh up at night: **somewhere in this pile could be a flash flood warning**. Somewhere could be a **disaster management alert** that needs to reach the Emergency Response team _right now_. Somewhere could be a document that needs the **Chief Secretary's approval by 2 PM today**.
-
-But Rajesh won't know which one it is until he reads through all of them. **Manually. One by one. Word by word.**
-
-By the time he finishes reading document number 8, it's already 11:30 AM.
-
----
-
-## **This Isn't Just About Paperwork. This Is About People.**
-
-Let me be very frank with you. The problem we're solving isn't some abstract "government inefficiency" that bureaucrats talk about in meetings. This is **real people, real emergencies, and real consequences**.
-
-### **The Uttarakhand Reality**
-
-In **June 2023**, during the pre-monsoon season, a disaster management alert about potential landslides in the Kedarnath region took **nearly 4 hours** to reach the District Disaster Management Authority. Why? Because it arrived as a PDF attachment in an email mixed with 63 other routine files. **Four hours** that could have been used for early evacuation warnings, for moving vulnerable families to safety, for saving lives.
-
-That alert wasn't marked "URGENT" in any special way. It looked like every other government document—formal, bureaucratic, dense with technical language. By the time someone actually _read_ it and understood its importance, precious time was lost.
-
-This isn't a technology problem. **This is a human problem that technology can solve.**
-
-### **What Government Officers in Uttarakhand Actually Deal With**
-
-Talk to any Section Officer, any Under Secretary, any Department Head in Uttarakhand's government offices. They'll tell you the same story:
-
-- **100-200 documents landing on their desk every single day**
-- Documents ranging from **5 pages to 50+ pages** each
-- Everything from routine office memos to life-and-death emergency alerts looking exactly the same
-- **Critical decisions buried** in dense legal and technical language
-- **No automated way** to know what's urgent and what can wait until tomorrow
-- **Manual routing** between departments—writing physical notes, getting signatures, sending files through peons
-- A farmer's subsidy approval that should take 2 days taking **2 weeks** because the file is sitting unread in someone's inbox
-
-### **The Breaking Point**
-
-Here's what happened last year in Pauri Garhwal:
-
-A **medical emergency fund request** for a government employee's child needed approvals from three departments: Health, Finance, and Administration. The request was urgent—the child needed surgery within 72 hours.
-
-**Day 1**: File submitted to Health Department  
-**Day 2**: Health Department approves, manually routes to Finance  
-**Day 3**: Finance Department officer is on field visit, file sits on desk  
-**Day 4**: Finance approves, routes to Administration  
-**Day 5**: Administration Department asks for one additional document  
-**Day 6**: Document provided, approval finally given  
-
-**Six days.** For something that should have taken six _hours_. The employee had to borrow money at high interest rates because the approval came too late.
-
-Nobody was incompetent here. Nobody was lazy. The system itself was broken.
-
-### **What This Means in Human Terms**
-
-When we talk about "document management," we're actually talking about:
-
-- **Disaster response time**: How quickly a cloudburst warning reaches mountain villages
-- **Farmer livelihoods**: How fast subsidy approvals move through the system during planting season
-- **Medical emergencies**: How quickly fund requests get processed when someone's family member is in the hospital
-- **Legal justice**: How fast court orders and legal notices reach the concerned departments
-- **Public grievances**: How quickly a citizen's complaint about corruption or service denial gets attention
-
-Every hour a document sits unread, every day a file moves slowly between departments, there's a real human being waiting on the other side. **Waiting for help. Waiting for justice. Waiting for their government to respond.**
-
----
-
-## **What Officers _Actually_ Need (In Their Own Words)**
-
-We spoke to officers across Uttarakhand—from Dehradun to Pithoragarh, from Haridwar to Chamoli. Here's what they told us:
-
-**"Just tell me what this document is about without making me read 30 pages."**  
-Every document should come with an **intelligent summary**—not a human-written abstract that nobody has time to write, but an **AI-generated summary** that captures the key points in 2 minutes.
-
-**"Tell me if this needs MY decision or if I can delegate it."**  
-Officers need **action detection**—does this document require a senior officer's signature? Does it need interdepartmental coordination? Or can a junior assistant handle it?
-
-**"Automatically send disaster alerts to Emergency Response, not to my general inbox."**  
-**Smart routing** based on document content—if it's about floods, route it to Disaster Management. If it's about budget, route it to Finance. Don't make humans do what machines can do in milliseconds.
-
-**"Show me what's urgent and what can wait."**  
-**Priority flagging**—is this a routine circular that can be read next week, or is this a time-sensitive legal notice with a 48-hour deadline?
-
-**"I need to know: Who saw this? When? What action was taken?"**  
-Complete **audit trail**—not just for RTI compliance, but for accountability. When someone asks "Why did this file take 10 days to move?", there should be a transparent, tamper-proof record.
-
----
-
-## **Introducing Pravaah: Document Intelligence That Actually Works**
-
-<div align="center">
-
-**Pravaah** (प्रवाह - meaning "flow" in Hindi)
-
-*Not just another document management system. An AI-powered document intelligence platform built specifically for Uttarakhand's reality.*
-
-</div>
-
-<br/>
-
-### **What Makes Pravaah Different?**
-
-<table>
+<table style="width: 100%; border-collapse: separate; border-spacing: 10px;">
+<thead>
+<tr style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);">
+<th style="padding: 15px; border-radius: 8px; color: #7f1d1d; font-weight: 700;">Traditional Approach</th>
+<th style="padding: 15px; border-radius: 8px; color: #064e3b; font-weight: 700; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);">Pravaah Approach</th>
+</tr>
+</thead>
+<tbody>
 <tr>
-<td width="33%" align="center" valign="top">
+<td style="padding: 12px; background: #fef2f2; border-radius: 6px; color: #7f1d1d;">Build citizen portal first</td>
+<td style="padding: 12px; background: #ecfdf5; border-radius: 6px; color: #065f46; font-weight: 600;">Fix internal workflow first</td>
+</tr>
+<tr>
+<td style="padding: 12px; background: #fef2f2; border-radius: 6px; color: #7f1d1d;">Officers still overwhelmed</td>
+<td style="padding: 12px; background: #ecfdf5; border-radius: 6px; color: #065f46; font-weight: 600;">Empower officers with AI tools</td>
+</tr>
+<tr>
+<td style="padding: 12px; background: #fef2f2; border-radius: 6px; color: #7f1d1d;">Applications still delayed</td>
+<td style="padding: 12px; background: #ecfdf5; border-radius: 6px; color: #065f46; font-weight: 600;">Processing time: hours not days</td>
+</tr>
+<tr>
+<td style="padding: 12px; background: #fef2f2; border-radius: 6px; color: #7f1d1d;">Citizens keep waiting</td>
+<td style="padding: 12px; background: #ecfdf5; border-radius: 6px; color: #065f46; font-weight: 600;">Citizens get faster service</td>
+</tr>
+</tbody>
+</table>
 
-#### ⚡ **Instant AI Summarization**
+<div align="center" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #d97706;">
+<p style="font-size: 1.2em; font-weight: 700; color: #92400e;">Empower the officers. The citizens win automatically.</p>
+</div>
 
-Upload a 40-page document
+</div>
 
-↓
+</div>
 
-**30 seconds later:**
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 35px; border-radius: 15px; margin: 35px 0; border: 3px solid #f59e0b; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
 
-> "Land acquisition request for 12.5 hectares in Tehri. ₹4.2 crore compensation. 47 families affected. Environmental clearance pending."
+<h2 align="center" style="color: #78350f; font-weight: 800; margin-bottom: 10px;">A Day in Dehradun: Why This Matters</h2>
 
-Key stakeholders identified  
-Action items extracted  
-Deadlines highlighted
+<div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
 
-**Tech:** Google Gemini AI
+<p style="color: #2d3748; font-size: 1.05em; line-height: 1.8;"><strong>9:15 AM, Monday morning, District Collectorate, Dehradun.</strong></p>
+
+<p style="color: #4a5568; line-height: 1.7; margin: 15px 0;">Rajesh Kumar, a Section Officer with twelve years of service, sits at his desk facing <strong style="color: #dc2626;">47 documents</strong> that arrived over the weekend. His chai is getting cold. His email probably has another 20 waiting.</p>
+
+</div>
+
+<div style="background: #fef2f2; padding: 20px; border-radius: 10px; border-left: 5px solid #dc2626; margin: 20px 0;">
+
+<table style="width: 100%;">
+<tr><td style="padding: 8px; color: #7f1d1d; font-weight: 600;">Document 1: 23-page land acquisition proposal</td></tr>
+<tr><td style="padding: 8px; color: #7f1d1d; font-weight: 600;">Document 2: Citizen complaint (12 pages, handwritten notes)</td></tr>
+<tr><td style="padding: 8px; color: #7f1d1d; font-weight: 600;">Document 3: Weather advisory from IMD</td></tr>
+<tr><td style="padding: 8px; color: #7f1d1d; font-weight: 600;">Document 4: Budget revision requests</td></tr>
+<tr><td style="padding: 8px; color: #991b1b; font-weight: 700; font-size: 1.1em;">...and 42 more documents</td></tr>
+</table>
+
+</div>
+
+<div align="center" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border: 2px solid #dc2626;">
+<p style="color: #7f1d1d; font-size: 1.15em; font-weight: 700; line-height: 1.6;">Somewhere in this pile could be a <strong style="color: #dc2626;">flash flood warning</strong>. A <strong style="color: #dc2626;">disaster management alert</strong>. A document needing the Chief Secretary's approval by 2 PM.</p>
+<p style="color: #991b1b; font-weight: 700; margin-top: 15px;">But Rajesh won't know until he reads through all of them. Manually. One by one. Word by word.</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 8px; text-align: center; margin-top: 15px;">
+<p style="color: #dc2626; font-weight: 700; font-size: 1.1em;">By the time he finishes document #8, it's already 11:30 AM.</p>
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); padding: 35px; border-radius: 15px; margin: 35px 0; border: 3px solid #4f46e5; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+
+<h2 align="center" style="color: #1e1b4b; font-weight: 800; margin-bottom: 15px;">This Isn't Just About Paperwork. This Is About People.</h2>
+
+<div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+
+<p style="color: #1e293b; font-size: 1.1em; line-height: 1.8; font-weight: 600;">The problem we're solving isn't some abstract "government inefficiency." This is <strong style="color: #dc2626;">real people, real emergencies, and real consequences.</strong></p>
+
+</div>
+
+<h3 style="color: #1e1b4b; font-weight: 700; margin: 25px 0 15px 0;">The Uttarakhand Reality</h3>
+
+<div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #dc2626;">
+
+<p style="color: #7f1d1d; font-size: 1.05em; line-height: 1.8;"><strong>June 2023, pre-monsoon season:</strong> A disaster management alert about potential <strong style="color: #dc2626;">landslides in the Kedarnath region</strong> took <strong style="color: #dc2626;">nearly 4 hours</strong> to reach the District Disaster Management Authority.</p>
+
+<p style="color: #991b1b; line-height: 1.7; margin: 15px 0; font-weight: 600;">Why? It arrived as a PDF attachment in an email mixed with 63 other routine files.</p>
+
+<div style="background: #dc2626; color: white; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center;">
+<p style="font-weight: 700; font-size: 1.15em; margin: 0;">Four hours that could have been used for early evacuation warnings, for moving vulnerable families to safety, for saving lives.</p>
+</div>
+
+</div>
+
+<div align="center" style="background: #4f46e5; color: white; padding: 20px; border-radius: 10px; margin: 25px 0;">
+<p style="font-weight: 700; font-size: 1.2em; margin: 0;">This isn't a technology problem. This is a human problem that technology can solve.</p>
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 30px; border-radius: 15px; margin: 30px 0; border: 3px solid #16a34a;">
+
+<h3 style="color: #14532d; font-weight: 700; margin-bottom: 20px;">What Government Officers in Uttarakhand Actually Deal With</h3>
+
+<div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+
+<p style="color: #1e293b; line-height: 1.7; margin-bottom: 15px;">Talk to any Section Officer, any Under Secretary, any Department Head in Uttarakhand's government offices. They'll tell you the same story:</p>
+
+<div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin: 20px 0;">
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+<p style="color: #78350f; font-weight: 600; margin: 0;">📊 100-200 documents landing on their desk every single day</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+<p style="color: #1e3a8a; font-weight: 600; margin: 0;">📄 Documents ranging from 5 pages to 50+ pages each</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #dc2626;">
+<p style="color: #7f1d1d; font-weight: 600; margin: 0;">⚠️ Everything from routine office memos to life-and-death emergency alerts looking exactly the same</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #a855f7;">
+<p style="color: #581c87; font-weight: 600; margin: 0;">🔍 Critical decisions buried in dense legal and technical language</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #4f46e5;">
+<p style="color: #1e1b4b; font-weight: 600; margin: 0;">❌ No automated way to know what's urgent and what can wait until tomorrow</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #14b8a6;">
+<p style="color: #134e4a; font-weight: 600; margin: 0;">📝 Manual routing between departments—writing physical notes, getting signatures, sending files through peons</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #dc2626;">
+<p style="color: #7f1d1d; font-weight: 600; margin: 0;">⏱️ A farmer's subsidy approval that should take 2 days taking 2 weeks because the file is sitting unread in someone's inbox</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 30px; border-radius: 15px; margin: 30px 0; border: 3px solid #dc2626; box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);">
+
+<h3 style="color: #7f1d1d; font-weight: 700; margin-bottom: 20px;">The Breaking Point</h3>
+
+<div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+
+<p style="color: #1e293b; line-height: 1.7; margin-bottom: 15px; font-weight: 600;">Here's what happened last year in Pauri Garhwal:</p>
+
+<p style="color: #4a5568; line-height: 1.7; margin: 15px 0;">A <strong style="color: #dc2626;">medical emergency fund request</strong> for a government employee's child needed approvals from three departments: <strong>Health, Finance, and Administration</strong>. The request was urgent—the child needed surgery within 72 hours.</p>
+
+<div style="background: #f9fafb; padding: 20px; border-radius: 10px; margin: 20px 0;">
+
+<table style="width: 100%; border-collapse: collapse;">
+<tr style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
+<td style="padding: 12px; border-radius: 8px 8px 0 0; font-weight: 700; color: #1e3a8a;">Timeline</td>
+<td style="padding: 12px; border-radius: 8px 8px 0 0; font-weight: 700; color: #1e3a8a;">Status</td>
+</tr>
+<tr style="background: #fef3c7;">
+<td style="padding: 12px; font-weight: 600; color: #78350f;">Day 1</td>
+<td style="padding: 12px; color: #78350f;">File submitted to Health Department</td>
+</tr>
+<tr style="background: #fed7aa;">
+<td style="padding: 12px; font-weight: 600; color: #7c2d12;">Day 2</td>
+<td style="padding: 12px; color: #7c2d12;">Health Department approves, manually routes to Finance</td>
+</tr>
+<tr style="background: #fecaca;">
+<td style="padding: 12px; font-weight: 600; color: #7f1d1d;">Day 3</td>
+<td style="padding: 12px; color: #7f1d1d;">Finance Department officer is on field visit, file sits on desk</td>
+</tr>
+<tr style="background: #fca5a5;">
+<td style="padding: 12px; font-weight: 600; color: #991b1b;">Day 4</td>
+<td style="padding: 12px; color: #991b1b;">Finance approves, routes to Administration</td>
+</tr>
+<tr style="background: #f87171;">
+<td style="padding: 12px; font-weight: 600; color: #b91c1c;">Day 5</td>
+<td style="padding: 12px; color: #b91c1c;">Administration Department asks for one additional document</td>
+</tr>
+<tr style="background: #dc2626;">
+<td style="padding: 12px; font-weight: 700; color: white;">Day 6</td>
+<td style="padding: 12px; font-weight: 700; color: white;">Document provided, approval finally given</td>
+</tr>
+</table>
+
+</div>
+
+<div align="center" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 20px; border-radius: 10px; margin: 20px 0;">
+<p style="color: white; font-weight: 700; font-size: 1.2em; margin: 0;">Six days. For something that should have taken six hours.</p>
+</div>
+
+<p style="color: #4a5568; line-height: 1.7; margin: 15px 0;">The employee had to borrow money at high interest rates because the approval came too late.</p>
+
+<div style="background: #f0fdf4; padding: 20px; border-radius: 10px; border-left: 5px solid #16a34a; margin: 20px 0;">
+<p style="color: #14532d; font-weight: 600; line-height: 1.7;">Nobody was incompetent here. Nobody was lazy. <strong style="color: #dc2626;">The system itself was broken.</strong></p>
+</div>
+
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 30px; border-radius: 15px; margin: 30px 0; border: 3px solid #0284c7;">
+
+<h3 style="color: #0c4a6e; font-weight: 700; margin-bottom: 20px;">What This Means in Human Terms</h3>
+
+<div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+
+<p style="color: #1e293b; line-height: 1.7; margin-bottom: 15px;">When we talk about "document management," we're actually talking about:</p>
+
+<table style="width: 100%; margin: 20px 0;">
+<tr>
+<td style="padding: 15px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 10px; margin: 10px; font-weight: 600; color: #7f1d1d;">
+<strong style="color: #dc2626;">⚡ Disaster response time:</strong> How quickly a cloudburst warning reaches mountain villages
+</td>
+</tr>
+<tr>
+<td style="padding: 15px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 10px; margin: 10px; font-weight: 600; color: #14532d;">
+<strong style="color: #16a34a;">🌾 Farmer livelihoods:</strong> How fast subsidy approvals move through the system during planting season
+</td>
+</tr>
+<tr>
+<td style="padding: 15px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 10px; margin: 10px; font-weight: 600; color: #78350f;">
+<strong style="color: #f59e0b;">🏥 Medical emergencies:</strong> How quickly fund requests get processed when someone's family member is in the hospital
+</td>
+</tr>
+<tr>
+<td style="padding: 15px; background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); border-radius: 10px; margin: 10px; font-weight: 600; color: #1e1b4b;">
+<strong style="color: #4f46e5;">⚖️ Legal justice:</strong> How fast court orders and legal notices reach the concerned departments
+</td>
+</tr>
+<tr>
+<td style="padding: 15px; background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); border-radius: 10px; margin: 10px; font-weight: 600; color: #581c87;">
+<strong style="color: #a855f7;">📢 Public grievances:</strong> How quickly a citizen's complaint about corruption or service denial gets attention
+</td>
+</tr>
+</table>
+
+<div align="center" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 20px; border-radius: 10px; margin: 25px 0;">
+<p style="color: white; font-weight: 700; font-size: 1.15em; line-height: 1.7;">Every hour a document sits unread, every day a file moves slowly between departments, there's a real human being waiting on the other side.</p>
+<p style="color: white; font-weight: 700; font-size: 1.15em; margin-top: 10px;">Waiting for help. Waiting for justice. Waiting for their government to respond.</p>
+</div>
+
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); padding: 35px; border-radius: 15px; margin: 35px 0; border: 3px solid #a855f7; box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);">
+
+<h2 align="center" style="color: #581c87; font-weight: 800; margin-bottom: 25px;">What Officers Actually Need (In Their Own Words)</h2>
+
+<div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 15px;">
+<p style="color: #4a5568; line-height: 1.7; margin-bottom: 15px;">We spoke to officers across Uttarakhand—from Dehradun to Pithoragarh, from Haridwar to Chamoli. Here's what they told us:</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #3b82f6;">
+<p style="color: #1e3a8a; font-weight: 700; font-size: 1.1em; margin-bottom: 10px;">"Just tell me what this document is about without making me read 30 pages."</p>
+<p style="color: #475569; line-height: 1.7;">Every document should come with an <strong style="color: #3b82f6;">intelligent summary</strong>—not a human-written abstract that nobody has time to write, but an <strong style="color: #3b82f6;">AI-generated summary</strong> that captures the key points in 2 minutes.</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #f59e0b;">
+<p style="color: #78350f; font-weight: 700; font-size: 1.1em; margin-bottom: 10px;">"Tell me if this needs MY decision or if I can delegate it."</p>
+<p style="color: #475569; line-height: 1.7;">Officers need <strong style="color: #f59e0b;">action detection</strong>—does this document require a senior officer's signature? Does it need interdepartmental coordination? Or can a junior assistant handle it?</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #dc2626;">
+<p style="color: #7f1d1d; font-weight: 700; font-size: 1.1em; margin-bottom: 10px;">"Automatically send disaster alerts to Emergency Response, not to my general inbox."</p>
+<p style="color: #475569; line-height: 1.7;"><strong style="color: #dc2626;">Smart routing</strong> based on document content—if it's about floods, route it to Disaster Management. If it's about budget, route it to Finance. Don't make humans do what machines can do in milliseconds.</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #16a34a;">
+<p style="color: #14532d; font-weight: 700; font-size: 1.1em; margin-bottom: 10px;">"Show me what's urgent and what can wait."</p>
+<p style="color: #475569; line-height: 1.7;"><strong style="color: #16a34a;">Priority flagging</strong>—is this a routine circular that can be read next week, or is this a time-sensitive legal notice with a 48-hour deadline?</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 5px solid #4f46e5;">
+<p style="color: #1e1b4b; font-weight: 700; font-size: 1.1em; margin-bottom: 10px;">"I need to know: Who saw this? When? What action was taken?"</p>
+<p style="color: #475569; line-height: 1.7;">Complete <strong style="color: #4f46e5;">audit trail</strong>—not just for RTI compliance, but for accountability. When someone asks "Why did this file take 10 days to move?", there should be a transparent, tamper-proof record.</p>
+</div>
+
+</div>
+
+---
+
+<div style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); padding: 40px; border-radius: 20px; margin: 40px 0; box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
+
+<h2 align="center" style="color: white; font-weight: 900; font-size: 2.2em; margin-bottom: 15px;">Meet The Team Behind Pravaah</h2>
+
+<p align="center" style="color: #e0e7ff; font-size: 1.25em; font-weight: 600; margin-bottom: 30px;">Four Students, One Mission: Fix Government Document Chaos</p>
+
+<div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0;">
+
+<p align="center" style="color: #1e293b; font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">We're a team of third-year Computer Science students from <strong style="color: #4f46e5;">Graphic Era Hill University (GEHU), Dehradun</strong>—not just developers, but problem solvers who saw a real issue and decided to build a real solution.</p>
+
+<table style="width: 100%; border-collapse: separate; border-spacing: 20px;">
+<tr>
+<td width="25%" align="center" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<img src="src/img/Abhay Kanojia.jpeg" width="140" style="border-radius: 50%; border: 5px solid #3b82f6; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);" alt="Abhay Kanojia"/>
+
+<h3 style="color: #1e3a8a; font-weight: 700; margin: 20px 0 10px 0;">Abhay Kanojia</h3>
+<p style="color: #3b82f6; font-weight: 700; font-size: 1.05em; margin: 5px 0;">Team Lead</p>
+
+<a href="https://github.com/Abhay-k12"><img src="https://img.shields.io/badge/GitHub-Abhay--k12-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: left;">
+<p style="color: #1e3a8a; font-weight: 700; margin-bottom: 10px; font-size: 0.95em;">What I Built:</p>
+<p style="color: #475569; font-size: 0.9em; line-height: 1.6; margin: 5px 0;">• Blockchain integration<br/>• Smart contract development<br/>• Audit trail system<br/>• Tamper-proof document actions</p>
+</div>
+
+<p style="color: #1e3a8a; font-weight: 600; font-size: 0.9em; margin-top: 10px;">📧 abhaykanojiak12@gmail.com</p>
 
 </td>
-<td width="33%" align="center" valign="top">
+<td width="25%" align="center" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
 
-#### 🎯 **Smart Auto-Routing**
+<img src="src/img/Ankush Rawat.jpeg" width="140" style="border-radius: 50%; border: 5px solid #f59e0b; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);" alt="Ankush Rawat"/>
 
-Disaster alert arrives
+<h3 style="color: #78350f; font-weight: 700; margin: 20px 0 10px 0;">Ankush Rawat</h3>
+<p style="color: #f59e0b; font-weight: 700; font-size: 1.05em; margin: 5px 0;">Frontend Architect</p>
 
-↓
+<a href="https://github.com/savetree-1"><img src="https://img.shields.io/badge/GitHub-savetree--1-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
 
-**System automatically:**
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: left;">
+<p style="color: #78350f; font-weight: 700; margin-bottom: 10px; font-size: 0.95em;">What I Built:</p>
+<p style="color: #475569; font-size: 0.9em; line-height: 1.6; margin: 5px 0;">• Complete React frontend<br/>• System architecture design<br/>• Responsive UI/UX<br/>• All role-based dashboards</p>
+</div>
 
-✓ Detects: Flash flood in Uttarkashi  
-✓ Routes to: Disaster Management  
-✓ CC's: Revenue + District Magistrate  
-✓ Priority: **HIGH**  
-✓ Notifications: Sent instantly
-
-**Time:** Under 60 seconds
+<p style="color: #78350f; font-weight: 600; font-size: 0.9em; margin-top: 10px;">📧 ankurawat8844@gmail.com</p>
 
 </td>
-<td width="33%" align="center" valign="top">
+<td width="25%" align="center" style="background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
 
-#### 🔍 **Action Intelligence**
+<img src="src/img/Ankush Malik" width="140" style="border-radius: 50%; border: 5px solid #a855f7; box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);" alt="Ankush Malik"/>
 
-For every document:
+<h3 style="color: #581c87; font-weight: 700; margin: 20px 0 10px 0;">Ankush Malik</h3>
+<p style="color: #a855f7; font-weight: 700; font-size: 1.05em; margin: 5px 0;">AI & Auth Specialist</p>
 
-✓ Requires your approval? **Yes/No**  
-✓ Can delegate to: **[Officer name]**  
-✓ Response time: **24h / 3d / 1w**  
-✓ Dependencies: **"Waiting on Finance"**
+<a href="https://github.com/AnkushMalik"><img src="https://img.shields.io/badge/GitHub-AnkushMalik-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
 
-**No guessing. Clear actions.**
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: left;">
+<p style="color: #581c87; font-weight: 700; margin-bottom: 10px; font-size: 0.95em;">What I Built:</p>
+<p style="color: #475569; font-size: 0.9em; line-height: 1.6; margin: 5px 0;">• Google Gemini AI integration<br/>• Document summarization engine<br/>• JWT authentication<br/>• Role-based access control</p>
+</div>
+
+<p style="color: #581c87; font-weight: 600; font-size: 0.9em; margin-top: 10px;">📧 anitamalik.2016am@gmail.com</p>
+
+</td>
+<td width="25%" align="center" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<img src="src/img/Priyanshu Bisht.jpg" width="140" style="border-radius: 50%; border: 5px solid #16a34a; box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);" alt="Priyanshu Bisht"/>
+
+<h3 style="color: #14532d; font-weight: 700; margin: 20px 0 10px 0;">Priyanshu Bisht</h3>
+<p style="color: #16a34a; font-weight: 700; font-size: 1.05em; margin: 5px 0;">Backend Engineer</p>
+
+<a href="https://github.com/PriyanshuBisht"><img src="https://img.shields.io/badge/GitHub-PriyanshuBisht-181717?style=for-the-badge&logo=github" alt="GitHub"/></a>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: left;">
+<p style="color: #14532d; font-weight: 700; margin-bottom: 10px; font-size: 0.95em;">What I Built:</p>
+<p style="color: #475569; font-size: 0.9em; line-height: 1.6; margin: 5px 0;">• MongoDB database schema<br/>• RESTful API development<br/>• Document routing logic<br/>• File upload handling</p>
+</div>
+
+<p style="color: #14532d; font-weight: 600; font-size: 0.9em; margin-top: 10px;">📧 priyanshubisht304@gmail.com</p>
 
 </td>
 </tr>
 </table>
+
+</div>
+
+<div style="background: rgba(255, 255, 255, 0.15); padding: 30px; border-radius: 15px; margin: 25px 0; backdrop-filter: blur(10px);">
+
+<h3 align="center" style="color: white; font-weight: 700; margin-bottom: 25px;">Our Collective Achievement</h3>
+
+<table style="width: 100%; color: white;">
+<tr>
+<td style="padding: 15px; text-align: center; background: rgba(59, 130, 246, 0.2); border-radius: 10px; margin: 10px;">
+<p style="font-size: 2.5em; font-weight: 900; margin: 0; color: #60a5fa;">15,000+</p>
+<p style="font-size: 1.05em; margin: 5px 0; color: #e0e7ff;">Lines of Code Written</p>
+</td>
+<td style="padding: 15px; text-align: center; background: rgba(245, 158, 11, 0.2); border-radius: 10px; margin: 10px;">
+<p style="font-size: 2.5em; font-weight: 900; margin: 0; color: #fbbf24;">45</p>
+<p style="font-size: 1.05em; margin: 5px 0; color: #fef3c7;">Days to Build MVP</p>
+</td>
+<td style="padding: 15px; text-align: center; background: rgba(168, 85, 247, 0.2); border-radius: 10px; margin: 10px;">
+<p style="font-size: 2.5em; font-weight: 900; margin: 0; color: #c084fc;">12</p>
+<p style="font-size: 1.05em; margin: 5px 0; color: #fae8ff;">Government Officers Interviewed</p>
+</td>
+<td style="padding: 15px; text-align: center; background: rgba(22, 163, 74, 0.2); border-radius: 10px; margin: 10px;">
+<p style="font-size: 2.5em; font-weight: 900; margin: 0; color: #4ade80;">8</p>
+<p style="font-size: 1.05em; margin: 5px 0; color: #dcfce7;">Technologies Mastered</p>
+</td>
+</tr>
+</table>
+
+</div>
+
+<div align="center" style="background: rgba(220, 38, 38, 0.2); padding: 25px; border-radius: 12px; margin: 20px 0; border: 2px solid #fca5a5;">
+<p style="color: #fecaca; font-size: 1.2em; font-weight: 700; line-height: 1.7;">We learned more in 45 days than in 3 years of college.</p>
+<p style="color: white; font-size: 1.1em; margin-top: 10px;">We're from Uttarakhand. We've seen the problem firsthand. <strong>We knew technology could fix this. So we built it.</strong></p>
+</div>
+
+</div>
+
+---
+
+<div style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); padding: 40px; border-radius: 20px; margin: 40px 0; box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
+
+<h2 align="center" style="color: white; font-weight: 900; font-size: 2.2em; margin-bottom: 10px;">Introducing Pravaah: Document Intelligence That Actually Works</h2>
+
+<p align="center" style="color: #e0e7ff; font-size: 1.4em; font-weight: 700; margin: 15px 0;">Pravaah (प्रवाह - meaning "flow" in Hindi)</p>
+
+<p align="center" style="color: #c7d2fe; font-size: 1.1em; margin-bottom: 30px;">Not just another document management system. An AI-powered document intelligence platform built specifically for Uttarakhand's reality.</p>
+
+<div style="background: white; padding: 35px; border-radius: 15px; margin: 25px 0;">
+
+<h3 align="center" style="color: #1e1b4b; font-weight: 800; margin-bottom: 30px;">What Makes Pravaah Different?</h3>
+
+<table style="width: 100%; border-collapse: separate; border-spacing: 15px;">
+<tr>
+<td width="33%" align="center" valign="top" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #78350f; font-weight: 800; font-size: 1.3em; margin-bottom: 15px;">⚡ Instant AI Summarization</h4>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">Upload a 40-page document</p>
+<p style="color: #f59e0b; font-weight: 900; font-size: 1.5em; margin: 10px 0;">↓</p>
+<p style="color: #78350f; font-weight: 700; margin: 10px 0;">30 seconds later:</p>
+</div>
+
+<div style="background: #fffbeb; padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin: 15px 0; text-align: left;">
+<p style="color: #78350f; font-style: italic; line-height: 1.6;">"Land acquisition request for 12.5 hectares in Tehri. ₹4.2 crore compensation. 47 families affected. Environmental clearance pending."</p>
+</div>
+
+<div style="text-align: left; color: #4a5568; line-height: 1.7; margin: 15px 0;">
+<p style="margin: 5px 0;">✓ Key stakeholders identified</p>
+<p style="margin: 5px 0;">✓ Action items extracted</p>
+<p style="margin: 5px 0;">✓ Deadlines highlighted</p>
+</div>
+
+<div style="background: #78350f; color: white; padding: 10px; border-radius: 8px; margin-top: 15px;">
+<p style="font-weight: 700; margin: 0;">Tech: Google Gemini AI</p>
+</div>
+
+</td>
+<td width="33%" align="center" valign="top" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #7f1d1d; font-weight: 800; font-size: 1.3em; margin-bottom: 15px;">🎯 Smart Auto-Routing</h4>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #4a5568; font-weight: 600; margin: 10px 0;">Disaster alert arrives</p>
+<p style="color: #dc2626; font-weight: 900; font-size: 1.5em; margin: 10px 0;">↓</p>
+<p style="color: #7f1d1d; font-weight: 700; margin: 10px 0;">System automatically:</p>
+</div>
+
+<div style="text-align: left; color: #4a5568; line-height: 1.7; margin: 15px 0;">
+<p style="margin: 8px 0; font-weight: 600;">✓ <strong style="color: #dc2626;">Detects:</strong> Flash flood in Uttarkashi</p>
+<p style="margin: 8px 0; font-weight: 600;">✓ <strong style="color: #dc2626;">Routes to:</strong> Disaster Management</p>
+<p style="margin: 8px 0; font-weight: 600;">✓ <strong style="color: #dc2626;">CC's:</strong> Revenue + District Magistrate</p>
+<p style="margin: 8px 0; font-weight: 600;">✓ <strong style="color: #dc2626;">Priority:</strong> HIGH</p>
+<p style="margin: 8px 0; font-weight: 600;">✓ <strong style="color: #dc2626;">Notifications:</strong> Sent instantly</p>
+</div>
+
+<div style="background: #7f1d1d; color: white; padding: 10px; border-radius: 8px; margin-top: 15px;">
+<p style="font-weight: 700; margin: 0;">Time: Under 60 seconds</p>
+</div>
+
+</td>
+<td width="33%" align="center" valign="top" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h4 style="color: #1e3a8a; font-weight: 800; font-size: 1.3em; margin-bottom: 15px;">🔍 Action Intelligence</h4>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
+<p style="color: #1e3a8a; font-weight: 700; margin: 10px 0;">For every document:</p>
+</div>
+
+<div style="text-align: left; color: #4a5568; line-height: 1.7; margin: 15px 0;">
+<p style="margin: 8px 0; font-weight: 600;">✓ Requires your approval? <strong style="color: #3b82f6;">Yes/No</strong></p>
+<p style="margin: 8px 0; font-weight: 600;">✓ Can delegate to: <strong style="color: #3b82f6;">[Officer name]</strong></p>
+<p style="margin: 8px 0; font-weight: 600;">✓ Response time: <strong style="color: #3b82f6;">24h / 3d / 1w</strong></p>
+<p style="margin: 8px 0; font-weight: 600;">✓ Dependencies: <strong style="color: #3b82f6;">"Waiting on Finance"</strong></p>
+</div>
+
+<div style="background: #1e3a8a; color: white; padding: 10px; border-radius: 8px; margin-top: 15px;">
+<p style="font-weight: 700; margin: 0;">No guessing. Clear actions.</p>
+</div>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+</div>
 
 <br/>
 
@@ -474,41 +788,123 @@ Final: 2:20 PM → Dept Head
 </tr>
 </table>
 
----
+<div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 35px; border-radius: 15px; margin: 35px 0; border: 3px solid #16a34a;">
 
-## **The Technical Foundation (How We Built This)**
+<h2 align="center" style="color: #14532d; font-weight: 800; margin-bottom: 30px;">The Technical Foundation (How We Built This)</h2>
 
-### **Frontend: Built for Government Officers**
-- **React 18.2** with clean, accessible UI components
-- **Redux** for seamless state management across complex workflows
-- **Responsive design** - works on desktops, tablets, and mobile devices
-- **TailwindCSS** for consistent, government-compliant styling
+<table style="width: 100%; border-collapse: separate; border-spacing: 20px;">
+<tr>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
 
-### **Backend: Secure, Scalable, Reliable**
-- **Node.js + Express** - Battle-tested enterprise architecture
-- **MongoDB Atlas** - Cloud database with automatic backups
-- **JWT authentication** with refresh tokens for security
-- **Role-based access control** (Super Admin, Dept Admin, Officer, Auditor)
-- **File upload validation** - Only approved document formats, size limits enforced
+<h3 style="color: #1e3a8a; font-weight: 700; margin-bottom: 15px;">Frontend: Built for Government Officers</h3>
 
-### **AI Engine: Smart Document Understanding**
-- **Google Gemini AI** for natural language processing
-- Custom prompts trained on Indian government document formats
-- **Extractive summarization** - pulls exact quotes from documents
-- **Named entity recognition** - identifies departments, dates, amounts, locations
-- **Action item detection** - finds what needs to be done and by whom
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #3b82f6; font-weight: 700; margin: 8px 0;">⚛️ React 18.2</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Clean, accessible UI components</p>
+</div>
 
-### **Blockchain Layer: Tamper-Proof Accountability**
-- **Polygon Amoy Testnet** (production will use Polygon mainnet)
-- **Solidity smart contracts** for audit trail logging
-- **Ethers.js** for blockchain interaction
-- Every document action creates an immutable on-chain record
-- **Gas-optimized** - minimal cost per transaction
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #3b82f6; font-weight: 700; margin: 8px 0;">🔄 Redux</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Seamless state management across complex workflows</p>
+</div>
 
-### **Communication: Real-Time Notifications**
-- **Nodemailer** for email alerts
-- Real-time in-app notifications
-- Future: WhatsApp integration for mobile-first officers
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #3b82f6; font-weight: 700; margin: 8px 0;">📱 Responsive Design</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Works on desktops, tablets, and mobile devices</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #3b82f6; font-weight: 700; margin: 8px 0;">🎨 TailwindCSS</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Consistent, government-compliant styling</p>
+</div>
+
+</td>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h3 style="color: #78350f; font-weight: 700; margin-bottom: 15px;">Backend: Secure, Scalable, Reliable</h3>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #f59e0b; font-weight: 700; margin: 8px 0;">🚀 Node.js + Express</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Battle-tested enterprise architecture</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #f59e0b; font-weight: 700; margin: 8px 0;">🗄️ MongoDB Atlas</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Cloud database with automatic backups</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #f59e0b; font-weight: 700; margin: 8px 0;">🔐 JWT Authentication</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Refresh tokens for security</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #f59e0b; font-weight: 700; margin: 8px 0;">👥 Role-Based Access Control</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Super Admin, Dept Admin, Officer, Auditor</p>
+</div>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h3 style="color: #581c87; font-weight: 700; margin-bottom: 15px;">AI Engine: Smart Document Understanding</h3>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #a855f7; font-weight: 700; margin: 8px 0;">🤖 Google Gemini AI</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Natural language processing</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #a855f7; font-weight: 700; margin: 8px 0;">📝 Custom Prompts</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Trained on Indian government document formats</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #a855f7; font-weight: 700; margin: 8px 0;">🔍 Named Entity Recognition</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Identifies departments, dates, amounts, locations</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #a855f7; font-weight: 700; margin: 8px 0;">✅ Action Item Detection</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Finds what needs to be done and by whom</p>
+</div>
+
+</td>
+<td width="50%" valign="top" style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+
+<h3 style="color: #1e1b4b; font-weight: 700; margin-bottom: 15px;">Blockchain: Tamper-Proof Accountability</h3>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #4f46e5; font-weight: 700; margin: 8px 0;">⛓️ Polygon Amoy Testnet</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Production will use Polygon mainnet</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #4f46e5; font-weight: 700; margin: 8px 0;">📜 Solidity Smart Contracts</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Audit trail logging</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #4f46e5; font-weight: 700; margin: 8px 0;">🔗 Ethers.js</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Blockchain interaction</p>
+</div>
+
+<div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+<p style="color: #4f46e5; font-weight: 700; margin: 8px 0;">💰 Gas-Optimized</p>
+<p style="color: #4a5568; font-size: 0.95em; margin-left: 20px;">Minimal cost per transaction</p>
+</div>
+
+</td>
+</tr>
+</table>
+
+<div align="center" style="background: white; padding: 25px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+<h4 style="color: #14532d; font-weight: 700; margin-bottom: 15px;">Communication: Real-Time Notifications</h4>
+<p style="color: #4a5568; line-height: 1.7;"><strong style="color: #16a34a;">📧 Nodemailer</strong> for email alerts • <strong style="color: #16a34a;">🔔 Real-time in-app notifications</strong> • Future: <strong style="color: #16a34a;">WhatsApp integration</strong> for mobile-first officers</p>
+</div>
+
+</div>
 
 ---
 
@@ -1163,144 +1559,45 @@ React Native app for Android and iOS. Officers can review and approve documents 
 
 ---
 
-## **Meet The Team Behind Pravaah**
+<div align="center" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 40px; border-radius: 20px; margin: 40px 0; border: 3px solid #0284c7;">
 
-<div align="center">
+<h2 style="color: #0c4a6e; font-weight: 800; margin-bottom: 25px;">See Pravaah In Action</h2>
 
-### **Four Students, One Mission: Fix Government Document Chaos**
+<h3 style="color: #075985; font-weight: 700; margin-bottom: 20px;">Complete System Walkthrough</h3>
 
-We're a team of third-year Computer Science students from **Graphic Era Hill University (GEHU), Dehradun**—not just developers, but problem solvers who saw a real issue and decided to build a real solution.
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
+  <img src="src/img/Thumbnail.png" alt="Pravaah System Demo" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #0284c7;"/>
+</a>
 
-</div>
+<p style="color: #075985; font-size: 1.15em; font-weight: 600; margin: 20px 0;">Click to watch our full demonstration (1080p HD)</p>
 
-<br/>
+<div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; text-align: left;">
 
-<table>
+<p style="color: #0c4a6e; font-weight: 700; margin-bottom: 15px; font-size: 1.1em;">In this video you'll see:</p>
+
+<table style="width: 100%;">
 <tr>
-<td width="25%" align="center">
-<img src="src/img/Abhay Kanojia.jpeg" width="150" style="border-radius: 50%;" alt="Abhay Kanojia"/>
-
-### **Abhay Kanojia**
-**Team Lead**
-
-[![GitHub](https://img.shields.io/badge/GitHub-Abhay--k12-181717?style=for-the-badge&logo=github)](https://github.com/Abhay-k12)
-
-**What I Built:**
-- Blockchain integration with Polygon
-- Smart contract development
-- Audit trail system
-- Ensured every document action is tamper-proof
-
-📧 abhaykanojiak12@gmail.com
-
-</td>
-<td width="25%" align="center">
-<img src="src/img/Ankush Rawat.jpeg" width="150" style="border-radius: 50%;" alt="Ankush Rawat"/>
-
-### **Ankush Rawat**
-**Frontend Architect**
-
-[![GitHub](https://img.shields.io/badge/GitHub-savetree--1-181717?style=for-the-badge&logo=github)](https://github.com/savetree-1)
-
-**What I Built:**
-- Complete React frontend
-- System architecture design
-- Responsive UI/UX for all roles
-- Dashboard interfaces
-
-📧 ankurawat8844@gmail.com
-
-</td>
-<td width="25%" align="center">
-<img src="src/img/Ankush Malik" width="150" style="border-radius: 50%;" alt="Ankush Malik"/>
-
-### **Ankush Malik**
-**AI & Auth Specialist**
-
-[![GitHub](https://img.shields.io/badge/GitHub-AnkushMalik-181717?style=for-the-badge&logo=github)](https://github.com/AnkushMalik)
-
-**What I Built:**
-- Google Gemini AI integration
-- Document summarization engine
-- JWT authentication system
-- Role-based access control
-
-📧 anitamalik.2016am@gmail.com
-
-</td>
-<td width="25%" align="center">
-<img src="src/img/Priyanshu Bisht.jpg" width="150" style="border-radius: 50%;" alt="Priyanshu Bisht"/>
-
-### **Priyanshu Bisht**
-**Backend Engineer**
-
-[![GitHub](https://img.shields.io/badge/GitHub-PriyanshuBisht-181717?style=for-the-badge&logo=github)](https://github.com/PriyanshuBisht)
-
-**What I Built:**
-- MongoDB database schema
-- RESTful API development
-- Document routing logic
-- File upload handling
-
-📧 priyanshubisht304@gmail.com
-
-</td>
+<td style="padding: 10px; background: #dbeafe; border-radius: 8px; margin: 5px; color: #1e3a8a; font-weight: 600;">✅ Real-time AI document summarization</td>
+</tr>
+<tr>
+<td style="padding: 10px; background: #fef3c7; border-radius: 8px; margin: 5px; color: #78350f; font-weight: 600;">✅ Automatic smart routing in action</td>
+</tr>
+<tr>
+<td style="padding: 10px; background: #fae8ff; border-radius: 8px; margin: 5px; color: #581c87; font-weight: 600;">✅ Blockchain audit trail verification</td>
+</tr>
+<tr>
+<td style="padding: 10px; background: #dcfce7; border-radius: 8px; margin: 5px; color: #14532d; font-weight: 600;">✅ All 4 role-based dashboards</td>
+</tr>
+<tr>
+<td style="padding: 10px; background: #fee2e2; border-radius: 8px; margin: 5px; color: #7f1d1d; font-weight: 600;">✅ Complete document lifecycle (upload → approval)</td>
 </tr>
 </table>
 
-<br/>
-
-<div align="center">
-
-### **🎯 Our Collective Achievement**
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                 │
-│  Lines of Code Written:        15,000+                          │
-│  Late Nights:                  Too many to count                │
-│  Government Officers Interviewed:  12                           │
-│  Problem Statements Analyzed:  Uttarakhand Document Management  │
-│  Technologies Mastered:        8 (MERN + AI + Blockchain)       │
-│  Days to Build MVP:            45                               │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
 </div>
 
----
-
-## **See Pravaah In Action**
-
-<div align="center">
-
-### **📹 Complete System Walkthrough**
-
-[![Pravaah Demo Video](src/img/Thumbnail.png)](https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU)
-
-**👆 Click to watch our full demonstration** (1080p HD)
-
-*See how Pravaah transforms document chaos into streamlined workflows—from upload to approval in under 5 minutes*
-
+<div style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 20px; border-radius: 10px; margin: 20px 0;">
+<p style="color: white; font-weight: 700; font-size: 1.15em;">See how Pravaah transforms document chaos into streamlined workflows—from upload to approval in under 5 minutes</p>
 </div>
-
-<br/>
-
-<div align="center">
-
-### **🎬 Watch Now:**
-
-<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
-  <img src="src/img/Thumbnail.png" alt="Pravaah System Demo" width="800"/>
-</a>
-
-**In this video you'll see:**
-- ✅ Real-time AI document summarization
-- ✅ Automatic smart routing in action
-- ✅ Blockchain audit trail verification
-- ✅ All 4 role-based dashboards
-- ✅ Complete document lifecycle (upload → approval)
 
 </div>
 
