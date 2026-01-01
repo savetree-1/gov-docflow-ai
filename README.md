@@ -334,12 +334,12 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 <div align="center">
 
 **Complete System Walkthrough (HD Video)**
-
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;"><strong>Click here</strong></a>
 <a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
   <img src="src/img/Thumbnail.png" alt="Pravaah Demo Video" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #0284c7;"/>
 </a>
 
-<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;"><strong>Click here</strong></a>
+
 
 </div>
 
