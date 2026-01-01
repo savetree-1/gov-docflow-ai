@@ -56,8 +56,8 @@
 2. <a href="#problem-statement" style="color: #0066cc;"><strong>Problem Statement</strong></a>
 3. <a href="#users--use-cases" style="color: #0066cc;"><strong>Users & Use Cases</strong></a>
 4. <a href="#existing-solutions" style="color: #0066cc;"><strong>Existing Solutions</strong></a>
-5. <a href="#our-solution" style="color: #0066cc;"><strong>Our Solution</strong></a>
-6. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>Architecture & Diagrams</strong></a>
+5. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>Architecture & Diagrams</strong></a>
+6. <a href="#our-solution" style="color: #0066cc;"><strong>Our Solution</strong></a>
 7. <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup Instructions</strong></a>
 8. <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots & Media</strong></a>
 9. <a href="#technical-stack" style="color: #0066cc;"><strong>Technical Stack</strong></a>
@@ -275,6 +275,52 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 
 ---
 
+## Architecture & Diagrams
+
+<div align="center">
+  <img src="src/img/Architecture & Diagrams Banner.png" alt="Architecture & Diagrams" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
+
+### High-Level System Architecture
+
+<div align="center">
+  <img src="src/img/Architecture.png" alt="Pravaah System Architecture" width="90%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
+
+### Data Flow Diagram
+
+<div align="center">
+  <img src="src/img/dfd.png" alt="Data Flow Diagram" width="90%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); background: white; padding: 20px;"/>
+</div>
+
+<br/>
+
+### Workflow Diagram
+
+<div align="center">
+  <img src="src/img/diagram1.png" alt="Workflow Diagram" width="90%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
+
+### System Layers
+
+<div align="center">
+  <img src="src/img/Layer1.png" width="45%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); margin: 10px;" alt="Layer 1" />
+  <img src="src/img/Layer2.png" width="45%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); margin: 10px;" alt="Layer 2" />
+  <br/>
+  <img src="src/img/Layer3.png" width="45%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); margin: 10px;" alt="Layer 3" />
+  <img src="src/img/Layer4.png" width="45%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); margin: 10px;" alt="Layer 4" />
+</div>
+
+![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
+
+---
+
 ## Our Solution
 
 <div align="center">
@@ -334,7 +380,7 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 
 > *"Land acquisition request for 12.5 hectares in Tehri. ₹4.2 crore compensation. 47 families affected. Environmental clearance pending. Requires: Finance approval, Environmental clearance verification, Legal review."*
 
-**Powered by**: <a href="https://ai.google.dev/" style="color: #0066cc;"><strong>Google Gemini AI</strong></a> trained on Indian government document formats
+**Powered by**: Custom LLM model for **classification + OCR**, with fallback to <a href="https://ai.google.dev/" style="color: #0066cc;"><strong>Google Gemini API</strong></a> and <a href="https://github.com/tesseract-ocr/tesseract" style="color: #0066cc;"><strong>Tesseract OCR</strong></a>
 
 **What it extracts**:
 - Key stakeholders and departments involved
@@ -362,19 +408,11 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 
 Every action is recorded on **<a href="https://polygon.technology/" style="color: #0066cc;"><strong>Polygon blockchain</strong></a>**:
 
-```
-Upload: 9:15 AM, Dec 15 → Officer Sharma
-AI Summary: 9:15 AM (30 seconds)
-Routed: 9:16 AM → Finance Dept
-Viewed: 10:30 AM → Finance Officer Gupta
-Approved: 11:45 AM → Finance Officer Gupta
-Final Approval: 2:20 PM → Dept Head Verma
-```
+<div align="center">
+  <img src="src/img/blockchain.png" alt="Blockchain Audit Trail" width="90%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
 
-**Why blockchain?**
-- **Immutable**: No one can change history
-- **Transparent**: RTI requests answered in minutes
-- **Accountable**: Know exactly where delays happened
+<br/>
 
 #### 4. **Priority Intelligence**
 
@@ -395,121 +433,11 @@ Each user sees exactly what they need:
 **Officer**: My documents, pending actions, AI summaries  
 **Auditor**: Complete audit trails, compliance reports
 
-### How It Works: Complete Document Lifecycle
-
-```
-1. UPLOAD
-   Officer uploads document with basic metadata
-   ↓
-2. AI PROCESSING (30 seconds)
-   Google Gemini extracts: summary, entities, action items
-   ↓
-3. SMART ROUTING (< 1 minute)
-   System detects relevant departments and routes automatically
-   ↓
-4. NOTIFICATION
-   Email alerts sent to assigned officers
-   ↓
-5. REVIEW & ACTION
-   Officer reads AI summary, takes action (approve/reject/forward)
-   ↓
-6. BLOCKCHAIN LOGGING
-   Every step recorded on Polygon
-   ↓
-7. REAL-TIME UPDATES
-   Dashboard shows live status
-```
-
-**Total time: Upload to routing = Under 2 minutes** (vs. 3-5 days traditionally)
-
-![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
-
----
-
-## Architecture & Diagrams
-
 <div align="center">
-  <img src="src/img/Architecture & Diagrams Banner.png" alt="Architecture & Diagrams" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+  <img src="src/img/Users_.png" alt="Complete Document Lifecycle" width="90%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
 
 <br/>
-
-### High-Level System Architecture
-
-<div align="center">
-  <img src="src/img/Architecture.png" alt="Pravaah System Architecture" width="90%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);"/>
-</div>
-
-<br/>
-
-### Data Flow Diagram
-
-<div align="center">
-  <img src="src/img/dfd.png" alt="Data Flow Diagram" width="90%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); background: white; padding: 20px;"/>
-</div>
-
-<br/>
-
-### Workflow Diagram
-
-<div align="center">
-  <img src="src/img/diagram1.png" alt="Workflow Diagram" width="90%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);"/>
-</div>
-
-### Component Breakdown
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                   FRONTEND (React 18.2)                      │
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────┐   │
-│  │  Dashboard  │  │   Document   │  │   User Mgmt    │   │
-│  │  (4 Roles)  │  │   Upload/    │  │   Department   │   │
-│  │             │  │   Review     │  │   Settings     │   │
-│  └─────────────┘  └──────────────┘  └─────────────────┘   │
-└────────────────────┬────────────────────────────────────────┘
-                     │ HTTPS/REST API
-┌────────────────────▼────────────────────────────────────────┐
-│                BACKEND (Node.js + Express)                   │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐ │
-│  │   Auth   │  │ Document │  │   AI     │  │ Blockchain │ │
-│  │  Service │  │  Service │  │  Engine  │  │  Service   │ │
-│  └──────────┘  └──────────┘  └──────────┘  └────────────┘ │
-└─────┬────────────┬─────────────┬──────────────┬────────────┘
-      │            │             │              │
-      ▼            ▼             ▼              ▼
-┌──────────┐ ┌──────────┐ ┌────────────┐ ┌──────────────┐
-│ MongoDB  │ │  File    │ │   Google   │ │   Polygon    │
-│  Atlas   │ │ Storage  │ │   Gemini   │ │  Blockchain  │
-│ (Users,  │ │ (Uploads)│ │    AI      │ │ (Audit Trail)│
-│Documents)│ │          │ │            │ │              │
-└──────────┘ └──────────┘ └────────────┘ └──────────────┘
-```
-
-#### Frontend Layer (React)
-- **Tech**: React 18.2, Redux Toolkit, TailwindCSS
-- **Role**: 4 distinct dashboards (Super Admin, Dept Admin, Officer, Auditor)
-- **Features**: Responsive design, real-time updates, document preview
-
-#### Backend Layer (Node.js + Express)
-- **Auth Service**: JWT-based authentication with refresh tokens
-- **Document Service**: Upload, retrieval, metadata management
-- **AI Engine**: Integration with Google Gemini for summarization
-- **Blockchain Service**: Smart contract interaction via Ethers.js
-
-#### Database Layer (MongoDB Atlas)
-- **Collections**: Users, Documents, Departments, Routing Rules, Notifications
-- **Indexing**: Optimized for fast search and retrieval
-- **Backup**: Automated daily backups
-
-#### AI Layer (Google Gemini)
-- **Model**: Gemini Pro
-- **Custom Prompts**: Trained on Indian government document formats
-- **Features**: Summarization, entity extraction, priority detection
-
-#### Blockchain Layer (Polygon)
-- **Network**: Polygon Amoy Testnet (production will use mainnet)
-- **Smart Contract**: Solidity-based audit trail logging
-- **Gas Optimization**: Minimal transaction costs
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
