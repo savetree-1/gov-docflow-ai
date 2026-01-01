@@ -203,55 +203,6 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
   <img src="src/img/our_users.png" alt="Government Officers" width="800" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
 
-### The Four User Roles
-
-<table>
-<tr>
-<td width="50%">
-
-**1. Super Admin** — *The Orchestrator*
-
-**Who**: Chief Secretary's office, State IT heads  
-**Power**: System-wide control, user management, analytics
-
-*Example*: Uttarakhand IT Dept onboards districts, monitors statewide processing times, generates monthly reports for Chief Secretary.
-
-</td>
-<td width="50%">
-
-**2. Department Admin** — *The Conductor*
-
-**Who**: Agriculture Head, Health Director, etc.  
-**Power**: Department workflows, routing rules, team coordination
-
-*Example*: Agriculture Admin creates rules: "Crop insurance → Claims Section | Fertilizer subsidy → Distribution Section"
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-**3. Officer** — *The Frontline Hero*
-
-**Who**: Section Officers, Field Officers  
-**Power**: Upload docs, review AI summaries, approve/reject, real-time tracking
-
-*Example*: Revenue Officer uploads land dispute → AI summarizes: "2 parties, Plot #142, ₹45L valuation" → Auto-routes to Legal Dept.
-
-</td>
-<td width="50%">
-
-**4. Auditor** — *The Watchdog*
-
-**Who**: RTI officers, audit teams  
-**Power**: Complete audit trails, blockchain verification, compliance reports
-
-*Example*: RTI query "Why 15 days?" → Blockchain shows: Uploaded Jan 1, unread 10 days, processed 5 days. Full transparency.
-
-</td>
-</tr>
-</table>
-
 ### Key Use Cases
 
 | Scenario | Traditional Way | With Pravaah |
@@ -346,26 +297,26 @@ All existing solutions treat documents like dumb files. They store them, maybe s
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Portal Homepage</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/app1.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(16,185,129,0.06);" alt="Workflow" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Workflow</strong></div>
+      <img src="src/img/app1.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(16,185,129,0.06);" alt="Functionality" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Functionality</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/app2.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(244,63,94,0.06);" alt="Steps to use Dashboard" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Steps to use Dashboard</strong></div>
+      <img src="src/img/app2.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(244,63,94,0.06);" alt="Login Screen" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Login Screen</strong></div>
     </td>
   </tr>
   <tr>
     <td align="center" style="padding:10px;">
-      <img src="src/img/app3.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(79,70,229,0.06);" alt="Login Screen" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Login Screen</strong></div>
-    </td>
-    <td align="center" style="padding:10px;">
-      <img src="src/img/app4.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(20,184,166,0.06);" alt="Admin Dashboard" />
+      <img src="src/img/app3.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(79,70,229,0.06);" alt="Admin Dashboard" />
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Admin Dashboard</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/app5.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(234,88,12,0.06);" alt="Audit Logs" />
+      <img src="src/img/app4.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(20,184,166,0.06);" alt="Audit Logs" />
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Audit Logs</strong></div>
+    </td>
+    <td align="center" style="padding:10px;">
+      <img src="src/img/app5.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(234,88,12,0.06);" alt="Workflow" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Workflow</strong></div>
     </td>
   </tr>
 </table>
@@ -748,25 +699,25 @@ lsof -ti:3000 | xargs kill -9
 <img src="src/img/app0.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Main portal homepage showing all key features and navigation</em></p>
 
-#### Workflow
+#### Functionality
 <img src="src/img/app1.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-<p><em>Complete document workflow from upload to approval</em></p>
-
-#### Steps to use Dashboard
-<img src="src/img/app2.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-<p><em>Step-by-step guide to navigate and use the dashboard effectively</em></p>
+<p><em>Core features and functionality of the portal</em></p>
 
 #### Login Screen
-<img src="src/img/app3.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app2.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Secure login interface with role-based authentication</em></p>
 
 #### Admin Dashboard
-<img src="src/img/app4.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app3.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Comprehensive admin panel for system management and oversight</em></p>
 
 #### Audit Logs
-<img src="src/img/app5.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app4.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Complete audit trail and activity logs for transparency</em></p>
+
+#### Workflow
+<img src="src/img/app5.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<p><em>Complete document workflow from upload to approval</em></p>
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
