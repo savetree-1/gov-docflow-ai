@@ -439,6 +439,29 @@ Each user sees exactly what they need:
 
 <br/>
 
+### **See Pravaah In Action**
+
+<div align="center">
+
+**Complete System Walkthrough (HD Video)**
+
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
+  <img src="src/img/Thumbnail.png" alt="Pravaah Demo Video" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #0284c7;"/>
+</a>
+
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;"><strong>Click here</strong></a>
+
+**Our full demonstration (1080p HD) showing:**
+- Real-time AI document summarization
+- Automatic smart routing in action
+- Blockchain audit trail verification
+- All 4 role-based dashboards
+- Complete document lifecycle (upload → approval)
+
+</div>
+
+<br/>
+
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
 ---
@@ -648,7 +671,6 @@ From here, you can **upload documents**, watch **AI summaries** appear, **route 
 At this point, **Pravaah is running end-to-end**—  
 documents, intelligence, routing, audit, and accountability—  
 all **visible**, **traceable**, and **under control**.
-```
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
@@ -661,27 +683,6 @@ all **visible**, **traceable**, and **under control**.
 </div>
 
 <br/>
-
-### See Pravaah In Action
-
-<div align="center">
-
-**Complete System Walkthrough (HD Video)**
-
-<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
-  <img src="src/img/Thumbnail.png" alt="Pravaah Demo Video" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #0284c7;"/>
-</a>
-
-<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;"><strong>Click here</strong></a>
-
-**Our full demonstration (1080p HD) showing:**
-- Real-time AI document summarization
-- Automatic smart routing in action
-- Blockchain audit trail verification
-- All 4 role-based dashboards
-- Complete document lifecycle (upload → approval)
-
-</div>
 
 ### Application Screenshots
 
