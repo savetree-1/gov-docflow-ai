@@ -10,13 +10,30 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=48&color=667EEA&center=true&vCenter=true&width=800&lines=Pravaah;प्रवाह;AI-powered+Document+Intelligence" alt="Pravaah" />
 </h1>
 
-<p>
-  <strong>/prəˈvɑː/</strong> · <em>Sanskrit: "Flow"</em>
-</p>
-
 <p align="center" style="margin-top:12px;">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&color=5b21b6&center=true&vCenter=true&width=700&lines=Government+Document+Intelligence;Built+by+Students+for+Officers;AI+%7C+Blockchain+%7C+Real+Impact" alt="taglines" />
 </p>
+
+<table align="center">
+<tr>
+<td align="center"><h3>1️⃣ Introduction</h3>
+Who we are<br/>
+Why we built this<br/>
+Our journey</td>
+<td align="center"><h3>2️⃣ Problem</h3>
+Current chaos<br/>
+Real impact<br/>
+Why it matters</td>
+<td align="center"><h3>3️⃣ Solution</h3>
+AI-powered flow<br/>
+Smart routing<br/>
+Blockchain audit</td>
+<td align="center"><h3>4️⃣ Impact</h3>
+Live demo<br/>
+Real results<br/>
+Future vision</td>
+</tr>
+</table>
 
 <!-- Beautiful gradient bar -->
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
