@@ -7,7 +7,7 @@
 <br/>
 
 <div align="center">
-  <img src="src/img/image copy 3.png" alt="Pravaah" width="600" style="margin: 20px 0;"/>
+  <img src="src/img/image copy 3.png" alt="Pravaah" width="100%" style="margin: 20px 0;"/>
 </div>
 
 <p align="center" style="margin-top:12px;">
