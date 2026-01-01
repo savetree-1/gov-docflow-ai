@@ -6,9 +6,9 @@
 <br/>
 <br/>
 
-<h1>
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=48&color=667EEA&center=true&vCenter=true&width=800&lines=Pravaah;प्रवाह;AI-powered+Document+Intelligence" alt="Pravaah" />
-</h1>
+<div align="center">
+  <img src="src/img/image copy 3.png" alt="Pravaah" width="600" style="margin: 20px 0;"/>
+</div>
 
 <p align="center" style="margin-top:12px;">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&color=5b21b6&center=true&vCenter=true&width=700&lines=Government+Document+Intelligence;Built+by+Students+for+Officers;AI+%7C+Blockchain+%7C+Real+Impact" alt="taglines" />
@@ -232,56 +232,52 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
 
 ### The Four User Roles
 
-#### 1. **Super Admin** (State-Level Oversight)
+<table>
+<tr>
+<td width="50%">
 
-**Who they are**: Chief Secretary's office, IT Department heads
+**1. Super Admin** — *The Orchestrator*
 
-**What they do**:
-- Create and manage all government departments
-- Oversee system-wide statistics and performance
-- Configure routing rules and workflows
-- Manage user accounts across all departments
-- Access complete audit logs
+**Who**: Chief Secretary's office, State IT heads  
+**Power**: System-wide control, user management, analytics
 
-**Use Case**: The Uttarakhand IT Department uses Super Admin access to onboard new districts, monitor document processing times across the state, and generate monthly reports for the Chief Secretary.
+*Example*: Uttarakhand IT Dept onboards districts, monitors statewide processing times, generates monthly reports for Chief Secretary.
 
-#### 2. **Department Admin** (Departmental Management)
+</td>
+<td width="50%">
 
-**Who they are**: Head of Agriculture Department, Director of Health Services, etc.
+**2. Department Admin** — *The Conductor*
 
-**What they do**:
-- Manage users within their department
-- Configure department-specific routing rules
-- Set up approval workflows
-- Monitor departmental document statistics
-- Handle interdepartmental coordination
+**Who**: Agriculture Head, Health Director, etc.  
+**Power**: Department workflows, routing rules, team coordination
 
-**Use Case**: The Agriculture Department Admin sets up a rule: "All documents containing 'crop insurance' automatically route to Claims Section, documents about 'fertilizer subsidy' go to Distribution Section."
+*Example*: Agriculture Admin creates rules: "Crop insurance → Claims Section | Fertilizer subsidy → Distribution Section"
 
-#### 3. **Officer** (The Frontline Worker)
+</td>
+</tr>
+<tr>
+<td width="50%">
 
-**Who they are**: Section Officers, Under Secretaries, Field Officers
+**3. Officer** — *The Frontline Hero*
 
-**What they do**:
-- Upload documents with metadata
-- Review AI-generated summaries
-- Approve, reject, or forward documents
-- Add comments and notes
-- Track document status in real-time
+**Who**: Section Officers, Field Officers  
+**Power**: Upload docs, review AI summaries, approve/reject, real-time tracking
 
-**Use Case**: A District Revenue Officer uploads a land dispute file. AI generates a summary showing: "Land dispute between 2 parties, Plot #142, Tehri district, ₹45 lakh valuation, requires legal department review." The system automatically routes it to Legal Department and notifies the concerned officer.
+*Example*: Revenue Officer uploads land dispute → AI summarizes: "2 parties, Plot #142, ₹45L valuation" → Auto-routes to Legal Dept.
 
-#### 4. **Auditor** (Transparency & Accountability)
+</td>
+<td width="50%">
 
-**Who they are**: RTI officers, internal audit teams, accountability watchdogs
+**4. Auditor** — *The Watchdog*
 
-**What they do**:
-- View complete audit trails
-- Track document movement history
-- Verify blockchain records
-- Generate compliance reports
+**Who**: RTI officers, audit teams  
+**Power**: Complete audit trails, blockchain verification, compliance reports
 
-**Use Case**: An RTI request asks: "Why did File #XYZ take 15 days?" The Auditor pulls the blockchain trail showing: Uploaded on Jan 1, sat unread for 10 days, then processed in 5 days. Complete transparency.
+*Example*: RTI query "Why 15 days?" → Blockchain shows: Uploaded Jan 1, unread 10 days, processed 5 days. Full transparency.
+
+</td>
+</tr>
+</table>
 
 ### Key Use Cases
 
@@ -334,12 +330,11 @@ Let's be honest: It's not solved. It's managed. Barely.
 
 ### Existing "Solutions" and Their Gaps
 
-| Solution | What It Tries to Do | Why It Fails |
-|----------|---------------------|--------------|
-| **Email + PDF Attachments** | Digital delivery | Zero categorization, no prioritization, inbox chaos |
-| **Physical File Management** | Traditional system | Slow, loses documents, zero audit trail |
-| **Basic DMS (Document Management Systems)** | Store documents digitally | Just a filing cabinet—no intelligence, no automation |
-| **Manual Routing Registers** | Track file movement | Paper-based, no real-time updates, easily tampered |
+<div align="center">
+  <img src="src/img/Existing solutions.png" alt="Existing Solutions Comparison" width="90%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
 
 ### The Core Gap: No Intelligence
 
@@ -374,30 +369,30 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 <table>
   <tr>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_1.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(99,102,241,0.08);" alt="Officer Dashboard" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Officer Dashboard</strong></div>
+      <img src="src/img/ss_1.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(99,102,241,0.08);" alt="Portal Homepage" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Portal Homepage</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_2.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(16,185,129,0.06);" alt="Document Upload" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Document Upload</strong></div>
+      <img src="src/img/ss_2.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(16,185,129,0.06);" alt="Workflow" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Workflow</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_3.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(244,63,94,0.06);" alt="AI Summarization" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>AI Summarization</strong></div>
+      <img src="src/img/ss_3.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(244,63,94,0.06);" alt="Steps to use Dashboard" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Steps to use Dashboard</strong></div>
     </td>
   </tr>
   <tr>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_4.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(79,70,229,0.06);" alt="Smart Routing" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Smart Routing</strong></div>
+      <img src="src/img/ss_4.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(79,70,229,0.06);" alt="Login Screen" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Login Screen</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_5.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(20,184,166,0.06);" alt="Blockchain Audit Trail" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Blockchain Audit Trail</strong></div>
+      <img src="src/img/ss_5.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(20,184,166,0.06);" alt="Admin Dashboard" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Admin Dashboard</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_6.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(234,88,12,0.06);" alt="Mobile App Preview" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Mobile App Preview</strong></div>
+      <img src="src/img/ss_6.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(234,88,12,0.06);" alt="Audit Logs" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Audit Logs</strong></div>
     </td>
   </tr>
 </table>
@@ -776,29 +771,29 @@ lsof -ti:3000 | xargs kill -9
 
 ### Application Screenshots
 
-#### Officer Dashboard
+#### Portal Homepage
 <img src="src/img/ss_1.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-<p><em>Clean, intuitive dashboard showing pending documents, AI summaries, and quick actions</em></p>
+<p><em>Main portal homepage showing all key features and navigation</em></p>
 
-#### Document Upload Interface
+#### Workflow
 <img src="src/img/ss_2.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-<p><em>Simple drag-and-drop upload with metadata tagging</em></p>
+<p><em>Complete document workflow from upload to approval</em></p>
 
-#### AI Summarization Result
+#### Steps to use Dashboard
 <img src="src/img/ss_3.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-<p><em>30-second AI-generated summary with key entities highlighted</em></p>
+<p><em>Step-by-step guide to navigate and use the dashboard effectively</em></p>
 
-#### Smart Routing Workflow
+#### Login Screen
 <img src="src/img/ss_4.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-<p><em>Automatic department detection and routing suggestions</em></p>
+<p><em>Secure login interface with role-based authentication</em></p>
 
-#### Blockchain Audit Trail
+#### Admin Dashboard
 <img src="src/img/ss_5.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-<p><em>Immutable record of every document action on Polygon blockchain</em></p>
+<p><em>Comprehensive admin panel for system management and oversight</em></p>
 
-#### Mobile App Preview (Phase 2)
+#### Audit Logs
 <img src="src/img/ss_6.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-<p><em>Upcoming React Native mobile app for on-the-go approvals</em></p>
+<p><em>Complete audit trail and activity logs for transparency</em></p>
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
