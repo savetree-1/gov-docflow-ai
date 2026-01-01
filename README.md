@@ -451,49 +451,48 @@ Each user sees exactly what they need:
 
 <br/>
 
-### Prerequisites
+### **Step 1 — Bring the Project Home**
 
-Before you begin, ensure you have:
-
-- **Node.js v16 or higher** (<a href="https://nodejs.org" style="color: #0066cc;"><strong>Download</strong></a>)
-- **MongoDB Atlas account** (free tier works) or local MongoDB
-- **MetaMask wallet** with Polygon Amoy testnet MATIC (<a href="https://faucet.polygon.technology/" style="color: #0066cc;"><strong>Get from faucet</strong></a>)
-- **Google Gemini API key** (<a href="https://makersuite.google.com/app/apikey" style="color: #0066cc;"><strong>Get free tier</strong></a>)
-- **Gmail account** for sending notification emails
-
-### Step 1: Clone the Repository
+Clone the repository and step inside it.
 
 ```bash
 git clone https://github.com/your-username/gov-docflow-ai.git
 cd gov-docflow-ai
 ```
 
-### Step 2: Backend Setup
+This is the **root of Pravaah**.
+
+---
+
+### **Step 2 — Backend: Where the Logic Lives**
+
+Move into the **backend folder** and install dependencies.
 
 ```bash
 cd backend
 npm install
 ```
 
-Create `.env` file in backend directory:
+Now create a **`.env`** file inside the **backend** directory.  
+This is where Pravaah learns how to **connect**, **authenticate**, **notify**, and **verify**.
 
 ```env
 # Database
 MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/pravah_prototype
 
-# JWT Secrets
+# Authentication
 JWT_SECRET=your_jwt_secret_key_change_in_production
 JWT_REFRESH_SECRET=your_refresh_secret_key_change_in_production
 
-# Email Configuration
+# Email Notifications
 EMAIL_FROM=noreply@pravah.gov.in
 EMAIL_USER=your-gmail@gmail.com
 EMAIL_PASSWORD=your-gmail-app-password
 
-# Google Gemini AI
+# AI Intelligence
 GEMINI_API_KEY=your_gemini_api_key
 
-# Blockchain
+# Blockchain Audit
 BLOCKCHAIN_CONTRACT_ADDRESS=0x...
 METAMASK_PRIVATE_KEY=your_metamask_private_key
 
@@ -502,92 +501,153 @@ PORT=5001
 NODE_ENV=development
 ```
 
-Seed database with initial data:
+**Seed the database** with initial users, departments, and roles.
 
 ```bash
 node seed.js
 ```
 
-Start backend server:
+**Start the backend server.**
 
 ```bash
 npm start
 ```
 
-Backend will run on `http://localhost:5001`
+The backend will now be running at:
 
-### Step 3: Blockchain Setup
+> **http://localhost:5001**
+
+---
+
+### **Step 3 — Blockchain: Trust Without Question**
+
+Pravaah uses blockchain **only for one purpose**: **audit integrity**.  
+Every critical action gets anchored **immutably**.
+
+Move into the **blockchain folder**.
 
 ```bash
 cd blockchain
 npm install
 ```
 
-Deploy smart contract:
+**Deploy the smart contract** to **Polygon Amoy testnet**.
 
 ```bash
 npm run deploy
 ```
 
-**Important**: Copy the contract address from deployment output and paste it into backend `.env` file under `BLOCKCHAIN_CONTRACT_ADDRESS`.
+**Copy** the deployed **contract address** from the terminal output and paste it into:
 
-### Step 4: Frontend Setup
+> **backend/.env** → **BLOCKCHAIN_CONTRACT_ADDRESS**
+
+This completes the **audit layer**.
+
+---
+
+### **Step 4 — Frontend: What Users Actually See**
+
+Go back to the **project root** and install frontend dependencies.
 
 ```bash
-cd ..  # Back to root directory
+cd ..
 npm install
 ```
 
-Create `.env` file in root directory:
+Create a **`.env`** file in the **root directory**.
 
 ```env
 REACT_APP_BACKEND_URL=http://localhost:5001
 ```
 
-Start frontend:
+**Start the frontend.**
 
 ```bash
 npm start
 ```
 
-Frontend will run on `http://localhost:3000`
+The application will open at:
 
-### Step 5: Test Login
+> **http://localhost:3000**
 
-Open `http://localhost:3000` in your browser.
+---
 
-**Test Credentials:**
+### **Step 5 — Step Inside Pravaah**
 
-| Role | Email | Password |
-|------|-------|----------|
-| **Super Admin** | superadmin@pravah.gov.in | Admin@123 |
-| **Dept Admin (Agriculture)** | ukagridept.gov@gmail.com | Agri@123 |
-| **Officer** | agri.officer1@pravah.gov.in | Officer@123 |
+Open the application in your browser and **log in** using any of the seeded accounts.
 
-### Common Troubleshooting
+<table>
+<tr>
+<th><strong>Role</strong></th>
+<th><strong>Email</strong></th>
+<th><strong>Password</strong></th>
+</tr>
+<tr>
+<td><strong>Super Admin</strong></td>
+<td>superadmin@pravah.gov.in</td>
+<td>Admin@123</td>
+</tr>
+<tr>
+<td><strong>Department Admin (Agriculture)</strong></td>
+<td>ukagridept.gov@gmail.com</td>
+<td>Agri@123</td>
+</tr>
+<tr>
+<td><strong>Officer</strong></td>
+<td>agri.officer1@pravah.gov.in</td>
+<td>Officer@123</td>
+</tr>
+</table>
 
-#### MongoDB Connection Error
-- Ensure your IP is whitelisted in MongoDB Atlas
-- Check if connection string is correct
-- Verify network access rules
+From here, you can **upload documents**, watch **AI summaries** appear, **route files**, **approve actions**, and see **every step recorded**.
 
-#### Gemini API Rate Limit
-- Free tier has **60 requests/minute** limit
-- Add error handling for rate limits
-- Consider upgrading to paid tier for production
+---
 
-#### Blockchain Transaction Failing
-- Ensure you have testnet MATIC in wallet
-- Check if contract address is correct
-- Verify network is set to Polygon Amoy testnet
+### **When Things Don't Start Smoothly**
 
-#### Port Already in Use
-```bash
-# Kill process on port 5001 (backend)
-lsof -ti:5001 | xargs kill -9
+<table>
+<tr>
+<th><strong>Issue</strong></th>
+<th><strong>Solution</strong></th>
+</tr>
+<tr>
+<td><strong>MongoDB won't connect</strong></td>
+<td>
+• Ensure your <strong>IP is whitelisted</strong> in MongoDB Atlas<br/>
+• Double-check the <strong>connection string</strong><br/>
+• Confirm <strong>network access rules</strong>
+</td>
+</tr>
+<tr>
+<td><strong>Gemini API errors</strong></td>
+<td>
+• Free tier allows <strong>limited requests per minute</strong><br/>
+• <strong>Retry logic</strong> is recommended for production<br/>
+• Paid tier can be added later without architecture changes
+</td>
+</tr>
+<tr>
+<td><strong>Blockchain transaction failing</strong></td>
+<td>
+• Ensure MetaMask is set to <strong>Polygon Amoy</strong><br/>
+• Confirm <strong>test MATIC balance</strong><br/>
+• Recheck <strong>contract address</strong> in .env
+</td>
+</tr>
+<tr>
+<td><strong>Ports already in use</strong></td>
+<td>
+<code>lsof -ti:5001 | xargs kill -9</code><br/>
+<code>lsof -ti:3000 | xargs kill -9</code>
+</td>
+</tr>
+</table>
 
-# Kill process on port 3000 (frontend)
-lsof -ti:3000 | xargs kill -9
+<br/>
+
+At this point, **Pravaah is running end-to-end**—  
+documents, intelligence, routing, audit, and accountability—  
+all **visible**, **traceable**, and **under control**.
 ```
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
@@ -612,7 +672,9 @@ lsof -ti:3000 | xargs kill -9
   <img src="src/img/Thumbnail.png" alt="Pravaah Demo Video" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #0284c7;"/>
 </a>
 
-**<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;">Click to watch</a>** our full demonstration (1080p HD) showing:
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;"><strong>Click here</strong></a>
+
+**Our full demonstration (1080p HD) showing:**
 - Real-time AI document summarization
 - Automatic smart routing in action
 - Blockchain audit trail verification
@@ -704,82 +766,6 @@ lsof -ti:3000 | xargs kill -9
 
 <br/>
 
-### Why We Chose Each Technology
-
-<table>
-<tr>
-<td width="50%">
-
-#### **Frontend: React + Redux + Tailwind**
-
-**Why React?**
-- Component-based architecture perfect for role-specific dashboards
-- Large community and ecosystem
-- Easy to maintain and scale
-
-**Why Redux?**
-- Complex state management across multiple user roles
-- Predictable state updates
-- DevTools for debugging
-
-**Why TailwindCSS?**
-- Rapid UI development
-- Consistent design system
-- Responsive utilities out-of-the-box
-
-</td>
-<td width="50%">
-
-#### **Backend: Node.js + Express + MongoDB**
-
-**Why Node.js?**
-- JavaScript everywhere (same language as frontend)
-- Excellent async handling for document processing
-- Large package ecosystem (npm)
-
-**Why Express?**
-- Minimalist, flexible framework
-- Middleware support for auth, logging, etc.
-- Battle-tested in production
-
-**Why MongoDB?**
-- Flexible schema for diverse document types
-- Excellent for storing metadata and summaries
-- Scalable with MongoDB Atlas
-
-</td>
-</tr>
-<tr>
-<td>
-
-#### **AI: Google Gemini**
-
-**Why Gemini?**
-- Superior natural language understanding
-- Free tier sufficient for prototyping
-- Handles Indian government document formats well
-- Multi-language support (Hindi + English)
-
-**Alternatives considered**: OpenAI GPT-4 (expensive), Claude (less accurate for Indian context)
-
-</td>
-<td>
-
-#### **Blockchain: Polygon + Solidity**
-
-**Why Polygon?**
-- Lower gas fees than Ethereum
-- Faster transactions (2-second block time)
-- EVM-compatible (easy migration from Ethereum)
-
-**Why not other chains?**
-- Ethereum mainnet: Too expensive for government use
-- Private blockchain: Defeats purpose of transparency
-
-</td>
-</tr>
-</table>
-
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
 ---
@@ -792,141 +778,33 @@ lsof -ti:3000 | xargs kill -9
 
 <br/>
 
-### Our Vision for Phase 2
+### **Phase 2: Practical Enhancements Planned**
 
-Phase 2 transforms Pravaah from a **state-level prototype** into a **national-scale government infrastructure**. Goal: Deploy across all **28 states** and **8 union territories**, serving **100,000+ government officers** and processing **1 million+ documents daily**.
+Phase 2 focuses on **stability**, **real-world readiness**, and **operational reliability** rather than adding new features.
 
-**Timeline**: 12-18 months | **Investment**: ₹2.5-3 crores | **Impact**: 500+ districts nationwide
+---
 
-### Major Features Planned
+#### **1. Robust Cloud Database & Production Deployment**
 
-#### 1. Mobile-First Experience (React Native)
+The system will move to a **managed cloud platform** with proper backups, access controls, and environment separation (development, staging, production). The web application will be deployed on a **secure cloud server**, making it accessible to authorized government users without manual setup. This ensures **reliability**, **data safety**, and **continuous availability** for real government infrastructure use.
 
-**Why mobile?**
-65% of government officers in tier-2/tier-3 cities use smartphones as their primary device. Many don't have dedicated desktop computers.
+---
 
-**Features:**
-- Offline document viewing and annotation
-- Push notifications for urgent documents
-- Voice-to-text for adding comments (Hindi + English)
-- Biometric authentication (fingerprint/face unlock)
-- Quick approval with one-tap actions
-- Camera integration for document scanning
-- Battery-optimized background sync
+#### **2. Assisted Auto-Routing with Officer Validation**
 
-**Timeline**: Q1-Q2 2026 (6 months)
+The system will introduce **assisted auto-routing**, suggesting the most relevant department and officer based on document content. Officers will **review and confirm** the suggested routing before final submission. This reduces **misrouting**, saves **processing time**, and improves **consistency** while respecting administrative authority.
 
-#### 2. Advanced AI Capabilities
+---
 
-**Current**: Basic summarization  
-**Phase 2**: Multi-language NLP, OCR, fraud detection
+#### **3. Time Visibility and Delay Monitoring**
 
-**OCR for Handwritten Documents**  
-40% of government documents are handwritten. Custom OCR trained on Indian handwriting styles (Hindi, Tamil, Bengali, etc.)
+Each document will display **how long it has remained** at a particular stage. Supervisors can identify **delays** without micromanaging officers. This is a **visibility mechanism**, not strict enforcement—helping departments understand bottlenecks and improve coordination with **digital clarity and accountability**.
 
-**AI Enhancements:**
-- Multi-language NLP: Process docs in 22 official languages
-- Sentiment analysis: Detect urgent/distressed citizen complaints
-- Auto-classification: Categorize docs by type (legal, medical, financial)
-- Smart extraction: Pull names, dates, amounts, locations automatically
-- Duplicate detection: Identify resubmitted applications
-- Fraud detection: Flag suspicious patterns in documents
+---
 
-**Timeline**: Q2-Q3 2026 (6 months)
+#### **4. Simplified Audit & Integrity Verification Interface**
 
-#### 3. Citizen Portal
-
-**Why now?**  
-Phase 1 fixed internal workflows. Phase 2 extends benefits to citizens. Officers can now handle 3x more applications—time to open the gates.
-
-**Citizen Features:**
-- Submit applications online: Upload docs directly to departments
-- Real-time tracking: See exactly where application is
-- AI-powered guidance: Chatbot helps fill forms correctly
-- Document checklist: Know what docs are needed before visiting office
-- SMS/WhatsApp updates: Get notified at each step
-- RTI integration: File RTI requests digitally
-- Grievance redressal: Track complaint status
-- Payment gateway: Pay fees online (UPI/cards)
-
-**Timeline**: Q3-Q4 2026 (6 months)
-
-#### 4. WhatsApp Integration
-
-**The WhatsApp Reality**  
-85% of government officers use WhatsApp daily. It's their primary communication tool. Email? Not so much.
-
-**WhatsApp Features:**
-- Instant notifications: New document alerts via WhatsApp
-- Document summaries: AI summary sent to WhatsApp
-- Quick actions: Approve/reject with button clicks
-- Status queries: Ask "Where is file #12345?" and get instant answer
-- Daily digest: Morning summary of pending work
-- Emergency alerts: Critical disaster docs sent immediately
-- Voice messages: Officers can reply with voice notes
-- Group coordination: Department WhatsApp groups for collaboration
-
-**Timeline**: Q2 2026 (3 months)
-
-#### 5. Advanced Analytics & BI
-
-**For Decision Makers**  
-Chief Secretaries, District Magistrates need dashboards showing bottlenecks, performance metrics, and predictive insights.
-
-**Analytics Features:**
-- Performance dashboards: Real-time dept/officer efficiency metrics
-- Bottleneck detection: AI identifies where files get stuck
-- Predictive analytics: Forecast processing times, workload spikes
-- Comparative analysis: Benchmark across districts/states
-- Custom reports: Generate monthly/quarterly/annual reports
-- Heatmaps: Visualize document flow patterns
-- Trend analysis: Identify seasonal patterns, recurring issues
-- Export capabilities: CSV/Excel/PDF for external analysis
-
-**Timeline**: Q3 2026 (4 months)
-
-#### 6. Digital Signatures & Legal Validity
-
-**The Legal Challenge**  
-Digital approvals need legal validity. Integration with Aadhaar eSign, DigiLocker for government-compliant digital signatures.
-
-**Features:**
-- Aadhaar eSign: Officers sign with Aadhaar-based PKI
-- DigiLocker integration: Fetch verified citizen documents
-- Timestamp authority: Legal timestamp for all signatures
-- Certificate management: Automated DSC renewal tracking
-- Multi-party signing: Sequential/parallel signature workflows
-- Signature verification: Instant validation of signed docs
-- Compliance: IT Act 2000 compliant digital signatures
-- Audit trail: Who signed what, when—blockchain verified
-
-**Timeline**: Q4 2026 (4 months)
-
-#### 7. Disaster Management Mode
-
-**When Seconds Matter**  
-During floods, earthquakes, landslides—every second counts. Special mode for disaster response.
-
-**Emergency Features:**
-- Red alert mode: System-wide emergency activation
-- Priority override: Disaster docs bypass all queues
-- Mass notification: Alert all officers instantly (SMS/WhatsApp/call)
-- Geo-tracking: See which officers are in affected areas
-- Rapid approval: One-click emergency fund releases
-- Coordination center: Real-time command dashboard
-- Resource tracking: Monitor relief materials, personnel deployment
-- Situation reports: Auto-generate hourly status updates
-
-**Timeline**: Q1 2026 (High Priority - 3 months)
-
-### Expected Impact: Phase 2
-
-| Metric | Target |
-|--------|--------|
-| **Officers Onboarded** | 100,000+ across all states & UTs |
-| **Documents/Day** | 1M+ national processing capacity |
-| **Savings/Year** | ₹500 Cr+ reduced paperwork costs |
-| **Citizens Benefited** | 50M+ faster government services |
+Auditors will receive a **simple verification interface** showing clear confirmations like **"Verified"** or **"Mismatch Detected"** instead of technical blockchain details. This makes **audit processes faster** and more reliable while keeping the system **secure and tamper-proof**, strengthening trust without increasing complexity.
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
@@ -945,6 +823,22 @@ During floods, earthquakes, landslides—every second counts. Special mode for d
 - **<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;">Live Demo Video</a>**: Watch on YouTube
 - **<a href="https://github.com/your-username/gov-docflow-ai" style="color: #0066cc;">GitHub Repository</a>**: gov-docflow-ai
 - **Documentation**: See `docs/` folder for detailed guides
+
+### Research & References
+
+**Problem Statement Research**
+
+- **<a href="https://www.oecd.org/gov/digital-government/digital-government-review-of-india-2020.htm" style="color: #0066cc;">OECD Digital Government Review of India (2020)</a>**  
+  *Comprehensive analysis of India's digital governance challenges and opportunities*
+
+- **<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7546263/" style="color: #0066cc;">National Centre for Biotechnology Information - Document Management in Government</a>**  
+  *Academic research on inefficiencies in government document processing systems*
+
+- **<a href="https://www.meity.gov.in/writereaddata/files/Digital%20India_06.08.2015.pdf" style="color: #0066cc;">Digital India Programme - MeitY Report</a>**  
+  *Ministry of Electronics & IT insights on digitizing government workflows*
+
+- **<a href="https://www.worldbank.org/en/news/feature/2020/07/15/digital-india-technology-to-transform-connected-nation" style="color: #0066cc;">World Bank - Digital India: Technology to Transform a Connected Nation</a>**  
+  *Analysis of government digital transformation and its impact on public service delivery*
 
 ### Team
 
