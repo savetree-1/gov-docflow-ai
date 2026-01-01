@@ -16,19 +16,19 @@
 
 <table align="center">
 <tr>
-<td align="center"><h3>1️⃣ Introduction</h3>
+<td align="center"><h3>1. Introduction</h3>
 Who we are<br/>
 Why we built this<br/>
 Our journey</td>
-<td align="center"><h3>2️⃣ Problem</h3>
+<td align="center"><h3>2. Problem</h3>
 Current chaos<br/>
 Real impact<br/>
 Why it matters</td>
-<td align="center"><h3>3️⃣ Solution</h3>
+<td align="center"><h3>3. Solution</h3>
 AI-powered flow<br/>
 Smart routing<br/>
 Blockchain audit</td>
-<td align="center"><h3>4️⃣ Impact</h3>
+<td align="center"><h3>4. Impact</h3>
 Live demo<br/>
 Real results<br/>
 Future vision</td>
@@ -54,11 +54,6 @@ Future vision</td>
   <a href="https://twitter.com/techtitans"><img src="https://img.shields.io/badge/Twitter-Tech%20Titans-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter"/></a>
 </p>
 
-<!-- Visitor Count -->
-<p>
-  <img src="https://visitcount.itsvg.in/api?id=pravaah&icon=1&color=4" alt="Visitor Count"/>
-</p>
-
 <h3 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; font-size: 1.8em; margin: 20px 0;">
   AI-Powered Government Document Flow System
 </h3>
@@ -70,9 +65,9 @@ Future vision</td>
 <br/>
 
 <!-- Navigation -->
-<div align="center">
+<div align="left">
 
-### 📑 Table of Contents
+### Table of Contents
 
 1. <a href="#introduction" style="color: #0066cc;"><strong>Introduction</strong></a>
 2. <a href="#problem-statement" style="color: #0066cc;"><strong>Problem Statement</strong></a>
@@ -98,9 +93,9 @@ Future vision</td>
 
 <div align="center">
   <img src="src/img/Intro Banner.png" alt="Pravaah Introduction" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
-  <br/><br/>
-  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="400"/>
 </div>
+
+<br/>
 
 Hey there! We're **Team Tech Titans** from **Graphic Era Hill University, Dehradun** — four third-year computer science students who spent **45 days** building something we genuinely believe can change how government works in India.
 
@@ -136,6 +131,12 @@ Build an **AI-powered document intelligence system** that:
 ---
 
 ## Problem Statement
+
+<div align="center">
+  <img src="src/img/Problem Statement Banner.png" alt="Problem Statement" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
 
 ### The Reality of Government Document Management
 
@@ -184,10 +185,6 @@ https://github.com/user-attachments/assets/75606e24-1c68-494d-9e63-002d0123610a
 
 ### Why This Problem Matters
 
-<div align="center">
-  <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="300"/>
-</div>
-
 This isn't about making government slightly more efficient. **When paperwork delays disaster warnings, lives are at stake.**
 
 **Real-world scenarios:**
@@ -216,6 +213,12 @@ A court order arrives mixed with routine files. No automatic flagging. Officer m
 ---
 
 ## Users & Use Cases
+
+<div align="center">
+  <img src="src/img/Users & Use Case Banners.png" alt="Users & Use Cases" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
 
 ### Wait—Who Actually Uses Pravaah?
 
@@ -295,13 +298,15 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
 
 ## Existing Solutions
 
+<div align="center">
+  <img src="src/img/Our Solutions Banner.png" alt="Existing Solutions" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
+
 ### How It's "Solved" Today
 
 Let's be honest: It's not solved. It's managed. Barely.
-
-<div align="center">
-  <img src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif" width="300"/>
-</div>
 
 #### Scenario 1: The Manual Marathon
 
@@ -354,8 +359,10 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 ## Our Solution
 
 <div align="center">
-  <img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" width="400"/>
+  <img src="src/img/Our Solution Banner.png" alt="Our Solution" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
+
+<br/>
 
 ### Introducing Pravaah: Document Intelligence That Actually Works
 
@@ -503,8 +510,10 @@ Each user sees exactly what they need:
 ## Architecture & Diagrams
 
 <div align="center">
-  <img src="https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif" width="300"/>
+  <img src="src/img/Architecture & Diagrams Banner.png" alt="Architecture & Diagrams" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
+
+<br/>
 
 ### High-Level System Architecture
 
@@ -590,8 +599,10 @@ Each user sees exactly what they need:
 ## Setup Instructions
 
 <div align="center">
-  <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="300"/>
+  <img src="src/img/Setup Instructions Banner.png" alt="Setup Instructions" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
+
+<br/>
 
 ### Prerequisites
 
@@ -739,8 +750,10 @@ lsof -ti:3000 | xargs kill -9
 ## Screenshots & Media
 
 <div align="center">
-  <img src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif" width="300"/>
+  <img src="src/img/Screenshots & Media Banner.png" alt="Screenshots & Media" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
+
+<br/>
 
 ### See Pravaah In Action
 
@@ -794,8 +807,10 @@ lsof -ti:3000 | xargs kill -9
 ## Technical Stack
 
 <div align="center">
-  <img src="https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif" width="400"/>
+  <img src="src/img/Technical Stack Banner.png" alt="Technical Stack" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
+
+<br/>
 
 <h3 align="center"><strong>Technologies We Used</strong></h3>
 
@@ -925,8 +940,10 @@ lsof -ti:3000 | xargs kill -9
 ## Future Enhancements (Phase 2)
 
 <div align="center">
-  <img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" width="400"/>
+  <img src="src/img/Future Enhancements Banner.png" alt="Future Enhancements" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
+
+<br/>
 
 ### Our Vision for Phase 2
 
@@ -1071,8 +1088,10 @@ During floods, earthquakes, landslides—every second counts. Special mode for d
 ## Links & Credits
 
 <div align="center">
-  <img src="https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif" width="300"/>
+  <img src="src/img/Links & Credits Banner.png" alt="Links & Credits" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
+
+<br/>
 
 ### Live Demo & Resources
 
