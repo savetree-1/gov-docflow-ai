@@ -70,19 +70,23 @@ Future vision</td>
 <br/>
 
 <!-- Navigation -->
-<p align="center">
-  <a href="#introduction" style="color: #0066cc;"><strong>Introduction</strong></a> •
-  <a href="#problem-statement" style="color: #0066cc;"><strong>Problem</strong></a> •
-  <a href="#users--use-cases" style="color: #0066cc;"><strong>Users</strong></a> •
-  <a href="#existing-solutions" style="color: #0066cc;"><strong>Existing Solutions</strong></a> •
-  <a href="#our-solution" style="color: #0066cc;"><strong>Our Solution</strong></a> •
-  <a href="#architecture--diagrams" style="color: #0066cc;"><strong>Architecture</strong></a> •
-  <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup</strong></a> •
-  <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots</strong></a> •
-  <a href="#technical-stack" style="color: #0066cc;"><strong>Tech Stack</strong></a> •
-  <a href="#future-enhancements-phase-2" style="color: #0066cc;"><strong>Future</strong></a> •
-  <a href="#links--credits" style="color: #0066cc;"><strong>Credits</strong></a>
-</p>
+<div align="center">
+
+### 📑 Table of Contents
+
+1. <a href="#introduction" style="color: #0066cc;"><strong>Introduction</strong></a>
+2. <a href="#problem-statement" style="color: #0066cc;"><strong>Problem Statement</strong></a>
+3. <a href="#users--use-cases" style="color: #0066cc;"><strong>Users & Use Cases</strong></a>
+4. <a href="#existing-solutions" style="color: #0066cc;"><strong>Existing Solutions</strong></a>
+5. <a href="#our-solution" style="color: #0066cc;"><strong>Our Solution</strong></a>
+6. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>Architecture & Diagrams</strong></a>
+7. <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup Instructions</strong></a>
+8. <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots & Media</strong></a>
+9. <a href="#technical-stack" style="color: #0066cc;"><strong>Technical Stack</strong></a>
+10. <a href="#future-enhancements-phase-2" style="color: #0066cc;"><strong>Future Enhancements</strong></a>
+11. <a href="#links--credits" style="color: #0066cc;"><strong>Links & Credits</strong></a>
+
+</div>
 
 </div>
 
