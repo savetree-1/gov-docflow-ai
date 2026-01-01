@@ -329,6 +329,22 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 
 <br/>
 
+### **See Pravaah In Action**
+
+<div align="center">
+
+**Complete System Walkthrough (HD Video)**
+
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
+  <img src="src/img/Thumbnail.png" alt="Pravaah Demo Video" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #0284c7;"/>
+</a>
+
+<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;"><strong>Click here</strong></a>
+
+</div>
+
+<br/>
+
 ### Introducing Pravaah: Document Intelligence That Actually Works
 
 **Pravaah (प्रवाह - "flow")** isn't just another document management system. It's an **AI-powered document intelligence platform** built specifically for the reality of Indian government offices.
@@ -435,29 +451,6 @@ Each user sees exactly what they need:
 
 <div align="center">
   <img src="src/img/Users_.png" alt="Complete Document Lifecycle" width="90%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
-</div>
-
-<br/>
-
-### **See Pravaah In Action**
-
-<div align="center">
-
-**Complete System Walkthrough (HD Video)**
-
-<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
-  <img src="src/img/Thumbnail.png" alt="Pravaah Demo Video" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #0284c7;"/>
-</a>
-
-<a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU" style="color: #0066cc;"><strong>Click here</strong></a>
-
-**Our full demonstration (1080p HD) showing:**
-- Real-time AI document summarization
-- Automatic smart routing in action
-- Blockchain audit trail verification
-- All 4 role-based dashboards
-- Complete document lifecycle (upload → approval)
-
 </div>
 
 <br/>
