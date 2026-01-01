@@ -129,7 +129,9 @@ When someone says "government office" or "sarkari daftar," you probably think of
 
 **Watch the Chaos Unfold:**
 
-https://github.com/user-attachments/assets/75606e24-1c68-494d-9e63-002d0123610a
+<a href="https://github.com/user-attachments/assets/75606e24-1c68-494d-9e63-002d0123610a">
+  <img src="src/img/videoPic.png" alt="Problem Video - Watch the Chaos" width="80%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); cursor: pointer;"/>
+</a>
 
 </div>
 
