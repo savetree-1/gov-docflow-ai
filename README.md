@@ -129,9 +129,7 @@ When someone says "government office" or "sarkari daftar," you probably think of
 
 **Watch the Chaos Unfold:**
 
-<a href="https://github.com/user-attachments/assets/75606e24-1c68-494d-9e63-002d0123610a">
-  <img src="src/img/videoPic.png" alt="Problem Video - Watch the Chaos" width="80%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); cursor: pointer;"/>
-</a>
+https://github.com/user-attachments/assets/75606e24-1c68-494d-9e63-002d0123610a
 
 </div>
 
@@ -143,30 +141,20 @@ When someone says "government office" or "sarkari daftar," you probably think of
 <tr>
 <td align="center">
   <img src="src/img/Current Scene 1.png" alt="Document Overload" width="100%" style="border-radius: 10px;"/>
-  <p><strong>Scene 1: Document Overload</strong></p>
+  <p><strong style="color: #0066cc; cursor: pointer;">Scene 1: Document Overload</strong></p>
 </td>
 <td align="center">
   <img src="src/img/Current Scene 2.png" alt="Manual Processing" width="100%" style="border-radius: 10px;"/>
-  <p><strong>Scene 2: Manual Processing</strong></p>
+  <p><strong style="color: #0066cc; cursor: pointer;">Scene 2: Manual Processing</strong></p>
 </td>
 <td align="center">
   <img src="src/img/Current Scene 3.png" alt="Time Waste" width="100%" style="border-radius: 10px;"/>
-  <p><strong>Scene 3: Delays & Frustration</strong></p>
+  <p><strong style="color: #0066cc; cursor: pointer;">Scene 3: Delays & Frustration</strong></p>
 </td>
 </tr>
 </table>
 
 **This isn't just bureaucracy. This is a system struggling to function.**
-
-### The Numbers Behind the Chaos
-
-| Reality | Impact |
-|---------|--------|
-| **150+ documents/day** per officer | Officers spend **6 hours** just reading documents |
-| **Files stacked 3 feet high** on desks | Critical documents **lost in the pile** |
-| **Every document marked "URGENT"** | Real emergencies get **delayed** |
-| **Manual routing takes 3-5 days** | Disaster warnings **delayed by hours** |
-| **Zero audit trail** | No accountability, RTI requests take **months** |
 
 ### Why This Problem Matters
 
@@ -354,29 +342,29 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 <table>
   <tr>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_1.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(99,102,241,0.08);" alt="Portal Homepage" />
+      <img src="src/img/app0.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(99,102,241,0.08);" alt="Portal Homepage" />
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Portal Homepage</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_2.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(16,185,129,0.06);" alt="Workflow" />
+      <img src="src/img/app1.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(16,185,129,0.06);" alt="Workflow" />
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Workflow</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_3.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(244,63,94,0.06);" alt="Steps to use Dashboard" />
+      <img src="src/img/app2.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(244,63,94,0.06);" alt="Steps to use Dashboard" />
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Steps to use Dashboard</strong></div>
     </td>
   </tr>
   <tr>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_4.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(79,70,229,0.06);" alt="Login Screen" />
+      <img src="src/img/app3.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(79,70,229,0.06);" alt="Login Screen" />
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Login Screen</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_5.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(20,184,166,0.06);" alt="Admin Dashboard" />
+      <img src="src/img/app4.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(20,184,166,0.06);" alt="Admin Dashboard" />
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Admin Dashboard</strong></div>
     </td>
     <td align="center" style="padding:10px;">
-      <img src="src/img/ss_6.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(234,88,12,0.06);" alt="Audit Logs" />
+      <img src="src/img/app5.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(234,88,12,0.06);" alt="Audit Logs" />
       <div style="margin-top:8px; color:#475569; font-weight:600;"><strong>Audit Logs</strong></div>
     </td>
   </tr>
@@ -757,27 +745,27 @@ lsof -ti:3000 | xargs kill -9
 ### Application Screenshots
 
 #### Portal Homepage
-<img src="src/img/ss_1.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app0.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Main portal homepage showing all key features and navigation</em></p>
 
 #### Workflow
-<img src="src/img/ss_2.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app1.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Complete document workflow from upload to approval</em></p>
 
 #### Steps to use Dashboard
-<img src="src/img/ss_3.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app2.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Step-by-step guide to navigate and use the dashboard effectively</em></p>
 
 #### Login Screen
-<img src="src/img/ss_4.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app3.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Secure login interface with role-based authentication</em></p>
 
 #### Admin Dashboard
-<img src="src/img/ss_5.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app4.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Comprehensive admin panel for system management and oversight</em></p>
 
 #### Audit Logs
-<img src="src/img/ss_6.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
+<img src="src/img/app5.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
 <p><em>Complete audit trail and activity logs for transparency</em></p>
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
