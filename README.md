@@ -1,16 +1,13 @@
 <div align="center">
 
-<!-- Beautiful gradient rainbow bar -->
-<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="100%" height="5px" style="border-radius: 5px;"/>
+<!-- Banner -->
+<img src="src/img/Readme_Banner.png" alt="Pravaah Banner" width="100%" style="border-radius: 10px;"/>
 
 <br/>
 <br/>
-
-<!-- Logo with gradient background -->
-<img src="src/img/image copy.png" alt="Pravaah Logo" width="200" style="border-radius: 50%; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);" />
 
 <h1>
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=48&color=667EEA&center=true&vCenter=true&width=800&lines=Pravaah;प्रवाह;AI-powered+Document+Intelligence" alt="Pravaah" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=48&color=667EEA&center=true&vCenter=true&width=800&lines=Pravaah;AI-Powered+Document+Intelligence" alt="Pravaah" />
 </h1>
 
 <p>
@@ -21,12 +18,7 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&color=5b21b6&center=true&vCenter=true&width=700&lines=Government+Document+Intelligence;Built+by+Students+for+Officers;AI+%7C+Blockchain+%7C+Real+Impact" alt="taglines" />
 </p>
 
-<p align="center" style="margin-top:10px;">
-  <img src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="64" alt="sparkle" />
-  <em style="color:#475569; font-weight:600; margin-left:10px;">We love connecting with people solving real problems — say hi!</em>
-</p>
-
-<!-- Beautiful gradient bar -->
+<!-- Divider -->
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 <!-- Status badges -->
@@ -44,6 +36,8 @@
   <img src="https://img.shields.io/badge/Solidity-Smart_Contracts-363636?style=flat-square&logo=solidity&logoColor=white" alt="Solidity"/>
 </p>
 
+[![](https://visitcount.itsvg.in/api?id=pravaah&icon=1&color=4)](https://visitcount.itsvg.in)
+
 <h3 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; font-size: 1.8em; margin: 20px 0;">
   AI-Powered Government Document Flow System
 </h3>
@@ -56,70 +50,87 @@
 
 <!-- Navigation -->
 <p align="center">
-  <a href="#-introduction">Introduction</a> •
-  <a href="#-problem-statement">Problem</a> •
-  <a href="#-users--use-cases">Users</a> •
-  <a href="#-existing-solutions">Existing Solutions</a> •
-  <a href="#-our-solution">Our Solution</a> •
-  <a href="#-architecture--diagrams">Architecture</a> •
-  <a href="#-setup-instructions">Setup</a> •
-  <a href="#-screenshots--media">Screenshots</a> •
-  <a href="#-technical-stack">Tech Stack</a> •
-  <a href="#-future-enhancements-phase-2">Future</a> •
-  <a href="#-links--credits">Credits</a>
+  <a href="#introduction">Introduction</a> •
+  <a href="#problem-statement">Problem</a> •
+  <a href="#users--use-cases">Users</a> •
+  <a href="#existing-solutions">Existing Solutions</a> •
+  <a href="#our-solution">Our Solution</a> •
+  <a href="#architecture--diagrams">Architecture</a> •
+  <a href="#setup-instructions">Setup</a> •
+  <a href="#screenshots--media">Screenshots</a> •
+  <a href="#technical-stack">Tech Stack</a> •
+  <a href="#future-enhancements">Future</a> •
+  <a href="#team--credits">Credits</a>
 </p>
 
-<!-- Beautiful divider -->
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 </div>
 
 ---
 
-## 📖 Introduction
+## Introduction
 
-Hey there! We're **Team Tech Titans** from Graphic Era Hill University, Dehradun — four third-year computer science students who spent 45 days building something we genuinely believe can change how government works in India.
+**Team Tech Titans** from Graphic Era Hill University, Dehradun presents **Pravaah** - a comprehensive AI-powered document intelligence system built specifically for Indian government offices.
 
-This isn't just a hackathon project we threw together in a weekend. This is **Pravaah** (प्रवाह - meaning "flow" in Hindi), born from frustration, late nights, and a deep desire to solve a problem we saw every day growing up in Uttarakhand.
+### The Problem We Witnessed
 
-### How It Started
+Over 45 days of intensive development and field research across Uttarakhand, we interviewed 12 government officers from Dehradun to Pithoragarh. What we discovered was a systemic crisis hiding in plain sight.
 
-Picture this: A government officer sits at a desk buried under 47 physical files. Each file contains 20-40 pages. Every single page needs to be read, understood, categorized, and routed to the right department. Meanwhile, emails keep flooding in with more PDFs. Somewhere in that chaos, there's a flash flood warning that needs immediate attention — but it looks exactly like every other "URGENT" document.
+<div align="center">
 
-We spoke to 12 government officers across Uttarakhand — from Dehradun to Pithoragarh, from district headquarters to remote tehsils. Every single one told us the same story: **"We want to serve citizens efficiently, but we're drowning in paperwork."**
+### Watch: The Ground Reality
 
-That's when we knew: This isn't a technology problem waiting for a solution. This is a **human problem** that technology can actually fix.
+https://github.com/user-attachments/assets/75606e24-1c68-494d-9e63-002d0123610a
 
-### What We Aimed to Achieve
+*Government officers describe the daily challenge of managing 150+ documents while maintaining efficiency and accuracy*
 
-Build an AI-powered document intelligence system that:
-- **Summarizes** 40-page documents into 2-minute reads
-- **Routes** documents automatically to the right departments
-- **Prioritizes** urgent matters intelligently
-- **Tracks** everything on blockchain for transparency
-- Works in the **real conditions** of Indian government offices (unreliable internet, low-tech literacy, bilingual needs)
+</div>
 
-We built it. It works. And we're proud of it.
+### What We Built
+
+Pravaah is not another document management system. It is an intelligent workflow automation platform that combines:
+
+- **Artificial Intelligence**: Google Gemini-powered summarization that converts 40-page documents into 2-minute actionable summaries
+- **Smart Routing**: Automatic department detection and intelligent document routing based on content analysis
+- **Blockchain Verification**: Immutable audit trails on Polygon network ensuring complete transparency
+- **Role-Based Access**: Four distinct user interfaces tailored for Super Admins, Department Admins, Officers, and Auditors
+
+### Why This Matters
+
+When a flash flood warning arrives at a district headquarters mixed with 150 other documents, every minute of delay can cost lives. When a medical emergency fund request sits unread for three days because it looks like routine paperwork, families suffer. When crop insurance approvals miss the planting season due to manual processing backlogs, livelihoods are destroyed.
+
+Pravaah addresses these critical failures in government document workflow with technology that understands context, prioritizes urgency, and ensures accountability.
+
+### Our Approach
+
+This is not a theoretical solution. Every feature in Pravaah emerged from real conversations with government officers who shared their frustrations, their workarounds, and their hopes for better systems. We built for:
+
+- **Unreliable internet connectivity** in remote areas
+- **Low technical literacy** among government staff
+- **Bilingual requirements** (Hindi and English)
+- **Legacy integration** with existing government systems
+- **Zero-trust security** with blockchain verification
+
+### The Impact Vision
+
+Our prototype processes documents 180 times faster than manual methods. Deployed across Uttarakhand, Pravaah could save 12,000+ officer hours monthly. Scaled nationally across 28 states and 8 union territories, it could transform how 100,000+ government officers serve 1.4 billion citizens.
 
 ---
 
-## 🎯 Problem Statement
+## Problem Statement
 
 ### The Reality of Government Document Management
 
-When someone says "government office" or "sarkari daftar," you probably think of this:
-
 <div align="center">
-  <img src="src/img/piles_of_doc.png" alt="Government office chaos" width="600" style="border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"/>
+  <img src="src/img/Current Scene 1.png" alt="Government office chaos" width="700" style="border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"/>
+  <br/><br/>
+  <img src="src/img/Current Scene 2.png" alt="Document stacks" width="700" style="border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"/>
+  <br/><br/>
+  <img src="src/img/Current Scene 3.png" alt="Manual processing" width="700" style="border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"/>
 </div>
 
-Or this:
-
-<div align="center">
-  <img src="src/img/piles_of_doc2.png" alt="Document stacks" width="600" style="border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"/>
-</div>
-
-**This isn't just bureaucracy. This is a system struggling to function.**
+**This is not just bureaucracy. This is a system struggling to function.**
 
 ### The Numbers Behind the Chaos
 
@@ -133,15 +144,15 @@ Or this:
 
 ### Why This Problem Matters
 
-This isn't about making government slightly more efficient. **When paperwork delays disaster warnings, lives are at stake.**
+This is not about making government slightly more efficient. **When paperwork delays disaster warnings, lives are at stake.**
 
 **Real-world scenarios:**
 
 **Flash Flood Warning in Chamoli**  
-A cloudburst alert arrives via email. It's buried among 150 other emails. By the time an officer reads it, villages are already flooded. Every minute counts in mountainous regions where warnings need to reach remote areas fast.
+A cloudburst alert arrives via email. It is buried among 150 other emails. By the time an officer reads it, villages are already flooded. Every minute counts in mountainous regions where warnings need to reach remote areas fast.
 
 **Medical Emergency Fund Request**  
-A family needs ₹2 lakh urgently for surgery. The approval file sits unread for 3 days because the officer is dealing with routine budget circulars. The delay could have been avoided with automatic prioritization.
+A family needs 2 lakh rupees urgently for surgery. The approval file sits unread for 3 days because the officer is dealing with routine budget circulars. The delay could have been avoided with automatic prioritization.
 
 **Farmer Subsidy During Planting Season**  
 Crop insurance claims pile up during monsoon. Officers manually read hundreds of applications. By the time approvals come, the planting window is missed. Livelihoods are lost.
@@ -158,17 +169,19 @@ A court order arrives mixed with routine files. No automatic flagging. Officer m
 
 ---
 
-## 👥 Users & Use Cases
+## Users & Use Cases
 
-### Wait—Who Actually Uses Pravaah?
+### Our Target Users
 
-**Spoiler: Not Citizens**
+Pravaah is **NOT** a citizen-facing portal. It is designed for government officers and administrators who process documents daily.
 
-Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* government offices — the ones dealing with mountains of documents daily. Government officers themselves are drowning. They want to serve efficiently but are stuck reading hundreds of pages and manually routing files.
+<div align="center">
+  <img src="src/img/our_users.png" alt="Our Users" width="800" style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.12);"/>
+</div>
 
 ### The Four User Roles
 
-#### 1. **Super Admin** (State-Level Oversight)
+#### 1. Super Admin (State-Level Oversight)
 
 **Who they are**: Chief Secretary's office, IT Department heads
 
@@ -181,7 +194,7 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
 
 **Use Case**: The Uttarakhand IT Department uses Super Admin access to onboard new districts, monitor document processing times across the state, and generate monthly reports for the Chief Secretary.
 
-#### 2. **Department Admin** (Departmental Management)
+#### 2. Department Admin (Departmental Management)
 
 **Who they are**: Head of Agriculture Department, Director of Health Services, etc.
 
@@ -194,7 +207,7 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
 
 **Use Case**: The Agriculture Department Admin sets up a rule: "All documents containing 'crop insurance' automatically route to Claims Section, documents about 'fertilizer subsidy' go to Distribution Section."
 
-#### 3. **Officer** (The Frontline Worker)
+#### 3. Officer (The Frontline Worker)
 
 **Who they are**: Section Officers, Under Secretaries, Field Officers
 
@@ -205,9 +218,9 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
 - Add comments and notes
 - Track document status in real-time
 
-**Use Case**: A District Revenue Officer uploads a land dispute file. AI generates a summary showing: "Land dispute between 2 parties, Plot #142, Tehri district, ₹45 lakh valuation, requires legal department review." The system automatically routes it to Legal Department and notifies the concerned officer.
+**Use Case**: A District Revenue Officer uploads a land dispute file. AI generates a summary showing: "Land dispute between 2 parties, Plot number 142, Tehri district, 45 lakh rupees valuation, requires legal department review." The system automatically routes it to Legal Department and notifies the concerned officer.
 
-#### 4. **Auditor** (Transparency & Accountability)
+#### 4. Auditor (Transparency & Accountability)
 
 **Who they are**: RTI officers, internal audit teams, accountability watchdogs
 
@@ -217,7 +230,7 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
 - Verify blockchain records
 - Generate compliance reports
 
-**Use Case**: An RTI request asks: "Why did File #XYZ take 15 days?" The Auditor pulls the blockchain trail showing: Uploaded on Jan 1, sat unread for 10 days, then processed in 5 days. Complete transparency.
+**Use Case**: An RTI request asks: "Why did File XYZ take 15 days?" The Auditor pulls the blockchain trail showing: Uploaded on Jan 1, sat unread for 10 days, then processed in 5 days. Complete transparency.
 
 ### Key Use Cases
 
@@ -230,33 +243,33 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
 
 ---
 
-## 🔍 Existing Solutions
+## Existing Solutions
 
-### How It's "Solved" Today
+### How It Is "Solved" Today
 
-Let's be honest: It's not solved. It's managed. Barely.
+Let's be honest: It is not solved. It is managed. Barely.
 
 #### Scenario 1: The Manual Marathon
 
 **How it works now**:
-1. Land dispute file arrives → Officer reads 25 pages
-2. Writes summary by hand → Calls peon
+1. Land dispute file arrives, Officer reads 25 pages
+2. Writes summary by hand, Calls peon
 3. File physically walks to Legal Department
-4. Logged in physical register → Cycle repeats
+4. Logged in physical register, Cycle repeats
 
 **Time**: 3-5 days (+ 1 week if officer on leave)
 
 #### Scenario 2: The Email Chaos
 
 **How it works now**:
-- 150 emails/day → Each with 2-3 PDFs → Each PDF 10-20 pages
-- No categorization → Hours spent opening files to see what's inside
+- 150 emails/day, Each with 2-3 PDFs, Each PDF 10-20 pages
+- No categorization, Hours spent opening files to see what is inside
 - **Result**: Important emails buried, urgent matters delayed
 
 #### Scenario 3: The "Urgent" Stamp Problem
 
 **How it works now**:
-- Everything marked URGENT → Nothing is actually urgent
+- Everything marked URGENT, Nothing is actually urgent
 - Flash flood warnings look like routine files
 - *"10-15 urgent docs daily. By the time we realize one is critical, hours have passed."* — Chamoli District Official
 
@@ -271,9 +284,9 @@ Let's be honest: It's not solved. It's managed. Barely.
 
 ### The Core Gap: No Intelligence
 
-All existing solutions treat documents like dumb files. They store them, maybe search them, but they don't **understand** them.
+All existing solutions treat documents like dumb files. They store them, maybe search them, but they do not **understand** them.
 
-**What's missing**:
+**What is missing**:
 - No AI to read and summarize
 - No automatic routing based on content
 - No priority detection
@@ -282,58 +295,26 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 
 ---
 
-## ✨ Our Solution
+## Our Solution
 
 ### Introducing Pravaah: Document Intelligence That Actually Works
 
-**Pravaah (प्रवाह - "flow")** isn't just another document management system. It's an **AI-powered document intelligence platform** built specifically for the reality of Indian government offices.
+**Pravaah** is not just another document management system. It is an **AI-powered document intelligence platform** built specifically for the reality of Indian government offices.
 
 <div align="center">
-
-<!-- Solution screenshots grid (2x3) -->
-<table>
-  <tr>
-    <td align="center" style="padding:10px;">
-      <img src="src/img/ss_1.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(99,102,241,0.08);" alt="Officer Dashboard" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;">Officer Dashboard</div>
-    </td>
-    <td align="center" style="padding:10px;">
-      <img src="src/img/ss_2.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(16,185,129,0.06);" alt="Document Upload" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;">Document Upload</div>
-    </td>
-    <td align="center" style="padding:10px;">
-      <img src="src/img/ss_3.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(244,63,94,0.06);" alt="AI Summarization" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;">AI Summarization</div>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" style="padding:10px;">
-      <img src="src/img/ss_4.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(79,70,229,0.06);" alt="Smart Routing" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;">Smart Routing</div>
-    </td>
-    <td align="center" style="padding:10px;">
-      <img src="src/img/ss_5.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(20,184,166,0.06);" alt="Blockchain Audit Trail" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;">Blockchain Audit Trail</div>
-    </td>
-    <td align="center" style="padding:10px;">
-      <img src="src/img/ss_6.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); border:4px solid rgba(234,88,12,0.06);" alt="Mobile App Preview" />
-      <div style="margin-top:8px; color:#475569; font-weight:600;">Mobile App Preview</div>
-    </td>
-  </tr>
-</table>
-
+  <img src="src/img/image1 copy.jpeg" alt="Pravaah Interface" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
 
 ### What Makes Pravaah Different?
 
-#### 1. **Instant AI Summarization**
+#### 1. Instant AI Summarization
 
-**Traditional way**: Officer reads 40 pages → 2 hours wasted
+**Traditional way**: Officer reads 40 pages, 2 hours wasted
 
 **Pravaah way**:
-- Upload 40-page document → 30 seconds later:
+- Upload 40-page document, 30 seconds later:
 
-> *"Land acquisition request for 12.5 hectares in Tehri. ₹4.2 crore compensation. 47 families affected. Environmental clearance pending. Requires: Finance approval, Environmental clearance verification, Legal review."*
+> *"Land acquisition request for 12.5 hectares in Tehri. 4.2 crore rupees compensation. 47 families affected. Environmental clearance pending. Requires: Finance approval, Environmental clearance verification, Legal review."*
 
 **Powered by**: Google Gemini AI trained on Indian government document formats
 
@@ -344,32 +325,32 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 - Financial implications
 - Legal requirements
 
-#### 2. **Smart Auto-Routing**
+#### 2. Smart Auto-Routing
 
-**Traditional way**: Officer manually decides routing → 10-15 minutes per document
+**Traditional way**: Officer manually decides routing, 10-15 minutes per document
 
 **Pravaah way**:
 
 | Document Type | Auto-Detection | Smart Routing |
 |--------------|----------------|---------------|
-| **Flash flood alert** | Keywords: "flood", "disaster", "Uttarkashi" | → Disaster Management + Revenue Dept + District Magistrate (HIGH priority) |
-| **Crop insurance claim** | Keywords: "insurance", "crop damage", "subsidy" | → Agriculture Dept → Claims Section (MEDIUM priority) |
-| **Legal notice** | Keywords: "court", "notice", "hearing date" | → Legal Dept (HIGH priority if deadline < 7 days) |
-| **Routine circular** | Generic administrative content | → All departments (LOW priority) |
+| **Flash flood alert** | Keywords: "flood", "disaster", "Uttarkashi" | Disaster Management + Revenue Dept + District Magistrate (HIGH priority) |
+| **Crop insurance claim** | Keywords: "insurance", "crop damage", "subsidy" | Agriculture Dept, Claims Section (MEDIUM priority) |
+| **Legal notice** | Keywords: "court", "notice", "hearing date" | Legal Dept (HIGH priority if deadline < 7 days) |
+| **Routine circular** | Generic administrative content | All departments (LOW priority) |
 
 **Time saved**: Routing happens in **under 60 seconds** vs. 3-5 days manually.
 
-#### 3. **Blockchain Audit Trail**
+#### 3. Blockchain Audit Trail
 
 Every action is recorded on **Polygon blockchain**:
 
 ```
-📤 Upload: 9:15 AM, Dec 15 → Officer Sharma
-🤖 AI Summary: 9:15 AM (30 seconds)
-🔀 Routed: 9:16 AM → Finance Dept
-👁️ Viewed: 10:30 AM → Finance Officer Gupta
-✅ Approved: 11:45 AM → Finance Officer Gupta
-📝 Final Approval: 2:20 PM → Dept Head Verma
+Upload: 9:15 AM, Dec 15, Officer Sharma
+AI Summary: 9:15 AM (30 seconds)
+Routed: 9:16 AM, Finance Dept
+Viewed: 10:30 AM, Finance Officer Gupta
+Approved: 11:45 AM, Finance Officer Gupta
+Final Approval: 2:20 PM, Dept Head Verma
 ```
 
 **Why blockchain?**
@@ -377,9 +358,9 @@ Every action is recorded on **Polygon blockchain**:
 - **Transparent**: RTI requests answered in minutes
 - **Accountable**: Know exactly where delays happened
 
-#### 4. **Priority Intelligence**
+#### 4. Priority Intelligence
 
-AI doesn't just summarize—it **understands urgency**.
+AI does not just summarize—it **understands urgency**.
 
 | Priority Level | Criteria | Example |
 |---------------|----------|---------|
@@ -387,16 +368,20 @@ AI doesn't just summarize—it **understands urgency**.
 | **MEDIUM** | Budget approvals, subsidy claims | Crop insurance, fund requests |
 | **LOW** | Routine circulars, informational docs | Policy updates, meeting minutes |
 
-#### 5. **Role-Based Dashboards**
+#### 5. Role-Based Dashboards
 
 Each user sees exactly what they need:
 
-**Super Admin**: System-wide stats, user management, configuration
-**Department Admin**: Departmental workflow, team performance
-**Officer**: My documents, pending actions, AI summaries
+**Super Admin**: System-wide stats, user management, configuration  
+**Department Admin**: Departmental workflow, team performance  
+**Officer**: My documents, pending actions, AI summaries  
 **Auditor**: Complete audit trails, compliance reports
 
 ### How It Works: Complete Document Lifecycle
+
+<div align="center">
+  <img src="src/img/diagram1.png" alt="Workflow Diagram" width="800" style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.12);"/>
+</div>
 
 ```
 1. UPLOAD
@@ -425,7 +410,7 @@ Each user sees exactly what they need:
 
 ---
 
-## 🏗️ Architecture & Diagrams
+## Architecture & Diagrams
 
 ### High-Level System Architecture
 
@@ -496,7 +481,7 @@ Each user sees exactly what they need:
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 
@@ -639,7 +624,7 @@ lsof -ti:3000 | xargs kill -9
 
 ---
 
-## 📸 Screenshots & Media
+## Screenshots & Media
 
 ### See Pravaah In Action
 
@@ -656,51 +641,51 @@ lsof -ti:3000 | xargs kill -9
 - Automatic smart routing in action
 - Blockchain audit trail verification
 - All 4 role-based dashboards
-- Complete document lifecycle (upload → approval)
+- Complete document lifecycle (upload to approval)
 
 </div>
 
 ### Application Screenshots
 
-#### Officer Dashboard
-<img src="src/img/ss_1.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-*Clean, intuitive dashboard showing pending documents, AI summaries, and quick actions*
+<div align="center">
 
-#### Document Upload Interface
-<img src="src/img/ss_2.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-*Simple drag-and-drop upload with metadata tagging*
+<table>
+  <tr>
+    <td align="center" style="padding:10px;">
+      <img src="src/img/ss_1.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12);" alt="Officer Dashboard" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;">Officer Dashboard</div>
+    </td>
+    <td align="center" style="padding:10px;">
+      <img src="src/img/ss_2.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12);" alt="Document Upload" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;">Document Upload</div>
+    </td>
+    <td align="center" style="padding:10px;">
+      <img src="src/img/ss_3.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12);" alt="AI Summarization" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;">AI Summarization</div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding:10px;">
+      <img src="src/img/ss_4.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12);" alt="Smart Routing" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;">Smart Routing</div>
+    </td>
+    <td align="center" style="padding:10px;">
+      <img src="src/img/ss_5.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12);" alt="Blockchain Audit Trail" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;">Blockchain Audit Trail</div>
+    </td>
+    <td align="center" style="padding:10px;">
+      <img src="src/img/ss_6.png" width="300" style="border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12);" alt="Mobile App Preview" />
+      <div style="margin-top:8px; color:#475569; font-weight:600;">Mobile App Preview</div>
+    </td>
+  </tr>
+</table>
 
-#### AI Summarization Result
-<img src="src/img/ss_3.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-*30-second AI-generated summary with key entities highlighted*
-
-#### Smart Routing Workflow
-<img src="src/img/ss_4.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-*Automatic department detection and routing suggestions*
-
-#### Blockchain Audit Trail
-<img src="src/img/ss_5.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-*Immutable record of every document action on Polygon blockchain*
-
-#### Mobile App Preview (Phase 2)
-<img src="src/img/ss_6.png" width="100%" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);"/>
-*Upcoming React Native mobile app for on-the-go approvals*
-
-### Architecture Diagrams
-
-#### System Architecture
-<img src="src/img/Architecture.png" width="100%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);"/>
-*Complete system architecture showing frontend, backend, AI engine, blockchain layer, and database integration*
-
-#### Data Flow Diagram
-<img src="src/img/dfd.png" width="100%" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); background: white; padding: 20px;"/>
-*Document flow from upload to approval, showing AI processing, routing, and blockchain audit trail*
+</div>
 
 ---
 
-## 🛠️ Technical Stack
+## Technical Stack
 
-<!-- Beautiful divider -->
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 <h3 align="center">Technologies We Used</h3>
@@ -709,7 +694,7 @@ lsof -ti:3000 | xargs kill -9
   <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black&style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white&style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Express-000000?logo=express&logoColor=white&style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white&style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/MongoDB--47A248?logo=mongodb&logoColor=white&style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Solidity-363636?logo=solidity&logoColor=white&style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Polygon-8B5CF6?logo=polygon&logoColor=white&style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white&style=for-the-badge"/>
@@ -720,7 +705,7 @@ lsof -ti:3000 | xargs kill -9
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=js,ts,html,css,react,redux,nodejs,express,mongodb,solidity,tailwind,git,github,figma,vscode&perline=8" alt="Skill Icons"/>
+    <img src="https://skillicons.dev/icons?i=js,html,css,react,redux,nodejs,express,mongodb,solidity,tailwind,git,github,figma,vscode&perline=7" alt="Skill Icons"/>
   </a>
 </p>
 
@@ -790,13 +775,13 @@ lsof -ti:3000 | xargs kill -9
 
 ---
 
-## 🚀 Future Enhancements (Phase 2)
+## Future Enhancements
 
 ### Our Vision for Phase 2
 
 Phase 2 transforms Pravaah from a **state-level prototype** into a **national-scale government infrastructure**. Goal: Deploy across all 28 states and 8 union territories, serving **100,000+ government officers** and processing **1 million+ documents daily**.
 
-**Timeline**: 12-18 months | **Investment**: ₹2.5-3 crores | **Impact**: 500+ districts nationwide
+**Timeline**: 12-18 months | **Investment**: 2.5-3 crores | **Impact**: 500+ districts nationwide
 
 ### Major Features Planned
 
@@ -818,7 +803,7 @@ Phase 2 transforms Pravaah from a **state-level prototype** into a **national-sc
 
 #### 2. Advanced AI Capabilities
 
-**Current**: Basic summarization
+**Current**: Basic summarization  
 **Phase 2**: Multi-language NLP, OCR, fraud detection
 
 **OCR for Handwritten Documents**
@@ -860,7 +845,7 @@ Phase 1 fixed internal workflows. Phase 2 extends benefits to citizens. Officers
 - Instant notifications: New document alerts via WhatsApp
 - Document summaries: AI summary sent to WhatsApp
 - Quick actions: Approve/reject with button clicks
-- Status queries: Ask "Where is file #12345?" and get instant answer
+- Status queries: Ask "Where is file 12345?" and get instant answer
 - Daily digest: Morning summary of pending work
 - Emergency alerts: Critical disaster docs sent immediately
 - Voice messages: Officers can reply with voice notes
@@ -925,51 +910,57 @@ During floods, earthquakes, landslides—every second counts. Special mode for d
 |--------|--------|
 | **Officers Onboarded** | 100,000+ across all states & UTs |
 | **Documents/Day** | 1M+ national processing capacity |
-| **Savings/Year** | ₹500 Cr+ reduced paperwork costs |
+| **Savings/Year** | 500 Cr+ reduced paperwork costs |
 | **Citizens Benefited** | 50M+ faster government services |
 
 ---
 
-## 🔗 Links & Credits
+## Team & Credits
 
-### Live Demo & Resources
+### Team Tech Titans
 
-- **Live Demo Video**: [Watch on YouTube](https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU)
-- **GitHub Repository**: [gov-docflow-ai](https://github.com/your-username/gov-docflow-ai)
-- **Documentation**: See `docs/` folder for detailed guides
+**Graphic Era Hill University, Dehradun**
 
-### Team
-
-**Team Tech Titans** - Graphic Era Hill University, Dehradun
+<div align="center">
 
 <table>
 <tr>
 <td align="center">
-  <img src="src/img/Abhay Kanojia.jpeg" width="120" style="border-radius: 50%;"/><br/>
+  <img src="src/img/Abhay Kanojia.jpeg" width="150" style="border-radius: 50%; border: 4px solid #667EEA;"/><br/>
   <strong>Abhay Kanojia</strong><br/>
-  Team Lead | Blockchain<br/>
-  <a href="https://github.com/Abhay-k12">GitHub</a>
+  <sub>Team Lead | Blockchain</sub><br/>
+  <a href="https://github.com/Abhay-k12">
+    <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white" alt="GitHub"/>
+  </a>
 </td>
 <td align="center">
-  <img src="src/img/Ankush Rawat.jpeg" width="120" style="border-radius: 50%;"/><br/>
+  <img src="src/img/Ankush Rawat.jpeg" width="150" style="border-radius: 50%; border: 4px solid #10B981;"/><br/>
   <strong>Ankush Rawat</strong><br/>
-  Frontend Architect<br/>
-  <a href="https://github.com/savetree-1">GitHub</a>
+  <sub>Frontend Architect</sub><br/>
+  <a href="https://github.com/savetree-1">
+    <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white" alt="GitHub"/>
+  </a>
 </td>
 <td align="center">
-  <img src="src/img/Ankush Malik" width="120" style="border-radius: 50%;"/><br/>
+  <img src="src/img/Ankush Malik.jpeg" width="150" style="border-radius: 50%; border: 4px solid #F59E0B;"/><br/>
   <strong>Ankush Malik</strong><br/>
-  AI & Auth Specialist<br/>
-  <a href="https://github.com/AnkushMalik">GitHub</a>
+  <sub>AI & Auth Specialist</sub><br/>
+  <a href="https://github.com/AnkushMalik">
+    <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white" alt="GitHub"/>
+  </a>
 </td>
 <td align="center">
-  <img src="src/img/Priyanshu Bisht.jpg" width="120" style="border-radius: 50%;"/><br/>
+  <img src="src/img/Priyanshu Bisht.jpg" width="150" style="border-radius: 50%; border: 4px solid #EF4444;"/><br/>
   <strong>Priyanshu Bisht</strong><br/>
-  Backend Engineer<br/>
-  <a href="https://github.com/01priyanshubisht">GitHub</a>
+  <sub>Backend Engineer</sub><br/>
+  <a href="https://github.com/01priyanshubisht">
+    <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white" alt="GitHub"/>
+  </a>
 </td>
 </tr>
 </table>
+
+</div>
 
 ### Technologies & Tools Used
 
@@ -1032,7 +1023,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-<!-- Beautiful gradient divider -->
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 <h3>Built with care by students who believe technology can fix bureaucracy</h3>
@@ -1043,15 +1033,36 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <br/>
 
+### GitHub Stats
+
+![](https://github-readme-stats.vercel.app/api?username=your-username&theme=dark&hide_border=false&include_all_commits=true&count_private=true)
+![](https://github-readme-streak-stats.herokuapp.com/?user=your-username&theme=dark&hide_border=false)
+![](https://github-readme-stats.vercel.app/api/top-langs/?username=your-username&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+
+### GitHub Trophies
+![](https://github-profile-trophy.vercel.app/?username=your-username&theme=radical&no-frame=false&no-bg=false&margin-w=4)
+
+<br/>
+
 **© 2025 Team Tech Titans - GEHU Dehradun**
 
 <p>
-  <a href="https://github.com/your-username/gov-docflow-ai">GitHub</a> •
-  <a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">Demo</a> •
-  <a href="mailto:ankurawat8844@gmail.com">Contact</a>
+  <a href="https://github.com/your-username/gov-docflow-ai">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?logo=github&logoColor=white&style=for-the-badge" alt="GitHub"/>
+  </a>
+  <a href="https://youtu.be/2Am7-08OG8E?si=12Ddem-ysrxWsSwU">
+    <img src="https://img.shields.io/badge/YouTube-Demo-FF0000?logo=youtube&logoColor=white&style=for-the-badge" alt="Demo"/>
+  </a>
+  <a href="mailto:ankurawat8844@gmail.com">
+    <img src="https://img.shields.io/badge/Email-Contact-EA4335?logo=gmail&logoColor=white&style=for-the-badge" alt="Email"/>
+  </a>
 </p>
 
 <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="100%" height="5px" style="border-radius: 5px;"/>
 
+<!-- Snake Game Animation -->
+<div align="center">
+  <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg" alt="Snake animation" />
 </div>
 
+</div>
