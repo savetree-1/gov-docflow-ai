@@ -76,6 +76,8 @@
 ## Introduction
 
 <div align="center">
+  <img src="src/img/Intro Banner.png" alt="Pravaah Introduction" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+  <br/><br/>
   <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="400"/>
 </div>
 
