@@ -14,26 +14,9 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&color=5b21b6&center=true&vCenter=true&width=700&lines=Government+Document+Intelligence;Built+by+Students+for+Officers;AI+%7C+Blockchain+%7C+Real+Impact" alt="taglines" />
 </p>
 
-<table align="center">
-<tr>
-<td align="center"><h3>1. Introduction</h3>
-Who we are<br/>
-Why we built this<br/>
-Our journey</td>
-<td align="center"><h3>2. Problem</h3>
-Current chaos<br/>
-Real impact<br/>
-Why it matters</td>
-<td align="center"><h3>3. Solution</h3>
-AI-powered flow<br/>
-Smart routing<br/>
-Blockchain audit</td>
-<td align="center"><h3>4. Impact</h3>
-Live demo<br/>
-Real results<br/>
-Future vision</td>
-</tr>
-</table>
+<div align="center">
+  <img src="src/img/After Info.png" alt="Project Overview" width="100%" style="margin: 20px 0;"/>
+</div>
 
 <!-- Beautiful gradient bar -->
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
