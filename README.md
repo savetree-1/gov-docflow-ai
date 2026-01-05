@@ -80,7 +80,7 @@
 
 <br/>
 
-Hey there! We're **Team Tech Titans** from **Graphic Era Hill University, Dehradun** — four third-year computer science students who spent **45 days** building something we genuinely believe can change how government works in India.
+Hey there! We're **Team Tech Titans** from **Graphic Era Hill University, Dehradun** — four third-year computer science students who spent building something we genuinely believe can change how government works in India.
 
 This isn't just a hackathon project we threw together in a weekend. This is **<span style="color: #0066cc;">Pravaah</span>** (प्रवाह - meaning "flow" in Hindi), born from frustration, late nights, and a deep desire to solve a problem we saw every day growing up in **Uttarakhand**.
 
