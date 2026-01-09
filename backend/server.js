@@ -71,6 +71,7 @@ app.use('/api/routing', routingRoutes);
 app.use('/api/audit', auditRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/blockchain', require('./routes/blockchain'));
+app.use('/api/analytics', require('./routes/analytics'));
 
 // Health check
 app.get('/api/health', (req, res) => {
