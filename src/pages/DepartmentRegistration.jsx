@@ -126,7 +126,7 @@ const DepartmentRegistration = () => {
     setLoading(true);
 
     try {
-      const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
       
       const response = await axios.post(
         `${API_BASE_URL}/departments/registrations`,
