@@ -1,7 +1,4 @@
-/**
- * Blockchain Service - Immutable Audit Trail
- * Logs critical document actions to Polygon blockchain
- */
+/****** Blockchain Service - Immutable Audit Trail and Logs critical document actions to Polygon blockchain ******/
 
 const { ethers } = require('ethers');
 const crypto = require('crypto');
@@ -16,27 +13,25 @@ class BlockchainService {
     this.isInitialized = false;
   }
 
-  /**
-   * Initialize blockchain connection
-   */
+  /****** Initialize blockchain connection ******/
   async initialize() {
     try {
       if (this.isInitialized) return;
 
-      // Load deployment info
+      /****** Loading deployment info ******/
       const deploymentPath = path.join(__dirname, '../blockchain/deployment.json');
       if (!fs.existsSync(deploymentPath)) {
-        console.warn('⚠️ Blockchain not configured. Run: node blockchain/deploy.js');
+        console.warn('Blockchain not configured. Run: node blockchain/deploy.js');
         return;
       }
 
       const deployment = JSON.parse(fs.readFileSync(deploymentPath, 'utf8'));
 
-      // Connect to Polygon Amoy
+      /****** Connecting to Polygon Amoy ******/
       this.provider = new ethers.JsonRpcProvider(process.env.POLYGON_RPC_URL);
       this.wallet = new ethers.Wallet(process.env.BLOCKCHAIN_PRIVATE_KEY, this.provider);
       
-      // Initialize contract
+      /****** Initializing the contract ******/
       this.contract = new ethers.Contract(
         deployment.contractAddress,
         deployment.abi,
@@ -44,24 +39,20 @@ class BlockchainService {
       );
 
       this.isInitialized = true;
-      console.log('✅ Blockchain service initialized');
-      console.log('📋 Contract:', deployment.contractAddress);
+      console.log('Blockchain service initialized');
+      console.log('Contract:', deployment.contractAddress);
     } catch (error) {
-      console.error('❌ Blockchain initialization failed:', error.message);
+      console.error('Blockchain initialization failed:', error.message);
     }
   }
 
-  /**
-   * Generate document hash
-   */
+  /****** Generating document's hash ******/
   generateHash(documentData) {
     const data = JSON.stringify(documentData);
     return crypto.createHash('sha256').update(data).digest('hex');
   }
 
-  /**
-   * Log action to blockchain
-   */
+  /****** Log action to blockchain ******/
   async logAction(actionData) {
     try {
       if (!this.isInitialized) {
@@ -69,7 +60,7 @@ class BlockchainService {
       }
 
       if (!this.contract) {
-        console.warn('⚠️ Blockchain not available, skipping...');
+        console.warn('Blockchain not available, skipping...');
         return { success: false, reason: 'Blockchain not configured' };
       }
 
@@ -83,9 +74,9 @@ class BlockchainService {
         previousActionHash = ''
       } = actionData;
 
-      console.log(`📝 Logging to blockchain: ${actionType} for ${documentId}`);
+      console.log(`Logging to blockchain: ${actionType} for ${documentId}`);
 
-      // Send transaction
+      /****** Send transaction ******/
       const tx = await this.contract.logAction(
         documentId,
         actionType,
@@ -96,10 +87,10 @@ class BlockchainService {
         previousActionHash
       );
 
-      console.log('⏳ Transaction sent:', tx.hash);
+      console.log('Transaction sent:', tx.hash);
       const receipt = await tx.wait();
 
-      console.log('✅ Blockchain logged:', receipt.hash);
+      console.log('Blockchain logged:', receipt.hash);
 
       return {
         success: true,
@@ -109,14 +100,12 @@ class BlockchainService {
       };
 
     } catch (error) {
-      console.error('❌ Blockchain logging failed:', error.message);
+      console.error('Blockchain logging failed:', error.message);
       return { success: false, error: error.message };
     }
   }
 
-  /**
-   * Verify document integrity
-   */
+  /****** Verify document integrity ******/
   async verifyDocument(documentId) {
     try {
       if (!this.isInitialized) {
@@ -133,7 +122,7 @@ class BlockchainService {
         return { verified: false, reason: 'No blockchain records found' };
       }
 
-      // Get latest action
+      /****** Getting the latest action ******/
       const latestAction = await this.contract.getAction(documentId, Number(actionCount) - 1);
 
       return {
@@ -150,14 +139,12 @@ class BlockchainService {
       };
 
     } catch (error) {
-      console.error('❌ Verification failed:', error.message);
+      console.error('Verification failed:', error.message);
       return { verified: false, error: error.message };
     }
   }
 
-  /**
-   * Get full audit trail for document
-   */
+  /****** Get full audit trail for document ******/
   async getAuditTrail(documentId) {
     try {
       if (!this.isInitialized) {
@@ -187,11 +174,11 @@ class BlockchainService {
       return trail;
 
     } catch (error) {
-      console.error('❌ Audit trail fetch failed:', error.message);
+      console.error('Audit trail fetch failed:', error.message);
       return [];
     }
   }
 }
 
-// Export singleton instance
+/****** Export singleton instance ******/
 module.exports = new BlockchainService();
