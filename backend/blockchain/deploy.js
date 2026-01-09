@@ -1,6 +1,4 @@
-/**
- * Deploy AuditTrail Smart Contract to Polygon Amoy Testnet
- */
+/****** Deploy AuditTrail Smart Contract to Polygon Amoy Testnet ******/
 
 require('dotenv').config();
 const { ethers } = require('ethers');
@@ -11,18 +9,19 @@ const solc = require('solc');
 async function main() {
   console.log('Starting AuditTrail Contract Deployment...\n');
 
-  // Loading environment variables from parent directory
+  /****** Loading environment variables from parent directory ******/
   const envPath = path.join(__dirname, '..', '.env');
   require('dotenv').config({ path: envPath });
 
-  // STEP 1: Connecting to Polygon Amoy
+  /****** STEP 1: Connecting to Polygon Amoy ******/
+  console.log('Connecting to Polygon Amoy Testnet...');
   const provider = new ethers.JsonRpcProvider(process.env.POLYGON_RPC_URL);
   const wallet = new ethers.Wallet(process.env.BLOCKCHAIN_PRIVATE_KEY, provider);
   
   console.log('Connected to:', process.env.POLYGON_RPC_URL);
   console.log('Deploying from:', wallet.address);
   
-  // Checking the balance
+  /****** Checking the balance ******/
   const balance = await provider.getBalance(wallet.address);
   console.log('Balance:', ethers.formatEther(balance), 'POL\n');
   
@@ -31,8 +30,8 @@ async function main() {
     process.exit(1);
   }
 
-  // STEP 2: Compiling the contract
-  console.log('🔨 Compiling smart contract...');
+  /****** STEP 2: Compiling the contract ******/
+  console.log('Compiling smart contract...');
   const contractPath = path.join(__dirname, 'AuditTrail.sol');
   const source = fs.readFileSync(contractPath, 'utf8');
   
@@ -69,7 +68,7 @@ async function main() {
   
   console.log('Contract compiled successfully\n');
 
-  // STEP 3: Deploying the contract
+  /****** STEP 3: Deploying the contract ******/
   console.log('Deploying contract to Polygon Amoy...');
   const factory = new ethers.ContractFactory(abi, bytecode, wallet);
   
@@ -84,7 +83,7 @@ async function main() {
   console.log('Contract Address:', contractAddress);
   console.log('View on PolygonScan:', `https://amoy.polygonscan.com/address/${contractAddress}`);
   
-  // STEP 4: Saving the deployment information
+  /****** STEP 4: Saving the deployment information ******/
   const deploymentInfo = {
     contractAddress: contractAddress,
     network: 'Polygon Amoy Testnet',
@@ -98,7 +97,7 @@ async function main() {
   fs.writeFileSync(deploymentPath, JSON.stringify(deploymentInfo, null, 2));
   console.log('\nDeployment info saved to:', deploymentPath);
   
-  // STEP 5: Updateing the .env instruction
+  /****** STEP 5: Updateing the .env instruction ******/
   console.log('\nNEXT STEP: Add this to your .env file:');
   console.log(`BLOCKCHAIN_CONTRACT_ADDRESS=${contractAddress}`);
 }

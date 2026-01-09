@@ -1,12 +1,8 @@
 const Notification = require('../models/Notification');
 
-/**
- * Helper functions to create notifications for various actions
- */
+/****** Helper functions to create notifications for various actions ******/
 
-/**
- * Create notification when document is assigned
- */
+/****** Creating a notification when document is assigned ******/
 async function notifyDocumentAssigned(document, assigneeId, assignedBy) {
   try {
     await Notification.createNotification({
@@ -29,9 +25,7 @@ async function notifyDocumentAssigned(document, assigneeId, assignedBy) {
   }
 }
 
-/**
- * Create notification when document is approved
- */
+/****** Creating a notification when the document is approved ******/
 async function notifyDocumentApproved(document, uploaderId, approvedBy) {
   try {
     await Notification.createNotification({
@@ -53,9 +47,7 @@ async function notifyDocumentApproved(document, uploaderId, approvedBy) {
   }
 }
 
-/**
- * Create notification when document is rejected
- */
+/****** Creating a notification when the document is rejected ******/
 async function notifyDocumentRejected(document, uploaderId, rejectedBy, reason) {
   try {
     await Notification.createNotification({
@@ -78,9 +70,7 @@ async function notifyDocumentRejected(document, uploaderId, rejectedBy, reason) 
   }
 }
 
-/**
- * Create notification when document is forwarded
- */
+/****** Creating a notification when the document is forwarded ******/
 async function notifyDocumentForwarded(document, recipientId, forwardedBy) {
   try {
     await Notification.createNotification({
@@ -102,9 +92,7 @@ async function notifyDocumentForwarded(document, recipientId, forwardedBy) {
   }
 }
 
-/**
- * Create notification when comment is added
- */
+/****** Creating a notification when the comment is added ******/
 async function notifyCommentAdded(document, recipientId, commentedBy, comment) {
   try {
     await Notification.createNotification({
@@ -126,9 +114,7 @@ async function notifyCommentAdded(document, recipientId, commentedBy, comment) {
   }
 }
 
-/**
- * Create notification for deadline reminder
- */
+/****** Creating a notification for deadline reminder ******/
 async function notifyDeadlineReminder(document, userId, daysLeft) {
   try {
     await Notification.createNotification({
@@ -149,9 +135,7 @@ async function notifyDeadlineReminder(document, userId, daysLeft) {
   }
 }
 
-/**
- * Create notification when user is created
- */
+/****** Create notification when user is created ******/
 async function notifyUserCreated(userId, createdBy, role) {
   try {
     await Notification.createNotification({
@@ -171,9 +155,7 @@ async function notifyUserCreated(userId, createdBy, role) {
   }
 }
 
-/**
- * Create notification when user role is changed
- */
+/****** Creating a notification when user's role is changed ******/
 async function notifyRoleChanged(userId, newRole, changedBy) {
   try {
     await Notification.createNotification({
@@ -193,9 +175,7 @@ async function notifyRoleChanged(userId, newRole, changedBy) {
   }
 }
 
-/**
- * Notify all department admins about new document
- */
+/****** Notify all department's admins about the arrival of new document ******/
 async function notifyDepartmentAdmins(departmentId, document, uploadedBy) {
   try {
     const User = require('../models/User');

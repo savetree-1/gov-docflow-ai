@@ -1,23 +1,23 @@
-/**
- * AI Service V2 - Government Document Intelligence
- * 
- * GOVERNMENT SAFETY STATEMENT:
- * "AI is used only to assist document understanding and routing suggestions.
- * All final decisions and accountability remain with authorized government officials."
- * 
- * Features:
- * - Primary: Google Gemini API (with quota management)
- * - Fallback: HuggingFace Inference API
- * - Structured JSON output
- * - Hard routing rules for critical documents
- * - Confidence scoring
- * - Full audit trail
- */
+/******
+    AI Service V2 - Government Document Intelligence
+ 
+ 1. GOVERNMENT SAFETY STATEMENT:
+     "AI is used only to assist document understanding and routing suggestions.
+      All final decisions and accountability remain with authorized government officials."
+ 
+ 2. Features:
+    1. Primary: Google Gemini API (with quota management)
+    2. Fallback: HuggingFace Inference API
+    3. Structured JSON output
+    4. Hard routing rules for critical documents
+    5. Confidence scoring
+    6. Full audit trail
+ ******/
 
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const axios = require('axios');
 
-// Lazy initialization - get API instance when needed
+/****** Lazy initialization for getting the API instance when needed ******/
 function getGenAI() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -29,7 +29,7 @@ function getGenAI() {
 const HF_TOKEN = process.env.HF_TOKEN;
 const HF_API_URL = 'https://api-inference.huggingface.co/models/';
 
-// Government document categories (predefined)
+/****** Government document categories ******/
 const DOCUMENT_CATEGORIES = [
   'Disaster Management',
   'Finance & Procurement',
@@ -41,7 +41,7 @@ const DOCUMENT_CATEGORIES = [
   'Inter-department Communication'
 ];
 
-// Uttarakhand Government Departments
+/****** Uttarakhand Government Departments ******/
 const DEPARTMENTS = {
   DISASTER: 'Disaster Management',
   FINANCE: 'Finance & Procurement',
@@ -53,14 +53,11 @@ const DEPARTMENTS = {
   ADMIN: 'General Administration'
 };
 
-/**
- * HARD ROUTING RULES (Always Applied First)
- * These override AI suggestions for critical documents
- */
+/****** HARD ROUTING RULES (Always Applied First) these override AI suggestions for critical documents ******/
 function applyHardRoutingRules(documentText) {
   const text = documentText.toLowerCase();
   
-  // Disaster Management (Highest Priority)
+  /****** Disaster Management having Highest Priority ******/
   if (text.match(/\b(flood|landslide|earthquake|evacuation|disaster|emergency|rainfall|cloudburst)\b/i)) {
     return {
       matched: true,
@@ -71,7 +68,7 @@ function applyHardRoutingRules(documentText) {
     };
   }
   
-  // Finance & Procurement
+  /****** Finance & Procurement ******/
   if (text.match(/\b(tender|procurement|budget|financial|payment|invoice|purchase|contract award)\b/i)) {
     return {
       matched: true,
@@ -82,7 +79,7 @@ function applyHardRoutingRules(documentText) {
     };
   }
   
-  // HR & Administration
+  /****** HR & Administration ******/
   if (text.match(/\b(recruitment|leave|service rules|appointment|promotion|transfer|employee)\b/i)) {
     return {
       matched: true,
@@ -93,7 +90,7 @@ function applyHardRoutingRules(documentText) {
     };
   }
   
-  // Legal & Compliance
+  /****** Legal & Compliance ******/
   if (text.match(/\b(audit|compliance|court|legal notice|inquiry|investigation|RTI)\b/i)) {
     return {
       matched: true,
@@ -104,7 +101,7 @@ function applyHardRoutingRules(documentText) {
     };
   }
   
-  // Land & Revenue
+  /****** Land & Revenue ******/
   if (text.match(/\b(land record|property|revenue|mutation|registry|cadastral)\b/i)) {
     return {
       matched: true,
@@ -118,9 +115,7 @@ function applyHardRoutingRules(documentText) {
   return { matched: false };
 }
 
-/**
- * Detect urgency from document text
- */
+/****** Detect urgency from document text ******/
 function detectUrgency(documentText) {
   const text = documentText.toLowerCase();
   
@@ -135,9 +130,7 @@ function detectUrgency(documentText) {
   return 'Low';
 }
 
-/**
- * PRIMARY: Gemini AI Analysis
- */
+/****** PRIMARY: Gemini AI Analysis ******/
 async function analyzeWithGemini(documentText, metadata) {
   const genAI = getGenAI();
   const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
@@ -215,12 +208,10 @@ Respond in EXACTLY this JSON format:
   throw new Error('Failed to parse Gemini response');
 }
 
-/**
- * FALLBACK: HuggingFace Summarization
- */
+/****** FALLBACK: HuggingFace Summarization ******/
 async function analyzeWithHuggingFace(documentText, metadata) {
   try {
-    // Use BART for summarization
+    /****** Use BART for summarization ******/
     const summaryResponse = await axios.post(
       HF_API_URL + 'facebook/bart-large-cnn',
       {
@@ -238,11 +229,11 @@ async function analyzeWithHuggingFace(documentText, metadata) {
     
     const summaryText = summaryResponse.data[0]?.summary_text || documentText.substring(0, 200);
     
-    // Extract key sentences as bullet points
+    /****** Extract key sentences as bullet points ******/
     const sentences = summaryText.match(/[^.!?]+[.!?]+/g) || [summaryText];
     const summary = sentences.slice(0, 3).map(s => s.trim());
     
-    // Basic classification based on keywords
+    /****** Basic classification based on keywords ******/
     let category = 'Inter-department Communication';
     if (documentText.match(/disaster|flood|emergency/i)) category = 'Disaster Management';
     else if (documentText.match(/tender|finance|budget/i)) category = 'Finance & Procurement';
@@ -257,7 +248,7 @@ async function analyzeWithHuggingFace(documentText, metadata) {
       },
       classification: {
         category,
-        confidence: 0.65 // Lower confidence for fallback
+        confidence: 0.65 /****** Setting up lower confidence for fallback ******/
       },
       routing_suggestion: {
         primary_department: DEPARTMENTS.ADMIN,
@@ -273,16 +264,16 @@ async function analyzeWithHuggingFace(documentText, metadata) {
   }
 }
 
-/**
+/******
  * MAIN FUNCTION: Analyze Document with Fallback Logic
  * 
  * @returns {Object} Structured analysis result in government-compliant format
- */
+ ******/
 async function analyzeDocument(raw_text, document_metadata = {}) {
   const startTime = Date.now();
   
   try {
-    console.log('🤖 Starting AI document analysis...');
+    console.log('Starting AI document analysis...');
     
     // Step 1: Apply Hard Routing Rules First
     const hardRule = applyHardRoutingRules(raw_text);
@@ -291,21 +282,21 @@ async function analyzeDocument(raw_text, document_metadata = {}) {
     let usedHardRule = false;
     
     if (hardRule.matched) {
-      console.log('✅ Hard routing rule matched:', hardRule.category);
+      console.log('Hard routing rule matched:', hardRule.category);
       usedHardRule = true;
       
-      // Still try to get AI summary, but use hard rule for routing
+      /****** Still try to get AI summary, but use hard rule for routing ******/
       try {
         aiResult = await analyzeWithGemini(raw_text, document_metadata);
-        // Override routing with hard rule
+        /****** Override routing with hard rule ******/
         aiResult.classification.category = hardRule.category;
         aiResult.routing_suggestion.primary_department = hardRule.primaryDepartment;
         aiResult.key_details.urgency = hardRule.urgency;
         aiResult.routing_suggestion.reason = hardRule.reason;
         aiResult.hard_rule_applied = true;
       } catch (geminiError) {
-        // If Gemini fails, use hard rule + fallback
-        console.log('⚠️  Gemini failed, using HuggingFace + Hard Rule');
+        /****** If Gemini fails, using hard rule + fallback ******/
+        console.log('Gemini failed, using HuggingFace + Hard Rule');
         aiResult = await analyzeWithHuggingFace(raw_text, document_metadata);
         aiResult.classification.category = hardRule.category;
         aiResult.routing_suggestion.primary_department = hardRule.primaryDepartment;
@@ -314,23 +305,23 @@ async function analyzeDocument(raw_text, document_metadata = {}) {
         aiResult.hard_rule_applied = true;
       }
     } else {
-      // No hard rule matched, try Gemini first
+      /****** If no hard rule matched, try Gemini first ******/
       try {
-        console.log('🧠 Analyzing with Gemini AI...');
+        console.log('Analyzing with Gemini AI...');
         aiResult = await analyzeWithGemini(raw_text, document_metadata);
         aiResult.hard_rule_applied = false;
       } catch (geminiError) {
-        console.log('⚠️  Gemini API failed, falling back to HuggingFace');
-        console.log('   Error:', geminiError.message);
+        console.log('Gemini API failed, falling back to HuggingFace');
+        console.log('Error:', geminiError.message);
         
-        // Fallback to HuggingFace
+        /****** Fallback to HuggingFace ******/
         try {
           aiResult = await analyzeWithHuggingFace(raw_text, document_metadata);
           aiResult.hard_rule_applied = false;
         } catch (hfError) {
-          console.error('❌ Both AI providers failed:', hfError.message);
+          console.error('Both AI providers failed:', hfError.message);
           
-          // Last resort: Basic extraction
+          /****** Last resort: Basic extraction ******/
           aiResult = {
             summary: [raw_text.substring(0, 150) + '...'],
             key_details: {
@@ -354,21 +345,21 @@ async function analyzeDocument(raw_text, document_metadata = {}) {
       }
     }
     
-    // Add metadata
+    /****** Adding metadata ******/
     aiResult.processing_time_ms = Date.now() - startTime;
     aiResult.requires_human_approval = true; // ALWAYS require human approval
     aiResult.ai_confidence_note = aiResult.classification.confidence >= 0.75 
       ? 'High confidence' 
       : 'Low confidence - manual review strongly recommended';
     
-    console.log(`✅ Analysis complete (${aiResult.processing_time_ms}ms) using ${aiResult.ai_provider}`);
+    console.log(`Analysis complete (${aiResult.processing_time_ms}ms) using ${aiResult.ai_provider}`);
     
     return aiResult;
     
   } catch (error) {
-    console.error('❌ Critical error in AI analysis:', error);
+    console.error('Critical error in AI analysis:', error);
     
-    // Emergency fallback
+    /****** Emergency fallback ******/
     return {
       summary: ['Error in AI analysis - manual processing required'],
       key_details: {

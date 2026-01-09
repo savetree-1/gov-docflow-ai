@@ -1,7 +1,4 @@
-/**
- * OCR Service using Tesseract.js
- * Handles scanned PDFs and images
- */
+/****** OCR Service using Tesseract.js which handles scanned PDFs and images ******/
 
 const Tesseract = require('tesseract.js');
 const { createWorker } = Tesseract;
@@ -11,27 +8,27 @@ const { exec } = require('child_process');
 const util = require('util');
 const execPromise = util.promisify(exec);
 
-/**
- * Run Tesseract OCR on image or PDF
+/******
+ * Runing Tesseract OCR on image or PDF
  * @param {string} filePath - Path to file
  * @param {string} fileType - 'pdf' or 'image'
  * @returns {Promise<string>} - Extracted text
- */
+******/
 async function runTesseractOCR(filePath, fileType) {
   console.log(`🔍 Starting OCR for ${fileType}: ${path.basename(filePath)}`);
   
   try {
     let imagePath = filePath;
 
-    // If PDF, convert first page to image
+    /****** If file is PDF the we'll convert first page to image ******/
     if (fileType === 'pdf') {
       imagePath = await convertPDFToImage(filePath);
     }
 
-    // Run Tesseract OCR
+    /****** Running Tesseract OCR ******/
     const text = await performOCR(imagePath);
 
-    // Clean up temporary image if we created one
+    /****** Clean up temporary image if we created one ******/
     if (fileType === 'pdf' && imagePath !== filePath) {
       try {
         await fs.unlink(imagePath);
@@ -40,35 +37,32 @@ async function runTesseractOCR(filePath, fileType) {
       }
     }
 
-    console.log(`✅ OCR completed: ${text.length} characters extracted`);
+    console.log(`OCR completed: ${text.length} characters extracted`);
     return text;
 
   } catch (error) {
-    console.error('❌ OCR failed:', error.message);
+    console.error('OCR failed:', error.message);
     throw new Error(`OCR processing failed: ${error.message}`);
   }
 }
 
-/**
- * Convert PDF first page to image using pdftoppm (from poppler)
- */
+/****** Converting PDF's first page to image ******/
 async function convertPDFToImage(pdfPath) {
   const outputDir = path.dirname(pdfPath);
   const baseName = path.basename(pdfPath, '.pdf');
   const outputPrefix = path.join(outputDir, `temp_${baseName}`);
   
   try {
-    // Convert first page to PNG
     const command = `pdftoppm -png -f 1 -l 1 -singlefile "${pdfPath}" "${outputPrefix}"`;
     
     await execPromise(command);
     
     const imagePath = `${outputPrefix}.png`;
     
-    // Verify image was created
+    /****** Verifying whether image was created ******/
     await fs.access(imagePath);
     
-    console.log(`📄 PDF converted to image: ${path.basename(imagePath)}`);
+    console.log(`PDF converted to image: ${path.basename(imagePath)}`);
     return imagePath;
 
   } catch (error) {
@@ -77,14 +71,12 @@ async function convertPDFToImage(pdfPath) {
   }
 }
 
-/**
- * Perform OCR using Tesseract.js
- */
+/****** Perform OCR using Tesseract.js ******/
 async function performOCR(imagePath) {
   const worker = await createWorker('eng');
   
   try {
-    console.log('🔄 Running Tesseract OCR...');
+    console.log('Running Tesseract OCR...');
     
     const { data: { text } } = await worker.recognize(imagePath);
     
@@ -98,9 +90,7 @@ async function performOCR(imagePath) {
   }
 }
 
-/**
- * Check if system has required OCR dependencies
- */
+/****** Checking if the system has required OCR dependencies or not? ******/
 async function checkOCRDependencies() {
   const dependencies = {
     tesseract: false,
@@ -108,15 +98,15 @@ async function checkOCRDependencies() {
   };
 
   try {
-    // Check poppler (pdftoppm)
+    /****** Check poppler (pdftoppm) ******/
     await execPromise('pdftoppm -h');
     dependencies.poppler = true;
   } catch (error) {
-    console.warn('⚠️  pdftoppm not found. Install poppler: brew install poppler');
+    console.warn('pdftoppm not found. Install poppler: brew install poppler');
   }
 
-  // Tesseract.js doesn't need system tesseract
-  dependencies.tesseract = true; // Tesseract.js includes it
+  /****** Tesseract.js doesn't need system tesseract so directly interacting with it******/
+  dependencies.tesseract = true;
 
   return dependencies;
 }

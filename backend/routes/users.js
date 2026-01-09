@@ -5,7 +5,7 @@ const User = require('../models/User');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 
-// Get all users (admin only)
+/****** Get all users for admin only ******/
 router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'), async (req, res) => {
   try {
     const { role, department, isApproved, search, page = 1, limit = 20 } = req.query;
@@ -16,18 +16,18 @@ router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'
 
     const query = {};
 
-    // Department admins can only see their department users
+    /****** Department admins can only see their department users ******/
     if (req.user.role === 'DEPARTMENT_ADMIN') {
       console.log('DEBUG: Department Admin Query');
       console.log('   User ID:', req.user.userId);
       console.log('   User Role:', req.user.role);
       console.log('   User Department:', req.user.department);
-      // If department is populated (object), extract the _id, otherwise use as is
+      /****** If department is populated (object), extract the _id, otherwise use as it is ******/
       query.department = req.user.department?._id || req.user.department;
       console.log('   Query will be:', JSON.stringify(query));
     }
 
-    // Apply filters
+    /****** Applying the following filters ******/
     if (role) query.role = role;
     if (department) query.department = department;
     if (isApproved !== undefined && isApproved !== '') query.isApproved = isApproved === 'true';
@@ -69,7 +69,7 @@ router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'
   }
 });
 
-// Get user by ID
+/****** Get user by ID ******/
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
@@ -88,17 +88,17 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Create new user (admin only)
+/****** Create new user endpoint for admin only ******/
 router.post('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'), async (req, res) => {
   try {
     const { firstName, lastName, email, password, phone, employeeId, role, departmentId } = req.body;
 
-    // Department admins can only create officers in their department
+    /****** Department admins can only create officers in their department ******/
     if (req.user.role === 'DEPARTMENT_ADMIN' && role !== 'OFFICER') {
       return res.status(403).json({ success: false, message: 'Department admins can only create officers' });
     }
 
-    // Check if user already exists
+    /****** Check if user already exists ******/
     const existingUser = await User.findOne({ $or: [{ email }, { employeeId }] });
     if (existingUser) {
       return res.status(400).json({ 
@@ -107,10 +107,10 @@ router.post('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN
       });
     }
 
-    // Hash password
+    /****** Hashing the password fot auth******/
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user
+    /****** Creating new user ******/
     const user = new User({
       firstName,
       lastName,
@@ -127,7 +127,7 @@ router.post('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN
 
     await user.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'USER_CREATE',
       performedBy: req.user.userId,
@@ -153,7 +153,7 @@ router.post('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN
   }
 });
 
-// Update user (admin only)
+/****** Update user endpoint for admin only ******/
 router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'), async (req, res) => {
   try {
     const { firstName, lastName, phone, role, departmentId, isActive, isApproved, password } = req.body;
@@ -162,8 +162,8 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
-
-    // Department admins can only update users in their department
+ 
+    /****** Department admins can only update users in their department ******/
     if (req.user.role === 'DEPARTMENT_ADMIN') {
       if (user.department.toString() !== req.user.department) {
         return res.status(403).json({ success: false, message: 'Access denied' });
@@ -173,7 +173,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
       }
     }
 
-    // Update fields
+    /****** Updating the fields ******/
     if (firstName) user.firstName = firstName;
     if (lastName) user.lastName = lastName;
     if (phone) user.phone = phone;
@@ -182,7 +182,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
     if (isActive !== undefined) user.isActive = isActive;
     if (isApproved !== undefined && req.user.role === 'SUPER_ADMIN') user.isApproved = isApproved;
     
-    // Password reset (super admin only)
+    /****** Password reset for super admin only ******/
     if (password && req.user.role === 'SUPER_ADMIN') {
       const hashedPassword = await bcrypt.hash(password, 10);
       user.password = hashedPassword;
@@ -190,7 +190,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
 
     await user.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'USER_UPDATE',
       performedBy: req.user.userId,
@@ -216,7 +216,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
   }
 });
 
-// Approve user (super admin only)
+/****** Approve user for super admin only ******/
 router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -228,7 +228,7 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
     user.isApproved = true;
     await user.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'USER_UPDATE',
       performedBy: req.user.userId,
@@ -245,7 +245,7 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
   }
 });
 
-// Delete user (super admin only)
+/****** Delete user for super admin only ******/
 router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -254,16 +254,16 @@ router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req,
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    // Prevent deleting super admin
+    /****** Prevent deleting super admin ******/
     if (user.role === 'SUPER_ADMIN') {
       return res.status(403).json({ success: false, message: 'Cannot delete super admin' });
     }
 
-    // Soft delete - deactivate instead of removing
+    /****** Soft delete - deactivate instead of removing ******/
     user.isActive = false;
     await user.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'USER_DELETE',
       performedBy: req.user.userId,
@@ -280,7 +280,7 @@ router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req,
   }
 });
 
-// Get user statistics
+/****** Get Endpoint for user statistics ******/
 router.get('/stats/overview', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const [total, active, pending, byRole] = await Promise.all([

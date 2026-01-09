@@ -43,7 +43,7 @@ const departmentSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Index for search
+/****** Index for search ******/
 departmentSchema.index({ name: 1, code: 1 });
 
 module.exports = mongoose.model('Department', departmentSchema);
