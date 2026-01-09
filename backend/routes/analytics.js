@@ -12,16 +12,23 @@ const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 /****** Get Endpoint for document statistics over time accessed through  GET /api/analytics/documents-over-time ******/
 router.get('/documents-over-time', authMiddleware, async (req, res) => {
   try {
-    const { days = 30 } = req.query;
+    const { days = 30, department } = req.query;
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - parseInt(days));
 
+    const matchQuery = {
+      createdAt: { $gte: startDate },
+      isDeleted: { $ne: true }
+    };
+
+    // Filter by department if provided (for Dept Admin)
+    if (department) {
+      matchQuery.department = require('mongoose').Types.ObjectId(department);
+    }
+
     const documentsOverTime = await Document.aggregate([
       {
-        $match: {
-          createdAt: { $gte: startDate },
-          isDeleted: { $ne: true }
-        }
+        $match: matchQuery
       },
       {
         $group: {
@@ -121,9 +128,18 @@ router.get('/department-performance', authMiddleware, async (req, res) => {
 /****** Get Endpoint for document status distribution accessed through GET /api/analytics/status-distribution ******/
 router.get('/status-distribution', authMiddleware, async (req, res) => {
   try {
+    const { department } = req.query;
+
+    const matchQuery = { isDeleted: { $ne: true } };
+
+    // Filter by department if provided
+    if (department) {
+      matchQuery.department = require('mongoose').Types.ObjectId(department);
+    }
+
     const statusDistribution = await Document.aggregate([
       {
-        $match: { isDeleted: { $ne: true } }
+        $match: matchQuery
       },
       {
         $group: {
@@ -177,17 +193,24 @@ router.get('/urgency-distribution', authMiddleware, async (req, res) => {
 /****** Get Endpoint for processing time trends accessed with GET /api/analytics/processing-trends ******/
 router.get('/processing-trends', authMiddleware, async (req, res) => {
   try {
-    const { days = 30 } = req.query;
+    const { days = 30, department } = req.query;
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - parseInt(days));
 
+    const matchQuery = {
+      createdAt: { $gte: startDate },
+      status: 'Approved',
+      isDeleted: { $ne: true }
+    };
+
+    // Filter by department if provided
+    if (department) {
+      matchQuery.department = require('mongoose').Types.ObjectId(department);
+    }
+
     const processingTrends = await Document.aggregate([
       {
-        $match: {
-          createdAt: { $gte: startDate },
-          status: 'Approved',
-          isDeleted: { $ne: true }
-        }
+        $match: matchQuery
       },
       {
         $project: {
