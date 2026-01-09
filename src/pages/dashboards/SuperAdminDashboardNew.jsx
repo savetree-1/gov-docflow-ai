@@ -128,7 +128,6 @@ const SuperAdminDashboard = () => {
       const response = await departmentAPI.approve(id);
       if (response.data.success) {
         setSuccess('Department approved successfully');
-        setPendingRegistrations(prev => prev.filter(reg => reg.id !== id));
         fetchDashboardData();
       }
     } catch (err) {
@@ -144,7 +143,6 @@ const SuperAdminDashboard = () => {
       const response = await departmentAPI.reject(id, { reason });
       if (response.data.success) {
         setSuccess('Department rejected successfully');
-        setPendingRegistrations(prev => prev.filter(reg => reg.id !== id));
         fetchDashboardData();
       }
     } catch (err) {
@@ -444,89 +442,129 @@ const SuperAdminDashboard = () => {
           ) : (
             <div className="analytics-grid">
               {/* Documents Over Time */}
-              <div className="chart-card">
+              <div className="chart-card" style={{ position: 'relative' }}>
                 <h3>Documents Uploaded Over Time</h3>
-                {documentsOverTime.length === 0 ? (
-                  <div className="empty-chart-state">No document data available for the selected time range</div>
-                ) : (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={documentsOverTime}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="date" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Line type="monotone" dataKey="count" stroke="#0088FE" name="Documents" />
-                    </LineChart>
-                  </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={documentsOverTime.length > 0 ? documentsOverTime : [{ date: '', count: 0 }]}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                    <XAxis dataKey="date" stroke="#666" />
+                    <YAxis stroke="#666" />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="count" stroke="#0088FE" strokeWidth={2} name="Documents" dot={{ r: 4 }} />
+                  </LineChart>
+                </ResponsiveContainer>
+                {documentsOverTime.length === 0 && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    color: '#999',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    pointerEvents: 'none'
+                  }}>
+                    No data available
+                  </div>
                 )}
               </div>
 
               {/* Department Performance */}
-              <div className="chart-card">
+              <div className="chart-card" style={{ position: 'relative' }}>
                 <h3>Department Performance</h3>
-                {departmentPerformance.length === 0 ? (
-                  <div className="empty-chart-state">No department performance data available</div>
-                ) : (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={departmentPerformance}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="departmentCode" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Bar dataKey="totalDocuments" fill="#0088FE" name="Total" />
-                      <Bar dataKey="approved" fill="#00C49F" name="Approved" />
-                      <Bar dataKey="pending" fill="#FFBB28" name="Pending" />
-                    </BarChart>
-                  </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={departmentPerformance.length > 0 ? departmentPerformance : [{ departmentCode: '', totalDocuments: 0, approved: 0, pending: 0 }]}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                    <XAxis dataKey="departmentCode" stroke="#666" />
+                    <YAxis stroke="#666" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="totalDocuments" fill="#0088FE" name="Total" />
+                    <Bar dataKey="approved" fill="#00C49F" name="Approved" />
+                    <Bar dataKey="pending" fill="#FFBB28" name="Pending" />
+                  </BarChart>
+                </ResponsiveContainer>
+                {departmentPerformance.length === 0 && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    color: '#999',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    pointerEvents: 'none'
+                  }}>
+                    No data available
+                  </div>
                 )}
               </div>
 
               {/* Status Distribution */}
-              <div className="chart-card">
+              <div className="chart-card" style={{ position: 'relative' }}>
                 <h3>Document Status Distribution</h3>
-                {statusDistribution.length === 0 ? (
-                  <div className="empty-chart-state">No status distribution data available</div>
-                ) : (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={statusDistribution}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={({status, count}) => `${status}: ${count}`}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="count"
-                      >
-                        {statusDistribution.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={statusDistribution.length > 0 ? statusDistribution : [{ status: 'No Data', count: 1 }]}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={statusDistribution.length > 0 ? ({status, count}) => `${status}: ${count}` : false}
+                      outerRadius={80}
+                      fill="#f0f0f0"
+                      dataKey="count"
+                    >
+                      {statusDistribution.length > 0 ? statusDistribution.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      )) : <Cell fill="#e0e0e0" />}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
+                {statusDistribution.length === 0 && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    color: '#999',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    pointerEvents: 'none'
+                  }}>
+                    No data available
+                  </div>
                 )}
               </div>
 
               {/* Processing Time Trends */}
-              <div className="chart-card">
+              <div className="chart-card" style={{ position: 'relative' }}>
                 <h3>Average Processing Time</h3>
-                {processingTrends.length === 0 ? (
-                  <div className="empty-chart-state">No processing time data available for the selected time range</div>
-                ) : (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={processingTrends}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="date" />
-                      <YAxis label={{ value: 'Hours', angle: -90, position: 'insideLeft' }} />
-                      <Tooltip />
-                      <Legend />
-                      <Line type="monotone" dataKey="avgHours" stroke="#FF8042" name="Avg Processing (hrs)" />
-                    </LineChart>
-                  </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={processingTrends.length > 0 ? processingTrends : [{ date: '', avgHours: 0 }]}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                    <XAxis dataKey="date" stroke="#666" />
+                    <YAxis label={{ value: 'Hours', angle: -90, position: 'insideLeft' }} stroke="#666" />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="avgHours" stroke="#FF8042" strokeWidth={2} name="Avg Processing (hrs)" dot={{ r: 4 }} />
+                  </LineChart>
+                </ResponsiveContainer>
+                {processingTrends.length === 0 && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    color: '#999',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    pointerEvents: 'none'
+                  }}>
+                    No data available
+                  </div>
                 )}
               </div>
             </div>
@@ -567,7 +605,7 @@ const SuperAdminDashboard = () => {
                 transition: 'all 0.2s ease'
               }}
             >
-              Pending ({allDepartments.filter(d => d.approvalStatus === 'Pending').length})
+              Pending ({allDepartments.filter(d => d.status === 'Pending').length})
             </button>
             <button
               onClick={() => setRegistrationTab('approved')}
@@ -584,7 +622,7 @@ const SuperAdminDashboard = () => {
                 transition: 'all 0.2s ease'
               }}
             >
-              Approved ({allDepartments.filter(d => d.approvalStatus === 'Approved').length})
+              Approved ({allDepartments.filter(d => d.status === 'Approved').length})
             </button>
             <button
               onClick={() => setRegistrationTab('rejected')}
@@ -601,13 +639,13 @@ const SuperAdminDashboard = () => {
                 transition: 'all 0.2s ease'
               }}
             >
-              Rejected ({allDepartments.filter(d => d.approvalStatus === 'Rejected').length})
+              Rejected ({allDepartments.filter(d => d.status === 'Rejected').length})
             </button>
           </div>
 
           {/* Tab Content */}
           {registrationTab === 'pending' && (
-            allDepartments.filter(d => d.approvalStatus === 'Pending').length === 0 ? (
+            allDepartments.filter(d => d.status === 'Pending').length === 0 ? (
               <div style={{ 
                 textAlign: 'center', 
                 padding: '60px 20px',
@@ -626,12 +664,12 @@ const SuperAdminDashboard = () => {
             ) : (
               <DataTable 
                 columns={registrationColumns}
-                data={allDepartments.filter(d => d.approvalStatus === 'Pending').map(dept => ({
+                data={allDepartments.filter(d => d.status === 'Pending').map(dept => ({
                   id: dept._id,
                   departmentName: dept.name,
                   nodalOfficer: dept.nodalOfficer?.name || 'Not Assigned',
                   email: dept.contactEmail || dept.nodalOfficer?.email || 'N/A',
-                  status: dept.approvalStatus,
+                  status: dept.status,
                   submittedOn: new Date(dept.createdAt).toLocaleDateString()
                 }))}
                 onAction={(action, id) => {
@@ -643,7 +681,7 @@ const SuperAdminDashboard = () => {
           )}
 
           {registrationTab === 'approved' && (
-            allDepartments.filter(d => d.approvalStatus === 'Approved').length === 0 ? (
+            allDepartments.filter(d => d.status === 'Approved').length === 0 ? (
               <div style={{ 
                 textAlign: 'center', 
                 padding: '60px 20px',
@@ -685,12 +723,12 @@ const SuperAdminDashboard = () => {
                     header: 'Approved On'
                   }
                 ]}
-                data={allDepartments.filter(d => d.approvalStatus === 'Approved').map(dept => ({
+                data={allDepartments.filter(d => d.status === 'Approved').map(dept => ({
                   id: dept._id,
                   departmentName: dept.name,
                   nodalOfficer: dept.nodalOfficer?.name || 'Not Assigned',
                   email: dept.contactEmail || dept.nodalOfficer?.email || 'N/A',
-                  status: dept.approvalStatus,
+                  status: dept.status,
                   submittedOn: dept.approvedAt ? new Date(dept.approvedAt).toLocaleDateString() : new Date(dept.createdAt).toLocaleDateString()
                 }))}
               />
@@ -698,7 +736,7 @@ const SuperAdminDashboard = () => {
           )}
 
           {registrationTab === 'rejected' && (
-            allDepartments.filter(d => d.approvalStatus === 'Rejected').length === 0 ? (
+            allDepartments.filter(d => d.status === 'Rejected').length === 0 ? (
               <div style={{ 
                 textAlign: 'center', 
                 padding: '60px 20px',
@@ -740,12 +778,12 @@ const SuperAdminDashboard = () => {
                     header: 'Rejected On'
                   }
                 ]}
-                data={allDepartments.filter(d => d.approvalStatus === 'Rejected').map(dept => ({
+                data={allDepartments.filter(d => d.status === 'Rejected').map(dept => ({
                   id: dept._id,
                   departmentName: dept.name,
                   nodalOfficer: dept.nodalOfficer?.name || 'Not Assigned',
                   email: dept.contactEmail || dept.nodalOfficer?.email || 'N/A',
-                  status: dept.approvalStatus,
+                  status: dept.status,
                   submittedOn: dept.rejectedAt ? new Date(dept.rejectedAt).toLocaleDateString() : new Date(dept.createdAt).toLocaleDateString()
                 }))}
               />
