@@ -65,10 +65,20 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5001;
 
-app.listen(PORT, () => {
-  console.log(`\nServer running on port ${PORT}`);
+// Initialize blockchain service on startup
+const blockchainService = require('./services/blockchain');
+const initializeServices = async () => {
+  console.log('🔄 Initializing blockchain service...');
+  await blockchainService.initialize();
+};
+
+app.listen(PORT, async () => {
+  console.log(`\n🚀 Server running on port ${PORT}`);
   console.log(`   API: http://localhost:${PORT}/api`);
   console.log(`   Health Check: http://localhost:${PORT}/api/health\n`);
+
+  // Initialize services after server starts
+  await initializeServices();
 });
 
 module.exports = app;
