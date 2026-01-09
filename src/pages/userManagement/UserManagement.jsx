@@ -12,8 +12,8 @@ import { SuccessMsg, ErrorMsg } from '../../components/alerts';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import './UserManagement.css';
 
-// Import action icons
-import viewIcon from '../../img/view';
+// Import action icons - using edit icon as placeholder for view
+import viewIcon from '../../img/edit.png';
 import editIcon from '../../img/edit.png';
 import tickIcon from '../../img/tick.png';
 import revokeIcon from '../../img/revoke.png';
