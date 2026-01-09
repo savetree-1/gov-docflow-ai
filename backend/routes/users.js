@@ -10,7 +10,7 @@ router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'
   try {
     const { role, department, isApproved, search, page = 1, limit = 20 } = req.query;
 
-    console.log('\n🔍 GET /api/users request');
+    console.log('\nGET /api/users request');
     console.log('   Authenticated User:', req.user);
     console.log('   Query Params:', req.query);
 
@@ -18,7 +18,7 @@ router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'
 
     // Department admins can only see their department users
     if (req.user.role === 'DEPARTMENT_ADMIN') {
-      console.log('🔍 DEBUG: Department Admin Query');
+      console.log('DEBUG: Department Admin Query');
       console.log('   User ID:', req.user.userId);
       console.log('   User Role:', req.user.role);
       console.log('   User Department:', req.user.department);
@@ -40,7 +40,7 @@ router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'
       ];
     }
 
-    console.log('📋 Final MongoDB Query:', JSON.stringify(query));
+    console.log('Final MongoDB Query:', JSON.stringify(query));
 
     const users = await User.find(query)
       .select('-password')
@@ -52,7 +52,7 @@ router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'
 
     const count = await User.countDocuments(query);
 
-    console.log(`✅ Found ${users.length} users (total: ${count})`);
+    console.log(`Found ${users.length} users (total: ${count})`);
 
     res.json({
       success: true,

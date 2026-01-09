@@ -22,11 +22,11 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'http://localhost:3002',
-    'http://localhost:5002'
+    process.env.FRONTEND_URL
   ],
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,32 +35,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB Connection
 console.log('🔄 Connecting to MongoDB...');
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000,
-})
-.then(() => {
-  console.log('✅ MongoDB Connected');
-  
-  // Initializing blockchain service
-  console.log('🔄 Initializing blockchain service...');
-  const blockchainService = require('./services/blockchain');
-  blockchainService.initialize()
-    .then(() => console.log('✅ Blockchain service initialized'))
-    .catch(err => {
-      console.warn('⚠️  Blockchain initialization failed:', err.message);
-      console.log('   Continuing without blockchain features...');
-    });
-})
-.catch((err) => {
-  console.error('❌ MongoDB Connection Error:', err.message);
-  console.log('\n⚠️  Server starting without database connection.');
-  console.log('   Please check:');
-  console.log('   1. MongoDB Atlas IP whitelist (add 0.0.0.0/0 for testing)');
-  console.log('   2. Network connection');
-  console.log('   3. MONGO_URI in .env file\n');
-});
+const connectDB = require('./config/db');
+connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes);
