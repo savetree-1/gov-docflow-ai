@@ -6,13 +6,18 @@
 require('dotenv').config();
 const axios = require('axios');
 
-const API_URL = 'http://localhost:5001/api';
+const API_URL = process.env.API_URL || 'http://localhost:5001/api';
 
-// Test credentials (Finance Admin)
+// Test credentials from environment variables
 const testUser = {
-  email: 'finance.admin@pravah.gov.in',
-  password: 'Finance@123'
+  email: process.env.TEST_USER_EMAIL || 'finance.admin@pravah.gov.in',
+  password: process.env.TEST_USER_PASSWORD || 'Finance@123'
 };
+
+// Warn if using default credentials
+if (!process.env.TEST_USER_EMAIL || !process.env.TEST_USER_PASSWORD) {
+  console.warn('⚠️  Using default test credentials. Set TEST_USER_EMAIL and TEST_USER_PASSWORD in .env for production testing.\n');
+}
 
 async function testAnalytics() {
   try {
