@@ -1,11 +1,8 @@
-/**
- * Gemini AI Service - Clean Implementation
- * Uses @google/genai for reliable PDF text analysis
- */
+/****** Gemini AI Service Module by Using @google/genai for reliable PDF text analysis ******/
 
 const { GoogleGenAI } = require('@google/genai');
 
-// Initialize Gemini client
+/****** Initializing Gemini client ******/
 function getGeminiClient() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -14,16 +11,13 @@ function getGeminiClient() {
   return new GoogleGenAI({ apiKey });
 }
 
-/**
- * Analyze document text with Gemini
- * Works with extracted text from PDFs/DOCX
- */
+/****** Analyzing document text with Gemini Works with extracted text from PDFs/DOCX ******/
 async function analyzeDocumentText(documentText, documentMetadata = {}) {
   try {
     const ai = getGeminiClient();
     
-    console.log('🤖 Sending text to Gemini for analysis...');
-    console.log(`📊 Text length: ${documentText.length} characters`);
+    console.log('Sending text to Gemini for analysis...');
+    console.log(`Text length: ${documentText.length} characters`);
 
     const response = await ai.models.generateContent({
       model: "gemini-flash-latest",
@@ -60,15 +54,15 @@ Return ONLY this JSON structure:
       ]
     });
 
-    console.log('✅ Gemini analysis received');
+    console.log('Gemini analysis received');
     
-    // Get response text
+    /****** Taling the response text ******/
     let text = response.text || '';
     
-    // Clean response (remove markdown code blocks if present)
+    /****** Remove markdown code blocks if present and cleaning response ******/
     text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     
-    // Parse JSON
+    /****** Parsing the response JSON ******/
     const analysis = JSON.parse(text);
     
     return {
@@ -84,7 +78,7 @@ Return ONLY this JSON structure:
   } catch (error) {
     console.error('Gemini Analysis Error:', error.message);
     
-    // Fallback response
+    /****** Fallback response for errors ******/
     return {
       summary: documentText.substring(0, 300) + '...',
       keyPoints: ['Document uploaded and awaiting manual review'],
@@ -97,9 +91,7 @@ Return ONLY this JSON structure:
   }
 }
 
-/**
- * Get department routing suggestions
- */
+/****** Get department routing suggestions ******/
 async function suggestRouting(documentText, documentMetadata = {}) {
   try {
     const ai = getGeminiClient();
@@ -164,12 +156,12 @@ Return ONLY JSON:
   }
 }
 
-// Backward compatibility aliases
+/****** Backward compatibility aliases ******/
 const generateSummary = analyzeDocumentText;
 
 module.exports = {
   analyzeDocumentText,
   suggestRouting,
-  // Deprecated - for backward compatibility
+  /****** Deprecated - for backward compatibility ******/
   generateSummary
 };

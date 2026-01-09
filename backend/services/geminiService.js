@@ -1,16 +1,11 @@
-/**
- * Gemini AI Service
- * Handles document summarization and intelligent routing
- */
+/****** Gemini AI Service Module which Handles document summarization and intelligent routing ******/
 
 const axios = require('axios');
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash-exp:generateContent';
 
-/**
- * Generate document summary using Gemini
- */
+/****** Generating the document's summary using Gemini ******/
 const generateSummary = async (documentText, metadata = {}) => {
   try {
     const prompt = `You are a government document analyst. Analyze this official document and provide:
@@ -47,7 +42,7 @@ Respond in JSON format:
 
     const aiResponse = response.data.candidates[0].content.parts[0].text;
     
-    // Extract JSON from response (handle markdown code blocks)
+    /****** Extracting JSON from response ******/
     const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
     if (jsonMatch) {
       const parsed = JSON.parse(jsonMatch[0]);
@@ -62,7 +57,7 @@ Respond in JSON format:
       };
     }
 
-    // Fallback if JSON parsing fails
+    /****** Fallback if JSON parsing fails ******/
     return {
       success: true,
       data: {
@@ -87,9 +82,7 @@ Respond in JSON format:
   }
 };
 
-/**
- * Suggest routing departments based on document content
- */
+/****** Suggesting routing departments based on document content ******/
 const suggestRouting = async (documentText, metadata = {}) => {
   try {
     const prompt = `You are a government document routing AI. Based on this document, suggest which departments should handle it.

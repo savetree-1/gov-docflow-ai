@@ -60,12 +60,12 @@ If handwritten or unclear, infer context from visible elements.`;
     const fileBuffer = fs.readFileSync(filePath);
     const imagePart = fileToGenerativePart(fileBuffer, mimeType);
 
-    console.log('📤 Sending scanned image to Gemini Vision API...');
+    console.log('Sending scanned image to Gemini Vision API...');
     const result = await model.generateContent([prompt, imagePart]);
     const response = result.response;
     let text = response.text();
 
-    console.log('📥 Gemini Vision Response received');
+    console.log('Gemini Vision Response received');
     
     // Clean JSON response (remove code blocks if present)
     text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
@@ -121,7 +121,7 @@ Respond ONLY with valid JSON (no markdown, no code blocks):
     const response = result.response;
     let text = response.text();
     
-    console.log('📥 Gemini Text Analysis Response received');
+    console.log('Gemini Text Analysis Response received');
     
     // Clean JSON response (remove code blocks if present)
     text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
