@@ -16,7 +16,8 @@ const testUser = {
 
 // Warn if using default credentials
 if (!process.env.TEST_USER_EMAIL || !process.env.TEST_USER_PASSWORD) {
-  console.warn('⚠️  Using default test credentials. Set TEST_USER_EMAIL and TEST_USER_PASSWORD in .env for production testing.\n');
+  console.warn('⚠️  WARNING: Using default test credentials.');
+  console.warn('⚠️  DO NOT use these in production! Set TEST_USER_EMAIL and TEST_USER_PASSWORD in .env\n');
 }
 
 async function testAnalytics() {
