@@ -34,20 +34,33 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB Connection
+console.log('🔄 Connecting to MongoDB...');
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
 })
 .then(() => {
-  console.log(' MongoDB Connected');
+  console.log('✅ MongoDB Connected');
   
   // Initializing blockchain service
+  console.log('🔄 Initializing blockchain service...');
   const blockchainService = require('./services/blockchain');
-  blockchainService.initialize().catch(err => {
-    console.warn('  Blockchain initialization failed:', err.message);
-  });
+  blockchainService.initialize()
+    .then(() => console.log('✅ Blockchain service initialized'))
+    .catch(err => {
+      console.warn('⚠️  Blockchain initialization failed:', err.message);
+      console.log('   Continuing without blockchain features...');
+    });
 })
-.catch((err) => console.error(' MongoDB Connection Error:', err));
+.catch((err) => {
+  console.error('❌ MongoDB Connection Error:', err.message);
+  console.log('\n⚠️  Server starting without database connection.');
+  console.log('   Please check:');
+  console.log('   1. MongoDB Atlas IP whitelist (add 0.0.0.0/0 for testing)');
+  console.log('   2. Network connection');
+  console.log('   3. MONGO_URI in .env file\n');
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -73,10 +86,12 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`\n🚀 Server running on port ${PORT}`);
+  console.log(`   API: http://localhost:${PORT}/api`);
+  console.log(`   Health Check: http://localhost:${PORT}/api/health\n`);
 });
 
 module.exports = app;
