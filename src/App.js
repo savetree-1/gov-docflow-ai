@@ -10,7 +10,7 @@ import {
   getSaveTokenAction
 } from "./redux/actions";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import SupportAdmin from "./components/ChatSupport/SupportAdmin/index";
 import SupportEngine from "./components/ChatSupport/SupportEngine/index";
 import Cookies from "js-cookie";
@@ -42,7 +42,8 @@ import UpdateProfile from "./pages/updateProfile/index";
 // import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
 // Dashboard Imports
-import SuperAdminDashboard from "./pages/dashboards/SuperAdminDashboard";
+import SuperAdminDashboard from "./pages/dashboards/SuperAdminDashboardNew";
+
 import DepartmentAdminDashboard from "./pages/dashboards/DepartmentAdminDashboard";
 import OfficerDashboard from "./pages/dashboards/OfficerDashboard";
 import AuditorDashboard from "./pages/dashboards/AuditorDashboard";
@@ -108,14 +109,6 @@ function App() {
         {/* Role-Based Dashboards */}
         <Route 
           path="/admin/dashboard" 
-          element={
-            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
-              <SuperAdminDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/admin/registrations" 
           element={
             <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
               <SuperAdminDashboard />
@@ -316,6 +309,9 @@ function App() {
         {/* <Route path="policy" element={<><CancellationPolicy /><Footer /></>} /> */}
         {/* <Route path="equipment-report/:id" element={<><EquipmentReport /><Footer /></>} /> */}
         {/* <Route path="feedback" element={<><Feedback /><Footer /></>} /> */}
+        
+        {/* Redirect old registrations URL to dashboard */}
+        <Route path="/admin/registrations" element={<Navigate to="/admin/dashboard" replace />} />
         
         <Route path="*" element={<><div>Not Found</div><Footer /></>} />
       </Routes>
