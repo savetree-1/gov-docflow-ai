@@ -4,6 +4,7 @@
  */
 
 require('dotenv').config();
+const crypto = require('crypto');
 const mongoose = require('mongoose');
 const Document = require('./models/Document');
 const User = require('./models/User');
@@ -45,7 +46,9 @@ async function seedData() {
         const createdAt = new Date();
         createdAt.setDate(createdAt.getDate() - day);
         
-        const refNum = `SAMPLE-${Date.now()}-${refCounter}`;
+        // Generate unique reference number using crypto
+        const uniqueId = crypto.randomBytes(4).toString('hex');
+        const refNum = `SAMPLE-${createdAt.getTime()}-${uniqueId}`;
         
         const doc = {
           title: `Sample Document ${refCounter}`,
