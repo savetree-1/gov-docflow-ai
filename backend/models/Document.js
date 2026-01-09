@@ -59,13 +59,13 @@ const documentSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  // Department selected by officer during upload
+  /****** Department selected by officer during upload ******/
   initialDepartment: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Department',
     required: true
   },
-  // Department after AI routing confirmation (optional)
+  /****** Department after AI routing confirmation ******/
   department: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Department',
@@ -93,7 +93,7 @@ const documentSchema = new mongoose.Schema({
   extractedText: {
     type: String
   },
-  // AI Auto-Routing Fields
+  /****** AI Auto-Routing Fields ******/
   suggestedDepartment: {
     type: String,
     trim: true
@@ -122,7 +122,7 @@ const documentSchema = new mongoose.Schema({
   routingConfirmedAt: {
     type: Date
   },
-  // Blockchain verification
+  /****** Blockchain verification ******/
   blockchainTxHash: {
     type: String,
     trim: true
@@ -148,7 +148,7 @@ const documentSchema = new mongoose.Schema({
       default: Date.now
     }
   }],
-  // Soft Delete Fields
+  /****** Soft Delete Fields ******/
   isDeleted: {
     type: Boolean,
     default: false,
@@ -169,7 +169,7 @@ const documentSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Indexes for search and filtering
+/****** Indexes for search and filtering ******/
 documentSchema.index({ referenceNumber: 1 });
 documentSchema.index({ category: 1, status: 1 });
 documentSchema.index({ department: 1 });
