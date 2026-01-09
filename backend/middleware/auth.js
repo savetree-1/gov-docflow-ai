@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-// Verify JWT token
+/****** Verifying the JWT token ******/
 const authMiddleware = (req, res, next) => {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '');
@@ -17,7 +17,7 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-// Role-based authorization
+/****** Role-based authorization for dashboard accessing ******/
 const roleMiddleware = (...allowedRoles) => {
   return async (req, res, next) => {
     try {
