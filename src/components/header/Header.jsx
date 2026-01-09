@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import emblemIndia from "../../img/emblem-india.jpeg";
 import uttarakhandLogo from "../../img/ukrajya.png";
 import mygovLogo from "../../img/mygov.png";
@@ -9,12 +9,14 @@ import ourLogo from "../../img/ourlogo.png";
 import wheelchairIcon from "../../img/icons8-wheelchair-24.png";
 import { useSelector, useDispatch } from "react-redux";
 import { getLogoutAction } from "../../redux/actions";
+import { notificationAPI } from "../../api/notificationAPI";
 
 //images
 import userIcon from "../../img/user_icon.svg";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.authReducer?.user?.data);
@@ -25,6 +27,49 @@ const Header = () => {
   const [show, setShow] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("en");
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  // Check if current page is a dashboard/protected page
+  const isDashboardPage = location.pathname.includes('/dashboard') || 
+                          location.pathname.startsWith('/admin/') || 
+                          location.pathname.startsWith('/department/') ||
+                          location.pathname.startsWith('/officer/') ||
+                          location.pathname.startsWith('/audit/') ||
+                          location.pathname === '/settings' ||
+                          location.pathname === '/my-documents' ||
+                          location.pathname.startsWith('/document/upload') ||
+                          location.pathname.startsWith('/document/detail') ||
+                          location.pathname === '/notifications' ||
+                          location.pathname.startsWith('/routing') ||
+                          (location.pathname.includes('/users') && location.pathname !== '/');
+
+  // Fetch unread notification count
+  const fetchUnreadCount = async () => {
+    try {
+      const response = await notificationAPI.getUnreadCount();
+      if (response.data.success) {
+        setUnreadCount(response.data.data.unreadCount || 0);
+      }
+    } catch (error) {
+      console.error('Failed to fetch unread count:', error);
+    }
+  };
+
+  // Poll for unread notifications every 30 seconds when authenticated
+  useEffect(() => {
+    if (isAuthenticated && isDashboardPage) {
+      fetchUnreadCount();
+      const interval = setInterval(fetchUnreadCount, 30000);
+      return () => clearInterval(interval);
+    }
+  }, [isAuthenticated, isDashboardPage]);
+
+  // Refresh count when navigating
+  useEffect(() => {
+    if (isAuthenticated && isDashboardPage && location.pathname !== '/notifications') {
+      fetchUnreadCount();
+    }
+  }, [location.pathname, isAuthenticated, isDashboardPage]);
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
@@ -226,21 +271,40 @@ const Header = () => {
           </ul>
 
           {/* Auth Section Desktop */}
-          {isAuthenticated ? (
-            <div 
-              className="user-profile-nav"
-              onMouseEnter={() => setShow(true)}
-              onMouseLeave={() => setShow(false)}
-              role="navigation"
-              aria-label="User menu"
-            >
+          {isAuthenticated && isDashboardPage ? (
+            <div className="header-auth-section">
+              {/* Notification Bell */}
               <button
-                className="user-info-nav"
-                onClick={() => setShow(!show)}
-                aria-expanded={show}
-                aria-haspopup="true"
-                aria-label={`User menu for ${user?.firstName} ${user?.lastName}`}
+                className="notification-bell-btn"
+                onClick={() => navigate('/notifications')}
+                aria-label={`Notifications ${unreadCount > 0 ? `(${unreadCount} unread)` : ''}`}
+                title="View Notifications"
               >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22ZM18 16V11C18 7.93 16.37 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5C11.17 2.5 10.5 3.17 10.5 4V4.68C7.64 5.36 6 7.92 6 11V16L4 18V19H20V18L18 16Z"/>
+                </svg>
+                {unreadCount > 0 && (
+                  <span className="notification-badge">
+                    {unreadCount > 99 ? '99+' : unreadCount}
+                  </span>
+                )}
+              </button>
+
+              {/* User Profile */}
+              <div 
+                className="user-profile-nav"
+                onMouseEnter={() => setShow(true)}
+                onMouseLeave={() => setShow(false)}
+                role="navigation"
+                aria-label="User menu"
+              >
+                <button
+                  className="user-info-nav"
+                  onClick={() => setShow(!show)}
+                  aria-expanded={show}
+                  aria-haspopup="true"
+                  aria-label={`User menu for ${user?.firstName} ${user?.lastName}`}
+                >
                 <img 
                   className="user-avatar-nav" 
                   src={user?.profilePhoto || userIcon} 
@@ -301,6 +365,7 @@ const Header = () => {
                   </button>
                 </div>
               )}
+              </div>
             </div>
           ) : (
             <div className="auth-buttons-desktop">
@@ -349,21 +414,70 @@ const Header = () => {
             >
               Home
             </button>
-            {isAuthenticated && (
+            <button 
+              onClick={() => { navigate("/about"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to About"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => { navigate("/how-it-works"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to How It Works"
+            >
+              How It Works
+            </button>
+            <button 
+              onClick={() => { navigate("/departments"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to Departments"
+            >
+              Departments
+            </button>
+            {isAuthenticated && isDashboardPage && (
               <>
                 <button 
-                  onClick={() => { navigate("/dashboard"); setMobileMenuOpen(false); }} 
+                  onClick={() => { 
+                    const roleRoute = user?.role === 'SUPER_ADMIN' ? '/admin/dashboard' : 
+                                     user?.role === 'DEPARTMENT_ADMIN' ? '/department/dashboard' : 
+                                     user?.role === 'AUDITOR' ? '/auditor/dashboard' : 
+                                     '/dashboard';
+                    navigate(roleRoute); 
+                    setMobileMenuOpen(false); 
+                  }} 
                   className="mobile-nav-link"
                   aria-label="Navigate to Dashboard"
                 >
                   Dashboard
                 </button>
                 <button 
-                  onClick={() => { navigate("/addProduct"); setMobileMenuOpen(false); }} 
+                  onClick={() => { navigate("/notifications"); setMobileMenuOpen(false); }} 
                   className="mobile-nav-link"
-                  aria-label="Add new product"
+                  aria-label={`Notifications ${unreadCount > 0 ? `(${unreadCount} unread)` : ''}`}
                 >
-                  Add Product
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                    <span>Notifications</span>
+                    {unreadCount > 0 && (
+                      <span style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minWidth: '20px',
+                        height: '20px',
+                        padding: '0 6px',
+                        background: '#ff3b30',
+                        color: '#ffffff',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        borderRadius: '10px',
+                        lineHeight: '1',
+                        boxShadow: '0 1px 3px rgba(255, 59, 48, 0.3)',
+                      }}>
+                        {unreadCount > 99 ? '99+' : unreadCount}
+                      </span>
+                    )}
+                  </span>
                 </button>
               </>
             )}
@@ -373,6 +487,13 @@ const Header = () => {
               aria-label="Navigate to Help"
             >
               Help
+            </button>
+            <button 
+              onClick={() => { navigate("/whats-new"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to What's New"
+            >
+              What's New
             </button>
             <button 
               onClick={() => { navigate("/faq"); setMobileMenuOpen(false); }} 

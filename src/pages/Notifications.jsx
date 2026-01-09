@@ -287,6 +287,51 @@ const Notifications = () => {
                       {notification.message}
                     </p>
                     
+                    {/* Display routing metadata if available */}
+                    {notification.metadata && notification.type === 'document_routed' && (
+                      <div style={{
+                        marginTop: '12px',
+                        padding: '12px',
+                        backgroundColor: '#f8f9fa',
+                        borderRadius: '6px',
+                        borderLeft: '3px solid #0f5e59'
+                      }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                          {notification.metadata.routedToDepartment && (
+                            <div style={{ fontSize: '13px', color: '#495057' }}>
+                              <strong>Department:</strong> {notification.metadata.routedToDepartment}
+                            </div>
+                          )}
+                          {notification.metadata.officerName && notification.metadata.officerRole && (
+                            <div style={{ fontSize: '13px', color: '#495057' }}>
+                              <strong>Assigned to:</strong> {notification.metadata.officerName} ({notification.metadata.officerRole.replace(/_/g, ' ')})
+                            </div>
+                          )}
+                          {notification.metadata.category && (
+                            <div style={{ fontSize: '13px', color: '#495057' }}>
+                              <strong>Category:</strong> {notification.metadata.category}
+                            </div>
+                          )}
+                          {notification.metadata.urgency && (
+                            <div style={{ fontSize: '13px', color: '#495057' }}>
+                              <strong>Priority:</strong> 
+                              <span style={{
+                                marginLeft: '6px',
+                                padding: '2px 8px',
+                                backgroundColor: notification.metadata.urgency === 'High' ? '#fee' : notification.metadata.urgency === 'Medium' ? '#fff4e6' : '#f0f9ff',
+                                color: notification.metadata.urgency === 'High' ? '#c00' : notification.metadata.urgency === 'Medium' ? '#e67e22' : '#0288d1',
+                                borderRadius: '4px',
+                                fontSize: '11px',
+                                fontWeight: '600'
+                              }}>
+                                {notification.metadata.urgency}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    
                     <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                       <span style={{ fontSize: '13px', color: '#999999' }}>
                         {getTimeAgo(notification.createdAt)}

@@ -615,9 +615,21 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
             user: user._id,
             type: 'document_routed',
             title: 'New Document Routed to Your Department',
-            message: `Document "${document.title}" has been routed to ${finalDepartment.name}`,
+            message: `Document "${document.title}" has been routed to ${finalDepartment.name} department by ${routedBy}`,
             documentId: document._id,
-            priority: document.urgency === 'High' ? 'high' : document.urgency === 'Medium' ? 'medium' : 'low'
+            relatedUserId: req.user.userId,
+            priority: document.urgency === 'High' ? 'high' : document.urgency === 'Medium' ? 'medium' : 'low',
+            actionUrl: `/document/${document._id}`,
+            metadata: {
+              documentNumber: document.documentNumber,
+              category: document.category,
+              urgency: document.urgency,
+              routedToDepartment: finalDepartment.name,
+              routedToDepartmentId: finalDepartment._id,
+              routedBy: routedBy,
+              officerName: `${user.firstName} ${user.lastName}`,
+              officerRole: user.role
+            }
           });
           console.log(`✅ In-app notification created for ${user.firstName} ${user.lastName}`);
 
