@@ -102,7 +102,7 @@ const DocumentUpload = () => {
 
       const token = authState?.token || localStorage.getItem('token');
 
-      // Simulate upload progress
+      /****** Simulate upload progress ******/
       let prog = 0;
       const interval = setInterval(() => {
         prog += 20;
@@ -138,7 +138,7 @@ const DocumentUpload = () => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="bg-white rounded-xl shadow-soft p-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Upload Document</h1>
-          {/* Stepper */}
+          {/******* Stepper *******/}
           <div className="flex justify-center mb-8">
             {steps.map((s, idx) => (
               <div key={s.label} className="flex items-center">
@@ -151,7 +151,7 @@ const DocumentUpload = () => {
             ))}
           </div>
 
-          {/* Error/Success Messages */}
+          {/******* Error/Success Messages *******/}
           {error && (
             <div className="flex items-center bg-red-50 text-red-700 rounded px-3 py-2 mb-4"><FaExclamationCircle className="mr-2" /> {error}</div>
           )}
@@ -160,7 +160,7 @@ const DocumentUpload = () => {
           )}
 
           <form onSubmit={handleSubmit}>
-            {/* Step 0: File Selection */}
+            {/******* Step 0: File Selection *******/}
             {step === 0 && (
               <div>
                 <div
@@ -199,7 +199,7 @@ const DocumentUpload = () => {
               </div>
             )}
 
-            {/* Step 1: Metadata */}
+            {/******* Step 1: Metadata *******/}
             {step === 1 && (
               <div>
                 <div className="mb-6">
@@ -278,7 +278,7 @@ const DocumentUpload = () => {
               </div>
             )}
 
-            {/* Step 2: Review & Submit */}
+            {/******* Step 2: Review & Submit *******/}
             {step === 2 && (
               <div>
                 <div className="mb-6 flex items-center gap-3 bg-gray-50 rounded-lg p-4">
