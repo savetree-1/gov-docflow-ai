@@ -123,7 +123,7 @@ const GovLogin = () => {
           zIndex: 0
         }}
       >
-        <source src="/login-bg.mp4" type="video/mp4" />
+        <source src="/login-bg-1.mov" type="video/mp4" />
       </video>
       <div className="gov-login-header" style={{ position: 'relative', zIndex: 1 }}>
         <div className="gov-header-content">
