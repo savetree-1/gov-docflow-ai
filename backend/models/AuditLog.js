@@ -60,10 +60,10 @@ const auditLogSchema = new mongoose.Schema({
     default: Date.now
   }
 }, {
-  timestamps: false // Using timestamp field instead
+  timestamps: false /****** Using timestamp field instead ******/
 });
 
-// Indexes for efficient querying
+/****** Indexes for efficient querying ******/
 auditLogSchema.index({ performedBy: 1, timestamp: -1 });
 auditLogSchema.index({ action: 1, timestamp: -1 });
 auditLogSchema.index({ targetDocument: 1, timestamp: -1 });

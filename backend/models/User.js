@@ -80,7 +80,7 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Index for search
+/****** Index for search ******/
 userSchema.index({ email: 1, employeeId: 1 });
 
 module.exports = mongoose.model('User', userSchema);

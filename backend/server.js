@@ -4,10 +4,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load environment variables from backend/.env
+/****** Loading environment variables from backend/.env ******/
 dotenv.config({ path: path.join(__dirname, '.env') });
 
-// Import routes
+/****** Importing routes ******/
 const authRoutes = require('./routes/auth');
 const documentRoutes = require('./routes/documents');
 const userRoutes = require('./routes/users');
@@ -18,7 +18,7 @@ const notificationRoutes = require('./routes/notifications');
 
 const app = express();
 
-// Middleware
+/****** Middlewares ******/
 app.use(cors({
   origin: [
     'http://localhost:3000',
@@ -30,15 +30,15 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from uploads directory
+/****** Static server files from uploads directory ******/
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// MongoDB Connection
-console.log('🔄 Connecting to MongoDB...');
+/****** MongoDB Connection Startup******/
+console.log('Connecting to MongoDB...');
 const connectDB = require('./config/db');
 connectDB();
 
-// Routes
+/****** Routes For Accesing The Application  ******/
 app.use('/api/auth', authRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/users', userRoutes);
@@ -49,12 +49,12 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/blockchain', require('./routes/blockchain'));
 app.use('/api/analytics', require('./routes/analytics'));
 
-// Health check
+/****** Health check Url for checking bakcend connectivity******/
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
 });
 
-// Error handling middleware
+/****** Middlewares for Error handling ******/
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
@@ -66,7 +66,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
-  console.log(`\n🚀 Server running on port ${PORT}`);
+  console.log(`\nServer running on port ${PORT}`);
   console.log(`   API: http://localhost:${PORT}/api`);
   console.log(`   Health Check: http://localhost:${PORT}/api/health\n`);
 });

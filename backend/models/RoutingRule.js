@@ -44,7 +44,7 @@ const routingRuleSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Index for efficient rule matching
+/****** Index for efficient rule matching ******/
 routingRuleSchema.index({ department: 1, 'conditions.category': 1, isActive: 1 });
 
 module.exports = mongoose.model('RoutingRule', routingRuleSchema);

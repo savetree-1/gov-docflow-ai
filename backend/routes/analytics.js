@@ -1,7 +1,5 @@
-/**
- * Analytics API Routes
- * Provides statistical data for dashboards
- */
+/****** Analytics API Routes Module for Document Management System ******/
+/****** Provides various analytics endpoints including statistical data for dashboards  ******/
 
 const express = require('express');
 const router = express.Router();
@@ -11,10 +9,7 @@ const Department = require('../models/Department');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 
-/**
- * Get document statistics over time
- * GET /api/analytics/documents-over-time
- */
+/****** Get Endpoint for document statistics over time accessed through  GET /api/analytics/documents-over-time ******/
 router.get('/documents-over-time', authMiddleware, async (req, res) => {
   try {
     const { days = 30 } = req.query;
@@ -54,10 +49,7 @@ router.get('/documents-over-time', authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * Get department performance comparison
- * GET /api/analytics/department-performance
- */
+/****** Get Endpoint department performance comparison accessed throug GET /api/analytics/department-performance ******/
 router.get('/department-performance', authMiddleware, async (req, res) => {
   try {
     const departments = await Department.find({ isActive: true });
@@ -126,10 +118,7 @@ router.get('/department-performance', authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * Get document status distribution
- * GET /api/analytics/status-distribution
- */
+/****** Get Endpoint for document status distribution accessed through GET /api/analytics/status-distribution ******/
 router.get('/status-distribution', authMiddleware, async (req, res) => {
   try {
     const statusDistribution = await Document.aggregate([
@@ -157,10 +146,7 @@ router.get('/status-distribution', authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * Get urgency distribution
- * GET /api/analytics/urgency-distribution
- */
+/****** Get Endpoint for urgency distribution accessed through GET /api/analytics/urgency-distribution ******/
 router.get('/urgency-distribution', authMiddleware, async (req, res) => {
   try {
     const urgencyDistribution = await Document.aggregate([
@@ -188,10 +174,7 @@ router.get('/urgency-distribution', authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * Get processing time trends
- * GET /api/analytics/processing-trends
- */
+/****** Get Endpoint for processing time trends accessed with GET /api/analytics/processing-trends ******/
 router.get('/processing-trends', authMiddleware, async (req, res) => {
   try {
     const { days = 30 } = req.query;
@@ -243,10 +226,7 @@ router.get('/processing-trends', authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * Get user activity statistics
- * GET /api/analytics/user-activity
- */
+/****** Get Endpoint for user activity statistics accessed with GET /api/analytics/user-activity ******/
 router.get('/user-activity', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const { days = 7 } = req.query;
@@ -294,10 +274,7 @@ router.get('/user-activity', authMiddleware, roleMiddleware('SUPER_ADMIN'), asyn
   }
 });
 
-/**
- * Get comprehensive dashboard summary
- * GET /api/analytics/dashboard-summary
- */
+/****** Get Endpoint for comprehensive dashboard summary accessed with GET /api/analytics/dashboard-summary ******/
 router.get('/dashboard-summary', authMiddleware, async (req, res) => {
   try {
     const [

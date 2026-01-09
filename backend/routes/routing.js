@@ -4,12 +4,12 @@ const RoutingRule = require('../models/RoutingRule');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 
-// Create routing rule
+/****** Creating the routing rule ******/
 router.post('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'), async (req, res) => {
   try {
     const { name, department, conditions, assignTo, priority } = req.body;
 
-    // Department admins can only create rules for their department
+    /****** Department admins can only create rules for their department ******/
     const deptId = req.user.role === 'DEPARTMENT_ADMIN' ? req.user.department : department;
 
     const rule = new RoutingRule({
@@ -28,7 +28,7 @@ router.post('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN
 
     await rule.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'ROUTING_RULE_CREATE',
       performedBy: req.user.userId,
@@ -54,14 +54,14 @@ router.post('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN
   }
 });
 
-// Get all routing rules
+/****** Get all routing rules ******/
 router.get('/', authMiddleware, async (req, res) => {
   try {
     const { department, isActive, page = 1, limit = 20 } = req.query;
 
     const query = {};
 
-    // Department admins can only see their department rules
+    /****** Department admins can only see their department rules ******/
     if (req.user.role === 'DEPARTMENT_ADMIN') {
       query.department = req.user.department;
     } else if (department) {
@@ -95,7 +95,7 @@ router.get('/', authMiddleware, async (req, res) => {
   }
 });
 
-// Get routing rule by ID
+/****** Get routing rule by ID ******/
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
     const rule = await RoutingRule.findById(req.params.id)
@@ -114,7 +114,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Update routing rule
+/****** Update routing rule ******/
 router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'), async (req, res) => {
   try {
     const { name, conditions, assignTo, priority, isActive } = req.body;
@@ -125,12 +125,12 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
       return res.status(404).json({ success: false, message: 'Routing rule not found' });
     }
 
-    // Department admins can only update their department rules
+    /****** Department admins can only update their department rules ******/
     if (req.user.role === 'DEPARTMENT_ADMIN' && rule.department.toString() !== req.user.department) {
       return res.status(403).json({ success: false, message: 'Access denied' });
     }
 
-    // Update fields
+    /****** Updating the fields ******/
     if (name) rule.name = name;
     if (conditions) {
       rule.conditions = {
@@ -171,7 +171,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
   }
 });
 
-// Delete routing rule
+/****** Delete routing rule ******/
 router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'), async (req, res) => {
   try {
     const rule = await RoutingRule.findById(req.params.id);
@@ -180,14 +180,14 @@ router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_
       return res.status(404).json({ success: false, message: 'Routing rule not found' });
     }
 
-    // Department admins can only delete their department rules
+    /****** Department admins can only delete their department rules ******/
     if (req.user.role === 'DEPARTMENT_ADMIN' && rule.department.toString() !== req.user.department) {
       return res.status(403).json({ success: false, message: 'Access denied' });
     }
 
     await RoutingRule.findByIdAndDelete(req.params.id);
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'ROUTING_RULE_DELETE',
       performedBy: req.user.userId,
@@ -203,7 +203,7 @@ router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_
   }
 });
 
-// Test routing rule (find matching rule for given document criteria)
+/****** Test routing rule includes finding matching rule for given document criteria ******/
 router.post('/test', authMiddleware, async (req, res) => {
   try {
     const { department, category, urgency, tags } = req.body;
