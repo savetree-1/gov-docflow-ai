@@ -18,7 +18,9 @@ async function seedData() {
     const users = await User.find({ role: { $in: ['DEPT_ADMIN', 'DEPT_USER', 'OFFICER'] } }).limit(5);
     const departments = await Department.find().limit(5);
 
-    console.log(`Found ${users.length} users and ${departments.length} departments`);
+    // Ensure all departments are active
+    await Department.updateMany({}, { isActive: true });
+    console.log(`Found ${users.length} users and ${departments.length} departments (all set to active)`);
 
     // Delete old sample documents
     await Document.deleteMany({ title: /^Sample Document/ });
