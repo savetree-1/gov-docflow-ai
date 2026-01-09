@@ -9,10 +9,12 @@ import Sidebar from '../../components/dashboardSidebar/Sidebar';
 import { MetricCard, DocumentCard, EmptyState } from '../../components/dashboardShared/SharedComponents';
 import { documentAPI, userAPI } from '../../api/backendAPI';
 import { ErrorMsg } from '../../components/alerts';
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import '../dashboards/SuperAdminDashboard.css';
 
 const DepartmentAdminDashboard = () => {
   const user = useSelector((state) => state.authReducer.user.data);
+  const [timeRange, setTimeRange] = useState(30);
   const [metrics, setMetrics] = useState({
     receivedToday: 0,
     requireAction: 0,
@@ -21,12 +23,56 @@ const DepartmentAdminDashboard = () => {
   });
 
   const [documents, setDocuments] = useState([]);
+  const [documentsOverTime, setDocumentsOverTime] = useState([]);
+  const [statusDistribution, setStatusDistribution] = useState([]);
+  const [processingTrends, setProcessingTrends] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+    fetchAnalyticsData();
+  }, [timeRange]);
+
+  const fetchAnalyticsData = async () => {
+    try {
+      const token = localStorage.getItem('accessToken');
+      const departmentId = user?.department?._id || user?.department;
+      
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      };
+
+      const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
+      // Fetch analytics data filtered by department
+      const [docsOverTimeRes, statusDistRes, processingTrendsRes] = await Promise.all([
+        fetch(`${API_BASE_URL}/analytics/documents-over-time?days=${timeRange}&department=${departmentId}`, config),
+        fetch(`${API_BASE_URL}/analytics/status-distribution?department=${departmentId}`, config),
+        fetch(`${API_BASE_URL}/analytics/processing-trends?days=${timeRange}&department=${departmentId}`, config)
+      ]);
+
+      const [docsOverTime, statusDist, processingTrends] = await Promise.all([
+        docsOverTimeRes.json(),
+        statusDistRes.json(),
+        processingTrendsRes.json()
+      ]);
+
+      if (docsOverTime.success) {
+        setDocumentsOverTime(docsOverTime.data || []);
+      }
+
+      if (statusDist.success) {
+        setStatusDistribution(statusDist.data || []);
+      }
+
+      if (processingTrends.success) {
+        setProcessingTrends(processingTrends.data || []);
+      }
+    } catch (err) {
+      console.error('Failed to fetch analytics:', err);
+    }
+  };
 
   const fetchDashboardData = async () => {
     try {
@@ -79,6 +125,26 @@ const DepartmentAdminDashboard = () => {
             <h1>Department Admin <span className="dashboard-highlight">Dashboard</span></h1>
             <p className="dashboard-subtitle">{user?.department?.name || 'Department'} - Uttarakhand</p>
           </div>
+          <div className="time-range-selector">
+            <button 
+              className={timeRange === 7 ? 'active' : ''} 
+              onClick={() => setTimeRange(7)}
+            >
+              7 Days
+            </button>
+            <button 
+              className={timeRange === 30 ? 'active' : ''} 
+              onClick={() => setTimeRange(30)}
+            >
+              30 Days
+            </button>
+            <button 
+              className={timeRange === 90 ? 'active' : ''} 
+              onClick={() => setTimeRange(90)}
+            >
+              90 Days
+            </button>
+          </div>
         </div>
 
         {error && <ErrorMsg message={error} />}
@@ -105,6 +171,87 @@ const DepartmentAdminDashboard = () => {
             title="Recently Routed"
             value={metrics.recentlyRouted}
           />
+        </div>
+
+        {/* Analytics Section */}
+        <div className="dashboard-section">
+          <div className="section-header">
+            <h2>Department Analytics</h2>
+          </div>
+
+          <div className="analytics-grid">
+            {/* Documents Over Time */}
+            <div className="chart-card" style={{ position: 'relative' }}>
+              <h3>Documents Over Time</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={documentsOverTime.length > 0 ? documentsOverTime : [{ date: '', count: 0 }]}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                  <XAxis dataKey="date" stroke="#666" />
+                  <YAxis stroke="#666" />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="count" stroke="#0088FE" strokeWidth={2} dot={{ r: 4 }} name="Documents" />
+                </LineChart>
+              </ResponsiveContainer>
+              {documentsOverTime.length === 0 && (
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#999', fontSize: '14px', fontWeight: '500', pointerEvents: 'none' }}>
+                  No data available
+                </div>
+              )}
+            </div>
+
+            {/* Status Distribution */}
+            <div className="chart-card" style={{ position: 'relative' }}>
+              <h3>Status Distribution</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={statusDistribution.length > 0 ? statusDistribution : [{ status: 'No Data', count: 1 }]}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={statusDistribution.length > 0}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="count"
+                  >
+                    {statusDistribution.length > 0 ? statusDistribution.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={['#0088FE', '#00C49F', '#FFBB28', '#FF8042'][index % 4]} />
+                    )) : (
+                      <Cell key="empty" fill="#e0e0e0" />
+                    )}
+                  </Pie>
+                  <Tooltip />
+                  {statusDistribution.length > 0 && <Legend />}
+                </PieChart>
+              </ResponsiveContainer>
+              {statusDistribution.length === 0 && (
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#999', fontSize: '14px', fontWeight: '500', pointerEvents: 'none' }}>
+                  No data available
+                </div>
+              )}
+            </div>
+
+            {/* Processing Time Trends */}
+            <div className="chart-card" style={{ position: 'relative', gridColumn: 'span 2' }}>
+              <h3>Average Processing Time (Hours)</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={processingTrends.length > 0 ? processingTrends : [{ date: '', avgHours: 0 }]}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                  <XAxis dataKey="date" stroke="#666" />
+                  <YAxis stroke="#666" label={{ value: 'Hours', angle: -90, position: 'insideLeft' }} />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="avgHours" stroke="#82ca9d" strokeWidth={2} dot={{ r: 4 }} name="Avg. Hours" />
+                </LineChart>
+              </ResponsiveContainer>
+              {processingTrends.length === 0 && (
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#999', fontSize: '14px', fontWeight: '500', pointerEvents: 'none' }}>
+                  No data available
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Documents Overview */}
