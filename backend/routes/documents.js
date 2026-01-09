@@ -22,15 +22,15 @@ const {
 // AI Processing Function - NEW PIPELINE
 async function processDocumentWithAI(documentId, filePath, mimeType) {
   try {
-    console.log(`🤖 Starting AI processing for document ${documentId}`);
-    console.log(`📄 File: ${path.basename(filePath)}`);
-    console.log(`📋 Type: ${mimeType}`);
+    console.log(`Starting AI processing for document ${documentId}`);
+    console.log(`File: ${path.basename(filePath)}`);
+    console.log(`Type: ${mimeType}`);
     
     // STEP 1: Extract text (PDF → pdf-parse, if < 100 chars → OCR, Image → OCR)
     const documentText = await extractText(filePath, mimeType);
     
     if (!documentText || documentText.length < 50) {
-      console.log(`⚠️  Minimal text extracted (${documentText.length} chars) - creating metadata summary`);
+      console.log(`Minimal text extracted (${documentText.length} chars) - creating metadata summary`);
       
       // For scanned/image documents with no extractable text
       const document = await Document.findById(documentId);
@@ -42,11 +42,11 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
         'Scanned document - manual review required'
       ];
       await document.save();
-      console.log('📝 Created metadata-based summary');
+      console.log('Created metadata-based summary');
       return;
     }
 
-    console.log(`✅ Extracted ${documentText.length} characters`);
+    console.log(`Extracted ${documentText.length} characters`);
 
     // STEP 2: Send text to Gemini for AI analysis
     const document = await Document.findById(documentId);
@@ -55,7 +55,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
       category: document.category
     });
 
-    console.log(`🤖 AI generated summary (${aiAnalysis.summary?.length || 0} chars, ${aiAnalysis.keyPoints?.length || 0} points)`);
+    console.log(`AI generated summary (${aiAnalysis.summary?.length || 0} chars, ${aiAnalysis.keyPoints?.length || 0} points)`);
 
     // STEP 3: Get routing suggestions (department assignment)
     const routingSuggestion = await suggestRouting(documentText, {
@@ -63,7 +63,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
       category: document.category
     });
 
-    console.log(`📍 AI Routing suggestion: ${routingSuggestion.primaryDepartment} (${routingSuggestion.reasoning})`);
+    console.log(`AI Routing suggestion: ${routingSuggestion.primaryDepartment} (${routingSuggestion.reasoning})`);
 
     // STEP 4: SAVE routing suggestion (NOT auto-assign)
     // Officer must confirm routing - this is AI-ASSISTED, not fully automatic
@@ -72,7 +72,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     document.routingConfidence = 85; // High confidence for Gemini analysis
     document.routingConfirmed = false; // Requires officer confirmation
     
-    console.log(`💡 Routing suggestion saved - awaiting officer confirmation`);
+    console.log(`Routing suggestion saved - awaiting officer confirmation`);
 
     // STEP 5: Save AI results to database
     document.summary = aiAnalysis.summary;
@@ -91,7 +91,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     
     await document.save();
     
-    console.log(`✅ AI processing completed for document ${documentId}`);
+    console.log(`AI processing completed for document ${documentId}`);
 
     // STEP 6: Send email notification if assigned
     if (document.assignedTo) {
@@ -103,7 +103,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
           `${assignedUser.firstName} ${assignedUser.lastName}`,
           document
         );
-        console.log(`📧 Email sent to ${assignedUser.email}`);
+        console.log(`Email sent to ${assignedUser.email}`);
       }
     }
 
@@ -531,7 +531,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
         timestamp: new Date()
       });
 
-      console.log(`✅ Routing confirmed: ${finalDepartment.name}`);
+      console.log(`Routing confirmed: ${finalDepartment.name}`);
 
     } else if (modifiedDepartment) {
       // OFFICER MODIFIED ROUTING
@@ -552,7 +552,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
           timestamp: new Date()
         });
 
-        console.log(`✏️ Routing modified: ${finalDepartment.name}`);
+        console.log(`Routing modified: ${finalDepartment.name}`);
       }
     }
 
@@ -602,7 +602,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
           role: { $in: ['DEPARTMENT_ADMIN', 'OFFICER'] }
         }).select('_id email firstName lastName role');
 
-        console.log(`📧 Sending routing notifications to ${departmentUsers.length} users in ${finalDepartment.name}`);
+        console.log(`Sending routing notifications to ${departmentUsers.length} users in ${finalDepartment.name}`);
 
         // Get the user who confirmed routing
         const routingUser = await User.findById(req.user.userId);
@@ -619,7 +619,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
             documentId: document._id,
             priority: document.urgency === 'High' ? 'high' : document.urgency === 'Medium' ? 'medium' : 'low'
           });
-          console.log(`✅ In-app notification created for ${user.firstName} ${user.lastName}`);
+          console.log(`In-app notification created for ${user.firstName} ${user.lastName}`);
 
           // Send email if user has email
           if (user.email) {
@@ -630,14 +630,14 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
               routedBy
             );
             if (result.success) {
-              console.log(`✅ Email sent to ${user.firstName} ${user.lastName} (${user.role})`);
+              console.log(`Email sent to ${user.firstName} ${user.lastName} (${user.role})`);
             } else {
-              console.error(`❌ Failed to send email to ${user.email}:`, result.error);
+              console.error(`Failed to send email to ${user.email}:`, result.error);
             }
           }
         }
       } catch (emailError) {
-        console.error('❌ Email notification error:', emailError.message);
+        console.error('Email notification error:', emailError.message);
         // Don't fail the request if email fails
       }
     }
