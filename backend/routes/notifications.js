@@ -19,7 +19,7 @@ router.get('/', authMiddleware, async (req, res) => {
       skip = 0 
     } = req.query;
 
-    // Build query
+    /****** Build query ******/
     const query = { user: userId };
     
     if (read !== undefined) {
@@ -34,7 +34,7 @@ router.get('/', authMiddleware, async (req, res) => {
       query.priority = priority;
     }
 
-    // Fetch notifications
+    /****** Fetching the notifications ******/
     const notifications = await Notification.find(query)
       .sort({ createdAt: -1 })
       .limit(parseInt(limit))
@@ -43,7 +43,7 @@ router.get('/', authMiddleware, async (req, res) => {
       .populate('relatedUserId', 'firstName lastName email')
       .lean();
 
-    // Get unread count
+    /****** Get unread count ******/
     const unreadCount = await Notification.getUnreadCount(userId);
 
     res.json({

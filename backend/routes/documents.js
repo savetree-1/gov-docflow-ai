@@ -19,14 +19,14 @@ const {
   notifyCommentAdded
 } = require('../utils/notificationHelper');
 
-// AI Processing Function - NEW PIPELINE
+/****** AI Processing Function - Advance pipeline******/
 async function processDocumentWithAI(documentId, filePath, mimeType) {
   try {
     console.log(`Starting AI processing for document ${documentId}`);
     console.log(`File: ${path.basename(filePath)}`);
     console.log(`Type: ${mimeType}`);
     
-    // STEP 1: Extract text (PDF → pdf-parse, if < 100 chars → OCR, Image → OCR)
+    /****** STEP 1: Extract text which includes teh following steps : PDF → pdf-parse, if < 100 chars → OCR, Image → OCR ******/
     const documentText = await extractText(filePath, mimeType);
     
     if (!documentText || documentText.length < 50) {
@@ -48,7 +48,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
 
     console.log(`Extracted ${documentText.length} characters`);
 
-    // STEP 2: Send text to Gemini for AI analysis
+    /****** STEP 2: Send text to Gemini for AI analysis ******/
     const document = await Document.findById(documentId);
     const aiAnalysis = await analyzeDocumentText(documentText, {
       title: document.title,
@@ -57,7 +57,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
 
     console.log(`AI generated summary (${aiAnalysis.summary?.length || 0} chars, ${aiAnalysis.keyPoints?.length || 0} points)`);
 
-    // STEP 3: Get routing suggestions (department assignment)
+    /****** STEP 3: Get routing suggestions or department assignment ******/
     const routingSuggestion = await suggestRouting(documentText, {
       title: document.title,
       category: document.category
@@ -65,8 +65,8 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
 
     console.log(`AI Routing suggestion: ${routingSuggestion.primaryDepartment} (${routingSuggestion.reasoning})`);
 
-    // STEP 4: SAVE routing suggestion (NOT auto-assign)
-    // Officer must confirm routing - this is AI-ASSISTED, not fully automatic
+    /****** STEP 4: SAVE routing suggestion (NOT auto-assign) ******/
+    /****** Officer must confirm routing - this is AI-ASSISTED, not fully automatic one******/
     document.suggestedDepartment = routingSuggestion.primaryDepartment;
     document.routingReason = routingSuggestion.reasoning;
     document.routingConfidence = 85; // High confidence for Gemini analysis
@@ -74,11 +74,11 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     
     console.log(`Routing suggestion saved - awaiting officer confirmation`);
 
-    // STEP 5: Save AI results to database
+    /****** STEP 5: Save AI results to database ******/
     document.summary = aiAnalysis.summary;
     document.keyPoints = aiAnalysis.keyPoints;
     
-    // Validate deadline before setting
+    /****** Validating the deadline before setting it ******/
     if (aiAnalysis.deadlines?.[0]) {
       const deadlineDate = new Date(aiAnalysis.deadlines[0]);
       document.deadline = !isNaN(deadlineDate.getTime()) ? deadlineDate : null;
@@ -93,7 +93,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     
     console.log(`AI processing completed for document ${documentId}`);
 
-    // STEP 6: Send email notification if assigned
+    /****** STEP 6: Send email notification if assigned ******/
     if (document.assignedTo) {
       const User = require('../models/User');
       const assignedUser = await User.findById(document.assignedTo);
@@ -112,7 +112,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
   }
 }
 
-// Configure multer for file uploads
+/****** Configuring the multer for file uploads ******/
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = 'uploads/documents';
@@ -145,7 +145,7 @@ const upload = multer({
   fileFilter
 });
 
-// Upload new document
+/****** Endpoint to upload new document ******/
 router.post('/upload', authMiddleware, upload.single('file'), async (req, res) => {
   try {
     const { title, category, urgency, tags, description, initialDepartment } = req.body;
@@ -158,17 +158,17 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
       return res.status(400).json({ success: false, message: 'Department selection is required' });
     }
 
-    // Verify department exists
+    /****** Verifying whether the department exists or not ? ******/
     const Department = require('../models/Department');
     const dept = await Department.findById(initialDepartment);
     if (!dept || !dept.isActive) {
       return res.status(400).json({ success: false, message: 'Invalid or inactive department' });
     }
 
-    // Generate reference number
+    /****** Generating a reference number ******/
     const refNumber = 'DOC-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 
-    // Create document
+    /****** Creatign new document ******/
     const document = new Document({
       title,
       referenceNumber: refNumber,
@@ -181,7 +181,7 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
       fileType: req.file.mimetype,
       fileSize: req.file.size,
       uploadedBy: req.user.userId,
-      initialDepartment: initialDepartment, // Department selected by officer
+      initialDepartment: initialDepartment, /****** Department which will be selected by officer ******/
       status: 'Pending',
       actionHistory: [{
         action: 'Upload',
@@ -193,7 +193,7 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
 
     await document.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'DOCUMENT_UPLOAD',
       performedBy: req.user.userId,
@@ -204,10 +204,10 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
       userAgent: req.get('user-agent')
     });
 
-    // Populate references before sending response
+    /****** Populating the references before sending response ******/
     await document.populate(['uploadedBy', 'initialDepartment', 'department', 'assignedTo']);
 
-    // Trigger AI processing in background (don't wait for it)
+    /****** Triggering the AI processing in background and not waiting for it ******/
     processDocumentWithAI(document._id, req.file.path, req.file.mimetype).catch(err => {
       console.error('AI processing error:', err);
     });
@@ -219,7 +219,7 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
     });
   } catch (error) {
     console.error('Upload error:', error);
-    // Delete uploaded file if document creation failed
+    /****** Deleting the uploaded file if document creation failed ******/
     if (req.file) {
       fs.unlinkSync(req.file.path);
     }
@@ -227,40 +227,40 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req, res) =
   }
 });
 
-// Get all documents (with filters)
+/****** Endpoitn to get all documents with filters ******/
 router.get('/', authMiddleware, async (req, res) => {
   try {
     const { category, status, urgency, search, page = 1, limit = 20, includeDeleted } = req.query;
 
     const query = {};
 
-    // Filter out soft-deleted documents by default (unless SUPER_ADMIN requests them)
+    /****** Filtering out soft-deleted documents by default unless SUPER_ADMIN requests them ******/
     if (includeDeleted !== 'true' || req.user.role !== 'SUPER_ADMIN') {
       query.isDeleted = { $ne: true };
     }
 
-    // Role-based filtering
+    /****** Role-based filtering ******/
     if (req.user.role === 'OFFICER') {
-      // Officers see only documents they uploaded
+      /****** Officers can see only documents they uploaded ******/
       query.uploadedBy = req.user.userId;
     } else if (req.user.role === 'DEPARTMENT_ADMIN') {
-      // Department admins see documents where:
-      // 1. initialDepartment matches (officer selected their dept during upload)
-      // 2. OR department matches (AI routing confirmed to their dept)
+      /****** Department admins see documents where:
+      1. initialDepartment matches (officer selected their dept during upload)
+      2. OR department matches (AI routing confirmed to their dept) ******/
       query.$or = [
         { initialDepartment: req.user.department },
         { department: req.user.department }
       ];
     } else if (req.user.role === 'AUDITOR') {
-      // Auditors can see all documents
+      /****** Auditors can see all documents ******/
     }
 
-    // Apply filters
+    /****** Applying the following filters ******/
     if (category) query.category = category;
     if (status) query.status = status;
     if (urgency) query.urgency = urgency;
     if (search) {
-      // Preserve role-based filtering when searching
+      /****** Preserve role-based filtering when searching ******/
       const searchConditions = [
         { title: { $regex: search, $options: 'i' } },
         { referenceNumber: { $regex: search, $options: 'i' } },
@@ -268,21 +268,21 @@ router.get('/', authMiddleware, async (req, res) => {
       ];
       
       if (query.$or) {
-        // For dept admins with existing $or, combine with search
+        /****** For dept admins with existing $or, combine with search ******/
         query.$and = [
           { $or: query.$or },
           { $or: searchConditions }
         ];
         delete query.$or;
       } else if (query.uploadedBy) {
-        // For officers, add search on top of uploadedBy filter
+        /****** For officers, add search on top of uploadedBy filter ******/
         query.$and = [
           { uploadedBy: query.uploadedBy },
           { $or: searchConditions }
         ];
         delete query.uploadedBy;
       } else {
-        // For auditors, just apply search
+        /****** For auditors, just apply search ******/
         query.$or = searchConditions;
       }
     }
@@ -313,7 +313,7 @@ router.get('/', authMiddleware, async (req, res) => {
   }
 });
 
-// Get document by ID
+/****** Endpoint to access the document by ID ******/
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
     const document = await Document.findById(req.params.id)
@@ -326,7 +326,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Document not found' });
     }
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'DOCUMENT_VIEW',
       performedBy: req.user.userId,
@@ -343,12 +343,12 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Perform action on document (approve/reject/forward)
+/****** Endpoint for performing action on document which includes approve/reject/forward ******/
 router.put('/:id/action', authMiddleware, async (req, res) => {
   try {
     const { action, notes, assignTo } = req.body;
 
-    // Validate action
+    /****** Validating the action ******/
     const validActions = ['Approve', 'Reject', 'Forward', 'Comment', 'Download', 'Print', 'View', 'Edit'];
     if (!validActions.includes(action)) {
       return res.status(400).json({ success: false, message: 'Invalid action' });
@@ -360,9 +360,9 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Document not found' });
     }
 
-    // Check if user has permission
-    // View, Download, Print, Comment - any logged in user can do
-    // Approve, Reject, Forward, Edit - requires assignment or admin role
+    /****** Checking if user has permissions 
+    View, Download, Print, Comment - any logged in user can do
+    Approve, Reject, Forward, Edit - requires assignment or admin role ******/
     const requiresPermission = ['Approve', 'Reject', 'Forward', 'Edit'].includes(action);
     
     if (requiresPermission) {
@@ -376,27 +376,27 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
       }
     }
 
-    // Update document status based on action
+    /****** Updating the document status based on action ******/
     if (action === 'Approve') {
       document.status = 'Approved';
-      // Notify document uploader
+      /****** Notifying the document uploader ******/
       if (document.uploadedBy) {
         await notifyDocumentApproved(document, document.uploadedBy, req.user.userId);
       }
     } else if (action === 'Reject') {
       document.status = 'Rejected';
-      // Notify document uploader
+      /****** Notifying the document uploader ******/
       if (document.uploadedBy) {
         await notifyDocumentRejected(document, document.uploadedBy, req.user.userId, notes);
       }
     } else if (action === 'Forward' && assignTo) {
       document.assignedTo = assignTo;
       document.status = 'In_Progress';
-      // Notify recipient
+      /****** Notifying the recipient ******/
       await notifyDocumentForwarded(document, assignTo, req.user.userId);
     }
 
-    // Log critical actions to blockchain (immutable audit trail)
+    /****** Loging critical actions to blockchain which are immutable audit trail******/
     if (['Approve', 'Reject', 'Forward'].includes(action)) {
       try {
         const User = require('../models/User');
@@ -424,10 +424,9 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
         }
       } catch (bcError) {
         console.error('Blockchain logging failed:', bcError.message);
-        // Continue without failing the action
       }
     } else if (action === 'Comment' && notes) {
-      // Notify document owner and assignee about comment
+      /****** Notifying document owner and assignee about comment ******/ 
       if (document.uploadedBy && document.uploadedBy.toString() !== req.user.userId) {
         await notifyCommentAdded(document, document.uploadedBy, req.user.userId, notes);
       }
@@ -436,7 +435,7 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
       }
     }
 
-    // Add to action history
+    /****** Adding to action history ******/
     document.actionHistory.push({
       action,
       performedBy: req.user.userId,
@@ -446,7 +445,7 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
 
     await document.save();
 
-    // Log audit with appropriate action type
+    /****** Loging audit with appropriate action type ******/
     const auditActionMap = {
       'Approve': 'DOCUMENT_APPROVE',
       'Reject': 'DOCUMENT_REJECT',
@@ -470,7 +469,7 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
 
 
 
-    // Populate references
+    /****** Populate references ******/
     await document.populate(['uploadedBy', 'assignedTo', 'department', 'actionHistory.performedBy']);
 
     res.json({
@@ -484,7 +483,7 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
   }
 });
 
-// Confirm AI routing suggestion
+/****** Post Endpoint for Confirm AI routing suggestion ******/
 router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
   try {
     const { confirmed, modifiedDepartment } = req.body;
@@ -495,7 +494,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Document not found' });
     }
 
-    // Check permission - only uploader or admin can confirm routing
+    /****** Check permission and only uploader or admin can confirm routing ******/
     if (document.uploadedBy.toString() !== req.user.userId && req.user.role !== 'SUPER_ADMIN') {
       return res.status(403).json({ success: false, message: 'Not authorized to confirm routing' });
     }
@@ -504,7 +503,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
     let finalDepartment = null;
 
     if (confirmed && !modifiedDepartment) {
-      // CONFIRM AI SUGGESTION
+      /****** CONFIRM AI SUGGESTION ******/
       finalDepartment = await Department.findOne({
         name: new RegExp(document.suggestedDepartment, 'i'),
         isActive: true
@@ -523,7 +522,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
       document.routingConfirmedAt = new Date();
       document.status = 'In_Progress';
 
-      // Add action to history
+      /****** Adding the action to history ******/
       document.actionHistory.push({
         action: 'ConfirmRouting',
         performedBy: req.user.userId,
@@ -534,7 +533,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
       console.log(`Routing confirmed: ${finalDepartment.name}`);
 
     } else if (modifiedDepartment) {
-      // OFFICER MODIFIED ROUTING
+      /****** OFFICER MODIFIED ROUTING ******/
       finalDepartment = await Department.findById(modifiedDepartment);
 
       if (finalDepartment) {
@@ -544,7 +543,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
         document.routingConfirmedAt = new Date();
         document.status = 'In_Progress';
 
-        // Add action to history
+        /****** Add action to history ******/
         document.actionHistory.push({
           action: 'Route',
           performedBy: req.user.userId,
@@ -556,7 +555,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
       }
     }
 
-    // Log routing confirmation to blockchain
+    /****** Log routing confirmation to blockchain ******/
     if (finalDepartment) {
       try {
         const User = require('../models/User');
@@ -589,13 +588,13 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
 
     await document.save();
 
-    // Send email notifications to department admin and officers
+    /****** Sending the email notifications to department admin and officers ******/
     if (finalDepartment) {
       try {
         const User = require('../models/User');
         const Notification = require('../models/Notification');
         
-        // Get all users in the department (admin + officers)
+        /****** Get all users in the department for admin and officers ******/
         const departmentUsers = await User.find({
           department: finalDepartment._id,
           isActive: true,
@@ -604,13 +603,13 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
 
         console.log(`Sending routing notifications to ${departmentUsers.length} users in ${finalDepartment.name}`);
 
-        // Get the user who confirmed routing
+        /****** Get the user who confirmed routing ******/
         const routingUser = await User.findById(req.user.userId);
         const routedBy = `${routingUser.firstName} ${routingUser.lastName}`;
 
-        // Send email and create in-app notification for each user
+        /****** Sending email and creating in-app notification for each user ******/
         for (const user of departmentUsers) {
-          // Create in-app notification
+          /****** Create in-app notification ******/
           await Notification.create({
             user: user._id,
             type: 'document_routed',
@@ -633,7 +632,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
           });
           console.log(`In-app notification created for ${user.firstName} ${user.lastName}`);
 
-          // Send email if user has email
+          /****** Sending email if user has email ******/
           if (user.email) {
             const result = await sendRoutingNotification(
               user.email,
@@ -650,11 +649,10 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
         }
       } catch (emailError) {
         console.error('Email notification error:', emailError.message);
-        // Don't fail the request if email fails
       }
     }
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'ROUTING_CONFIRMED',
       performedBy: req.user.userId,
@@ -669,7 +667,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
       userAgent: req.get('user-agent')
     });
 
-    // Populate references
+    /****** Populating the references ******/
     await document.populate(['uploadedBy', 'assignedTo', 'department', 'routingConfirmedBy']);
 
     res.json({
@@ -684,7 +682,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
   }
 });
 
-// Verify document on blockchain
+/****** Endpoitn to Verify document on blockchain ******/
 router.get('/:id/verify', authMiddleware, async (req, res) => {
   try {
     const document = await Document.findById(req.params.id);
@@ -716,7 +714,7 @@ router.get('/:id/verify', authMiddleware, async (req, res) => {
   }
 });
 
-// Soft delete document (SUPER_ADMIN only)
+/****** Soft delete document for SUPER ADMIN only ******/
 router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const { reason } = req.body;
@@ -731,14 +729,14 @@ router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req,
       return res.status(400).json({ success: false, message: 'Document is already deleted' });
     }
 
-    // Soft delete - mark as deleted (file stays on disk for recovery)
+    /****** Soft delete - mark as deleted but file will remain in disk ******/
     document.isDeleted = true;
     document.deletedAt = new Date();
     document.deletedBy = req.user.userId;
     document.deleteReason = reason || 'No reason provided';
     await document.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'DOCUMENT_DELETE',
       performedBy: req.user.userId,
@@ -763,7 +761,7 @@ router.delete('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req,
   }
 });
 
-// Restore deleted document (SUPER_ADMIN only)
+/****** Restore deleted document for super admin only ******/
 router.post('/:id/restore', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const document = await Document.findById(req.params.id);
@@ -776,14 +774,14 @@ router.post('/:id/restore', authMiddleware, roleMiddleware('SUPER_ADMIN'), async
       return res.status(400).json({ success: false, message: 'Document is not deleted' });
     }
 
-    // Restore document
+    /****** Restore document ******/
     document.isDeleted = false;
     document.deletedAt = null;
     document.deletedBy = null;
     document.deleteReason = null;
     await document.save();
 
-    // Log restoration
+    /****** Log restoration ******/
     await AuditLog.create({
       action: 'DOCUMENT_RESTORE',
       performedBy: req.user.userId,
@@ -804,7 +802,7 @@ router.post('/:id/restore', authMiddleware, roleMiddleware('SUPER_ADMIN'), async
   }
 });
 
-// Permanent delete (SUPER_ADMIN only - for archived/deleted documents)
+// /****** Permanent delete for super admin only ******/
 router.delete('/:id/permanent', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const document = await Document.findById(req.params.id);
@@ -820,15 +818,15 @@ router.delete('/:id/permanent', authMiddleware, roleMiddleware('SUPER_ADMIN'), a
       });
     }
 
-    // Delete file from filesystem
+    /****** Deleting file from filesystem ******/
     if (fs.existsSync(document.fileUrl)) {
       fs.unlinkSync(document.fileUrl);
     }
 
-    // Permanent delete from database
+    /****** Permanent deletion from database ******/
     await Document.findByIdAndDelete(req.params.id);
 
-    // Log permanent deletion
+    /****** Log permanent deletion ******/
     await AuditLog.create({
       action: 'DOCUMENT_PERMANENT_DELETE',
       performedBy: req.user.userId,
@@ -845,12 +843,12 @@ router.delete('/:id/permanent', authMiddleware, roleMiddleware('SUPER_ADMIN'), a
   }
 });
 
-// Get document statistics (dashboard)
+/****** Get document statistics for dashboard ******/
 router.get('/stats/overview', authMiddleware, async (req, res) => {
   try {
     const query = {};
 
-    // Role-based filtering
+    /****** Role-based filtering ******/
     if (req.user.role === 'OFFICER' || req.user.role === 'DEPARTMENT_ADMIN') {
       query.$or = [
         { uploadedBy: req.user.userId },
@@ -883,7 +881,7 @@ router.get('/stats/overview', authMiddleware, async (req, res) => {
   }
 });
 
-// Download/Preview document file (public endpoint)
+/****** Download/Preview document file serve as public endpoint ******/
 router.get('/:id/download', async (req, res) => {
   try {
     const document = await Document.findById(req.params.id);
@@ -892,10 +890,10 @@ router.get('/:id/download', async (req, res) => {
       return res.status(404).json({ success: false, message: 'Document not found' });
     }
 
-    // Send file for preview or download
+    // /****** Sending file for preview or download ******
     const filePath = path.join(__dirname, '..', document.fileUrl);
     
-    // Set proper headers for PDF preview
+    /****** Setting up proper headers for PDF preview ******/
     if (document.fileType === 'application/pdf') {
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', 'inline');

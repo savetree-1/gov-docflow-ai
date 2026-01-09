@@ -4,12 +4,12 @@ const Department = require('../models/Department');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 
-// Register new department
+/****** Registering a new department ******/
 router.post('/register', authMiddleware, roleMiddleware('DEPARTMENT_ADMIN', 'SUPER_ADMIN'), async (req, res) => {
   try {
     const { name, code, nodalOfficer } = req.body;
 
-    // Check if department already exists
+    /****** Checking if department already exists ******/
     const existingDept = await Department.findOne({ $or: [{ name }, { code }] });
     if (existingDept) {
       return res.status(400).json({ 
@@ -18,7 +18,7 @@ router.post('/register', authMiddleware, roleMiddleware('DEPARTMENT_ADMIN', 'SUP
       });
     }
 
-    // Create new department
+    /****** Setting up a new department ******/
     const department = new Department({
       name,
       code,
@@ -58,14 +58,14 @@ router.post('/register', authMiddleware, roleMiddleware('DEPARTMENT_ADMIN', 'SUP
   }
 });
 
-// Get all departments (public endpoint - no auth required)
+/****** Get all departments without authentication ******/
 router.get('/', async (req, res) => {
   try {
     const { status, isActive, search, page = 1, limit = 20 } = req.query;
 
     const query = {};
 
-    // Apply filters
+    /****** Applying the filters for departments ******/
     if (status) query.status = status;
     if (isActive !== undefined) query.isActive = isActive === 'true';
     if (search) {
@@ -98,7 +98,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get department by ID
+/****** Access department by ID ******/
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
     const department = await Department.findById(req.params.id)
@@ -115,7 +115,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Approve department (super admin only)
+/****** Approve department for super admins ******/
 router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const department = await Department.findById(req.params.id);
@@ -136,7 +136,7 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
 
     await department.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'DEPARTMENT_APPROVE',
       performedBy: req.user.userId,
@@ -157,7 +157,7 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
   }
 });
 
-// Reject department (super admin only)
+/****** Reject department for super admins ******/
 router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const { reason } = req.body;
@@ -174,7 +174,7 @@ router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (
 
     await department.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'DEPARTMENT_REJECT',
       performedBy: req.user.userId,
@@ -196,7 +196,7 @@ router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (
   }
 });
 
-// Update department
+/****** Updating the departments ******/
 router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADMIN'), async (req, res) => {
   try {
     const { name, nodalOfficer, isActive } = req.body;
@@ -207,7 +207,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
       return res.status(404).json({ success: false, message: 'Department not found' });
     }
 
-    // Update fields
+    /****** Updating the fields ******/
     if (name) department.name = name;
     if (nodalOfficer) {
       department.nodalOfficer = {
@@ -234,7 +234,7 @@ router.put('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'DEPARTMENT_ADM
   }
 });
 
-// Get department statistics (super admin only)
+/****** Get Endpoint department statistics for super admin ******/
 router.get('/stats/overview', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const [total, active, pending, approved, rejected] = await Promise.all([

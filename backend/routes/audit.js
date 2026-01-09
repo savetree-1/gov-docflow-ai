@@ -3,7 +3,7 @@ const router = express.Router();
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 
-// Get audit logs
+/****** Get EndPoint for audit logs ******/
 router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR'), async (req, res) => {
   try {
     const { 
@@ -17,7 +17,7 @@ router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR'), async 
 
     const query = {};
 
-    // Apply filters
+    /****** Applying filters ******/
     if (action) query.action = action;
     if (performedBy) query.performedBy = performedBy;
     if (startDate || endDate) {
@@ -52,7 +52,7 @@ router.get('/', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR'), async 
   }
 });
 
-// Get audit log by ID
+/****** Get Endpoint for audit log by ID ******/
 router.get('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR'), async (req, res) => {
   try {
     const log = await AuditLog.findById(req.params.id)
@@ -72,7 +72,7 @@ router.get('/:id', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR'), asy
   }
 });
 
-// Get audit logs for specific document
+/****** Get Endpoint for audit logs for specific document ******/
 router.get('/document/:documentId', authMiddleware, async (req, res) => {
   try {
     const logs = await AuditLog.find({ targetDocument: req.params.documentId })
@@ -86,7 +86,7 @@ router.get('/document/:documentId', authMiddleware, async (req, res) => {
   }
 });
 
-// Get audit logs for specific user
+/****** Get Endpoint for audit logs for specific user ******/
 router.get('/user/:userId', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR'), async (req, res) => {
   try {
     const logs = await AuditLog.find({ 
@@ -108,7 +108,7 @@ router.get('/user/:userId', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDIT
   }
 });
 
-// Get audit statistics
+/****** Get Endpoitn for audit statistics ******/
 router.get('/stats/overview', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR'), async (req, res) => {
   try {
     const { startDate, endDate } = req.query;
@@ -172,7 +172,7 @@ router.get('/stats/overview', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUD
   }
 });
 
-// Export audit logs (CSV format)
+/****** Get Endpoint for Exporting audit logs in teh form of CSV file ******/
 router.get('/export/csv', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR'), async (req, res) => {
   try {
     const { startDate, endDate, action } = req.query;
@@ -189,9 +189,9 @@ router.get('/export/csv', authMiddleware, roleMiddleware('SUPER_ADMIN', 'AUDITOR
       .populate('performedBy', 'firstName lastName email employeeId')
       .populate('targetDocument', 'title referenceNumber')
       .sort({ timestamp: -1 })
-      .limit(10000); // Limit export to 10k records
+      .limit(10000); /****** Limiting the export to 10k records to avoid chaos ******/
 
-    // Generate CSV
+    /****** Generate CSV ******/
     let csv = 'Timestamp,Action,Performed By,Email,Employee ID,Document,Details,IP Address\n';
     
     logs.forEach(log => {
