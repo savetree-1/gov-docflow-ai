@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Department = require('../models/Department');
+const User = require('../models/User');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 
@@ -136,6 +137,17 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
 
     await department.save();
 
+    // Activate all users in this department (admins and officers)
+    await User.updateMany(
+      { department: department._id },
+      { 
+        $set: { 
+          isApproved: true,
+          isActive: true 
+        } 
+      }
+    );
+
     // Log audit
     await AuditLog.create({
       action: 'DEPARTMENT_APPROVE',
@@ -173,6 +185,17 @@ router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (
     department.rejectionReason = reason;
 
     await department.save();
+
+    // Deactivate all users in this department
+    await User.updateMany(
+      { department: department._id },
+      { 
+        $set: { 
+          isApproved: false,
+          isActive: false 
+        } 
+      }
+    );
 
     // Log audit
     await AuditLog.create({

@@ -8,7 +8,9 @@ const connectDB = async () => {
       serverSelectionTimeoutMS: 5000,
     });
 
-    console.log('MongoDB Connected');
+    const dbName = mongoose.connection.db.databaseName;
+    console.log('✅ MongoDB Connected');
+    console.log(`📊 Database: ${dbName}`);
   } catch (error) {
     console.error('MongoDB connection failed:', error.message);
     process.exit(1);
