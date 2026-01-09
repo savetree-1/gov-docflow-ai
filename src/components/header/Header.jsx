@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import emblemIndia from "../../img/emblem-india.jpeg";
 import uttarakhandLogo from "../../img/ukrajya.png";
 import mygovLogo from "../../img/mygov.png";
@@ -15,6 +15,7 @@ import userIcon from "../../img/user_icon.svg";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.authReducer?.user?.data);
@@ -25,6 +26,20 @@ const Header = () => {
   const [show, setShow] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("en");
+
+  // Check if current page is a dashboard/protected page
+  const isDashboardPage = location.pathname.includes('/dashboard') || 
+                          location.pathname.startsWith('/admin/') || 
+                          location.pathname.startsWith('/department/') ||
+                          location.pathname.startsWith('/officer/') ||
+                          location.pathname.startsWith('/audit/') ||
+                          location.pathname === '/settings' ||
+                          location.pathname === '/my-documents' ||
+                          location.pathname.startsWith('/document/upload') ||
+                          location.pathname.startsWith('/document/detail') ||
+                          location.pathname === '/notifications' ||
+                          location.pathname.startsWith('/routing') ||
+                          (location.pathname.includes('/users') && location.pathname !== '/');
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
@@ -226,7 +241,7 @@ const Header = () => {
           </ul>
 
           {/* Auth Section Desktop */}
-          {isAuthenticated ? (
+          {isAuthenticated && isDashboardPage ? (
             <div 
               className="user-profile-nav"
               onMouseEnter={() => setShow(true)}
@@ -349,23 +364,42 @@ const Header = () => {
             >
               Home
             </button>
-            {isAuthenticated && (
-              <>
-                <button 
-                  onClick={() => { navigate("/dashboard"); setMobileMenuOpen(false); }} 
-                  className="mobile-nav-link"
-                  aria-label="Navigate to Dashboard"
-                >
-                  Dashboard
-                </button>
-                <button 
-                  onClick={() => { navigate("/addProduct"); setMobileMenuOpen(false); }} 
-                  className="mobile-nav-link"
-                  aria-label="Add new product"
-                >
-                  Add Product
-                </button>
-              </>
+            <button 
+              onClick={() => { navigate("/about"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to About"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => { navigate("/how-it-works"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to How It Works"
+            >
+              How It Works
+            </button>
+            <button 
+              onClick={() => { navigate("/departments"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to Departments"
+            >
+              Departments
+            </button>
+            {isAuthenticated && isDashboardPage && (
+              <button 
+                onClick={() => { 
+                  const roleRoute = user?.role === 'SUPER_ADMIN' ? '/admin/dashboard' : 
+                                   user?.role === 'DEPARTMENT_ADMIN' ? '/department/dashboard' : 
+                                   user?.role === 'AUDITOR' ? '/auditor/dashboard' : 
+                                   '/dashboard';
+                  navigate(roleRoute); 
+                  setMobileMenuOpen(false); 
+                }} 
+                className="mobile-nav-link"
+                aria-label="Navigate to Dashboard"
+              >
+                Dashboard
+              </button>
             )}
             <button 
               onClick={() => { navigate("/help"); setMobileMenuOpen(false); }} 
@@ -373,6 +407,13 @@ const Header = () => {
               aria-label="Navigate to Help"
             >
               Help
+            </button>
+            <button 
+              onClick={() => { navigate("/whats-new"); setMobileMenuOpen(false); }} 
+              className="mobile-nav-link"
+              aria-label="Navigate to What's New"
+            >
+              What's New
             </button>
             <button 
               onClick={() => { navigate("/faq"); setMobileMenuOpen(false); }} 
