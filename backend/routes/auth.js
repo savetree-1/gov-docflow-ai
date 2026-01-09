@@ -9,7 +9,7 @@ const User = require('../models/User');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware } = require('../middleware/auth');
 
-// Configure multer for profile photo uploads
+/****** Configuring multer for profile photo uploads ******/
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const uploadDir = path.join(__dirname, '../uploads/profiles');
@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 2 * 1024 * 1024 }, // 2MB limit
+  limits: { fileSize: 2 * 1024 * 1024 }, /****** 2MB limit ******/
   fileFilter: function (req, file, cb) {
     const allowedTypes = /jpeg|jpg|png/;
     const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
@@ -41,12 +41,12 @@ const upload = multer({
   }
 });
 
-// Register new user
+/****** Post EndPoint for registering new user ******/
 router.post('/register', async (req, res) => {
   try {
     const { firstName, lastName, email, password, phone, employeeId, role, departmentId } = req.body;
 
-    // Check if user already exists
+    /****** Checking if the user already exists ******/
     const existingUser = await User.findOne({ $or: [{ email }, { employeeId }] });
     if (existingUser) {
       return res.status(400).json({ 
@@ -55,10 +55,10 @@ router.post('/register', async (req, res) => {
       });
     }
 
-    // Hash password
+    /****** Hash password for auth******/
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user
+    /****** Creating new user ******/
     const user = new User({
       firstName,
       lastName,
@@ -69,12 +69,12 @@ router.post('/register', async (req, res) => {
       role: role || 'OFFICER',
       department: departmentId,
       isActive: true,
-      isApproved: role === 'OFFICER' // Officers auto-approved, admins need super admin approval
+      isApproved: role === 'OFFICER' /****** Officers auto-approved, admins need super admin approval ******/
     });
 
     await user.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'REGISTER',
       performedBy: user._id,
@@ -99,18 +99,18 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login
+/****** Login Endpoint ******/
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Find user
+    /****** Finding user ******/
     const user = await User.findOne({ email }).populate('department');
     if (!user) {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 
-    // Check if user is active and approved
+    /****** Checking if the user is active and approved ******/
     if (!user.isActive) {
       return res.status(403).json({ success: false, message: 'Account is deactivated' });
     }
@@ -118,18 +118,18 @@ router.post('/login', async (req, res) => {
       return res.status(403).json({ success: false, message: 'Account pending approval' });
     }
 
-    // Verify password
+    /****** Verifying the password for auth******/
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 
-    // Generate tokens
+    /****** Tokens Generations ******/
     const accessToken = jwt.sign(
       { 
         userId: user._id, 
         role: user.role,
-        department: user.department  // Add department to JWT
+        department: user.department 
       },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
@@ -141,7 +141,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: '7d' }
     );
 
-    // Log audit
+    /****** Loging audit ******/
     await AuditLog.create({
       action: 'LOGIN',
       performedBy: user._id,
@@ -174,7 +174,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Refresh token
+/****** Post Endpoint for Refresh token ******/
 router.post('/refresh', async (req, res) => {
   try {
     const { refreshToken } = req.body;
@@ -183,16 +183,16 @@ router.post('/refresh', async (req, res) => {
       return res.status(401).json({ success: false, message: 'Refresh token required' });
     }
 
-    // Verify refresh token
+    /****** Verifying the refresh token ******/
     const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
     
-    // Get user to include latest role and department
+    /****** Taking user to include latest role and department ******/
     const user = await User.findById(decoded.userId).select('role department');
     if (!user) {
       return res.status(401).json({ success: false, message: 'User not found' });
     }
     
-    // Generate new access token
+    /****** Generating a new access token ******/
     const accessToken = jwt.sign(
       { 
         userId: user._id,
@@ -212,7 +212,7 @@ router.post('/refresh', async (req, res) => {
   }
 });
 
-// Logout
+/****** Post Endpoint for Logout functionality ******/
 router.post('/logout', authMiddleware, async (req, res) => {
   try {
     // Log audit
@@ -231,7 +231,7 @@ router.post('/logout', authMiddleware, async (req, res) => {
   }
 });
 
-// Get current user profile
+/****** Get Endpoint for current user profile ******/
 router.get('/me', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId)
@@ -242,7 +242,7 @@ router.get('/me', authMiddleware, async (req, res) => {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    // Convert to plain object and add full URL for profile photo
+    /****** Conversion to plain object and add full URL for profile photo storage******/
     const userData = user.toObject();
     if (userData.profilePhoto) {
       userData.profilePhoto = `${process.env.BASE_URL || 'http://localhost:5001'}${userData.profilePhoto}`;
@@ -255,7 +255,7 @@ router.get('/me', authMiddleware, async (req, res) => {
   }
 });
 
-// Update user profile
+/****** Put Endpoint for update user profile functionality ******/
 router.put('/profile', authMiddleware, async (req, res) => {
   try {
     const { firstName, lastName, phone, preferences } = req.body;
@@ -281,20 +281,20 @@ router.put('/profile', authMiddleware, async (req, res) => {
   }
 });
 
-// Change password
+/****** Put Endpoint for Change password ******/
 router.put('/change-password', authMiddleware, async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
 
     const user = await User.findById(req.user.userId);
     
-    // Verify current password
+    /****** Verifying the current password ******/
     const isValid = await bcrypt.compare(currentPassword, user.password);
     if (!isValid) {
       return res.status(400).json({ success: false, message: 'Current password is incorrect' });
     }
 
-    // Hash and save new password
+    /****** Hashing the new password and save ******/
     user.password = await bcrypt.hash(newPassword, 10);
     await user.save();
 
@@ -313,11 +313,11 @@ router.put('/change-password', authMiddleware, async (req, res) => {
   }
 });
 
-// Upload profile photo
+/****** Put Endpoint for Upload profile photo ******/
 router.post('/upload-photo', authMiddleware, (req, res, next) => {
   upload.single('profilePhoto')(req, res, (err) => {
     if (err instanceof multer.MulterError) {
-      // Multer-specific errors
+      /****** Multer-specific errors ******/
       if (err.code === 'LIMIT_FILE_SIZE') {
         return res.status(400).json({ 
           success: false, 
@@ -329,7 +329,7 @@ router.post('/upload-photo', authMiddleware, (req, res, next) => {
         message: `Upload error: ${err.message}` 
       });
     } else if (err) {
-      // Other errors
+      /****** Other errors ******/
       return res.status(400).json({ 
         success: false, 
         message: err.message || 'Failed to upload file' 
@@ -345,14 +345,14 @@ router.post('/upload-photo', authMiddleware, (req, res, next) => {
 
     const user = await User.findById(req.user.userId);
     if (!user) {
-      // Delete uploaded file if user not found
+      /****** Deleting the uploaded file if user not found ******/
       if (fs.existsSync(req.file.path)) {
         fs.unlinkSync(req.file.path);
       }
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    // Delete old profile photo if exists
+    /****** Deleting the old profile photo if exists ******/
     if (user.profilePhoto) {
       const oldPhotoPath = path.join(__dirname, '..', user.profilePhoto);
       if (fs.existsSync(oldPhotoPath)) {
@@ -364,12 +364,12 @@ router.post('/upload-photo', authMiddleware, (req, res, next) => {
       }
     }
 
-    // Save new photo path (relative to backend root)
+    /****** Saving the new photo path ******/
     const photoPath = `/uploads/profiles/${req.file.filename}`;
     user.profilePhoto = photoPath;
     await user.save();
 
-    // Log audit
+    /****** Log audit ******/
     await AuditLog.create({
       action: 'UPDATE_PROFILE_PHOTO',
       performedBy: user._id,
@@ -387,7 +387,7 @@ router.post('/upload-photo', authMiddleware, (req, res, next) => {
     });
   } catch (error) {
     console.error('Upload photo error:', error);
-    // Delete uploaded file if error occurs
+    /****** Delete uploaded file if error occurs ******/
     if (req.file && fs.existsSync(req.file.path)) {
       try {
         fs.unlinkSync(req.file.path);

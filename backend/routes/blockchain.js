@@ -1,16 +1,14 @@
-/**
- * Blockchain Verification API Endpoint
- */
+/******* Blockchain Verification API Endpoint ******/
 
 const express = require('express');
 const router = express.Router();
 const blockchainService = require('../services/blockchain');
 const { authMiddleware } = require('../middleware/auth');
 
-/**
- * Verify document integrity against blockchain
- * GET /api/blockchain/verify/:documentId
- */
+/******
+      Verifing the document integrity against blockchain
+      GET /api/blockchain/verify/:documentId
+******/
 router.get('/verify/:documentId', authMiddleware, async (req, res) => {
   try {
     const { documentId } = req.params;
@@ -43,10 +41,10 @@ router.get('/verify/:documentId', authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * Check blockchain service status
- * GET /api/blockchain/status
- */
+/******
+    Check blockchain service status
+    GET /api/blockchain/status
+******/
 router.get('/status', authMiddleware, async (req, res) => {
   try {
     const enabled = blockchainService.isEnabled();
