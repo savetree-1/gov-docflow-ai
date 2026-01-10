@@ -102,18 +102,30 @@ const Login = ({ onClick }) => {
 		localStorage.setItem("refreshToken", data.data.refreshToken);
 		localStorage.setItem("user", JSON.stringify(data.data.user));
 		
+		console.log('Saving cookies...', {
+			accessToken: data.data.accessToken.substring(0, 20) + '...',
+			refreshToken: data.data.refreshToken.substring(0, 20) + '...'
+		});
+		
 		Cookies.set("access-token", data.data.accessToken, {
 			path: "/",
-			expires: new Date().setDate(new Date().getDate() + 1)
+			expires: 1, // 1 day from now
+			sameSite: 'Lax'
 		});
 		Cookies.set("refresh-token", data.data.refreshToken, {
 			path: "/",
-			expires: new Date().setDate(new Date().getDate() + 1)
+			expires: 7, // 7 days from now
+			sameSite: 'Lax'
 		});
 		Cookies.set("uuid", data.data.user.id, {
 			path: "/",
-			expires: new Date().setDate(new Date().getDate() + 1)
+			expires: 1,
+			sameSite: 'Lax'
 		});
+		
+		console.log('Cookies set, verifying...');
+		console.log('access-token exists:', !!Cookies.get('access-token'));
+		console.log('refresh-token exists:', !!Cookies.get('refresh-token'));
 		
 		dispatch(getLoginAction());
 		dispatch(

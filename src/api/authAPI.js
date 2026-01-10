@@ -78,14 +78,22 @@ export const verifyOtpLogin = async ({ phone_number, otp }) => {
 };
 
 export const renewAccessToken = async () => {
-  const refresh_token = Cookies.get("refresh-token");
+  const refresh_token = localStorage.getItem("refreshToken");
+  console.log('Attempting token refresh with:', refresh_token ? 'Token exists' : 'No token found');
+  
+  if (!refresh_token) {
+    return Promise.reject('No refresh token available');
+  }
+  
   try {
-    const res = await axios.post(`${url}/api/token/refresh/`, {
-      refresh: refresh_token
+    const res = await axios.post(`${url}/api/auth/refresh`, {
+      refreshToken: refresh_token
     });
+    console.log('Token refresh successful');
     return Promise.resolve(res.data);
   } catch (err) {
-    return Promise.reject(err.response?.data?.msg);
+    console.error('Token refresh failed:', err.response?.data || err.message);
+    return Promise.reject(err.response?.data?.msg || err.message);
   }
 };
 
