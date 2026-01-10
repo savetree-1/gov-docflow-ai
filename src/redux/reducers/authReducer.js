@@ -25,9 +25,18 @@ const authReducer = (state = initialstate, action) => {
       };
 
     case "LOGOUT":
+      // Clear localStorage when logging out
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('user');
       return {
         ...state,
         isLoggedIn: false,
+        user: {
+          data: {
+            first_name: "",
+          },
+        },
       };
 
     default:

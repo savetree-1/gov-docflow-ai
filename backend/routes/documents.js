@@ -283,13 +283,9 @@ router.get('/', authMiddleware, async (req, res) => {
       // Officers see only documents they uploaded
       query.uploadedBy = req.user.userId;
     } else if (req.user.role === 'DEPARTMENT_ADMIN') {
-      // Department admins see documents where:
-      // 1. initialDepartment matches (officer selected their dept during upload)
-      // 2. OR department matches (AI routing confirmed to their dept)
-      query.$or = [
-        { initialDepartment: req.user.department },
-        { department: req.user.department }
-      ];
+      // Department admins see only documents routed to their department
+      // (not documents initially uploaded by officers from their dept)
+      query.department = req.user.department;
     } else if (req.user.role === 'AUDITOR') {
       // Auditors can see all documents
     }
@@ -306,22 +302,22 @@ router.get('/', authMiddleware, async (req, res) => {
         { tags: { $in: [new RegExp(search, 'i')] } }
       ];
       
-      if (query.$or) {
-        // For dept admins with existing $or, combine with search
-        query.$and = [
-          { $or: query.$or },
-          { $or: searchConditions }
-        ];
-        delete query.$or;
-      } else if (query.uploadedBy) {
+      if (query.uploadedBy) {
         // For officers, add search on top of uploadedBy filter
         query.$and = [
           { uploadedBy: query.uploadedBy },
           { $or: searchConditions }
         ];
         delete query.uploadedBy;
+      } else if (query.department && req.user.role === 'DEPARTMENT_ADMIN') {
+        // For dept admins, add search on top of department filter
+        query.$and = [
+          { department: query.department },
+          { $or: searchConditions }
+        ];
+        delete query.department;
       } else {
-        // For auditors, just apply search
+        // For auditors and others, just apply search
         query.$or = searchConditions;
       }
     }

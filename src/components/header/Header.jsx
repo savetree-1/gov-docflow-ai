@@ -22,7 +22,24 @@ const Header = () => {
   const user = useSelector((state) => state.authReducer?.user?.data);
   const isLoggedIn = useSelector((state) => state.authReducer?.isLoggedIn);
   const token = useSelector((state) => state.tokenReducer?.token?.accessToken);
-  const isAuthenticated = isLoggedIn && (token || localStorage.getItem('accessToken'));
+  
+  // Enhanced authentication check
+  const hasToken = token || localStorage.getItem('accessToken');
+  const hasUserData = user && (user.firstName || user.email || user.id);
+  const isAuthenticated = (isLoggedIn && hasToken) || (hasToken && hasUserData);
+
+  // Debug authentication state (remove in production)
+  useEffect(() => {
+    console.log('Header Auth Debug:', {
+      user: user ? { firstName: user.firstName, email: user.email, id: user.id } : null,
+      isLoggedIn,
+      hasToken: !!hasToken,
+      hasUserData,
+      isAuthenticated,
+      isDashboardPage,
+      pathname: location.pathname
+    });
+  }, [user, isLoggedIn, hasToken, hasUserData, isAuthenticated, isDashboardPage, location.pathname]);
 
   const [show, setShow] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -38,8 +55,7 @@ const Header = () => {
                           location.pathname === '/settings' ||
                           location.pathname === '/my-documents' ||
                           location.pathname.startsWith('/document/upload') ||
-                          location.pathname.startsWith('/document/detail') ||
-                          location.pathname === '/notifications' ||
+                          location.pathname.startsWith('/document/') ||                          location.pathname.startsWith('/document/') ||                          location.pathname === '/notifications' ||
                           location.pathname.startsWith('/routing') ||
                           (location.pathname.includes('/users') && location.pathname !== '/');
 
