@@ -18,12 +18,12 @@ const { extractText } = require('./services/ocrService');
     console.log('Document:', doc.title);
     console.log('File path:', doc.fileUrl);
     
-    // Extracting the text from document
+    /****** Extracting the text from document ******/
     console.log('Extracting text from document...');
     const extraction = await extractText(doc.fileUrl, doc.fileType);
     console.log('Extracted', extraction.text.length, 'characters');
     
-    // Generating the AI summary off the extracted text
+    /****** Generating the AI summary off the extracted text ******/
     console.log('Generating AI summary...');
     const summary = await generateSummary(extraction.text, {
       title: doc.title,
@@ -32,7 +32,7 @@ const { extractText } = require('./services/ocrService');
     
     console.log('AI Summary generated!');
     
-    // Saving the summary to DB
+    /****** Saving the summary to DB ******/
     doc.summary = summary.summary;
     doc.keyPoints = summary.keyPoints;
     doc.urgency = summary.priority || doc.urgency;

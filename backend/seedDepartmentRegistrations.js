@@ -1,7 +1,4 @@
-/**
- * Seed Department Registrations
- * Create sample departments with various approval statuses
- */
+/****** Module for Seed Department Registrations which will create sample departments with various approval statuses ******/
 
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -12,7 +9,7 @@ async function seedDepartmentRegistrations() {
     await mongoose.connect(process.env.MONGO_URI || process.env.MONGODB_URI);
     console.log('Connected to MongoDB\n');
 
-    // Sample departments with different statuses
+    /****** Adding up the sample departments with different statuses ******/
     const sampleDepartments = [
       {
         name: 'Department of Rural Development',
@@ -27,7 +24,7 @@ async function seedDepartmentRegistrations() {
         },
         approvalStatus: 'Pending',
         isActive: false,
-        createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+        createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) /****** Setting 2 days ago ******/
       },
       {
         name: 'Department of Urban Affairs',
@@ -127,7 +124,7 @@ async function seedDepartmentRegistrations() {
 
     console.log('Creating sample department registrations...\n');
 
-    // Check if departments with these codes already exist
+    /****** Checking if departments with these codes already exist ******/
     for (const dept of sampleDepartments) {
       const exists = await Department.findOne({ code: dept.code });
       if (exists) {
@@ -139,9 +136,9 @@ async function seedDepartmentRegistrations() {
       }
     }
 
-    console.log('\n✅ Department registrations seeded successfully!\n');
+    console.log('\nDepartment registrations seeded successfully!\n');
 
-    // Show summary
+    /****** Showing the summary ******/
     const summary = await Department.aggregate([
       { $group: { _id: '$approvalStatus', count: { $sum: 1 } } },
       { $sort: { _id: 1 } }
@@ -151,7 +148,7 @@ async function seedDepartmentRegistrations() {
     summary.forEach(s => console.log(`  ${s._id}: ${s.count}`));
     console.log('');
 
-    console.log('🎉 Refresh your dashboard to see the registrations!\n');
+    console.log('Refresh your dashboard to see the registrations!\n');
 
     await mongoose.connection.close();
   } catch (error) {

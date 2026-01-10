@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 
-// Load environment variables
+/****** Loading the environment variables ******/
 dotenv.config();
 
-// Import models
+/****** Importing models ******/
 const User = require('./models/User');
 const Department = require('./models/Department');
 
-// Connect to MongoDB
+/****** Connecting to MongoDB ******/
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -20,9 +20,9 @@ mongoose.connect(process.env.MONGO_URI, {
   process.exit(1);
 });
 
-// Testing the users data
+/****** Testing the users data for seeding ******/
 const testUsers = [
-  // SUPER ADMIN (1)
+  /****** SUPER ADMIN with frequency 1******/
   {
     firstName: 'Super',
     lastName: 'Admin',
@@ -34,7 +34,7 @@ const testUsers = [
     isActive: true
   },
   
-  // DEPARTMENT ADMINS (5)
+  /****** DEPARTMENT ADMINS with frequency 5 ******/
   {
     firstName: 'Finance',
     lastName: 'Admin',
@@ -86,8 +86,8 @@ const testUsers = [
     isActive: true
   },
   
-  // OFFICERS (10 - 2 per department)
-  // Finance Department
+  /****** OFFICERS with frequncy around 10 to 2 per department ******/
+  /****** Finance Department ******/
   {
     firstName: 'Suresh',
     lastName: 'Patel',
@@ -109,7 +109,7 @@ const testUsers = [
     isActive: true
   },
   
-  // Disaster Management
+  /****** Disaster Management ******/
   {
     firstName: 'Anil',
     lastName: 'Singh',
@@ -131,7 +131,7 @@ const testUsers = [
     isActive: true
   },
   
-  // Weather (Meteorology)
+  /****** Weather ******/
   {
     firstName: 'Deepak',
     lastName: 'Joshi',
@@ -153,7 +153,7 @@ const testUsers = [
     isActive: true
   },
   
-  // Agriculture
+  /****** Agriculture ******/
   {
     firstName: 'Ravi',
     lastName: 'Yadav',
@@ -175,7 +175,7 @@ const testUsers = [
     isActive: true
   },
   
-  // Infrastructure
+  /****** Infrastructure ******/
   {
     firstName: 'Sanjay',
     lastName: 'Malhotra',
@@ -197,7 +197,7 @@ const testUsers = [
     isActive: true
   },
   
-  // AUDITORS (2)
+  /****** AUDITORS with frequncy 2 ******/
   {
     firstName: 'Ramesh',
     lastName: 'Iyer',
@@ -220,7 +220,7 @@ const testUsers = [
   }
 ];
 
-// Test departments
+/****** Test departments ******/  
 const testDepartments = [
   {
     name: 'Finance Department',
@@ -288,18 +288,18 @@ async function seedDatabase() {
   try {
     console.log('\nStarting database seeding...\n');
 
-    // Clearing existing data
+    /****** Clearing existing data ******/
     console.log('Clearing existing data...');
     await User.deleteMany({});
     await Department.deleteMany({});
     console.log('Existing data cleared\n');
 
-    // Creating departments
+    /****** Creating departments ******/
     console.log(' Creating departments...');
     const departments = await Department.insertMany(testDepartments);
     console.log(`Created ${departments.length} departments\n`);
 
-    // Creating users and link to departments
+    /****** Creating users and link to departments ******/
     console.log(' Creating users...');
     const usersToCreate = [];
 
@@ -308,7 +308,7 @@ async function seedDatabase() {
       
       let departmentId = null;
       
-      // Assigning department admins to their respective departments
+      /****** Assigning department admins to their respective departments ******/
       if (userData.role === 'DEPARTMENT_ADMIN') {
         if (userData.email === 'finance.admin@pravah.gov.in') {
           departmentId = departments.find(d => d.code === 'FIN')._id;
@@ -322,7 +322,7 @@ async function seedDatabase() {
           departmentId = departments.find(d => d.code === 'INF')._id;
         }
       } 
-      // Assigning officers to their respective departments based on employee ID prefix
+      /****** Assigning officers to their respective departments based on employee ID prefix ******/
       else if (userData.role === 'OFFICER') {
         if (userData.employeeId.startsWith('FIN-')) {
           departmentId = departments.find(d => d.code === 'FIN')._id;
@@ -347,7 +347,7 @@ async function seedDatabase() {
     const users = await User.insertMany(usersToCreate);
     console.log(`Created ${users.length} users\n`);
 
-    // Displaying out the login credentials
+    /****** Displaying out the login credentials ******/
     console.log('Login Credentials:\n');
     console.log('=' .repeat(80));
     console.log('Role\t\t\tEmail\t\t\t\tPassword');
@@ -365,5 +365,5 @@ async function seedDatabase() {
   }
 }
 
-// Runing the seeding function
-seedDatabase();
+/****** Runing the seeding function ******/
+seedDatabase(); 
