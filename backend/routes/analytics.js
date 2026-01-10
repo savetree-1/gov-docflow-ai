@@ -3,6 +3,7 @@
 
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const Document = require('../models/Document');
 const User = require('../models/User');
 const Department = require('../models/Department');
@@ -24,7 +25,7 @@ router.get('/documents-over-time', authMiddleware, async (req, res) => {
 
     // Filter by department if provided (for Dept Admin)
     if (department) {
-      matchQuery.department = require('mongoose').Types.ObjectId(department);
+      matchQuery.department = new mongoose.Types.ObjectId(department);
     }
 
     const documentsOverTime = await Document.aggregate([
@@ -135,7 +136,7 @@ router.get('/status-distribution', authMiddleware, async (req, res) => {
 
     // Filter by department if provided
     if (department) {
-      matchQuery.department = require('mongoose').Types.ObjectId(department);
+      matchQuery.department = new mongoose.Types.ObjectId(department);
     }
 
     const statusDistribution = await Document.aggregate([
@@ -206,7 +207,7 @@ router.get('/processing-trends', authMiddleware, async (req, res) => {
 
     // Filter by department if provided
     if (department) {
-      matchQuery.department = require('mongoose').Types.ObjectId(department);
+      matchQuery.department = new mongoose.Types.ObjectId(department);
     }
 
     const processingTrends = await Document.aggregate([

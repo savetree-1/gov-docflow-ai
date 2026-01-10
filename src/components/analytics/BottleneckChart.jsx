@@ -79,12 +79,12 @@ const BottleneckChart = () => {
                 <div 
                   className="progress-fill"
                   style={{ 
-                    width: `${dept.bottleneckScore}%`,
-                    backgroundColor: getStatusColor(dept.bottleneckScore)
+                    width: `${dept.utilizationPercent || dept.bottleneckScore}%`,
+                    backgroundColor: getStatusColor(dept.utilizationPercent || dept.bottleneckScore)
                   }}
                 />
               </div>
-              <div className="score-label">{dept.bottleneckScore}%</div>
+              <div className="score-label">{dept.utilizationPercent || dept.bottleneckScore}%</div>
             </div>
           </div>
         ))}
