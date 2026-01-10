@@ -1,15 +1,12 @@
-/**
- * Create Weather Department Admin User
- * Email: ukweatherdept.gov@gmail.com
- * Run: node createWeatherAdmin.js
- */
+/****** Module which will create Weather Department Admin User with following email ******/
+/****** Email: ukweatherdept.gov@gmail.com and will run: node createWeatherAdmin.js ******/
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load environment variables
+/****** Loading up the environment variables ******/
 dotenv.config({ path: path.join(__dirname, '.env') });
 
 const User = require('./models/User');
@@ -17,7 +14,7 @@ const Department = require('./models/Department');
 
 async function createWeatherAdmin() {
   try {
-    // Connecting to MongoDB
+    /****** Connecting to MongoDB through specified URI ******/
     console.log('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,

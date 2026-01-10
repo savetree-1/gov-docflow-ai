@@ -13,16 +13,16 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     { $set: { isApproved: true, isActive: true } }
   );
   
-  console.log(`✅ Activated ${result.modifiedCount} Finance users!\n`);
+  console.log(`Activated ${result.modifiedCount} Finance users!\n`);
   
   const users = await User.find({ department: financeDept._id });
   console.log('Finance Users:');
   users.forEach(u => {
-    console.log(`   ✅ ${u.email} - isActive: ${u.isActive}, isApproved: ${u.isApproved}`);
+    console.log(`${u.email} - isActive: ${u.isActive}, isApproved: ${u.isApproved}`);
   });
   
-  console.log('\n✅ Finance admin can now login!');
-  console.log('📝 Try: finance.admin@pravah.gov.in / Finance@123\n');
+  console.log('\nFinance admin can now login!');
+  console.log('Try: finance.admin@pravah.gov.in / Finance@123\n');
   
   process.exit(0);
 }).catch(err => {

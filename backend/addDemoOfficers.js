@@ -12,7 +12,7 @@ async function addDemoUsers() {
 
     console.log('Connected to MongoDB\n');
 
-    // Finding the Finance Department
+    /****** Finding the Finance Department ******/
     const financeDept = await Department.findOne({ code: 'FIN' });
     
     if (!financeDept) {
@@ -25,7 +25,7 @@ async function addDemoUsers() {
     console.log(`Found Finance Department: ${financeDept.name}`);
     console.log(`   ID: ${financeDept._id}\n`);
 
-    // Checking for the existing officers
+    /****** Checking for the existing officers ******/
     const existingOfficers = await User.find({ 
       department: financeDept._id,
       role: 'OFFICER'
@@ -33,7 +33,7 @@ async function addDemoUsers() {
     
     console.log(`Existing Officers in Finance: ${existingOfficers.length}\n`);
 
-    // Adding the Demo officers
+    /****** Adding the Demo officers ******/
     const demoOfficers = [
       {
         firstName: 'Ramesh',
@@ -94,12 +94,12 @@ async function addDemoUsers() {
       role: 'OFFICER'
     });
     
-    console.log(`   Officers in Finance Department: ${totalOfficers}`);
+    console.log(`Officers in Finance Department: ${totalOfficers}`);
     
     console.log('\n Now login as:');
-    console.log('   Email: finance@gov.in');
-    console.log('   Password: Finance@123');
-    console.log(`   You should see ${totalOfficers} users!\n`);
+    console.log('Email: finance@gov.in');
+    console.log('Password: Finance@123');
+    console.log(`You should see ${totalOfficers} users!\n`);
 
     mongoose.connection.close();
   } catch (error) {

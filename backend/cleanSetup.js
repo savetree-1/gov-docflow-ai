@@ -1,7 +1,4 @@
-/**
- * Clean Database Setup
- * Sets up real departments and users only
- */
+/****** Clean Database Setup Module which sets up real departments and users only ******/
 
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -15,14 +12,14 @@ async function cleanSetup() {
     await mongoose.connect(process.env.MONGO_URI || process.env.MONGODB_URI);
     console.log('Connected to MongoDB Atlas\n');
 
-    // Clear existing data
+    /****** Clearing the existing data ******/
     console.log('Clearing existing data...');
     await Document.deleteMany({});
     await User.deleteMany({});
     await Department.deleteMany({});
     console.log('✓ Database cleared\n');
 
-    // Create departments (all in Pending status)
+    /****** Creating departments and making all in Pending status ******/
     console.log('Creating departments...');
     const departments = [
       {
@@ -105,17 +102,17 @@ async function cleanSetup() {
     const createdDepartments = await Department.insertMany(departments);
     console.log(`✓ Created ${createdDepartments.length} departments (all Pending)\n`);
 
-    // Map department codes to IDs
+    /****** Mapping department codes to IDs ******/
     const deptMap = {};
     createdDepartments.forEach(dept => {
       deptMap[dept.code] = dept._id;
     });
 
-    // Create users
+    /****** Creating users ******/
     console.log('Creating users...');
     const users = [];
 
-    // Super Admin
+    /****** Super Admin User******/
     users.push({
       firstName: 'Super',
       lastName: 'Admin',
@@ -127,7 +124,7 @@ async function cleanSetup() {
       isActive: true
     });
 
-    // Department Admins
+    /****** Department Admins Users ******/
     const deptAdmins = [
       { firstName: 'Finance', lastName: 'Admin', email: 'finance.admin@pravah.gov.in', password: 'Finance@123', dept: 'FIN' },
       { firstName: 'Disaster', lastName: 'Admin', email: 'disaster.admin@pravah.gov.in', password: 'Disaster@123', dept: 'DM' },
@@ -146,12 +143,12 @@ async function cleanSetup() {
         employeeId: `${admin.dept}-ADMIN-${empIdCounter++}`,
         role: 'DEPARTMENT_ADMIN',
         department: deptMap[admin.dept],
-        isApproved: false, // Will be approved when department is approved
+        isApproved: false, /****** This document will be approved when department is approved ******/
         isActive: false
       });
     }
 
-    // Officers
+    /****** Officers ******/
     const officers = [
       // Finance
       { firstName: 'Suresh', lastName: 'Patel', email: 'finance.officer1@pravah.gov.in', dept: 'FIN' },
@@ -185,7 +182,7 @@ async function cleanSetup() {
       });
     }
 
-    // Auditors
+    /****** Auditors ******/
     users.push({
       firstName: 'Ramesh',
       lastName: 'Iyer',
@@ -211,10 +208,10 @@ async function cleanSetup() {
     await User.insertMany(users);
     console.log(`✓ Created ${users.length} users\n`);
 
-    // Summary
-    console.log('═══════════════════════════════════════');
+    /****** Summary ******/
+    console.log('******************************************');
     console.log('✅ DATABASE SETUP COMPLETE');
-    console.log('═══════════════════════════════════════\n');
+    console.log('******************************************\n');
 
     console.log('DEPARTMENTS (All Pending - awaiting approval):');
     console.log('  1. Finance Department (FIN)');

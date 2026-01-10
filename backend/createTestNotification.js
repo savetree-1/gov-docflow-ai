@@ -6,17 +6,17 @@ const User = require('./models/User');
 async function createTestNotification() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('✅ Connected to MongoDB\n');
+    console.log('Connected to MongoDB\n');
 
-    // Find the Finance Admin user
+    /****** Finding the Finance Admin user ******/
     const financeAdmin = await User.findOne({ email: 'finance.admin@pravah.gov.in' });
     
     if (!financeAdmin) {
-      console.log('❌ Finance Admin not found');
+      console.log('Finance Admin not found');
       return;
     }
 
-    // Create test notifications
+    /****** Creating test notifications ******/
     const notifications = [
       {
         user: financeAdmin._id,
@@ -59,14 +59,14 @@ async function createTestNotification() {
 
     await Notification.insertMany(notifications);
     
-    console.log('✅ Created 3 test notifications for Finance Admin');
-    console.log('\n📧 Login Details:');
-    console.log('   Email: finance.admin@pravah.gov.in');
-    console.log('   Password: Password@123');
-    console.log('\n💡 After login, you should see a red badge with "3" on the notification bell icon!\n');
+    console.log('Created 3 test notifications for Finance Admin');
+    console.log('\nLogin Details:');
+    console.log('Email: finance.admin@pravah.gov.in');
+    console.log('Password: Password@123');
+    console.log('\nAfter login, you should see a red badge with "3" on the notification bell icon!\n');
     
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error('Error:', error.message);
   } finally {
     await mongoose.disconnect();
   }

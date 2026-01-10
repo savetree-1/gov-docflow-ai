@@ -6,31 +6,31 @@ const User = require('./models/User');
 async function checkNotifications() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('✅ Connected to MongoDB\n');
+    console.log('Connected to MongoDB\n');
 
     const financeAdmin = await User.findOne({ email: 'finance.admin@pravah.gov.in' });
     
     if (!financeAdmin) {
-      console.log('❌ Finance Admin not found');
+      console.log('Finance Admin not found');
       return;
     }
 
-    console.log('👤 Finance Admin:');
-    console.log('   ID:', financeAdmin._id.toString());
-    console.log('   Name:', financeAdmin.firstName, financeAdmin.lastName);
-    console.log('   Email:', financeAdmin.email);
+    console.log('Finance Admin:');
+    console.log('ID:', financeAdmin._id.toString());
+    console.log('Name:', financeAdmin.firstName, financeAdmin.lastName);
+    console.log('Email:', financeAdmin.email);
     
     const notifications = await Notification.find({ user: financeAdmin._id });
     
-    console.log('\n📬 Notifications for Finance Admin:', notifications.length);
+    console.log('\nNotifications for Finance Admin:', notifications.length);
     
     if (notifications.length > 0) {
       notifications.forEach((n, i) => {
         console.log(`\n${i + 1}. ${n.title}`);
-        console.log(`   Type: ${n.type}`);
-        console.log(`   Read: ${n.read}`);
-        console.log(`   Priority: ${n.priority}`);
-        console.log(`   Created: ${n.createdAt}`);
+        console.log(`Type: ${n.type}`);
+        console.log(`Read: ${n.read}`);
+        console.log(`Priority: ${n.priority}`);
+        console.log(`Created: ${n.createdAt}`);
       });
     } else {
       console.log('   No notifications found. Creating test notifications...\n');
@@ -76,8 +76,8 @@ async function checkNotifications() {
       ];
 
       await Notification.insertMany(testNotifications);
-      console.log('✅ Created 3 test notifications!');
-      console.log('   Refresh the notifications page to see them.');
+      console.log('Created 3 test notifications!');
+      console.log('Refresh the notifications page to see them.');
     }
     
   } catch (error) {

@@ -6,7 +6,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
   
   console.log('Approving only Super Admin...\n');
   
-  // Approving only super admin
+  /****** Approving only super admin ******/
   const admin = await User.findOneAndUpdate(
     { role: 'SUPER_ADMIN' },
     { 
@@ -24,17 +24,17 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     console.log(`   Role: ${admin.role}`);
     console.log(`   Status: Approved \n`);
   } else {
-    console.log('❌ Super Admin not found!\n');
+    console.log('Super Admin not found!\n');
   }
   
-  // Seting all other users to pending except super admin
+  /****** Seting up all other users to pending except for super admin ******/
   await User.updateMany(
     { role: { $ne: 'SUPER_ADMIN' } },
     { $set: { isApproved: false } }
   );
   
-  console.log(' All other users set to pending approval');
-  console.log(' Admin can now approve them from dashboard\n');
+  console.log('All other users set to pending approval');
+  console.log('Admin can now approve them from dashboard\n');
   
   process.exit(0);
 }).catch(err => {

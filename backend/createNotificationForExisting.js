@@ -1,7 +1,4 @@
-/**
- * Create notification for existing routed document
- * Run this once to create notifications for documents routed before notification code was added
- */
+/*******Module which will create notification for existing routed documents and Runs this once to create notifications for documents routed before notification code was added ******/
 
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -14,11 +11,11 @@ const { sendRoutingNotification } = require('./services/emailService');
 
 async function createNotificationForExisting() {
   try {
-    // Connecting to MongoDB
+    /****** Connecting to MongoDB ******/
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/krishi-sadhan');
     console.log('MongoDB Connected');
 
-    // Finding the "Agro Bulletci" document
+    /****** Finding the "Agro Bulletci" document ******/
     const document = await Document.findOne({ title: /Agro Bulletci/i })
       .populate('department')
       .populate('uploadedBy');
@@ -29,23 +26,23 @@ async function createNotificationForExisting() {
     }
 
     console.log('\n Found Document:');
-    console.log(`   Title: ${document.title}`);
-    console.log(`   Department: ${document.department?.name}`);
-    console.log(`   Status: ${document.status}`);
+    console.log(`Title: ${document.title}`);
+    console.log(`Department: ${document.department?.name}`);
+    console.log(`Status: ${document.status}`);
 
     if (!document.department) {
-      console.log(' Document not routed to any department');
+      console.log('Document not routed to any department');
       process.exit(1);
     }
 
-    // Geting all users in the department
+    /****** Geting all users in the department ******/
     const departmentUsers = await User.find({
       department: document.department._id,
       isActive: true,
       role: { $in: ['DEPARTMENT_ADMIN', 'OFFICER'] }
     }).select('_id email firstName lastName role');
 
-    console.log(`\n Found ${departmentUsers.length} users in ${document.department.name}:`);
+    console.log(`\nFound ${departmentUsers.length} users in ${document.department.name}:`);
     departmentUsers.forEach(u => {
       console.log(`   - ${u.firstName} ${u.lastName} (${u.role}) - ${u.email}`);
     });
@@ -54,11 +51,11 @@ async function createNotificationForExisting() {
       ? `${document.uploadedBy.firstName} ${document.uploadedBy.lastName}`
       : 'System';
 
-    // Creating the notifications and send emails
+    /****** Creating the notifications and send emails ******/
     console.log('\n Creating notifications and sending emails...\n');
 
     for (const user of departmentUsers) {
-      // Creating in-app notification
+      /****** Creating in-app notification ******/
       const notification = await Notification.create({
         user: user._id,
         type: 'document_routed',
@@ -70,7 +67,7 @@ async function createNotificationForExisting() {
 
       console.log(` In-app notification created for ${user.firstName} ${user.lastName}`);
 
-      // Sending email to user for the routed document
+      /****** Sending email to user for the routed document ******/
       if (user.email) {
         try {
           const result = await sendRoutingNotification(
@@ -93,11 +90,11 @@ async function createNotificationForExisting() {
 
     console.log('\n All notifications created and emails sent!');
     console.log('\n Summary:');
-    console.log(`   Document: ${document.title}`);
-    console.log(`   Department: ${document.department.name}`);
-    console.log(`   Users notified: ${departmentUsers.length}`);
-    console.log(`   Notifications created: ${departmentUsers.length}`);
-    console.log(`   Emails sent: ${departmentUsers.filter(u => u.email).length}`);
+    console.log(`Document: ${document.title}`);
+    console.log(`Department: ${document.department.name}`);
+    console.log(`Users notified: ${departmentUsers.length}`);
+    console.log(`Notifications created: ${departmentUsers.length}`);
+    console.log(`Emails sent: ${departmentUsers.filter(u => u.email).length}`);
 
     process.exit(0);
 
@@ -107,5 +104,5 @@ async function createNotificationForExisting() {
   }
 }
 
-// Runing the function for creating notifications
+/****** Runing the function for creating notifications ******/
 createNotificationForExisting();

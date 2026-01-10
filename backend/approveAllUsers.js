@@ -6,7 +6,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
   
   console.log(' Approving all users...\n');
   
-  // Updating all users to be approved and active to use application
+  /****** Updating all users to be approved and active to use application ******/
   const result = await User.updateMany(
     {},
     { 
@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
   console.log(` Updated ${result.modifiedCount} users`);
   console.log(' All users are now approved and active!\n');
   
-  // Listing out all users
+  /****** Listing out all users ******/
   const users = await User.find({}).select('email role isApproved isActive');
   console.log('Current User Status:\n');
   users.forEach(user => {

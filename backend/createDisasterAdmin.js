@@ -1,14 +1,11 @@
-/**
- * Create Disaster Management Department Admin User
- * Run: node createDisasterAdmin.js
- */
+/****** Create Disaster Management and Department Admin User which will run the node createDisasterAdmin.js ******/
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load environment variables
+/****** Loading up the environment variables ******/
 dotenv.config({ path: path.join(__dirname, '.env') });
 
 const User = require('./models/User');
@@ -16,7 +13,7 @@ const Department = require('./models/Department');
 
 async function createDisasterAdmin() {
   try {
-    // Connect to MongoDB
+    /****** Connecting to MongoDB through specified URI ******/
     console.log('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
@@ -24,7 +21,7 @@ async function createDisasterAdmin() {
     });
     console.log('MongoDB Connected');
 
-    // Find Disaster Management Department
+    /****** Finding Disaster Management Department ******/
     const disasterDept = await Department.findOne({ code: 'DIS' });
     
     if (!disasterDept) {
@@ -34,7 +31,7 @@ async function createDisasterAdmin() {
 
     console.log(`Found department: ${disasterDept.name} (${disasterDept.code})`);
 
-    // Check if user already exists
+    /****** Checking up if user already exists in the database ******/
     const existingUser = await User.findOne({ email: 'disaster.admin@pravah.gov.in' });
     
     if (existingUser) {
@@ -48,7 +45,7 @@ async function createDisasterAdmin() {
       console.log('-----------------------------------');
       
     } else {
-      // Creating new user
+      /****** Creating new user ******/
       const hashedPassword = await bcrypt.hash('Disaster@123', 10);
       
       const disasterAdmin = new User({
@@ -90,5 +87,5 @@ async function createDisasterAdmin() {
   }
 }
 
-// Runing the admin creation function
+/****** Runing the admin creation function ******/
 createDisasterAdmin();

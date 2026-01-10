@@ -6,20 +6,20 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGO_URI).then(async () => {
   console.log('Connected to MongoDB\n');
   
-  // Get Finance Department
+  /****** Taking Finance Department ******/
   const financeDept = await Department.findOne({ code: 'FIN' });
   console.log('Finance Department:', financeDept.name);
   console.log('Status:', financeDept.status);
   console.log('isActive:', financeDept.isActive);
   
-  // Check Finance users
+  /****** Checking the Finance users ******/
   const financeUsers = await User.find({ department: financeDept._id });
   console.log('\nFinance Department Users BEFORE:');
   financeUsers.forEach(u => {
     console.log(`- ${u.email} (Role: ${u.role}) - isApproved: ${u.isApproved}, isActive: ${u.isActive}`);
   });
   
-  // Approve department and activate users
+  /****** Approving the departments and activate users ******/
   financeDept.status = 'Approved';
   financeDept.isActive = true;
   await financeDept.save();
@@ -29,10 +29,10 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     { $set: { isApproved: true, isActive: true } }
   );
   
-  console.log(`\n✅ Finance Department Approved!`);
-  console.log(`✅ Activated ${result.modifiedCount} users!\n`);
+  console.log(`\nFinance Department Approved!`);
+  console.log(`Activated ${result.modifiedCount} users!\n`);
   
-  // Verify
+  /****** Verification after update ******/
   const updatedUsers = await User.find({ department: financeDept._id });
   console.log('Finance Users AFTER:');
   updatedUsers.forEach(u => {

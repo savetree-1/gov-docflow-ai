@@ -4,20 +4,20 @@ require('dotenv').config();
 async function checkData() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('✅ Connected to MongoDB Atlas\n');
+    console.log('Connected to MongoDB Atlas\n');
     
     const db = mongoose.connection.db;
     const collections = await db.listCollections().toArray();
     
-    console.log('📊 Database: pravah_prototype');
+    console.log('Database: pravah_prototype');
     console.log('━'.repeat(60));
     
     if (collections.length === 0) {
-      console.log('   ⚠️  No collections found (database is empty)');
+      console.log('No collections found (database is empty)');
     } else {
       for (const coll of collections) {
         const count = await db.collection(coll.name).countDocuments();
-        const emoji = count > 0 ? '✅' : '⚪';
+        const emoji = count > 0 ? 'Y' : 'N';
         console.log(`   ${emoji} ${coll.name.padEnd(25)} ${count.toString().padStart(5)} documents`);
       }
     }
@@ -29,12 +29,12 @@ async function checkData() {
     for (const coll of collections) {
       total += await db.collection(coll.name).countDocuments();
     }
-    console.log(`\n   📈 Total Documents: ${total}`);
+    console.log(`\n Total Documents: ${total}`);
     
     await mongoose.disconnect();
-    console.log('\n✅ Disconnected from MongoDB Atlas');
+    console.log('\nDisconnected from MongoDB Atlas');
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error('Error:', error.message);
     process.exit(1);
   }
 }
