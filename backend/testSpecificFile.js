@@ -7,7 +7,7 @@ const {generateSummary} = require('./services/aiService');
   
   console.log('Testing AI processing on:', filePath, '\n');
   
-  // Step 1: Extract text
+  /****** Step 1: Extracting text from PDF ******/
   console.log('Extracting text from PDF...');
   const result = await extractText(filePath, 'application/pdf');
   
@@ -20,7 +20,7 @@ const {generateSummary} = require('./services/aiService');
   console.log('Text extracted:', result.text.length, 'characters');
   console.log('Preview:', result.text.substring(0, 300), '...\n');
   
-  // Step 2: Generate AI summary
+  /****** Step 2: Generating AI summary for extracted text ******/
   console.log('Generating AI summary with Gemini...\n');
   const aiResult = await generateSummary(result.text, {
     title: 'Pravah UI System',

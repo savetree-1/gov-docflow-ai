@@ -14,7 +14,7 @@ response=$(curl -s -X POST http://localhost:5001/api/auth/login \
 echo "Login Response:"
 echo "$response" | jq '.'
 
-# Extract token
+# Extracting token
 token=$(echo "$response" | jq -r '.token')
 
 if [ "$token" != "null" ] && [ ! -z "$token" ]; then
@@ -23,7 +23,7 @@ if [ "$token" != "null" ] && [ ! -z "$token" ]; then
   echo ""
   echo "Testing Users API..."
   
-  # Get users
+  # Taking users
   curl -s -X GET "http://localhost:5001/api/users" \
     -H "Authorization: Bearer $token" \
     -H "Content-Type: application/json" | jq '.'

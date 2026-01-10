@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
   await User.deleteMany({});
   console.log('All users deleted\n');
 
-  // Fetch departments
+  /****** Fetching the departments ******/
   const finance = await Department.findOne({ code: 'FIN' });
   const disaster = await Department.findOne({ code: 'DIS' });
   const meteorology = await Department.findOne({ code: 'MET' });
@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
 
   const users = [];
 
-  // ===== SUPER ADMIN =====
+  /****** SUPER ADMIN USER ******/
   console.log('Creating Super Admin...');
   users.push({
     email: 'admin@pravah.gov.in',
@@ -33,10 +33,10 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isApproved: true
   });
 
-  // ===== DEPARTMENT ADMINS =====
+  /****** DEPARTMENT ADMINS USERS ******/
   console.log('Creating Department Admins...');
   
-  // Finance Department Admin
+  /****** Finance Department Admin USER ******/
   users.push({
     email: 'finance.admin@pravah.gov.in',
     password: await bcrypt.hash('Finance@123', 10),
@@ -50,7 +50,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Disaster Management Admin
+  /****** Disaster Management Admin User ******/
   users.push({
     email: 'disaster.admin@pravah.gov.in',
     password: await bcrypt.hash('Disaster@123', 10),
@@ -64,7 +64,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Weather Department Admin (Real Gmail)
+  /****** Weather Department Admin with actual gmail******/
   users.push({
     email: 'ukweatherdept.gov@gmail.com',
     password: await bcrypt.hash('Weather@123', 10),
@@ -78,7 +78,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Agriculture Department Admin
+  /****** Agriculture Department Admin User******/
   users.push({
     email: 'agriculture.admin@pravah.gov.in',
     password: await bcrypt.hash('Agri@123', 10),
@@ -92,7 +92,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Infrastructure Department Admin
+  /****** Infrastructure Department Admin User******/
   users.push({
     email: 'infra.admin@pravah.gov.in',
     password: await bcrypt.hash('Infra@123', 10),
@@ -106,10 +106,10 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // ===== OFFICERS =====
+  /****** OFFICERS ******/
   console.log('Creating Officers...');
 
-  // Finance Officers
+  /****** Finance Officers ******/
   users.push({
     email: 'finance.officer1@pravah.gov.in',
     password: await bcrypt.hash('Officer@123', 10),
@@ -136,7 +136,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Disaster Management Officers
+  /****** Disaster Management Officers ******/
   users.push({
     email: 'disaster.officer1@pravah.gov.in',
     password: await bcrypt.hash('Officer@123', 10),
@@ -163,7 +163,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Weather Officers
+  /****** Weather Officers ******/
   users.push({
     email: 'weather.officer1@pravah.gov.in',
     password: await bcrypt.hash('Officer@123', 10),
@@ -190,7 +190,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Agriculture Officers
+  /****** Agriculture Officers ******/
   users.push({
     email: 'agri.officer1@pravah.gov.in',
     password: await bcrypt.hash('Officer@123', 10),
@@ -217,7 +217,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Infrastructure Officers
+  /****** Infrastructure Officers ******/
   users.push({
     email: 'infra.officer1@pravah.gov.in',
     password: await bcrypt.hash('Officer@123', 10),
@@ -244,7 +244,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // ===== AUDITORS =====
+  /****** AUDITORS ******/
   console.log('Creating Auditors...');
 
   users.push({
@@ -271,11 +271,11 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     isVerified: true
   });
 
-  // Inserting all users
+  /****** Inserting all users ******/
   await User.insertMany(users);
 
   console.log('\n USER CREATION COMPLETE!\n');
-  console.log('═══════════════════════════════════════════════════════════\n');
+  console.log('************************************************************\n');
   
   console.log(' LOGIN CREDENTIALS:\n');
   
@@ -306,7 +306,7 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
   console.log('   Auditor 1: auditor1@pravah.gov.in / Auditor@123');
   console.log('   Auditor 2: auditor2@pravah.gov.in / Auditor@123\n');
   
-  console.log('═══════════════════════════════════════════════════════════\n');
+  console.log('************************************************************\n');
   console.log(`Total Users Created: ${users.length}`);
   console.log('  - 1 Super Admin');
   console.log('  - 5 Department Admins');

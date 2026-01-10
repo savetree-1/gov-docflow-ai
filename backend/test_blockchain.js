@@ -1,7 +1,4 @@
-/**
- * Test Blockchain Service
- * Verify blockchain integration is working
- */
+/****** Test Blockchain Service to Verify blockchain integration is working ? ******/
 
 require('dotenv').config();
 const blockchainService = require('./services/blockchain');
@@ -10,10 +7,10 @@ async function testBlockchain() {
   console.log(' Testing Blockchain Integration...\n');
 
   try {
-    // Initialize
+    /****** Initialization ******/
     await blockchainService.initialize();
 
-    // Test document data
+    /****** Testing document data for hashing and logging ******/
     const testDoc = {
       _id: 'TEST-DOC-001',
       title: 'Test Budget Approval',
@@ -24,7 +21,7 @@ async function testBlockchain() {
     const docHash = blockchainService.generateHash(testDoc);
     console.log('Document hash:', docHash, '\n');
 
-    // Log action to blockchain
+    /****** Logging action to blockchain ******/
     console.log('Logging action to blockchain...');
     const result = await blockchainService.logAction({
       documentId: 'PRAVAH-TEST-001',
@@ -43,7 +40,7 @@ async function testBlockchain() {
       console.log('View on PolygonScan:');
       console.log(`https://amoy.polygonscan.com/tx/${result.txHash}\n`);
 
-      // Verify document
+      /****** Verifying the documents ******/
       console.log(' Verifying document...');
       const verification = await blockchainService.verifyDocument('PRAVAH-TEST-001');
       

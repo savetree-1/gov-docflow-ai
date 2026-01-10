@@ -18,14 +18,14 @@ async function testFinanceQuery() {
     console.log('\nTesting Finance Department Query:\n');
     console.log('='.repeat(80));
     
-    // Find Finance Department
+    /****** Finding Finance Department from the database ******/
     const financeDept = await Department.findOne({ code: 'FIN' });
     console.log('\nFinance Department:');
     console.log(`   ID: ${financeDept._id}`);
     console.log(`   Name: ${financeDept.name}`);
     console.log(`   Code: ${financeDept.code}`);
     
-    // Find Finance Admin
+    /****** Finding Finance Admin User ******/
     const financeAdmin = await User.findOne({ 
       email: 'finance.admin@pravah.gov.in' 
     });
@@ -37,7 +37,7 @@ async function testFinanceQuery() {
     console.log(`   Department ID: ${financeAdmin.department}`);
     console.log(`   Match: ${financeAdmin.department?.toString() === financeDept._id.toString()}`);
     
-    // Test the exact query from the API
+    /****** Testing the exact query from the API ******/
     const query = { department: financeAdmin.department };
     console.log('\n API Query:');
     console.log(`   Query: ${JSON.stringify(query)}`);
@@ -52,7 +52,7 @@ async function testFinanceQuery() {
     if (users.length === 0) {
       console.log(' NO USERS FOUND - This is the problem!');
       
-      // Let's find ALL users and see their departments
+      /****** Findind ALL users and see their departments ******/
       console.log('\n Checking ALL users in database:');
       const allUsers = await User.find({}).select('email role department');
       for (const user of allUsers) {

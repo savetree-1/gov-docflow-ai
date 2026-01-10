@@ -1,7 +1,4 @@
-/**
- * Test Complete Blockchain Integration
- * Tests: Document action → Blockchain logging → Verification
- */
+/****** Test Complete Blockchain Integration whixh Tests: Document action → Blockchain logging → Verification → API Endpoint ******/
 
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -13,15 +10,15 @@ async function testCompleteFlow() {
   try {
     console.log('Testing Complete Blockchain Integration\n');
 
-    // Connect to MongoDB
+    /****** Connecting to MongoDB then fetching a test document ******/
     await mongoose.connect(process.env.MONGO_URI);
     console.log(' Connected to MongoDB\n');
 
-    // Initialize blockchain
+    /****** Initializing blockchain service ******/
     await blockchainService.initialize();
     console.log('');
 
-    // Find a test document (or use a specific ID)
+    /****** Finding a test document or using a specific ID ******/
     const document = await Document.findOne().sort({ createdAt: -1 });
     
     if (!document) {
@@ -33,7 +30,7 @@ async function testCompleteFlow() {
     console.log(' Document ID:', document._id);
     console.log('');
 
-    // Simulate document action
+    /****** Simulating document action ******/
     const testUser = await User.findOne();
     const docHash = blockchainService.generateHash({
       id: document._id,
@@ -61,13 +58,13 @@ async function testCompleteFlow() {
       console.log(`   https://amoy.polygonscan.com/tx/${bcResult.txHash}`);
       console.log('');
 
-      // Save blockchain info to document
+      /****** Saving blockchain info to document ******/
       document.blockchainTxHash = bcResult.txHash;
       document.blockchainVerified = true;
       await document.save();
       console.log(' Document updated with blockchain info\n');
 
-      // Verify the document
+      /****** Verifying the document on blockchain ******/
       console.log(' Verifying document on blockchain...');
       const verification = await blockchainService.verifyDocument(
         `PRAVAH-${document._id.toString().slice(-8).toUpperCase()}`
@@ -79,7 +76,7 @@ async function testCompleteFlow() {
         console.log('  Latest action timestamp:', verification.latestAction.timestamp);
         console.log('');
 
-        // Test the API endpoint simulation
+        /****** Testing the API endpoint simulation ******/
         console.log(' API Endpoint Response Simulation:');
         console.log(JSON.stringify({
           success: true,
