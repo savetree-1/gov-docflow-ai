@@ -65,20 +65,26 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5001;
 
-// Initialize blockchain service on startup
+// Initialize blockchain and websocket services on startup
 const blockchainService = require('./services/blockchain');
+const websocketService = require('./services/websocket');
+
 const initializeServices = async () => {
   console.log('🔄 Initializing blockchain service...');
   await blockchainService.initialize();
 };
 
-app.listen(PORT, async () => {
+const server = app.listen(PORT, async () => {
   console.log(`\n🚀 Server running on port ${PORT}`);
   console.log(`   API: http://localhost:${PORT}/api`);
   console.log(`   Health Check: http://localhost:${PORT}/api/health\n`);
   
   // Initialize services after server starts
   await initializeServices();
+  
+  // Initialize WebSocket
+  websocketService.initialize(server);
+  console.log(`   WebSocket: ws://localhost:${PORT}\n`);
 });
 
-module.exports = app;
+module.exports = { app, server, websocketService };

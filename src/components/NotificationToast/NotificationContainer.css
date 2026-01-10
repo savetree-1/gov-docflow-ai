@@ -1,0 +1,14 @@
+/* Notification Container Styles */
+
+.notification-container {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.notification-container > * {
+  pointer-events: all;
+  margin-bottom: 12px;
+}
