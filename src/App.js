@@ -65,12 +65,14 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (Cookies.get("access-token") && Cookies.get("refresh-token")) {
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (accessToken && refreshToken) {
       dispatch(getLoginAction());
       dispatch(
         getSaveTokenAction({
-          accessToken: Cookies.get("access-token"),
-          refreshToken: Cookies.get("refresh-token")
+          accessToken: accessToken,
+          refreshToken: refreshToken
         })
       );
     }
@@ -78,11 +80,22 @@ function App() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      if (Cookies.get("access-token") && Cookies.get("uuid")) {
-        const uuid = Cookies.get("uuid");
-        const accessToken = Cookies.get("access-token");
-        const data = await getProfile({ uuid, accessToken });
-        dispatch(getSaveProfileAction(data));
+      const accessToken = localStorage.getItem("accessToken");
+      const userData = localStorage.getItem("user");
+      if (accessToken && userData) {
+        try {
+          const parsedUserData = JSON.parse(userData);
+          dispatch(getSaveProfileAction({ data: parsedUserData }));
+          
+          // Optionally refresh from server
+          const uuid = parsedUserData.id || parsedUserData.userId;
+          if (uuid) {
+            const data = await getProfile({ uuid, accessToken });
+            dispatch(getSaveProfileAction(data));
+          }
+        } catch (error) {
+          console.log("Error restoring user data:", error);
+        }
       }
     };
     fetchProfile();

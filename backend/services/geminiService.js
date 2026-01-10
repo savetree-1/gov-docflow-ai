@@ -106,22 +106,27 @@ Respond in JSON format:
 /****** Suggesting routing departments based on document content ******/
 const suggestRouting = async (documentText, metadata = {}) => {
   try {
-    const prompt = `You are an AI assistant for Uttarakhand Government document routing.
-Analyze this document and provide:
-1. Suggested department (name only)
-2. Confidence level (0-1)
-3. Routing reasoning
-4. 3-point summary
+    const prompt = `You are an AI assistant for Uttarakhand Government document routing system.
 
-Document: ${documentText.substring(0, 2000)}
-Available Departments: Disaster Management, Finance & Procurement, HR & Administration, Legal & Compliance
+AVAILABLE DEPARTMENTS:
+1. Finance Department - Budget, procurement, financial approvals, expenditure, revenue, accounting
+2. Disaster Management Department - Natural disasters, emergency response, relief operations, disaster preparedness
+3. Weather (Meteorology) Department - Weather forecasts, meteorological data, climate analysis, weather warnings
+4. Agriculture Department - Farming, crops, irrigation, agricultural schemes, farmer welfare
+5. Infrastructure Department - Roads, buildings, construction, public works, urban development
 
-Respond with JSON format:
+Analyze this document and route it to the MOST appropriate department.
+
+Document Title: ${metadata.title || 'Untitled'}
+Document Category: ${metadata.category || 'General'}
+Document Content: ${documentText.substring(0, 3000)}
+
+Respond with ONLY this JSON format (no markdown, no explanation):
 {
-  "suggestedDepartment": "Department Name",
+  "suggestedDepartment": "Exact Department Name from list above",
   "confidence": 0.95,
-  "reasoning": "Brief explanation why this department should handle it",
-  "summary": ["Point 1", "Point 2", "Point 3"]
+  "reasoning": "Brief explanation why this department",
+  "summary": ["Key point 1", "Key point 2", "Key point 3"]
 }`;
 
     const response = await axios.post(

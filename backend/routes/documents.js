@@ -86,14 +86,63 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
 
     console.log(`AI Routing suggestion: ${routingSuggestion.primaryDepartment} (${routingSuggestion.reasoning})`);
 
-    // STEP 4: SAVE routing suggestion (NOT auto-assign)
-    // Officer must confirm routing - this is AI-ASSISTED, not fully automatic
-    document.suggestedDepartment = routingSuggestion.primaryDepartment;
-    document.routingReason = routingSuggestion.reasoning;
-    document.routingConfidence = 85; // High confidence for Gemini analysis
-    document.routingConfirmed = false; // Requires officer confirmation
+    // STEP 4: Auto-apply routing based on AI suggestion
+    const Department = require('../models/Department');
     
-    console.log(`Routing suggestion saved - awaiting officer confirmation`);
+    // Try multiple matching strategies
+    let suggestedDept = null;
+    
+    // Strategy 1: Exact name match
+    suggestedDept = await Department.findOne({
+      name: new RegExp(`^${routingSuggestion.primaryDepartment}$`, 'i')
+    });
+    
+    // Strategy 2: Partial name match
+    if (!suggestedDept) {
+      suggestedDept = await Department.findOne({
+        name: new RegExp(routingSuggestion.primaryDepartment, 'i')
+      });
+    }
+    
+    // Strategy 3: Match by keywords (disaster, finance, weather, etc)
+    if (!suggestedDept) {
+      const deptKeywords = {
+        'disaster': 'Disaster Management',
+        'weather': 'Weather',
+        'meteorology': 'Weather',
+        'finance': 'Finance',
+        'agriculture': 'Agriculture',
+        'infrastructure': 'Infrastructure'
+      };
+      
+      const suggestedName = routingSuggestion.primaryDepartment.toLowerCase();
+      for (const [keyword, deptName] of Object.entries(deptKeywords)) {
+        if (suggestedName.includes(keyword)) {
+          suggestedDept = await Department.findOne({
+            name: new RegExp(deptName, 'i')
+          });
+          if (suggestedDept) break;
+        }
+      }
+    }
+
+    // Apply routing suggestion - department admin can confirm or edit
+    if (suggestedDept) {
+      document.department = suggestedDept._id;
+      document.suggestedDepartment = routingSuggestion.primaryDepartment;
+      document.routingReason = routingSuggestion.reasoning;
+      document.routingConfidence = routingSuggestion.confidence || 85;
+      document.routingConfirmed = false; // Let admin review and confirm
+      console.log(`✅ Suggested routing to: ${suggestedDept.name} (awaiting confirmation)`);
+    } else {
+      // If department not found, fallback to initialDepartment
+      document.department = document.initialDepartment;
+      document.suggestedDepartment = routingSuggestion.primaryDepartment;
+      document.routingReason = routingSuggestion.reasoning;
+      document.routingConfidence = routingSuggestion.confidence || 85;
+      document.routingConfirmed = false; // Let admin review and confirm
+      console.log(`⚠️ Department not found, using initial department as fallback (awaiting confirmation)`);
+    }
 
     // STEP 5: Save AI results to database (handle new generateSummary format)
     const summaryData = aiAnalysis.success ? aiAnalysis.data : aiAnalysis;
@@ -283,12 +332,14 @@ router.get('/', authMiddleware, async (req, res) => {
       // Officers see only documents they uploaded
       query.uploadedBy = req.user.userId;
     } else if (req.user.role === 'DEPARTMENT_ADMIN') {
-      // Department admins see documents where:
-      // 1. initialDepartment matches (officer selected their dept during upload)
-      // 2. OR department matches (AI routing confirmed to their dept)
+      // Department admins see:
+      // 1. Documents routed to their department
+      // 2. Documents they uploaded (even if not yet routed)
+      // 3. Documents with initialDepartment matching (pending routing)
       query.$or = [
-        { initialDepartment: req.user.department },
-        { department: req.user.department }
+        { department: req.user.department },
+        { uploadedBy: req.user.userId },
+        { initialDepartment: req.user.department, department: null }
       ];
     } else if (req.user.role === 'AUDITOR') {
       // Auditors can see all documents
@@ -306,22 +357,22 @@ router.get('/', authMiddleware, async (req, res) => {
         { tags: { $in: [new RegExp(search, 'i')] } }
       ];
       
-      if (query.$or) {
-        // For dept admins with existing $or, combine with search
-        query.$and = [
-          { $or: query.$or },
-          { $or: searchConditions }
-        ];
-        delete query.$or;
-      } else if (query.uploadedBy) {
+      if (query.uploadedBy) {
         // For officers, add search on top of uploadedBy filter
         query.$and = [
           { uploadedBy: query.uploadedBy },
           { $or: searchConditions }
         ];
         delete query.uploadedBy;
+      } else if (query.$or && req.user.role === 'DEPARTMENT_ADMIN') {
+        // For dept admins with $or filter, add search on top
+        query.$and = [
+          { $or: query.$or },
+          { $or: searchConditions }
+        ];
+        delete query.$or;
       } else {
-        // For auditors, just apply search
+        // For auditors and others, just apply search
         query.$or = searchConditions;
       }
     }

@@ -22,8 +22,7 @@ const Header = () => {
   const user = useSelector((state) => state.authReducer?.user?.data);
   const isLoggedIn = useSelector((state) => state.authReducer?.isLoggedIn);
   const token = useSelector((state) => state.tokenReducer?.token?.accessToken);
-  const isAuthenticated = isLoggedIn && (token || localStorage.getItem('accessToken'));
-
+  
   const [show, setShow] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("en");
@@ -38,10 +37,15 @@ const Header = () => {
                           location.pathname === '/settings' ||
                           location.pathname === '/my-documents' ||
                           location.pathname.startsWith('/document/upload') ||
-                          location.pathname.startsWith('/document/detail') ||
+                          location.pathname.startsWith('/document/') ||
                           location.pathname === '/notifications' ||
                           location.pathname.startsWith('/routing') ||
                           (location.pathname.includes('/users') && location.pathname !== '/');
+  
+  // Enhanced authentication check
+  const hasToken = token || localStorage.getItem('accessToken');
+  const hasUserData = user && (user.firstName || user.email || user.id);
+  const isAuthenticated = (isLoggedIn && hasToken) || (hasToken && hasUserData);
 
   // Fetch unread notification count
   const fetchUnreadCount = async () => {
