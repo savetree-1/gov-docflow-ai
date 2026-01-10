@@ -3,8 +3,8 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Document = require('./models/Document');
-const { extractText } = require('./services/ocrService');
-const { analyzeDocumentText } = require('./services/aiService');
+const { extractText } = require('./services/extractText');
+const { generateSummary, suggestRouting } = require('./services/geminiService');
 
 async function reprocessDocuments() {
   try {
@@ -12,16 +12,10 @@ async function reprocessDocuments() {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDB\n');
 
-    /****** Finding documents who are without summaries ******/
-    const documents = await Document.find({
-      $or: [
-        { summary: { $exists: false } },
-        { summary: null },
-        { summary: '' }
-      ]
-    }).limit(10);
+    /****** Finding ALL documents to regenerate summaries ******/
+    const documents = await Document.find({}).limit(5);
 
-    console.log(`Found ${documents.length} documents without AI summaries\n`);
+    console.log(`Found ${documents.length} documents to reprocess\n`);
 
     for (const doc of documents) {
       console.log(`\n******************************************`);
@@ -31,11 +25,12 @@ async function reprocessDocuments() {
 
       try {
         /****** Step 1: Extracting text from the document ******/
+        const filePath = doc.fileUrl; // Use the stored file path
         console.log('Extracting text...');
-        const extraction = await extractText(doc.fileUrl, doc.fileType);
+        const extractedText = await extractText(filePath, doc.fileType);
         
-        if (!extraction.text || extraction.text.length < 50) {
-          console.log(`Text too short (${extraction.text?.length || 0} chars) - skipping`);
+        if (!extractedText || extractedText.length < 50) {
+          console.log(`Text too short (${extractedText?.length || 0} chars) - skipping`);
           
           /****** Creating basic metadata summary for very short documents ******/
           doc.summary = `This ${doc.category || 'document'} requires review. ` +
@@ -53,29 +48,46 @@ async function reprocessDocuments() {
           continue;
         }
 
-        console.log(`Extracted ${extraction.text.length} characters`);
+        console.log(`Extracted ${extractedText.length} characters`);
 
-        /****** Step 2: Analyzing  with Gemini AI ******/
+        /****** Step 2: Analyzing with Gemini AI ******/
         console.log('Analyzing with Gemini AI...');
-        const analysis = await analyzeDocumentText(extraction.text, {
+        const result = await generateSummary(extractedText, {
           title: doc.title,
           category: doc.category
         });
 
-        /****** Step 3: Updating the documents with AI results ******/
-        doc.summary = analysis.summary;
-        doc.keyPoints = analysis.keyPoints;
-        doc.extractedText = extraction.text.substring(0, 5000);
-        
-        if (analysis.priority) {
-          doc.urgency = analysis.priority;
+        /****** Step 3: Get routing suggestions ******/
+        console.log('Getting routing suggestions...');
+        const routingSuggestion = await suggestRouting(extractedText, {
+          title: doc.title,
+          category: doc.category
+        });
+
+        /****** Step 4: Updating the documents with AI results ******/
+        if (result.success) {
+          doc.summary = result.data.summary;
+          doc.keyPoints = result.data.keyPoints;
+          doc.aiUrgency = result.data.aiUrgency;
+          doc.aiDeadline = result.data.aiDeadline;
         }
+        
+        if (routingSuggestion.success) {
+          doc.suggestedDepartment = routingSuggestion.data.primaryDepartment;
+          doc.routingReason = routingSuggestion.data.reasoning;
+          doc.routingConfidence = Math.round(routingSuggestion.data.confidence * 100);
+          doc.routingConfirmed = false; // Requires officer confirmation
+        }
+        
+        doc.extractedText = extractedText.substring(0, 5000);
 
         await doc.save();
 
         console.log('AI analysis completed!');
-        console.log(`Summary: ${analysis.summary.substring(0, 100)}...`);
-        console.log(`Key points: ${analysis.keyPoints?.length || 0}`);
+        console.log(`Summary: ${result.data?.summary?.substring(0, 100) || 'No summary'}...`);
+        console.log(`Key points: ${result.data?.keyPoints?.length || 0}`);
+        console.log(`Suggested Department: ${doc.suggestedDepartment || 'None'}`);
+        console.log(`Routing Confidence: ${doc.routingConfidence || 0}%`);
 
         /****** Waiting for 2 seconds to avoid API rate limits ******/
         await new Promise(resolve => setTimeout(resolve, 2000));
