@@ -80,7 +80,7 @@ Return ONLY this JSON structure:
     
     /****** Fallback response for errors ******/
     return {
-      summary: documentText.substring(0, 300) + '...',
+      summary: documentText, // Use full text instead of truncating
       keyPoints: ['Document uploaded and awaiting manual review'],
       documentType: 'General',
       priority: 'Medium',

@@ -3,7 +3,7 @@
 const axios = require('axios');
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash-exp:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
 /****** Generating the document's summary using Gemini ******/
 const generateSummary = async (documentText, metadata = {}) => {
@@ -42,26 +42,47 @@ Respond in JSON format:
 
     const aiResponse = response.data.candidates[0].content.parts[0].text;
     
-    /****** Extracting JSON from response ******/
-    const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
+    /****** Extracting JSON from response (handle markdown code blocks) ******/
+    let jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
+    
+    // Try to extract JSON from markdown code blocks
+    if (!jsonMatch) {
+      const codeBlockMatch = aiResponse.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
+      if (codeBlockMatch) {
+        jsonMatch = [codeBlockMatch[1]];
+      }
+    }
+    
     if (jsonMatch) {
-      const parsed = JSON.parse(jsonMatch[0]);
-      return {
-        success: true,
-        data: {
-          summary: parsed.summary,
-          keyPoints: parsed.keyPoints || [],
-          aiUrgency: parsed.urgency || 'Medium',
-          aiDeadline: parsed.deadline !== 'Not specified' ? parsed.deadline : null
-        }
-      };
+      try {
+        const parsed = JSON.parse(jsonMatch[0]);
+        return {
+          success: true,
+          data: {
+            summary: parsed.summary,
+            keyPoints: parsed.keyPoints || [],
+            aiUrgency: parsed.urgency || 'Medium',
+            aiDeadline: parsed.deadline !== 'Not specified' ? parsed.deadline : null
+          }
+        };
+      } catch (parseError) {
+        console.error('JSON parsing failed:', parseError.message);
+      }
     }
 
     /****** Fallback if JSON parsing fails ******/
+    console.warn('Failed to parse JSON from Gemini response, using full text as summary');
+    
+    // Extract summary from text (remove markdown code blocks if present)
+    let cleanResponse = aiResponse
+      .replace(/```json\n?/g, '')
+      .replace(/```\n?/g, '')
+      .trim();
+    
     return {
       success: true,
       data: {
-        summary: aiResponse.substring(0, 500),
+        summary: cleanResponse, // Use full response instead of truncating
         keyPoints: [],
         aiUrgency: 'Medium',
         aiDeadline: null
@@ -85,24 +106,22 @@ Respond in JSON format:
 /****** Suggesting routing departments based on document content ******/
 const suggestRouting = async (documentText, metadata = {}) => {
   try {
-    const prompt = `You are a government document routing AI. Based on this document, suggest which departments should handle it.
-
-Available Departments:
-- Finance Department (FIN): Budget, payments, financial matters
-- Land & Revenue Department (LAND): Land records, property, revenue
-- Agriculture Department (AGRI): Farming, crop insurance, subsidies
-- Human Resources (HR): Employee matters, recruitment, training
-- Infrastructure (INFRA): Buildings, roads, construction
-- Legal & Compliance (LEGAL): Legal issues, regulations, compliance
+    const prompt = `You are an AI assistant for Uttarakhand Government document routing.
+Analyze this document and provide:
+1. Suggested department (name only)
+2. Confidence level (0-1)
+3. Routing reasoning
+4. 3-point summary
 
 Document: ${documentText.substring(0, 2000)}
-Category: ${metadata.category || 'General'}
+Available Departments: Disaster Management, Finance & Procurement, HR & Administration, Legal & Compliance
 
-Respond with JSON:
+Respond with JSON format:
 {
-  "primaryDepartment": "LAND",
-  "secondaryDepartments": ["FIN"],
-  "reasoning": "Brief explanation"
+  "suggestedDepartment": "Department Name",
+  "confidence": 0.95,
+  "reasoning": "Brief explanation why this department should handle it",
+  "summary": ["Point 1", "Point 2", "Point 3"]
 }`;
 
     const response = await axios.post(
@@ -120,26 +139,41 @@ Respond with JSON:
     );
 
     const aiResponse = response.data.candidates[0].content.parts[0].text;
-    const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
+    
+    // Try to extract JSON from markdown code blocks
+    let jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      const codeBlockMatch = aiResponse.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
+      if (codeBlockMatch) {
+        jsonMatch = [codeBlockMatch[1]];
+      }
+    }
     
     if (jsonMatch) {
-      const parsed = JSON.parse(jsonMatch[0]);
-      return {
-        success: true,
-        data: {
-          suggestedDepartment: parsed.primaryDepartment || 'FIN',
-          secondaryDepartments: parsed.secondaryDepartments || [],
-          routingReason: parsed.reasoning || 'AI-based routing'
-        }
-      };
+      try {
+        const parsed = JSON.parse(jsonMatch[0]);
+        return {
+          success: true,
+          data: {
+            primaryDepartment: parsed.suggestedDepartment,
+            confidence: parsed.confidence || 0.8,
+            reasoning: parsed.reasoning || 'AI-based routing',
+            summary: parsed.summary || []
+          }
+        };
+      } catch (parseError) {
+        console.error('JSON parsing failed:', parseError.message);
+      }
     }
 
+    // Fallback parsing for non-JSON responses
     return {
       success: false,
       data: {
-        suggestedDepartment: null,
-        secondaryDepartments: [],
-        routingReason: 'Unable to determine routing'
+        primaryDepartment: 'Disaster Management',
+        confidence: 0.5,
+        reasoning: 'Default routing - manual review required',
+        summary: ['Document requires manual review', 'Unable to auto-route', 'Please assign manually']
       }
     };
   } catch (error) {
@@ -147,9 +181,10 @@ Respond with JSON:
     return {
       success: false,
       data: {
-        suggestedDepartment: null,
-        secondaryDepartments: [],
-        routingReason: 'AI routing unavailable'
+        primaryDepartment: 'Disaster Management',
+        confidence: 0.3,
+        reasoning: 'AI routing unavailable - network error',
+        summary: ['Document routing failed', 'Network connectivity issue', 'Manual assignment required']
       }
     };
   }

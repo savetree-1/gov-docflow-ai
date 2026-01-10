@@ -8,7 +8,7 @@ const RoutingRule = require('../models/RoutingRule');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 const { extractText } = require('../services/extractText'); // NEW: Main extraction service
-const { analyzeDocumentText, suggestRouting } = require('../services/aiService');
+const { generateSummary, suggestRouting } = require('../services/geminiService');
 const { sendDocumentAssignment, sendRoutingNotification } = require('../services/emailService');
 const blockchainService = require('../services/blockchain');
 const websocketService = require('../services/websocket');
@@ -71,12 +71,12 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
 
     // STEP 2: Send text to Gemini for AI analysis
     const document = await Document.findById(documentId);
-    const aiAnalysis = await analyzeDocumentText(documentText, {
+    const aiAnalysis = await generateSummary(documentText, {
       title: document.title,
       category: document.category
     });
 
-    console.log(`AI generated summary (${aiAnalysis.summary?.length || 0} chars, ${aiAnalysis.keyPoints?.length || 0} points)`);
+    console.log(`AI generated summary (${aiAnalysis.data?.summary?.length || 0} chars, ${aiAnalysis.data?.keyPoints?.length || 0} points)`);
 
     // STEP 3: Get routing suggestions (department assignment)
     const routingSuggestion = await suggestRouting(documentText, {
@@ -95,19 +95,20 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     
     console.log(`Routing suggestion saved - awaiting officer confirmation`);
 
-    // STEP 5: Save AI results to database
-    document.summary = aiAnalysis.summary;
-    document.keyPoints = aiAnalysis.keyPoints;
+    // STEP 5: Save AI results to database (handle new generateSummary format)
+    const summaryData = aiAnalysis.success ? aiAnalysis.data : aiAnalysis;
+    document.summary = summaryData.summary;
+    document.keyPoints = summaryData.keyPoints || [];
     
-    // Validate deadline before setting
-    if (aiAnalysis.deadlines?.[0]) {
-      const deadlineDate = new Date(aiAnalysis.deadlines[0]);
+    // Handle new deadline format from Gemini
+    if (summaryData.aiDeadline) {
+      const deadlineDate = new Date(summaryData.aiDeadline);
       document.deadline = !isNaN(deadlineDate.getTime()) ? deadlineDate : null;
     } else {
       document.deadline = null;
     }
     
-    document.urgency = aiAnalysis.priority || document.urgency;
+    document.urgency = summaryData.aiUrgency || document.urgency;
     document.extractedText = documentText.substring(0, 5000); // Store first 5000 chars
     
     await document.save();
@@ -117,7 +118,7 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     // Notify WebSocket: AI Processing Complete
     websocketService.notifyAIStatus(documentId, 'completed', {
       message: 'AI analysis completed successfully',
-      summary: aiAnalysis.summary,
+      summary: summaryData.summary,
       urgency: document.urgency,
       suggestedDepartment: routingSuggestion.primaryDepartment,
       keyPointsCount: aiAnalysis.keyPoints?.length || 0
