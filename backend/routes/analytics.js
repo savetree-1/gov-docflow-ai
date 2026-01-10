@@ -8,7 +8,7 @@ const User = require('../models/User');
 const Department = require('../models/Department');
 const AuditLog = require('../models/AuditLog');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
-const bottleneckService = require("../services/bottleneckService");
+
 /****** Get Endpoint for document statistics over time accessed through  GET /api/analytics/documents-over-time ******/
 router.get('/documents-over-time', authMiddleware, async (req, res) => {
   try {
@@ -352,18 +352,5 @@ router.get('/dashboard-summary', authMiddleware, async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 });
-router.get(
-  "/bottlenecks",
-  authMiddleware,
-  roleMiddleware("SUPER_ADMIN"),
-  async (req, res) => {
-    try {
-      const data = await bottleneckService.getBottleneckData();
-      res.status(200).json({ success: true, data });
-    } catch (error) {
-      res.status(500).json({ success: false, error: error.message });
-    }
-  }
-);
 
 module.exports = router;

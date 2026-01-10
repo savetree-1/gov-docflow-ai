@@ -7,16 +7,14 @@ module.exports = {
   networks: {
     amoy: {
       url: "https://rpc-amoy.polygon.technology/",
-      accounts: process.env.METAMASK_PRIVATE_KEY
-        ? [process.env.METAMASK_PRIVATE_KEY]
-        : [],
-      chainId: 80002,
-    },
+      accounts: process.env.METAMASK_PRIVATE_KEY ? [process.env.METAMASK_PRIVATE_KEY] : [],
+      chainId: 80002
+    }
   },
   paths: {
-    sources: "./contracts",
+    sources: "./",
     tests: "./test",
     cache: "./cache",
-    artifacts: "./artifacts",
-  },
+    artifacts: "./artifacts"
+  }
 };
