@@ -78,13 +78,14 @@ const GovLogin = () => {
       } else {
         // Show error message
         setError(response.error || "Login failed. Please check your credentials.");
+        setLoading(false);
       }
     } catch (err) {
       console.error("Login error:", err);
       setError("An error occurred during login. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+      setLoading(false); // Only stop loading on error
+    } 
+    // "finally" block is removed so we don't update state after redirect
   };
 
   const redirectBasedOnRole = (role) => {
