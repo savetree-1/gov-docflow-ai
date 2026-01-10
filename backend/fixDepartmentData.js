@@ -11,19 +11,19 @@ async function fixDepartmentData() {
 
     console.log('Connected to MongoDB');
 
-    // Get all departments
+    /****** Taking all departments ******/
     const departments = await Department.find();
     console.log(`\nFound ${departments.length} departments`);
 
-    // Update all departments to be active
+    /****** Updating all the departments to be active ******/
     await Department.updateMany({}, { isActive: true });
     console.log('✓ All departments marked as active');
 
-    // Check documents and their department associations
+    /****** Checking the documents and their department associations for each department ******/
     const docs = await Document.find({ isDeleted: { $ne: true } });
     console.log(`\nFound ${docs.length} documents`);
 
-    // Count documents per department
+    /****** Counting documents per department ******/
     for (const dept of departments) {
       const docCount = await Document.countDocuments({
         department: dept._id,
@@ -32,7 +32,7 @@ async function fixDepartmentData() {
       console.log(`${dept.name} (${dept.code}): ${docCount} documents`);
     }
 
-    // If documents exist but aren't linked to departments, link them
+    /****** Checking if the documents exist but aren't linked to departments, then linking them randomly to avoid chaos******/
     const unlinkedDocs = await Document.countDocuments({
       department: { $exists: false },
       isDeleted: { $ne: true }
@@ -50,10 +50,10 @@ async function fixDepartmentData() {
         doc.department = randomDept._id;
         await doc.save();
       }
-      console.log('✓ All documents linked to departments');
+      console.log(' All documents linked to departments');
     }
 
-    console.log('\n✓ Department data fixed successfully!');
+    console.log('\nDepartment data fixed successfully!');
     process.exit(0);
   } catch (error) {
     console.error('Error:', error);

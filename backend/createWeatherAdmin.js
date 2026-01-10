@@ -22,7 +22,7 @@ async function createWeatherAdmin() {
     });
     console.log('MongoDB Connected');
 
-    // Find Meteorology Department
+    /****** Finding the Meteorology Department ******/
     const weatherDept = await Department.findOne({ code: 'MET' });
     
     if (!weatherDept) {
@@ -32,7 +32,7 @@ async function createWeatherAdmin() {
 
     console.log(`Found department: ${weatherDept.name} (${weatherDept.code})`);
 
-    // Check if user already exists
+    /****** Checking if the user already exists to avoid duplicates ******/
     const existingUser = await User.findOne({ email: 'ukweatherdept.gov@gmail.com' });
     
     if (existingUser) {
@@ -58,7 +58,7 @@ async function createWeatherAdmin() {
       console.log('-----------------------------------');
       
     } else {
-      // Creating a new user
+      /****** Creating a new user ******/
       const hashedPassword = await bcrypt.hash('Weather@123', 10);
       
       const weatherAdmin = new User({
@@ -101,5 +101,5 @@ async function createWeatherAdmin() {
   }
 }
 
-// Runing the function to create Weather Admin
+/****** Runing the function to create Weather Admin ******/
 createWeatherAdmin();

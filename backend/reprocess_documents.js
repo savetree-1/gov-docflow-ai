@@ -1,6 +1,4 @@
-/**
- * Reprocess existing documents with AI analysis
- */
+/****** Reprocess existing documents with AI analysis ******/
 
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -14,7 +12,7 @@ async function reprocessDocuments() {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDB\n');
 
-    // Finding documents who are without summaries
+    /****** Finding documents who are without summaries ******/
     const documents = await Document.find({
       $or: [
         { summary: { $exists: false } },
@@ -26,20 +24,20 @@ async function reprocessDocuments() {
     console.log(`Found ${documents.length} documents without AI summaries\n`);
 
     for (const doc of documents) {
-      console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+      console.log(`\n******************************************`);
       console.log(`Processing: ${doc.title}`);
       console.log(`ID: ${doc._id}`);
       console.log(`File: ${doc.fileUrl}`);
 
       try {
-        // Step 1: Extracting text from the document
+        /****** Step 1: Extracting text from the document ******/
         console.log('Extracting text...');
         const extraction = await extractText(doc.fileUrl, doc.fileType);
         
         if (!extraction.text || extraction.text.length < 50) {
           console.log(`Text too short (${extraction.text?.length || 0} chars) - skipping`);
           
-          // Creating basic metadata summary
+          /****** Creating basic metadata summary for very short documents ******/
           doc.summary = `This ${doc.category || 'document'} requires review. ` +
             `Categorized as ${doc.urgency || 'medium'} priority. ` +
             `Please download and review the document content.`;
@@ -57,14 +55,14 @@ async function reprocessDocuments() {
 
         console.log(`Extracted ${extraction.text.length} characters`);
 
-        // Step 2: Analyzing  with Gemini
+        /****** Step 2: Analyzing  with Gemini AI ******/
         console.log('Analyzing with Gemini AI...');
         const analysis = await analyzeDocumentText(extraction.text, {
           title: doc.title,
           category: doc.category
         });
 
-        // Step 3: Update document
+        /****** Step 3: Updating the documents with AI results ******/
         doc.summary = analysis.summary;
         doc.keyPoints = analysis.keyPoints;
         doc.extractedText = extraction.text.substring(0, 5000);
@@ -79,7 +77,7 @@ async function reprocessDocuments() {
         console.log(`Summary: ${analysis.summary.substring(0, 100)}...`);
         console.log(`Key points: ${analysis.keyPoints?.length || 0}`);
 
-        // Wait 2 seconds to avoid API rate limits
+        /****** Waiting for 2 seconds to avoid API rate limits ******/
         await new Promise(resolve => setTimeout(resolve, 2000));
 
       } catch (error) {
@@ -87,7 +85,7 @@ async function reprocessDocuments() {
       }
     }
 
-    console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('\n******************************************');
     console.log('Reprocessing completed!');
     console.log(`Total processed: ${documents.length} documents`);
 

@@ -1,18 +1,15 @@
-/**
- * Seed Departments - Create sample departments for testing
- * Run: node seedDepartments.js
- */
+/****** Module for Seed Departments which create sample departments for testing and runs node seedDepartments.js ******/
 
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load environment variables
+/****** Loading environment variables for MongoDB connection ******/
 dotenv.config({ path: path.join(__dirname, '.env') });
 
 const Department = require('./models/Department');
 
-// Sample Government Departments
+/******Adding the Sample Government Departments ******/
 const departments = [
   {
     name: 'Finance',
@@ -161,40 +158,40 @@ const departments = [
 
 async function seedDepartments() {
   try {
-    // Connect to MongoDB
-    console.log('🔗 Connecting to MongoDB...');
+    /****** Connecting to the MongoDB then inserting departments ******/
+    console.log('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('✅ MongoDB Connected');
+    console.log('MongoDB Connected');
 
-    // Clear existing departments
-    console.log('🗑️  Clearing existing departments...');
+    /****** Clearing existing departments for fresh seeding ******/
+    console.log('Clearing existing departments...');
     await Department.deleteMany({});
-    console.log('✅ Existing departments cleared');
+    console.log('Existing departments cleared');
 
-    // Insert new departments
-    console.log('📝 Creating departments...');
+    /****** Inserting new departments ******/
+    console.log('Creating departments...');
     const createdDepartments = await Department.insertMany(departments);
-    console.log(`✅ ${createdDepartments.length} departments created successfully`);
+    console.log(`${createdDepartments.length} departments created successfully`);
 
-    // Display created departments
-    console.log('\n📋 Created Departments:');
-    console.log('------------------------');
+    /****** Displaying the newly created departments ******/
+    console.log('\nCreated Departments:');
+    console.log('************************');
     createdDepartments.forEach((dept, index) => {
       console.log(`${index + 1}. ${dept.name} (${dept.code}) - ${dept.nodalOfficer.name}`);
     });
-    console.log('------------------------\n');
+    console.log('************************\n');
 
-    console.log('🎉 Department seeding completed!');
+    console.log('Department seeding completed!');
     process.exit(0);
 
   } catch (error) {
-    console.error('❌ Error seeding departments:', error);
+    console.error('Error seeding departments:', error);
     process.exit(1);
   }
 }
 
-// Run seeder
+/****** Running seeder ******/
 seedDepartments();
