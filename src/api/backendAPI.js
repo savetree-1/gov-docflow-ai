@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// Base API configuration
+/****** Base API configuration ******/
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
-// Create axios instance
+/****** Creating axios instance ******/
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -12,7 +12,7 @@ const api = axios.create({
   withCredentials: true
 });
 
-// Request interceptor - Add auth token to all requests
+/****** Requesting interceptor - Adding authentication token to all requests to endpoints ******/
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('accessToken');
@@ -26,13 +26,13 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor - Handle token refresh
+/****** Response interceptor - Handles token refresh ******/
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-    // If token expired, try to refresh
+    /****** If token expired, try to refresh ******/
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
@@ -48,7 +48,7 @@ api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         return api(originalRequest);
       } catch (refreshError) {
-        // Refresh failed, logout user
+        /****** Refresh failed, logout user ******/
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('user');
@@ -61,7 +61,7 @@ api.interceptors.response.use(
   }
 );
 
-// Auth APIs
+/****** Authentication for APIs ******/
 export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
@@ -74,7 +74,7 @@ export const authAPI = {
   })
 };
 
-// Document APIs
+/****** Document APIs ******/
 export const documentAPI = {
   upload: (formData, config = {}) => api.post('/documents/upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
@@ -91,7 +91,7 @@ export const documentAPI = {
   getStats: () => api.get('/documents/stats/overview')
 };
 
-// User APIs
+/****** User APIs ******/
 export const userAPI = {
   getAll: (params) => api.get('/users', { params }),
   getById: (id) => api.get(`/users/${id}`),
@@ -102,7 +102,7 @@ export const userAPI = {
   getStats: () => api.get('/users/stats/overview')
 };
 
-// Department APIs
+/****** Department APIs ******/
 export const departmentAPI = {
   register: (data) => api.post('/departments/register', data),
   getAll: (params) => api.get('/departments', { params }),
@@ -113,7 +113,7 @@ export const departmentAPI = {
   getStats: () => api.get('/departments/stats/overview')
 };
 
-// Routing APIs
+/****** Routing APIs ******/
 export const routingAPI = {
   create: (data) => api.post('/routing', data),
   getAll: (params) => api.get('/routing', { params }),
@@ -123,7 +123,7 @@ export const routingAPI = {
   test: (data) => api.post('/routing/test', data)
 };
 
-// Audit APIs
+/****** Audit APIs ******/
 export const auditAPI = {
   getAll: (params) => api.get('/audit', { params }),
   getById: (id) => api.get(`/audit/${id}`),

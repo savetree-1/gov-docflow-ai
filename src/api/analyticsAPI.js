@@ -1,40 +1,38 @@
 import api from './backendAPI';
 
-/**
- * Analytics API
- */
+/****** Analytics API ******/
 export const analyticsAPI = {
-  // Get documents over time
+  /****** Taking documents over time ******/
   getDocumentsOverTime: async (days = 30) => {
     return api.get(`/analytics/documents-over-time?days=${days}`);
   },
 
-  // Get department performance
+  /****** Taking department performance ******/
   getDepartmentPerformance: async () => {
     return api.get('/analytics/department-performance');
   },
 
-  // Get status distribution
+  /****** Taking status distribution ******/
   getStatusDistribution: async () => {
     return api.get('/analytics/status-distribution');
   },
 
-  // Get urgency distribution
+  /****** Taking urgency distribution ******/
   getUrgencyDistribution: async () => {
     return api.get('/analytics/urgency-distribution');
   },
 
-  // Get processing trends
+  /****** Taking processing trends ******/
   getProcessingTrends: async (days = 30) => {
     return api.get(`/analytics/processing-trends?days=${days}`);
   },
 
-  // Get user activity
+  /****** Taking user activity ******/
   getUserActivity: async (days = 7) => {
     return api.get(`/analytics/user-activity?days=${days}`);
   },
 
-  // Get dashboard summary
+  /****** Taking dashboard summary ******/
   getDashboardSummary: async () => {
     return api.get('/analytics/dashboard-summary');
   }

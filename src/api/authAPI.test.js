@@ -1,7 +1,4 @@
-/**
- * Authentication API Tests
- * Tests API calls, token management, and error handling
- */
+/****** Authentication API Tests Tests API calls, token management, and error handling ******/
 
 import axios from 'axios';
 import { authAPI } from './backendAPI';
@@ -311,8 +308,8 @@ describe('Authentication API', () => {
 
       axios.create.mockReturnValue(axiosInstance);
 
-      // This should trigger token refresh and retry
-      // Implementation depends on your actual API interceptors
+      /****** This should trigger token refresh and retry and Implementation depends on your actual API interceptors ******/
+      /****** Either Ankush or Priyanshu can fill this part based on actual implementation ******/
     });
   });
 });

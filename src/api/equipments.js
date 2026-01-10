@@ -17,7 +17,6 @@ export const getBrands = async () => {
     console.log("Error while calling getEquips API", error);
   }
 };
-// /api/brand/
 
 export const getEquip = async (id) => {
   try {

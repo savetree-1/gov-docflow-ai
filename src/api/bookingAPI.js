@@ -1,4 +1,3 @@
-// import axios from "axios";
 import instance from "./config";
 import Cookies from "js-cookie";
 import axios from "axios";
