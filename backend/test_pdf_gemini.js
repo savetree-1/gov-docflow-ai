@@ -12,7 +12,7 @@ async function testPDF() {
 
   console.log("Reading PDF:", filePath);
 
-  // 1. Extract text from PDF
+  /****** STEP 1. Extract text from PDF ******/
   const dataBuffer = fs.readFileSync(filePath);
   const pdfData = await pdf(dataBuffer);
 
@@ -23,7 +23,7 @@ async function testPDF() {
     throw new Error("PDF text too short – scanned PDF needs OCR");
   }
 
-  // 2. Send extracted text to Gemini
+  /****** STEP 2. Send extracted text to Gemini ******/
   console.log("Sending text to Gemini...");
 
   const response = await ai.models.generateContent({

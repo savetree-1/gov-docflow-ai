@@ -1,12 +1,9 @@
-/**
- * AI Service V2 - Comprehensive Test
- * Tests Gemini + HuggingFace fallback + Hard Rules
- */
+/****** Module for AI Service V2 - Comprehensive Test which will Tests Gemini + HuggingFace fallback + Hard Rules ******/
 
 require('dotenv').config();
 const { analyzeDocument, DEPARTMENTS } = require('./services/aiServiceV2');
 
-// Test documents with different scenarios
+/****** Testing documents with different scenarios to ensure hard rules and fallback work ******/
 const testCases = [
   {
     name: 'DISASTER - Flood Alert',
@@ -68,7 +65,7 @@ async function runTests() {
   console.log('║    (Government-Compliant System with Fallback Mechanism)         ║');
   console.log('╚═══════════════════════════════════════════════════════════════════╝\n');
   
-  console.log('📋 GOVERNMENT SAFETY STATEMENT:');
+  console.log('GOVERNMENT SAFETY STATEMENT:');
   console.log('"AI is used only to assist document understanding and routing suggestions.');
   console.log('All final decisions and accountability remain with authorized government officials."\n');
   
@@ -85,44 +82,44 @@ async function runTests() {
     try {
       const result = await analyzeDocument(test.text, test.metadata);
       
-      console.log(' ANALYSIS RESULT:\n');
+      console.log('ANALYSIS RESULT:\n');
       
-      console.log(' AI Provider:', result.ai_provider);
-      console.log(' Processing Time:', result.processing_time_ms, 'ms');
-      console.log(' Hard Rule Applied:', result.hard_rule_applied ? 'YES' : 'NO');
-      console.log(' Requires Human Approval:', result.requires_human_approval ? 'YES (MANDATORY)' : 'NO');
+      console.log('AI Provider:', result.ai_provider);
+      console.log('Processing Time:', result.processing_time_ms, 'ms');
+      console.log('Hard Rule Applied:', result.hard_rule_applied ? 'YES' : 'NO');
+      console.log('Requires Human Approval:', result.requires_human_approval ? 'YES (MANDATORY)' : 'NO');
       
       console.log('\n SUMMARY:');
       result.summary.forEach((point, idx) => {
-        console.log(`   ${idx + 1}. ${point}`);
+        console.log(`${idx + 1}. ${point}`);
       });
       
       console.log('\n KEY DETAILS:');
-      console.log('   Subject:', result.key_details.subject);
-      console.log('   Urgency:', result.key_details.urgency);
-      console.log('   Deadline:', result.key_details.deadline || 'None specified');
+      console.log('Subject:', result.key_details.subject);
+      console.log('Urgency:', result.key_details.urgency);
+      console.log('Deadline:', result.key_details.deadline || 'None specified');
       
       console.log('\n CLASSIFICATION:');
-      console.log('   Category:', result.classification.category);
-      console.log('   Confidence:', (result.classification.confidence * 100).toFixed(1) + '%');
-      console.log('   Note:', result.ai_confidence_note);
+      console.log('Category:', result.classification.category);
+      console.log('Confidence:', (result.classification.confidence * 100).toFixed(1) + '%');
+      console.log('Note:', result.ai_confidence_note);
       
       console.log('\n ROUTING SUGGESTION (Subject to Human Approval):');
-      console.log('   Primary Department:', result.routing_suggestion.primary_department);
-      console.log('   CC Departments:', result.routing_suggestion.cc_departments.length > 0 
+      console.log('Primary Department:', result.routing_suggestion.primary_department);
+      console.log('CC Departments:', result.routing_suggestion.cc_departments.length > 0 
         ? result.routing_suggestion.cc_departments.join(', ') 
         : 'None');
-      console.log('   Reason:', result.routing_suggestion.reason);
+      console.log('Reason:', result.routing_suggestion.reason);
       
       console.log('\n NEXT STEP: Department Admin must review and approve/modify this suggestion');
       
     } catch (error) {
-      console.log(' Test Failed:', error.message);
+      console.log('Test Failed:', error.message);
     }
     
-    console.log('\n' + '═'.repeat(70));
+    console.log('\n' + '*'.repeat(70));
     
-    // Add delay to avoid rate limits
+    /****** Adding delays to avoid rate limits which may affect testing ******/
     if (i < testCases.length - 1) {
       console.log('\n Waiting 3 seconds before next test to avoid API rate limits...');
       await new Promise(resolve => setTimeout(resolve, 3000));
@@ -133,19 +130,19 @@ async function runTests() {
   console.log('║                      TEST SUMMARY                                 ║');
   console.log('╚═══════════════════════════════════════════════════════════════════╝\n');
   
-  console.log(' All tests completed!');
+  console.log('All tests completed!');
   console.log('\n KEY FEATURES DEMONSTRATED:');
-  console.log('   1. Hard routing rules for critical documents (Disaster, Finance, HR, Legal)');
-  console.log('   2. AI-assisted analysis with structured JSON output');
-  console.log('   3. Fallback mechanism (Gemini → HuggingFace)');
-  console.log('   4. Confidence scoring and human approval requirement');
-  console.log('   5. Government-compliant audit trail');
+  console.log('1. Hard routing rules for critical documents (Disaster, Finance, HR, Legal)');
+  console.log('2. AI-assisted analysis with structured JSON output');
+  console.log('3. Fallback mechanism (Gemini → HuggingFace)');
+  console.log('4. Confidence scoring and human approval requirement');
+  console.log('5. Government-compliant audit trail');
   console.log('\n COMPLIANCE:');
-  console.log('   - All routing suggestions require human approval');
-  console.log('   - AI provider and confidence scores logged');
-  console.log('   - Hard rules override AI for critical documents');
-  console.log('   - Full audit trail maintained\n');
+  console.log('- All routing suggestions require human approval');
+  console.log('- AI provider and confidence scores logged');
+  console.log('- Hard rules override AI for critical documents');
+  console.log('- Full audit trail maintained\n');
 }
 
-// Run tests
+/****** Running tests ******/
 runTests().catch(console.error);

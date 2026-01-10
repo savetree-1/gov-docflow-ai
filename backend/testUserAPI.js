@@ -15,7 +15,7 @@ async function testUserAPI() {
     const accessToken = loginResponse.data.data.accessToken;
     console.log(`Login successful! Token: ${accessToken.substring(0, 20)}...`);
     
-    // Now fetch users with the token
+    /****** Fetching users with the token ******/
     console.log('\nStep 2: Fetching users with token...');
     const usersResponse = await axios.get('http://localhost:5001/api/users', {
       headers: {
@@ -23,24 +23,24 @@ async function testUserAPI() {
       }
     });
     
-    console.log(`   Users API Response:`);
-    console.log(`   Status: ${usersResponse.status}`);
-    console.log(`   Success: ${usersResponse.data.success}`);
-    console.log(`   Total Users: ${usersResponse.data.data.length}`);
-    console.log(`   Pagination: ${JSON.stringify(usersResponse.data.pagination)}`);
+    console.log(`Users API Response:`);
+    console.log(`Status: ${usersResponse.status}`);
+    console.log(`Success: ${usersResponse.data.success}`);
+    console.log(`Total Users: ${usersResponse.data.data.length}`);
+    console.log(`Pagination: ${JSON.stringify(usersResponse.data.pagination)}`);
     
     console.log('\n Users List:');
     console.log('-'.repeat(80));
     usersResponse.data.data.forEach((user, index) => {
       console.log(`${index + 1}. ${user.firstName} ${user.lastName}`);
-      console.log(`   Email: ${user.email}`);
-      console.log(`   Role: ${user.role}`);
-      console.log(`   Employee ID: ${user.employeeId}`);
-      console.log(`   Department: ${user.department?.name || 'N/A'}`);
+      console.log(`Email: ${user.email}`);
+      console.log(`Role: ${user.role}`);
+      console.log(`Employee ID: ${user.employeeId}`);
+      console.log(`Department: ${user.department?.name || 'N/A'}`);
       console.log();
     });
     
-    console.log('='.repeat(80));
+    console.log('*'.repeat(80));
     console.log('\nAPI Test Complete!\n');
     
   } catch (error) {

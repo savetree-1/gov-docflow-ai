@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGO_URI)
 async function verifyDepartments() {
   try {
     console.log('\nDepartment User Summary:\n');
-    console.log('='.repeat(80));
+    console.log('*'.repeat(80));
     
     const departments = await Department.find({ isActive: true });
     
@@ -27,19 +27,19 @@ async function verifyDepartments() {
       }).select('firstName lastName email role employeeId');
       
       console.log(`\n${dept.name} (${dept.code})`);
-      console.log('-'.repeat(80));
+      console.log('*'.repeat(80));
       
       if (users.length === 0) {
-        console.log('   No users assigned');
+        console.log('No users assigned');
       } else {
         users.forEach(user => {
-          console.log(`   ${user.role.padEnd(18)} | ${user.firstName} ${user.lastName.padEnd(15)} | ${user.email}`);
+          console.log(`${user.role.padEnd(18)} | ${user.firstName} ${user.lastName.padEnd(15)} | ${user.email}`);
         });
       }
-      console.log(`   Total: ${users.length} users`);
+      console.log(`Total: ${users.length} users`);
     }
     
-    console.log('\n' + '='.repeat(80));
+    console.log('\n' + '*'.repeat(80));
     console.log('\nVerification Complete!\n');
     
     process.exit(0);

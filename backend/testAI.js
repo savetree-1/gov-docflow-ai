@@ -1,6 +1,4 @@
-/**
- * Test AI Processing on Existing Document
- */
+/****** Module Test AI Processing on Existing Document ******/
 
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -10,11 +8,11 @@ const { generateSummary, suggestRouting } = require('./services/aiService');
 
 async function testAIProcessing() {
   try {
-    // Connect to MongoDB
+    /****** Connecting to MongoDB ******/
     await mongoose.connect(process.env.MONGO_URI);
     console.log(' Connected to MongoDB');
 
-    // Get the latest document
+    /****** Taking out the latest document ******/
     const document = await Document.findOne().sort({ createdAt: -1 });
     
     if (!document) {
@@ -26,11 +24,11 @@ async function testAIProcessing() {
     console.log(` File URL: ${document.fileUrl}`);
     console.log(` ID: ${document._id}\n`);
     
-    // Construct full file path
+    /****** Constructing full file path for local testing ******/
     const fullPath = `/Users/anks/Documents/GitHub/krishi-sadhan/backend/${document.fileUrl}`;
     console.log(` Full path: ${fullPath}\n`);
 
-    // Step 1: Extract text
+    /****** Step 1: Extracting text ******/
     console.log(' Extracting text from document...');
     const extraction = await extractText(fullPath, document.fileType);
     
@@ -44,7 +42,7 @@ async function testAIProcessing() {
     console.log(` Text extracted: ${extraction.text.length} characters`);
     console.log(`Preview: ${extraction.text.substring(0, 200)}...\n`);
 
-    // Step 2: Generate AI summary
+    /****** Step 2: Generating AI summary ******/
     console.log(' Generating AI summary...');
     const aiAnalysis = await generateSummary(extraction.text, {
       title: document.title,
@@ -59,8 +57,8 @@ async function testAIProcessing() {
     });
     console.log('\nPriority:', aiAnalysis.priority);
     console.log('Deadlines:', aiAnalysis.deadlines);
-
-    // Step 3: Get routing suggestions
+ 
+    /****** Step 3: Taking routing suggestions from AI ******/
     console.log('\n Getting routing suggestions...');
     const routingSuggestion = await suggestRouting(extraction.text, {
       title: document.title,
@@ -73,7 +71,7 @@ async function testAIProcessing() {
     console.log('Reasoning:', routingSuggestion.reasoning);
     console.log('Urgency:', routingSuggestion.urgency);
 
-    // Step 4: Update document
+    /****** Step 4: Updating document in database ******/
     console.log('\n Updating document in database...');
     document.summary = aiAnalysis.summary;
     document.keyPoints = aiAnalysis.keyPoints;

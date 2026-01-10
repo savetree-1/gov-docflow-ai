@@ -1,6 +1,4 @@
-// import axios from "axios";
 import instance from "./config";
-// import Cookies from "js-cookie";
 
 const url = process.env.REACT_APP_API_URL || "http://localhost:8000";
 

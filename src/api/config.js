@@ -4,7 +4,7 @@ const instance = axios.create({
   baseURL: "http://localhost:5001",
 });
 
-// Add token to every request automatically
+/****** Adding token to every request automatically and this also handles token refresh ******/
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
@@ -24,7 +24,7 @@ instance.interceptors.response.use(
     if (status === 401) {
       const originalRequest = error.config;
       
-      // Prevent infinite loop
+      /****** Preventing infinite loop ******/
       if (originalRequest._retry) {
         return Promise.reject(error);
       }
@@ -39,7 +39,7 @@ instance.interceptors.response.use(
           return axios.request(originalRequest);
         }
       } catch (refreshError) {
-        // Just reject, don't auto-redirect
+        /****** Rejecting instead of auto-redirect to login ******/
         return Promise.reject(refreshError);
       }
     }

@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5001/api';
 
-// Create axios instance with auth
+/****** Creating the axios instance with authentication token ******/
 const api = axios.create({
   baseURL: API_URL,
 });
 
-// Add auth token to requests
+/****** Adding the authentication token to requests ******/
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
   if (token) {
@@ -16,36 +16,34 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-/**
- * Notification API
- */
+/****** Notification API ******/
 export const notificationAPI = {
   // Get all notifications
   getNotifications: async (params = {}) => {
     return api.get('/notifications', { params });
   },
 
-  // Get unread count
+  /****** Taking unread count ******/
   getUnreadCount: async () => {
     return api.get('/notifications/unread-count');
   },
 
-  // Mark notification as read
+  /****** Marking notification as read ******/
   markAsRead: async (id) => {
     return api.put(`/notifications/${id}/read`);
   },
 
-  // Mark all as read
+  /****** Marking all as read *****/
   markAllAsRead: async () => {
     return api.put('/notifications/read-all');
   },
 
-  // Delete notification
+  /****** Deleting notification ******/
   deleteNotification: async (id) => {
     return api.delete(`/notifications/${id}`);
   },
 
-  // Clear all read notifications
+  /****** Clearing all read notifications ******/
   clearAllRead: async () => {
     return api.delete('/notifications/clear-all');
   },

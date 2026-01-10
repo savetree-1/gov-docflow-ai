@@ -7,19 +7,19 @@ async function testPipeline() {
   console.log('TESTING COMPLETE PIPELINE\n');
   console.log('━'.repeat(60));
   
-  // Test file (replace with actual path)
+  /****** Testing file which will be replaced with actual path ******/
   const testFile = path.join(__dirname, 'uploads', 'documents', 'Pravah_Uttarakhand_UI_System_Description.pdf');
   const mimeType = 'application/pdf';
   
   try {
-    // STEP 1: Text Extraction
+    /****** STEP 1: Text Extraction ******/
     console.log('\nSTEP 1: TEXT EXTRACTION');
     console.log('━'.repeat(60));
     const text = await extractText(testFile, mimeType);
     console.log(`Extracted ${text.length} characters`);
     console.log(`Preview: ${text.substring(0, 200)}...\n`);
     
-    // STEP 2: AI Analysis
+    /****** STEP 2: AI Analysis ******/
     console.log('\nSTEP 2: AI ANALYSIS (GEMINI)');
     console.log('━'.repeat(60));
     const aiResult = await analyzeDocumentText(text, {

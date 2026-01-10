@@ -4,7 +4,7 @@ const { sendDocumentAssignment, sendStatusUpdate } = require('./services/emailSe
 async function testEmail() {
   console.log('Testing Pravah Email System...\n');
   
-  // Test document data
+  /****** Testing document data ******/
   const testDocument = {
     _id: '507f1f77bcf86cd799439011',
     title: 'Test Document - Budget Approval Request',
@@ -21,7 +21,7 @@ async function testEmail() {
   console.log('\nSending...\n');
 
   try {
-    // Send assignment email
+    /****** Sending assignment email ******/
     const result = await sendDocumentAssignment(
       'ankurawat8844@gmail.com',
       testDocument,
@@ -34,7 +34,7 @@ async function testEmail() {
       console.log('\nCheck your inbox at: ankurawat8844@gmail.com');
       console.log('Check spam folder if not in inbox');
       
-      // Send status update email after 2 seconds
+      /****** Sending status update email after 2 seconds ******/
       console.log('\nSending status update email in 2 seconds...\n');
       await new Promise(resolve => setTimeout(resolve, 2000));
       

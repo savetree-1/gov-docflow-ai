@@ -1,29 +1,29 @@
-/**
- * Authentication API - Backend
- * Government Internal Platform
- * 
- * Implements secure authentication with:
- * - Password hashing (bcrypt)
- * - JWT token generation
- * - Audit logging
- * - Rate limiting protection
- */
+/******
+Authentication API - Backend
+Government Internal Platform
+ 
+Implements secure authentication with:
+  1. Password hashing (bcrypt)
+  2. JWT token generation
+  3. Audit logging
+  4. Rate limiting protection
+******/
 
 import axios from 'axios';
 import { AUTH_EVENTS, USER_STATUS, AUTH_STATUS_CODES } from '../constants/auth';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
-// Create axios instance with default config
+/****** Creating axios instance with default config ******/
 const authClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json'
   },
-  withCredentials: true  // For cookie-based auth if needed
+  withCredentials: true  /******This is for cookie-based auth if needed ******/
 });
 
-// Request interceptor to add auth token
+/****** Requesting interceptor to add auth token  ******/
 authClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('authToken');
@@ -35,12 +35,12 @@ authClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor to handle token expiration
+/****** Response interceptor to handle token expiration ******/
 authClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      // Token expired or invalid
+      /****** Token expired or invalid ******/
       localStorage.removeItem('authToken');
       localStorage.removeItem('user');
       window.location.href = '/login';
@@ -64,7 +64,7 @@ export const login = async (credentials) => {
 
     const { accessToken, refreshToken, user } = response.data.data;
 
-    // Store tokens
+    /****** Store tokens and user info securely ******/
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
     localStorage.setItem('user', JSON.stringify(user));
@@ -95,14 +95,14 @@ export const logout = async () => {
   try {
     await authClient.post('/auth/logout');
     
-    // Clear local storage
+    /****** Clear local storage ******/
     localStorage.removeItem('authToken');
     localStorage.removeItem('user');
     localStorage.removeItem('tokenExpiry');
 
     return { success: true };
   } catch (error) {
-    // Clear local storage even if API call fails
+    /****** Clearing local storage even if API call fails ******/
     localStorage.removeItem('authToken');
     localStorage.removeItem('user');
     localStorage.removeItem('tokenExpiry');
@@ -124,7 +124,7 @@ export const getCurrentUser = async () => {
     
     const user = response.data.user;
     
-    // Update stored user info
+    /****** Updating stored user info ******/
     localStorage.setItem('user', JSON.stringify(user));
 
     return {
@@ -152,7 +152,7 @@ export const verifyToken = async () => {
       return { success: false, error: 'No token found' };
     }
 
-    // Check local expiry first
+    /****** Checking local expiry first ******/
     const tokenExpiry = localStorage.getItem('tokenExpiry');
     if (tokenExpiry && Date.now() > parseInt(tokenExpiry)) {
       localStorage.removeItem('authToken');
@@ -161,7 +161,7 @@ export const verifyToken = async () => {
       return { success: false, error: 'Token expired' };
     }
 
-    // Verify with backend
+    /****** Verifying with backend  ******/
     const response = await authClient.get('/auth/verify');
     
     return {
@@ -213,7 +213,7 @@ export const checkPermission = (permission) => {
 
     const user = JSON.parse(userStr);
     
-    // Import ROLE_PERMISSIONS locally to avoid circular dependency
+    /****** Importing the ROLE_PERMISSIONS locally to avoid circular dependency  ******/
     const { ROLE_PERMISSIONS } = require('../constants/auth');
     
     const rolePermissions = ROLE_PERMISSIONS[user.role];
@@ -270,7 +270,7 @@ export const isAuthenticated = () => {
   
   if (!token) return false;
   
-  // Check if token is expired
+  /****** Checking if token is expired or not ******/
   if (tokenExpiry && Date.now() > parseInt(tokenExpiry)) {
     localStorage.removeItem('authToken');
     localStorage.removeItem('user');
