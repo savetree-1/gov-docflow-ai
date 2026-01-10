@@ -11,6 +11,10 @@ const { extractText } = require('../services/extractText'); // NEW: Main extract
 const { analyzeDocumentText, suggestRouting } = require('../services/aiService');
 const { sendDocumentAssignment, sendRoutingNotification } = require('../services/emailService');
 const blockchainService = require('../services/blockchain');
+<<<<<<< HEAD
+=======
+const websocketService = require('../services/websocket');
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
 const {
   notifyDocumentAssigned,
   notifyDocumentApproved,
@@ -26,6 +30,15 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     console.log(`File: ${path.basename(filePath)}`);
     console.log(`Type: ${mimeType}`);
     
+<<<<<<< HEAD
+=======
+    // Notify WebSocket: AI Processing Started
+    websocketService.notifyAIStatus(documentId, 'processing', {
+      message: 'Analyzing document with AI...',
+      stage: 'text_extraction'
+    });
+    
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
     // STEP 1: Extract text (PDF → pdf-parse, if < 100 chars → OCR, Image → OCR)
     const documentText = await extractText(filePath, mimeType);
     
@@ -42,11 +55,31 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
         'Scanned document - manual review required'
       ];
       await document.save();
+<<<<<<< HEAD
+=======
+      
+      // Notify completion
+      websocketService.notifyAIStatus(documentId, 'completed', {
+        message: 'Document processed (manual review required)',
+        summary: document.summary
+      });
+      
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
       console.log('Created metadata-based summary');
       return;
     }
 
     console.log(`Extracted ${documentText.length} characters`);
+<<<<<<< HEAD
+=======
+    
+    // Notify: Text extraction complete
+    websocketService.notifyAIStatus(documentId, 'processing', {
+      message: 'Text extracted, analyzing content...',
+      stage: 'ai_analysis',
+      textLength: documentText.length
+    });
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
 
     // STEP 2: Send text to Gemini for AI analysis
     const document = await Document.findById(documentId);
@@ -92,6 +125,26 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     await document.save();
     
     console.log(`AI processing completed for document ${documentId}`);
+<<<<<<< HEAD
+=======
+    
+    // Notify WebSocket: AI Processing Complete
+    websocketService.notifyAIStatus(documentId, 'completed', {
+      message: 'AI analysis completed successfully',
+      summary: aiAnalysis.summary,
+      urgency: document.urgency,
+      suggestedDepartment: routingSuggestion.primaryDepartment,
+      keyPointsCount: aiAnalysis.keyPoints?.length || 0
+    });
+    
+    // Notify document subscribers about the update
+    websocketService.notifyDocumentUpdate(documentId, {
+      type: 'AI_ANALYSIS_COMPLETE',
+      status: document.status,
+      summary: aiAnalysis.summary,
+      urgency: document.urgency
+    });
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
 
     // STEP 6: Send email notification if assigned
     if (document.assignedTo) {
@@ -382,18 +435,61 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
       // Notify document uploader
       if (document.uploadedBy) {
         await notifyDocumentApproved(document, document.uploadedBy, req.user.userId);
+<<<<<<< HEAD
+=======
+        
+        // Real-time WebSocket notification
+        websocketService.notifyUser(document.uploadedBy.toString(), {
+          type: 'DOCUMENT_APPROVED',
+          title: 'Document Approved',
+          message: `Your document "${document.title}" has been approved`,
+          documentId: document._id,
+          documentTitle: document.title,
+          priority: 'high',
+          icon: '✅'
+        });
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
       }
     } else if (action === 'Reject') {
       document.status = 'Rejected';
       // Notify document uploader
       if (document.uploadedBy) {
         await notifyDocumentRejected(document, document.uploadedBy, req.user.userId, notes);
+<<<<<<< HEAD
+=======
+        
+        // Real-time WebSocket notification
+        websocketService.notifyUser(document.uploadedBy.toString(), {
+          type: 'DOCUMENT_REJECTED',
+          title: 'Document Rejected',
+          message: `Your document "${document.title}" has been rejected`,
+          documentId: document._id,
+          documentTitle: document.title,
+          reason: notes,
+          priority: 'high',
+          icon: '❌'
+        });
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
       }
     } else if (action === 'Forward' && assignTo) {
       document.assignedTo = assignTo;
       document.status = 'In_Progress';
       // Notify recipient
       await notifyDocumentForwarded(document, assignTo, req.user.userId);
+<<<<<<< HEAD
+=======
+      
+      // Real-time WebSocket notification
+      websocketService.notifyUser(assignTo.toString(), {
+        type: 'DOCUMENT_FORWARDED',
+        title: 'New Document Assigned',
+        message: `Document "${document.title}" has been assigned to you`,
+        documentId: document._id,
+        documentTitle: document.title,
+        priority: document.urgency === 'Critical' ? 'high' : 'medium',
+        icon: '📄'
+      });
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
     }
 
     // Log critical actions to blockchain (immutable audit trail)
@@ -421,6 +517,18 @@ router.put('/:id/action', authMiddleware, async (req, res) => {
         if (bcResult.success) {
           document.blockchainTxHash = bcResult.txHash;
           document.blockchainVerified = true;
+<<<<<<< HEAD
+=======
+          
+          // Real-time blockchain verification notification
+          websocketService.notifyBlockchainVerification(document._id.toString(), {
+            txHash: bcResult.txHash,
+            blockNumber: bcResult.blockNumber,
+            explorer: `https://amoy.polygonscan.com/tx/${bcResult.txHash}`,
+            action: action,
+            verified: true
+          });
+>>>>>>> a98239373be244cdd7180d050e48cf4e852d0160
         }
       } catch (bcError) {
         console.error('Blockchain logging failed:', bcError.message);
