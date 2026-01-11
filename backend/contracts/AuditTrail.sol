@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-/**
- * Pravah Document Audit Trail
- * Immutable record of document actions for government accountability
- */
+/****** 
+    Pravah Document Audit Trail
+    Immutable record of document actions for government accountability
+******/
 contract AuditTrail {
     
     struct Action {
@@ -30,9 +30,9 @@ contract AuditTrail {
         string documentHash
     );
     
-    /**
-     * Log a document action to blockchain
-     */
+    /****** 
+        Log a document action to blockchain
+    ******/
     function logAction(
         string memory _documentId,
         string memory _actionType,
@@ -64,16 +64,16 @@ contract AuditTrail {
         );
     }
     
-    /**
-     * Get action count for a document
-     */
+    /****** 
+        Get action count for a document
+    ******/
     function getActionCount(string memory _documentId) public view returns (uint) {
         return documentActions[_documentId].length;
     }
     
-    /**
-     * Get specific action for a document
-     */
+    /******
+        Get specific action for a document
+    ******/
     function getAction(string memory _documentId, uint _index) public view returns (
         string memory actionType,
         string memory actor,

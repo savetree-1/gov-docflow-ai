@@ -2,7 +2,7 @@ require('dotenv').config();
 const { suggestRouting } = require('./services/geminiService');
 
 async function testRouting() {
-  console.log('🧪 Testing Uttarakhand Government Document Routing...\n');
+  console.log('Testing Uttarakhand Government Document Routing...\n');
   
   const testDocument = `
   GOVERNMENT OF UTTARAKHAND
@@ -23,34 +23,34 @@ async function testRouting() {
   `;
 
   try {
-    console.log('📄 Test Document:');
+    console.log('Test Document:');
     console.log(testDocument.substring(0, 200) + '...\n');
     
-    console.log('🚀 Calling suggestRouting...');
+    console.log('Calling suggestRouting...');
     const result = await suggestRouting(testDocument, {
       title: 'Emergency Response Protocol',
       category: 'Emergency'
     });
     
-    console.log('📊 Routing Result:');
+    console.log('Routing Result:');
     console.log('Success:', result.success);
     
     if (result.success) {
-      console.log('\n✅ AI Routing Analysis:');
+      console.log('\nAI Routing Analysis:');
       console.log('Suggested Department:', result.data.primaryDepartment);
       console.log('Confidence Level:', result.data.confidence);
       console.log('Reasoning:', result.data.reasoning);
       console.log('3-Point Summary:', result.data.summary);
     } else {
-      console.log('❌ Routing failed');
+      console.log('Routing failed');
       console.log('Fallback data:', result.data);
     }
     
   } catch (error) {
-    console.error('💥 Test Failed:', error.message);
+    console.error('Test Failed:', error.message);
   }
   
-  console.log('\n🏁 Routing Test Complete');
+  console.log('\nRouting Test Complete');
 }
 
 testRouting();

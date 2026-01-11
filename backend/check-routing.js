@@ -8,7 +8,7 @@ async function checkRouting() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
     
-    // Get the latest document
+    /****** Taking the latest document ******/
     const doc = await Document.findOne({ title: /Weather Data/i })
       .populate('department')
       .populate('suggestedDepartment')
@@ -24,9 +24,9 @@ async function checkRouting() {
       console.log('AI Reasoning:', doc.aiReasoning?.substring(0, 100) || 'Not set');
       console.log('Has Summary:', !!doc.summary);
       console.log('Summary length:', doc.summary?.length || 0);
-      console.log('\n✅ Gemini IS generating routing:', !!doc.suggestedDepartment);
+      console.log('\Gemini IS generating routing:', !!doc.suggestedDepartment);
     } else {
-      console.log('❌ Document not found');
+      console.log('Document not found');
     }
     
     mongoose.connection.close();

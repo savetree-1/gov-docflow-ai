@@ -210,7 +210,7 @@ async function cleanSetup() {
 
     /****** Summary ******/
     console.log('******************************************');
-    console.log('✅ DATABASE SETUP COMPLETE');
+    console.log('DATABASE SETUP COMPLETE');
     console.log('******************************************\n');
 
     console.log('DEPARTMENTS (All Pending - awaiting approval):');

@@ -12,14 +12,14 @@ async function checkDocs() {
     
     console.log('\n=== Document Department Assignments ===\n');
     docs.forEach(doc => {
-      console.log(`📄 ${doc.title}`);
-      console.log(`   Initial Department: ${doc.initialDepartment?.name || 'None'}`);
-      console.log(`   Current Department: ${doc.department?.name || 'None'}`);
-      console.log(`   Status: ${doc.status}`);
+      console.log(`${doc.title}`);
+      console.log(`Initial Department: ${doc.initialDepartment?.name || 'None'}`);
+      console.log(`Current Department: ${doc.department?.name || 'None'}`);
+      console.log(`Status: ${doc.status}`);
       console.log('');
     });
     
-    // Count by department
+    /****** Counting by department ******/
     const financeDocs = await Document.countDocuments({ department: await Department.findOne({ code: 'FIN' }).then(d => d._id) });
     const weatherDocs = await Document.countDocuments({ department: await Department.findOne({ code: 'MET' }).then(d => d._id) });
     

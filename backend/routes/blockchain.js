@@ -6,8 +6,8 @@ const blockchainService = require('../services/blockchain');
 const { authMiddleware } = require('../middleware/auth');
 
 /******
-      Verifing the document integrity against blockchain
-      GET /api/blockchain/verify/:documentId
+      Get Endpoint for Verifing the document integrity against blockchain
+      Accessed through: GET /api/blockchain/verify/:documentId
 ******/
 router.get('/verify/:documentId', authMiddleware, async (req, res) => {
   try {
@@ -42,8 +42,8 @@ router.get('/verify/:documentId', authMiddleware, async (req, res) => {
 });
 
 /******
-    Check blockchain service status
-    GET /api/blockchain/status
+    Get Endpoint to Check blockchain service status
+    Accessed through: GET /api/blockchain/status
 ******/
 router.get('/status', authMiddleware, async (req, res) => {
   try {

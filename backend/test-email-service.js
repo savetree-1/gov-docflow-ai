@@ -2,7 +2,7 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 async function testEmail() {
-  console.log('📧 Testing Email Configuration...\n');
+  console.log('Testing Email Configuration...\n');
   
   console.log('Email Credentials:');
   console.log('  EMAIL_USER:', process.env.EMAIL_USER);
@@ -10,12 +10,12 @@ async function testEmail() {
   console.log('');
 
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-    console.log('❌ Email credentials not configured in .env file');
+    console.log('Email credentials not configured in .env file');
     return;
   }
 
   try {
-    // Create transporter
+    /****** Creating transporter ******/
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -24,16 +24,16 @@ async function testEmail() {
       }
     });
 
-    console.log('🔄 Verifying transporter connection...');
+    console.log('Verifying transporter connection...');
     await transporter.verify();
-    console.log('✅ Transporter connection verified!\n');
+    console.log('Transporter connection verified!\n');
 
-    // Send test email
-    console.log('📤 Sending test email...');
+    /****** Sending test email ******/
+    console.log('Sending test email...');
     const info = await transporter.sendMail({
       from: `"Pravaah Document System" <${process.env.EMAIL_USER}>`,
       to: 'ukweatherdept.gov@gmail.com', // UK Weather admin email
-      subject: '✅ Email Service Test - Pravaah System',
+      subject: 'Email Service Test - Pravaah System',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #2c5aa0;">Email Service Test</h2>
@@ -48,15 +48,15 @@ async function testEmail() {
       `
     });
 
-    console.log('✅ Test email sent successfully!');
-    console.log('   Message ID:', info.messageId);
-    console.log('   Recipient: ukweatherdept.gov@gmail.com\n');
-    console.log('🎉 Email service is working! Check the inbox.');
+    console.log('Test email sent successfully!');
+    console.log('Message ID:', info.messageId);
+    console.log('Recipient: ukweatherdept.gov@gmail.com\n');
+    console.log('Email service is working! Check the inbox.');
 
   } catch (error) {
-    console.error('❌ Email test failed:', error.message);
+    console.error('Email test failed:', error.message);
     if (error.code === 'EAUTH') {
-      console.error('   Authentication failed - check EMAIL_USER and EMAIL_PASSWORD');
+      console.error('Authentication failed - check EMAIL_USER and EMAIL_PASSWORD');
     }
   }
 }

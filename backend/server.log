@@ -4,10 +4,10 @@ Server running on port 5001
    API: http://localhost:5001/api
    Health Check: http://localhost:5001/api/health
 
-🔄 Initializing blockchain service...
+Initializing blockchain service...
 Blockchain service initialized
 Contract: 0x1C10cF7771B783a40c9599B673e18C641DcEd89a
-🚀 WebSocket service initialized
+   WebSocket service initialized
    WebSocket: ws://localhost:5001
 
 MongoDB Connected

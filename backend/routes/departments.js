@@ -37,7 +37,7 @@ router.post('/register', authMiddleware, roleMiddleware('DEPARTMENT_ADMIN', 'SUP
 
     await department.save();
 
-    // Log audit
+    /****** Logging audit ******/
     await AuditLog.create({
       action: 'DEPARTMENT_REGISTER',
       performedBy: req.user.userId,
@@ -59,7 +59,7 @@ router.post('/register', authMiddleware, roleMiddleware('DEPARTMENT_ADMIN', 'SUP
   }
 });
 
-/****** Get all departments without authentication ******/
+/****** Get Endpoint to take all departments without authentication ******/
 router.get('/', async (req, res) => {
   try {
     const { status, isActive, search, page = 1, limit = 20 } = req.query;
@@ -99,7 +99,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-/****** Access department by ID ******/
+/****** Get Endpoint to access department by ID ******/
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
     const department = await Department.findById(req.params.id)
@@ -116,7 +116,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-/****** Approve department for super admins ******/
+/****** Get Endpoint to approve department for super admins ******/
 router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const department = await Department.findById(req.params.id);
@@ -137,7 +137,7 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
 
     await department.save();
 
-    // Activate all users in this department (admins and officers)
+    /****** Activating all users in this department including admins and officers only ******/
     await User.updateMany(
       { department: department._id },
       {
@@ -148,7 +148,7 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
       }
     );
 
-    // Log audit
+    /****** Logging audit ******/
     await AuditLog.create({
       action: 'DEPARTMENT_APPROVE',
       performedBy: req.user.userId,
@@ -169,7 +169,7 @@ router.put('/:id/approve', authMiddleware, roleMiddleware('SUPER_ADMIN'), async 
   }
 });
 
-/****** Reject department for super admins ******/
+/****** Endpoint to reject department for super admins only ******/
 router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (req, res) => {
   try {
     const { reason } = req.body;
@@ -186,7 +186,7 @@ router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (
 
     await department.save();
 
-    // Deactivate all users in this department
+    /****** Deactivating all users in this department ******/
     await User.updateMany(
       { department: department._id },
       {
@@ -197,7 +197,7 @@ router.put('/:id/reject', authMiddleware, roleMiddleware('SUPER_ADMIN'), async (
       }
     );
 
-    // Log audit
+    /****** Logging audit ******/
     await AuditLog.create({
       action: 'DEPARTMENT_REJECT',
       performedBy: req.user.userId,

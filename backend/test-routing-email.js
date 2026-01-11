@@ -38,11 +38,11 @@ async function sendTestEmail() {
   );
 
   if (result.success) {
-    console.log('✅ Email sent successfully!');
+    console.log('Email sent successfully!');
     console.log('Message ID:', result.messageId);
-    console.log('\n📬 Check ukweatherdept.gov@gmail.com inbox');
+    console.log('\nCheck ukweatherdept.gov@gmail.com inbox');
   } else {
-    console.log('❌ Email failed:', result.error);
+    console.log('Email failed:', result.error);
   }
 }
 

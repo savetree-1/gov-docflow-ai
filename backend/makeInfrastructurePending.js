@@ -1,12 +1,12 @@
-/**
- * Script to make Infrastructure Department pending
- * Run: node makeInfrastructurePending.js
- */
+/******
+    Script to make Infrastructure Department pending
+ *  Run: node makeInfrastructurePending.js
+******/
 
 const mongoose = require('mongoose');
 const Department = require('./models/Department');
 
-// MongoDB connection
+/****** MongoDB connection ******/
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/pravah_prototype';
 
 async function makeInfrastructurePending() {
@@ -18,7 +18,7 @@ async function makeInfrastructurePending() {
     });
     console.log('Connected to MongoDB\n');
 
-    // Find Infrastructure department
+    /****** Finding Infrastructure department ******/
     const infraDept = await Department.findOne({ 
       name: { $regex: /infrastructure/i }
     });
@@ -33,11 +33,11 @@ async function makeInfrastructurePending() {
     console.log(`- Current Status: ${infraDept.status}`);
     console.log(`- Email: ${infraDept.email}`);
 
-    // Update to Pending
+    /****** Updating the status to Pending ******/
     infraDept.status = 'Pending';
     await infraDept.save();
 
-    console.log('\n✅ Infrastructure Department status updated to Pending');
+    console.log('\nInfrastructure Department status updated to Pending');
 
     await mongoose.disconnect();
     console.log('Disconnected from MongoDB');

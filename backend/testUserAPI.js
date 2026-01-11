@@ -5,7 +5,7 @@ async function testUserAPI() {
     console.log('\nTesting User API Endpoint:\n');
     console.log('='.repeat(80));
     
-    // First, login as Finance Admin
+    /****** First, login as Finance Admin ******/
     console.log('Step 1: Login as Finance Admin...');
     const loginResponse = await axios.post('http://localhost:5001/api/auth/login', {
       email: 'finance.admin@pravah.gov.in',
