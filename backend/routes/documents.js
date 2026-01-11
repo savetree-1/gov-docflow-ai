@@ -334,8 +334,13 @@ router.get('/', authMiddleware, async (req, res) => {
 
     // Role-based filtering
     if (req.user.role === 'OFFICER') {
-      // Officers see only documents they uploaded
-      query.uploadedBy = req.user.userId;
+      // Officers see:
+      // 1. Documents they uploaded
+      // 2. Documents routed to their department
+      query.$or = [
+        { uploadedBy: req.user.userId },
+        { department: req.user.department }
+      ];
     } else if (req.user.role === 'DEPARTMENT_ADMIN') {
       // Department admins see:
       // 1. Documents routed to their department
@@ -362,17 +367,14 @@ router.get('/', authMiddleware, async (req, res) => {
         { tags: { $in: [new RegExp(search, 'i')] } }
       ];
       
-      if (query.uploadedBy) {
-        // For officers, add search on top of uploadedBy filter
-        query.$and = [
-          { uploadedBy: query.uploadedBy },
-          { $or: searchConditions }
-        ];
-        delete query.uploadedBy;
-      } else if (query.$or && req.user.role === 'DEPARTMENT_ADMIN') {
-        // For dept admins with $or filter, add search on top
+      if (query.$or && (req.user.role === 'OFFICER' || req.user.role === 'DEPARTMENT_ADMIN')) {
+        // For officers and dept admins with $or filter, add search on top
         query.$and = [
           { $or: query.$or },
+          { $or: searchConditions }
+        ];
+        delete query.$or;
+      } else {
           { $or: searchConditions }
         ];
         delete query.$or;

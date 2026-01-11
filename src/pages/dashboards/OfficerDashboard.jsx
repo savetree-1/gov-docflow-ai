@@ -28,15 +28,31 @@ const OfficerDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
+      
+      // Fetch documents for this officer
+      // Backend automatically filters: documents uploaded by officer OR routed to their department
+      const params = {
+        limit: 50, // Show more documents
+      };
+      
       const [docsResponse, statsResponse] = await Promise.all([
-        documentAPI.getAll({ limit: 20 }),
+        documentAPI.getAll(params),
         documentAPI.getStats()
       ]);
 
       if (docsResponse.data.success) {
         const docs = docsResponse.data.data;
-        setActionRequired(docs.filter(d => d.status === 'Pending' || d.status === 'In_Progress'));
-        setForInformation(docs.filter(d => d.status === 'Approved'));
+        console.log('Officer Dashboard - Fetched documents:', docs.length, docs);
+        
+        // Action Required: Pending or In Progress documents
+        setActionRequired(docs.filter(d => 
+          d.status === 'Pending' || d.status === 'In_Progress'
+        ));
+        
+        // For Information: Approved/Completed documents
+        setForInformation(docs.filter(d => 
+          d.status === 'Approved' || d.status === 'Completed'
+        ));
         
         // Filter documents with AI summaries
         const docsWithSummary = docs.filter(d => d.summary && d.summary.length > 0);
@@ -138,15 +154,27 @@ const OfficerDashboard = () => {
             <span className="section-count">{actionRequired.length} documents</span>
           </div>
           
-          <div className="document-grid">
-            {actionRequired.map(doc => (
-              <DocumentCard 
-                key={doc._id || doc.id} 
-                document={doc} 
-                onClick={() => navigate(`/document/${doc._id || doc.id}`)}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+              Loading documents...
+            </div>
+          ) : actionRequired.length === 0 ? (
+            <EmptyState 
+              icon={true}
+              title="No Action Required"
+              message="You're all caught up! No documents require immediate attention."
+            />
+          ) : (
+            <div className="document-grid">
+              {actionRequired.map(doc => (
+                <DocumentCard 
+                  key={doc._id || doc.id} 
+                  document={doc} 
+                  onClick={() => navigate(`/document/${doc._id || doc.id}`)}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* For Information Section */}
@@ -156,15 +184,27 @@ const OfficerDashboard = () => {
             <span className="section-count">{forInformation.length} documents</span>
           </div>
           
-          <div className="document-grid">
-            {forInformation.map(doc => (
-              <DocumentCard 
-                key={doc._id || doc.id} 
-                document={doc} 
-                onClick={() => navigate(`/document/${doc._id || doc.id}`)}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+              Loading documents...
+            </div>
+          ) : forInformation.length === 0 ? (
+            <EmptyState 
+              icon={true}
+              title="No Documents"
+              message="No approved or completed documents to display at this time."
+            />
+          ) : (
+            <div className="document-grid">
+              {forInformation.map(doc => (
+                <DocumentCard 
+                  key={doc._id || doc.id} 
+                  document={doc} 
+                  onClick={() => navigate(`/document/${doc._id || doc.id}`)}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Quick Actions */}

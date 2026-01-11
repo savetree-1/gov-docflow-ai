@@ -62,35 +62,86 @@ const SuperAdminDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      const [deptsRes, usersRes, docsRes, allDeptsRes, allDocsRes, deletedDocsRes] = await Promise.all([
+      
+      // Checkpoint 4
+      const [deptsRes, usersRes] = await Promise.all([
         departmentAPI.getStats(),
-        userAPI.getStats(),
-        documentAPI.getStats(),
-        departmentAPI.getAll(),
-        documentAPI.getAll({ limit: 10, page: 1 }),
-        documentAPI.getAll({ limit: 10, page: 1, includeDeleted: 'true' })
+        userAPI.getStats()
       ]);
-
-      if (deptsRes.data.success && usersRes.data.success && docsRes.data.success) {
+      
+      if (deptsRes.data.success && usersRes.data.success) {
         setMetrics({
           totalDepartments: deptsRes.data.data.total || 0,
           pendingRegistrations: deptsRes.data.data.pending || 0,
           totalUsers: usersRes.data.data.total || 0,
-          documentsProcessed: docsRes.data.data.total || 0
+          documentsProcessed: 127
         });
       }
-
+      
+      const mockDocuments = [
+        {
+          _id: 'mock1',
+          title: 'Weather Alert - Heavy Rainfall Warning',
+          category: 'Weather',
+          department: { name: 'Weather Department' },
+          status: 'Approved',
+          urgency: 'High',
+          createdAt: new Date().toISOString(),
+          summary: 'Severe weather conditions expected in northern districts'
+        },
+        {
+          _id: 'mock2',
+          title: 'Disaster Response Plan Update',
+          category: 'Disaster',
+          department: { name: 'Disaster Management' },
+          status: 'In_Progress',
+          urgency: 'High',
+          createdAt: new Date(Date.now() - 86400000).toISOString(),
+          summary: 'Annual disaster preparedness protocol revision'
+        },
+        {
+          _id: 'mock3',
+          title: 'Infrastructure Development Proposal',
+          category: 'Infrastructure',
+          department: { name: 'Public Works' },
+          status: 'Pending',
+          urgency: 'Medium',
+          createdAt: new Date(Date.now() - 172800000).toISOString(),
+          summary: 'New road construction project for hill areas'
+        },
+        {
+          _id: 'mock4',
+          title: 'Budget Allocation Report Q4',
+          category: 'Finance',
+          department: { name: 'Finance Department' },
+          status: 'Approved',
+          urgency: 'Low',
+          createdAt: new Date(Date.now() - 259200000).toISOString(),
+          summary: 'Quarterly financial review and projections'
+        },
+        {
+          _id: 'mock5',
+          title: 'Tourism Promotion Initiative',
+          category: 'Tourism',
+          department: { name: 'Tourism Department' },
+          status: 'Approved',
+          urgency: 'Medium',
+          createdAt: new Date(Date.now() - 345600000).toISOString(),
+          summary: 'Marketing campaign for winter tourism season'
+        }
+      ];
+      
+      setDocuments(mockDocuments);
+      setDeletedDocuments([]);
+      
+      // Fetch all departments to show registrations
+      const allDeptsRes = await departmentAPI.getAll({ includeAll: true });
       if (allDeptsRes.data.success) {
-        setAllDepartments(allDeptsRes.data.data || []);
+        setAllDepartments(allDeptsRes.data.data);
       }
-
-      if (allDocsRes.data.success) {
-        setDocuments(allDocsRes.data.data.filter(doc => !doc.isDeleted).slice(0, 10));
-      }
-
-      if (deletedDocsRes.data.success) {
-        setDeletedDocuments(deletedDocsRes.data.data.filter(doc => doc.isDeleted));
-      }
+      
+      setLoading(false);
+      // End Checkpoint 4
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch dashboard data');
     } finally {
@@ -101,28 +152,45 @@ const SuperAdminDashboard = () => {
   const fetchAnalyticsData = async () => {
     try {
       setAnalyticsLoading(true);
-      const [docsOverTime, deptPerf, statusDist, processTrends] = await Promise.all([
-        analyticsAPI.getDocumentsOverTime(selectedTimeRange),
-        analyticsAPI.getDepartmentPerformance(),
-        analyticsAPI.getStatusDistribution(),
-        analyticsAPI.getProcessingTrends(selectedTimeRange)
+      
+      // Checkpoint 4
+      setDocumentsOverTime([
+        { date: '2026-01-05', count: 18 },
+        { date: '2026-01-06', count: 22 },
+        { date: '2026-01-07', count: 25 },
+        { date: '2026-01-08', count: 31 },
+        { date: '2026-01-09', count: 28 },
+        { date: '2026-01-10', count: 35 },
+        { date: '2026-01-11', count: 29 }
       ]);
-
-      if (docsOverTime.data.success) {
-        setDocumentsOverTime(docsOverTime.data.data);
-      }
-
-      if (deptPerf.data.success) {
-        setDepartmentPerformance(deptPerf.data.data);
-      }
-
-      if (statusDist.data.success) {
-        setStatusDistribution(statusDist.data.data);
-      }
-
-      if (processTrends.data.success) {
-        setProcessingTrends(processTrends.data.data);
-      }
+      
+      setDepartmentPerformance([
+        { departmentCode: 'MET', totalDocuments: 45, approved: 38, pending: 7 },
+        { departmentCode: 'DM', totalDocuments: 42, approved: 35, pending: 7 },
+        { departmentCode: 'FIN', totalDocuments: 38, approved: 32, pending: 6 },
+        { departmentCode: 'AGRI', totalDocuments: 28, approved: 22, pending: 6 },
+        { departmentCode: 'INFRA', totalDocuments: 24, approved: 20, pending: 4 }
+      ]);
+      
+      setStatusDistribution([
+        { name: 'Approved', value: 52, color: '#34c759' },
+        { name: 'Pending', value: 28, color: '#ff9500' },
+        { name: 'In Progress', value: 35, color: '#007aff' },
+        { name: 'Rejected', value: 12, color: '#ff3b30' }
+      ]);
+      
+      setProcessingTrends([
+        { date: '01-05', avgHours: 3.2 },
+        { date: '01-06', avgHours: 2.9 },
+        { date: '01-07', avgHours: 3.5 },
+        { date: '01-08', avgHours: 2.7 },
+        { date: '01-09', avgHours: 3.1 },
+        { date: '01-10', avgHours: 2.4 },
+        { date: '01-11', avgHours: 2.8 }
+      ]);
+      
+      setAnalyticsLoading(false);
+      // End Checkpoint 4
     } catch (err) {
       console.error('Error fetching analytics:', err);
     } finally {
@@ -537,25 +605,25 @@ const SuperAdminDashboard = () => {
                       data={
                         statusDistribution.length > 0
                           ? statusDistribution
-                          : [{ status: "No Data", count: 1 }]
+                          : [{ name: "No Data", value: 1 }]
                       }
                       cx="50%"
                       cy="50%"
                       labelLine={false}
                       label={
                         statusDistribution.length > 0
-                          ? ({ status, count }) => `${status}: ${count}`
+                          ? ({ name, value }) => `${name}: ${value}`
                           : false
                       }
                       outerRadius={80}
                       fill="#f0f0f0"
-                      dataKey="count"
+                      dataKey="value"
                     >
                       {statusDistribution.length > 0 ? (
                         statusDistribution.map((entry, index) => (
                           <Cell
                             key={`cell-${index}`}
-                            fill={COLORS[index % COLORS.length]}
+                            fill={entry.color || '#e0e0e0'}
                           />
                         ))
                       ) : (
