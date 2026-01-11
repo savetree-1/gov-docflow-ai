@@ -208,121 +208,199 @@ const Notifications = () => {
                     }
                   }}
                   style={{
-                    backgroundColor: notification.read ? '#ffffff' : '#f0f9f8',
-                    padding: '20px',
-                    borderRadius: '8px',
-                    border: `1px solid ${notification.read ? '#e0e0e0' : '#0f5e59'}`,
+                    backgroundColor: '#ffffff',
+                    padding: '16px',
+                    borderRadius: '12px',
+                    border: notification.read ? '1px solid #e5e5ea' : '1.5px solid #0f5e59',
                     cursor: notification.documentId ? 'pointer' : 'default',
-                    transition: 'all 0.15s ease',
+                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                     display: 'flex',
-                    gap: '16px',
-                    alignItems: 'flex-start'
+                    gap: '12px',
+                    alignItems: 'flex-start',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    boxShadow: notification.read ? '0 1px 3px rgba(0,0,0,0.04)' : '0 2px 8px rgba(15,94,89,0.08)'
                   }}
                   onMouseEnter={(e) => {
                     if (notification.documentId) {
-                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.08)';
                     }
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = notification.read ? '0 1px 3px rgba(0,0,0,0.04)' : '0 2px 8px rgba(15,94,89,0.08)';
                   }}
                 >
+                  {/* Unread indicator bar */}
+                  {!notification.read && (
+                    <div style={{
+                      position: 'absolute',
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: '4px',
+                      backgroundColor: '#0f5e59',
+                      borderRadius: '12px 0 0 12px'
+                    }} />
+                  )}
+
+                  {/* Icon Circle */}
                   <div style={{ 
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    backgroundColor: `${getIconColor(notification.type)}15`,
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    backgroundColor: !notification.read ? '#0f5e5915' : '#f5f5f7',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    flexShrink: 0
+                    flexShrink: 0,
+                    border: !notification.read ? '1px solid #0f5e5930' : '1px solid #e5e5ea',
+                    transition: 'all 0.2s ease'
                   }}>
                     <span style={{ 
                       fontSize: '14px',
-                      color: getIconColor(notification.type),
+                      color: !notification.read ? '#0f5e59' : '#8e8e93',
                       fontWeight: '700',
-                      fontFamily: 'monospace',
-                      letterSpacing: '0.5px'
+                      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif',
+                      letterSpacing: '-0.3px'
                     }}>
                       {getNotificationIcon(notification.type) === 'assignment' && 'DOC'}
-                      {getNotificationIcon(notification.type) === 'check_circle' && 'OK'}
-                      {getNotificationIcon(notification.type) === 'cancel' && 'NO'}
-                      {getNotificationIcon(notification.type) === 'alarm' && 'DUE'}
-                      {getNotificationIcon(notification.type) === 'comment' && 'MSG'}
+                      {getNotificationIcon(notification.type) === 'check_circle' && '✓'}
+                      {getNotificationIcon(notification.type) === 'cancel' && '✕'}
+                      {getNotificationIcon(notification.type) === 'alarm' && '⏰'}
+                      {getNotificationIcon(notification.type) === 'comment' && '💬'}
                       {getNotificationIcon(notification.type) === 'notifications' && 'NEW'}
                     </span>
                   </div>
                   
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                      <h3 style={{ 
-                        fontSize: '16px', 
-                        fontWeight: notification.read ? '500' : '700',
-                        color: '#2c3e50',
-                        margin: 0
-                      }}>
-                        {notification.title}
-                      </h3>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    {/* Header Row */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '6px', gap: '12px' }}>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        {!notification.read && (
+                          <span style={{
+                            display: 'inline-block',
+                            padding: '3px 8px',
+                            backgroundColor: '#0f5e59',
+                            color: '#ffffff',
+                            borderRadius: '6px',
+                            fontSize: '10px',
+                            fontWeight: '700',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.5px',
+                            marginBottom: '6px',
+                            fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'
+                          }}>
+                            NEW
+                          </span>
+                        )}
+                        <h3 style={{ 
+                          fontSize: '16px', 
+                          fontWeight: notification.read ? '600' : '700',
+                          color: '#1c1c1e',
+                          margin: 0,
+                          lineHeight: '1.3',
+                          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif',
+                          letterSpacing: '-0.3px'
+                        }}>
+                          {notification.title}
+                        </h3>
+                      </div>
                       {notification.priority === 'high' && (
                         <span style={{
-                          padding: '2px 8px',
-                          backgroundColor: '#fee',
-                          color: '#c00',
-                          borderRadius: '4px',
+                          padding: '4px 10px',
+                          backgroundColor: '#ff3b30',
+                          color: '#ffffff',
+                          borderRadius: '8px',
                           fontSize: '11px',
                           fontWeight: '700',
-                          textTransform: 'uppercase'
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.3px',
+                          flexShrink: 0,
+                          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'
                         }}>
-                          High Priority
+                          HIGH PRIORITY
                         </span>
                       )}
                     </div>
                     
                     <p style={{ 
                       fontSize: '14px', 
-                      color: '#666666',
-                      margin: '0 0 8px 0',
-                      lineHeight: '1.5'
+                      color: '#3c3c43',
+                      margin: '0 0 12px 0',
+                      lineHeight: '1.45',
+                      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                      fontWeight: '400'
                     }}>
                       {notification.message}
                     </p>
                     
-                    {/* Display routing metadata if available */}
+                    {/* Metadata Card */}
                     {notification.metadata && notification.type === 'document_routed' && (
                       <div style={{
                         marginTop: '12px',
                         padding: '12px',
-                        backgroundColor: '#f8f9fa',
-                        borderRadius: '6px',
-                        borderLeft: '3px solid #0f5e59'
+                        backgroundColor: '#f5f5f7',
+                        borderRadius: '10px',
+                        border: '1px solid #e5e5ea'
                       }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                           {notification.metadata.routedToDepartment && (
-                            <div style={{ fontSize: '13px', color: '#495057' }}>
-                              <strong>Department:</strong> {notification.metadata.routedToDepartment}
+                            <div style={{ 
+                              fontSize: '13px', 
+                              color: '#3c3c43',
+                              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                              display: 'flex',
+                              alignItems: 'baseline'
+                            }}>
+                              <strong style={{ fontWeight: '600', color: '#1c1c1e', minWidth: '100px' }}>Department:</strong>
+                              <span style={{ marginLeft: '4px' }}>{notification.metadata.routedToDepartment}</span>
                             </div>
                           )}
                           {notification.metadata.officerName && notification.metadata.officerRole && (
-                            <div style={{ fontSize: '13px', color: '#495057' }}>
-                              <strong>Assigned to:</strong> {notification.metadata.officerName} ({notification.metadata.officerRole.replace(/_/g, ' ')})
+                            <div style={{ 
+                              fontSize: '13px', 
+                              color: '#3c3c43',
+                              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                              display: 'flex',
+                              alignItems: 'baseline'
+                            }}>
+                              <strong style={{ fontWeight: '600', color: '#1c1c1e', minWidth: '100px' }}>Assigned to:</strong>
+                              <span style={{ marginLeft: '4px' }}>{notification.metadata.officerName} ({notification.metadata.officerRole.replace(/_/g, ' ')})</span>
                             </div>
                           )}
                           {notification.metadata.category && (
-                            <div style={{ fontSize: '13px', color: '#495057' }}>
-                              <strong>Category:</strong> {notification.metadata.category}
+                            <div style={{ 
+                              fontSize: '13px', 
+                              color: '#3c3c43',
+                              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                              display: 'flex',
+                              alignItems: 'baseline'
+                            }}>
+                              <strong style={{ fontWeight: '600', color: '#1c1c1e', minWidth: '100px' }}>Category:</strong>
+                              <span style={{ marginLeft: '4px', textTransform: 'lowercase' }}>{notification.metadata.category}</span>
                             </div>
                           )}
                           {notification.metadata.urgency && (
-                            <div style={{ fontSize: '13px', color: '#495057' }}>
-                              <strong>Priority:</strong> 
+                            <div style={{ 
+                              fontSize: '13px', 
+                              color: '#3c3c43',
+                              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                              display: 'flex',
+                              alignItems: 'center'
+                            }}>
+                              <strong style={{ fontWeight: '600', color: '#1c1c1e', minWidth: '100px' }}>Priority:</strong>
                               <span style={{
-                                marginLeft: '6px',
-                                padding: '2px 8px',
-                                backgroundColor: notification.metadata.urgency === 'High' ? '#fee' : notification.metadata.urgency === 'Medium' ? '#fff4e6' : '#f0f9ff',
-                                color: notification.metadata.urgency === 'High' ? '#c00' : notification.metadata.urgency === 'Medium' ? '#e67e22' : '#0288d1',
-                                borderRadius: '4px',
+                                marginLeft: '4px',
+                                padding: '3px 10px',
+                                backgroundColor: notification.metadata.urgency === 'High' ? '#ff3b30' : notification.metadata.urgency === 'Medium' ? '#ff9500' : '#007aff',
+                                color: '#ffffff',
+                                borderRadius: '6px',
                                 fontSize: '11px',
-                                fontWeight: '600'
+                                fontWeight: '700',
+                                textTransform: 'capitalize',
+                                fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
                               }}>
                                 {notification.metadata.urgency}
                               </span>
@@ -332,14 +410,25 @@ const Notifications = () => {
                       </div>
                     )}
                     
-                    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                      <span style={{ fontSize: '13px', color: '#999999' }}>
+                    {/* Footer Row */}
+                    <div style={{ 
+                      display: 'flex', 
+                      gap: '12px', 
+                      alignItems: 'center',
+                      marginTop: '10px'
+                    }}>
+                      <span style={{ 
+                        fontSize: '12px', 
+                        color: '#8e8e93',
+                        fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                        fontWeight: '500'
+                      }}>
                         {getTimeAgo(notification.createdAt)}
                       </span>
                       {!notification.read && (
                         <span style={{
-                          width: '8px',
-                          height: '8px',
+                          width: '6px',
+                          height: '6px',
                           backgroundColor: '#0f5e59',
                           borderRadius: '50%'
                         }} />
