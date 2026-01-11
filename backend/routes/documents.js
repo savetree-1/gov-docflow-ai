@@ -109,8 +109,8 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     if (!suggestedDept) {
       const deptKeywords = {
         'disaster': 'Disaster Management',
-        'weather': 'Weather',
-        'meteorology': 'Weather',
+        'weather': 'Weather & Meteorology',
+        'meteorology': 'Weather & Meteorology',
         'finance': 'Finance',
         'agriculture': 'Agriculture',
         'infrastructure': 'Infrastructure'
@@ -794,7 +794,7 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
             message: `Document "${document.title}" has been routed to ${finalDepartment.name} department by ${routedBy}`,
             documentId: document._id,
             relatedUserId: req.user.userId,
-            priority: document.urgency === 'High' ? 'high' : document.urgency === 'Medium' ? 'medium' : 'low',
+            priority: document.urgency === 'High' ? 'high' : document.urgency === 'Medium' ? 'normal' : 'low',
             actionUrl: `/document/${document._id}`,
             metadata: {
               documentNumber: document.documentNumber,

@@ -18,7 +18,7 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    db.collection('roomB').orderBy('timestamp', 'asc').onSnapshot((snapshot) => 
+    db.collection('roomA').orderBy('timestamp', 'asc').onSnapshot((snapshot) => 
         setMessages(
             snapshot.docs.map(message => ({
                 id: message.id,
