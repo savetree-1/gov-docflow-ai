@@ -100,7 +100,6 @@ const AuditorDashboard = () => {
   const documentColumns = [
     { header: 'Title', field: 'title' },
     { header: 'Department', field: 'department' },
-    { header: 'Category', field: 'category' },
     { header: 'Uploaded By', field: 'uploadedBy' },
     { header: 'Date', field: 'uploadDate' },
     { 
@@ -178,9 +177,9 @@ const AuditorDashboard = () => {
                 onChange={(e) => setSearchFilters({...searchFilters, category: e.target.value})}
               >
                 <option value="">All Categories</option>
+                <option value="infrastructure">Infrastructure</option>
+                <option value="land">Land</option>
                 <option value="finance">Finance</option>
-                <option value="hr">HR</option>
-                <option value="land">Land Records</option>
               </select>
 
               <input
@@ -201,10 +200,55 @@ const AuditorDashboard = () => {
             </div>
           </div>
 
-          <DataTable
-            columns={documentColumns}
-            data={recentDocuments}
-          />
+          <div className="table-container">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">TITLE</th>
+                  <th scope="col">DEPARTMENT</th>
+                  <th scope="col">UPLOADED BY</th>
+                  <th scope="col">DATE</th>
+                  <th scope="col">STATUS</th>
+                  <th scope="col" style={{ textAlign: 'center' }}>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loading ? (
+                  <tr>
+                    <td colSpan="6" style={{ textAlign: 'center', padding: '40px' }}>
+                      Loading...
+                    </td>
+                  </tr>
+                ) : recentDocuments.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" style={{ textAlign: 'center', padding: '40px', color: '#86868b' }}>
+                      No documents found
+                    </td>
+                  </tr>
+                ) : (
+                  recentDocuments.map((doc) => (
+                    <tr key={doc.id}>
+                      <td>{doc.title}</td>
+                      <td>{doc.department?.split(' ')[0] || doc.department}</td>
+                      <td>{doc.uploadedBy}</td>
+                      <td>{doc.uploadDate}</td>
+                      <td>
+                        <StatusBadge status={doc.status} />
+                      </td>
+                      <td style={{ textAlign: 'center' }}>
+                        <button 
+                          className="table-action-btn view"
+                          onClick={() => navigate(`/document/${doc.id}`)}
+                        >
+                          View Details
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* Audit Logs Section */}
@@ -214,10 +258,44 @@ const AuditorDashboard = () => {
             <button className="section-action-btn">Export Logs</button>
           </div>
           
-          <DataTable
-            columns={auditColumns}
-            data={auditLogs}
-          />
+          <div className="table-container">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">TIMESTAMP</th>
+                  <th scope="col">ACTION</th>
+                  <th scope="col">USER</th>
+                  <th scope="col">DOCUMENT</th>
+                  <th scope="col">IP ADDRESS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loading ? (
+                  <tr>
+                    <td colSpan="5" style={{ textAlign: 'center', padding: '40px' }}>
+                      Loading...
+                    </td>
+                  </tr>
+                ) : auditLogs.length === 0 ? (
+                  <tr>
+                    <td colSpan="5" style={{ textAlign: 'center', padding: '40px', color: '#86868b' }}>
+                      No audit logs available
+                    </td>
+                  </tr>
+                ) : (
+                  auditLogs.map((log) => (
+                    <tr key={log.id}>
+                      <td>{log.timestamp}</td>
+                      <td>{log.action}</td>
+                      <td>{log.user}</td>
+                      <td>{log.document}</td>
+                      <td>{log.ipAddress}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* Read-Only Notice */}

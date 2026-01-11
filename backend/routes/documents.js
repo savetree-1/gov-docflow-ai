@@ -375,10 +375,6 @@ router.get('/', authMiddleware, async (req, res) => {
         ];
         delete query.$or;
       } else {
-          { $or: searchConditions }
-        ];
-        delete query.$or;
-      } else {
         // For auditors and others, just apply search
         query.$or = searchConditions;
       }
