@@ -135,6 +135,11 @@ const DocumentDetail = () => {
         console.log('Has summary:', !!doc.summary);
         console.log('Summary length:', doc.summary?.length || 0);
         console.log('Key points:', doc.keyPoints?.length || 0);
+        console.log('🎯 ROUTING FIELDS:');
+        console.log('  suggestedDepartment:', doc.suggestedDepartment || '❌ MISSING');
+        console.log('  routingReason:', doc.routingReason || '❌ MISSING');
+        console.log('  routingConfidence:', doc.routingConfidence || '❌ MISSING');
+        console.log('  routingConfirmed:', doc.routingConfirmed);
         setDocument(doc);
         setActionHistory(doc.actionHistory || []);
       }
@@ -543,6 +548,13 @@ const DocumentDetail = () => {
             )}
 
             {/* AI Suggested Routing - Show ONLY if routing not confirmed yet */}
+            {(() => {
+              console.log('🔍 Routing UI Check:');
+              console.log('  suggestedDepartment:', document.suggestedDepartment);
+              console.log('  routingConfirmed:', document.routingConfirmed);
+              console.log('  Should show routing UI:', !!document.suggestedDepartment && !document.routingConfirmed);
+              return null;
+            })()}
             {document.suggestedDepartment && !document.routingConfirmed && (
               <div className="dashboard-section routing-suggestion-section">
                 <div className="section-header">

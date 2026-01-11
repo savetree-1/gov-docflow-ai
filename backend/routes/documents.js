@@ -79,11 +79,12 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
     console.log(`AI generated summary (${aiAnalysis.data?.summary?.length || 0} chars, ${aiAnalysis.data?.keyPoints?.length || 0} points)`);
 
     // STEP 3: Get routing suggestions (department assignment)
-    const routingSuggestion = await suggestRouting(documentText, {
+    const routingResponse = await suggestRouting(documentText, {
       title: document.title,
       category: document.category
     });
 
+    const routingSuggestion = routingResponse.data || routingResponse;
     console.log(`AI Routing suggestion: ${routingSuggestion.primaryDepartment} (${routingSuggestion.reasoning})`);
 
     // STEP 4: Auto-apply routing based on AI suggestion
@@ -131,7 +132,9 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
       document.department = suggestedDept._id;
       document.suggestedDepartment = routingSuggestion.primaryDepartment;
       document.routingReason = routingSuggestion.reasoning;
-      document.routingConfidence = routingSuggestion.confidence || 85;
+      // Convert confidence from decimal (0.99) to percentage (99)
+      const confidence = routingSuggestion.confidence || 0.85;
+      document.routingConfidence = confidence < 1 ? Math.round(confidence * 100) : confidence;
       document.routingConfirmed = false; // Let admin review and confirm
       console.log(`✅ Suggested routing to: ${suggestedDept.name} (awaiting confirmation)`);
     } else {
@@ -139,7 +142,9 @@ async function processDocumentWithAI(documentId, filePath, mimeType) {
       document.department = document.initialDepartment;
       document.suggestedDepartment = routingSuggestion.primaryDepartment;
       document.routingReason = routingSuggestion.reasoning;
-      document.routingConfidence = routingSuggestion.confidence || 85;
+      // Convert confidence from decimal (0.99) to percentage (99)
+      const confidence = routingSuggestion.confidence || 0.85;
+      document.routingConfidence = confidence < 1 ? Math.round(confidence * 100) : confidence;
       document.routingConfirmed = false; // Let admin review and confirm
       console.log(`⚠️ Department not found, using initial department as fallback (awaiting confirmation)`);
     }
