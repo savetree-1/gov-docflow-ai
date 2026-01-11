@@ -80,6 +80,7 @@ const Sidebar = ({ role }) => {
       case 'SUPER_ADMIN':
         return [
           { path: '/admin/dashboard', label: 'Dashboard' },
+          { path: '/admin/chat', label: 'Chat' },
           { path: '/admin/registrations', label: 'Department Registrations' },
           { path: '/admin/users', label: 'User Management' },
           { path: '/admin/routing', label: 'Routing Configuration' },
@@ -91,6 +92,7 @@ const Sidebar = ({ role }) => {
       case 'DEPARTMENT_ADMIN':
         return [
           { path: '/department/dashboard', label: 'Dashboard' },
+          { path: '/department/chat', label: 'Chat' },
           { path: '/department/documents', label: 'Documents' },
           { path: '/document/upload', label: 'Upload Document' },
           { path: '/department/users', label: 'User Management' },

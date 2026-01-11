@@ -47,6 +47,7 @@ import SuperAdminDashboard from "./pages/dashboards/SuperAdminDashboardNew";
 import DepartmentAdminDashboard from "./pages/dashboards/DepartmentAdminDashboard";
 import OfficerDashboard from "./pages/dashboards/OfficerDashboard";
 import AuditorDashboard from "./pages/dashboards/AuditorDashboard";
+import ChatPage from "./pages/chat/ChatPage";
 import Settings from "./pages/settings/Settings";
 import DocumentUpload from "./pages/documentUpload/DocumentUpload";
 import DocumentDetail from "./pages/documentDetail/DocumentDetail";
@@ -149,6 +150,24 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={['AUDITOR']}>
               <AuditorDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Chat Routes */}
+        <Route 
+          path="/admin/chat" 
+          element={
+            <ProtectedRoute allowedRoles={['SUPER_ADMIN']}>
+              <ChatPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/department/chat" 
+          element={
+            <ProtectedRoute allowedRoles={['DEPARTMENT_ADMIN']}>
+              <ChatPage />
             </ProtectedRoute>
           } 
         />

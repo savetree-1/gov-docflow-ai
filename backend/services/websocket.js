@@ -14,15 +14,22 @@ class WebSocketService {
   /**
    * Initialize WebSocket server
    * @param {Object} server - HTTP server instance
+   * @param {Object} existingIo - Existing Socket.io instance (optional)
    */
-  initialize(server) {
-    this.io = socketIO(server, {
-      cors: {
-        origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-        methods: ['GET', 'POST'],
-        credentials: true
-      }
-    });
+  initialize(server, existingIo = null) {
+    // Use existing io instance if provided, otherwise create new one
+    if (existingIo) {
+      this.io = existingIo;
+      console.log('🔄 Using existing Socket.io instance');
+    } else {
+      this.io = socketIO(server, {
+        cors: {
+          origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+          methods: ['GET', 'POST'],
+          credentials: true
+        }
+      });
+    }
 
     this.io.on('connection', (socket) => {
       console.log('✅ WebSocket client connected:', socket.id);
