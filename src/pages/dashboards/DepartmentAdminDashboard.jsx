@@ -11,6 +11,7 @@ import { documentAPI, userAPI } from '../../api/backendAPI';
 import { ErrorMsg } from '../../components/alerts';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import '../dashboards/SuperAdminDashboard.css';
+import OfficerChat from "../../components/chat/OfficerChat";
 
 const DepartmentAdminDashboard = () => {
   const user = useSelector((state) => state.authReducer.user.data);
@@ -118,28 +119,33 @@ const DepartmentAdminDashboard = () => {
   return (
     <div className="dashboard-layout">
       <Sidebar role="DEPARTMENT_ADMIN" />
-      
+
       <div className="dashboard-content">
         <div className="dashboard-header">
           <div>
-            <h1>Department Admin <span className="dashboard-highlight">Dashboard</span></h1>
-            <p className="dashboard-subtitle">{user?.department?.name || 'Department'} - Uttarakhand</p>
+            <h1>
+              Department Admin{" "}
+              <span className="dashboard-highlight">Dashboard</span>
+            </h1>
+            <p className="dashboard-subtitle">
+              {user?.department?.name || "Department"} - Uttarakhand
+            </p>
           </div>
           <div className="time-range-selector">
-            <button 
-              className={timeRange === 7 ? 'active' : ''} 
+            <button
+              className={timeRange === 7 ? "active" : ""}
               onClick={() => setTimeRange(7)}
             >
               7 Days
             </button>
-            <button 
-              className={timeRange === 30 ? 'active' : ''} 
+            <button
+              className={timeRange === 30 ? "active" : ""}
               onClick={() => setTimeRange(30)}
             >
               30 Days
             </button>
-            <button 
-              className={timeRange === 90 ? 'active' : ''} 
+            <button
+              className={timeRange === 90 ? "active" : ""}
               onClick={() => setTimeRange(90)}
             >
               90 Days
@@ -150,147 +156,251 @@ const DepartmentAdminDashboard = () => {
         {error && <ErrorMsg message={error} />}
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '2rem' }}>Loading...</div>
+          <div style={{ textAlign: "center", padding: "2rem" }}>Loading...</div>
         ) : (
           <>
-        {/* Metrics Grid */}
-        <div className="metrics-grid">
-          <MetricCard
-            title="Received Today"
-            value={metrics.receivedToday}
-          />
-          <MetricCard
-            title="Require Action"
-            value={metrics.requireAction}
-          />
-          <MetricCard
-            title="Overdue"
-            value={metrics.overdue}
-          />
-          <MetricCard
-            title="Recently Routed"
-            value={metrics.recentlyRouted}
-          />
-        </div>
-
-        {/* Analytics Section */}
-        <div className="dashboard-section">
-          <div className="section-header">
-            <h2>Department Analytics</h2>
-          </div>
-
-          <div className="analytics-grid">
-            {/* Documents Over Time */}
-            <div className="chart-card" style={{ position: 'relative' }}>
-              <h3>Documents Over Time</h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={documentsOverTime.length > 0 ? documentsOverTime : [{ date: '', count: 0 }]}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                  <XAxis dataKey="date" stroke="#666" />
-                  <YAxis stroke="#666" />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="count" stroke="#0088FE" strokeWidth={2} dot={{ r: 4 }} name="Documents" />
-                </LineChart>
-              </ResponsiveContainer>
-              {documentsOverTime.length === 0 && (
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#999', fontSize: '14px', fontWeight: '500', pointerEvents: 'none' }}>
-                  No data available
-                </div>
-              )}
+            {/* Metrics Grid */}
+            <div className="metrics-grid">
+              <MetricCard
+                title="Received Today"
+                value={metrics.receivedToday}
+              />
+              <MetricCard
+                title="Require Action"
+                value={metrics.requireAction}
+              />
+              <MetricCard title="Overdue" value={metrics.overdue} />
+              <MetricCard
+                title="Recently Routed"
+                value={metrics.recentlyRouted}
+              />
             </div>
+            {/* Analytics Section */}
+            <div className="dashboard-section">
+              <div className="section-header">
+                <h2>Department Analytics</h2>
+              </div>
 
-            {/* Status Distribution */}
-            <div className="chart-card" style={{ position: 'relative' }}>
-              <h3>Status Distribution</h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={statusDistribution.length > 0 ? statusDistribution : [{ status: 'No Data', count: 1 }]}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={statusDistribution.length > 0}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="count"
-                  >
-                    {statusDistribution.length > 0 ? statusDistribution.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={['#0088FE', '#00C49F', '#FFBB28', '#FF8042'][index % 4]} />
-                    )) : (
-                      <Cell key="empty" fill="#e0e0e0" />
-                    )}
-                  </Pie>
-                  <Tooltip />
-                  {statusDistribution.length > 0 && <Legend />}
-                </PieChart>
-              </ResponsiveContainer>
-              {statusDistribution.length === 0 && (
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#999', fontSize: '14px', fontWeight: '500', pointerEvents: 'none' }}>
-                  No data available
+              <div className="analytics-grid">
+                {/* Documents Over Time */}
+                <div className="chart-card" style={{ position: "relative" }}>
+                  <h3>Documents Over Time</h3>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart
+                      data={
+                        documentsOverTime.length > 0
+                          ? documentsOverTime
+                          : [{ date: "", count: 0 }]
+                      }
+                    >
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                      <XAxis dataKey="date" stroke="#666" />
+                      <YAxis stroke="#666" />
+                      <Tooltip />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="count"
+                        stroke="#0088FE"
+                        strokeWidth={2}
+                        dot={{ r: 4 }}
+                        name="Documents"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                  {documentsOverTime.length === 0 && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        color: "#999",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      No data available
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
 
-            {/* Processing Time Trends */}
-            <div className="chart-card" style={{ position: 'relative', gridColumn: 'span 2' }}>
-              <h3>Average Processing Time (Hours)</h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={processingTrends.length > 0 ? processingTrends : [{ date: '', avgHours: 0 }]}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                  <XAxis dataKey="date" stroke="#666" />
-                  <YAxis stroke="#666" label={{ value: 'Hours', angle: -90, position: 'insideLeft' }} />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="avgHours" stroke="#82ca9d" strokeWidth={2} dot={{ r: 4 }} name="Avg. Hours" />
-                </LineChart>
-              </ResponsiveContainer>
-              {processingTrends.length === 0 && (
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#999', fontSize: '14px', fontWeight: '500', pointerEvents: 'none' }}>
-                  No data available
+                {/* Status Distribution */}
+                <div className="chart-card" style={{ position: "relative" }}>
+                  <h3>Status Distribution</h3>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={
+                          statusDistribution.length > 0
+                            ? statusDistribution
+                            : [{ status: "No Data", count: 1 }]
+                        }
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={statusDistribution.length > 0}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="count"
+                      >
+                        {statusDistribution.length > 0 ? (
+                          statusDistribution.map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={
+                                ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"][
+                                  index % 4
+                                ]
+                              }
+                            />
+                          ))
+                        ) : (
+                          <Cell key="empty" fill="#e0e0e0" />
+                        )}
+                      </Pie>
+                      <Tooltip />
+                      {statusDistribution.length > 0 && <Legend />}
+                    </PieChart>
+                  </ResponsiveContainer>
+                  {statusDistribution.length === 0 && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        color: "#999",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      No data available
+                    </div>
+                  )}
                 </div>
-              )}
+
+                {/* Processing Time Trends */}
+                <div
+                  className="chart-card"
+                  style={{ position: "relative", gridColumn: "span 2" }}
+                >
+                  <h3>Average Processing Time (Hours)</h3>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart
+                      data={
+                        processingTrends.length > 0
+                          ? processingTrends
+                          : [{ date: "", avgHours: 0 }]
+                      }
+                    >
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                      <XAxis dataKey="date" stroke="#666" />
+                      <YAxis
+                        stroke="#666"
+                        label={{
+                          value: "Hours",
+                          angle: -90,
+                          position: "insideLeft",
+                        }}
+                      />
+                      <Tooltip />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="avgHours"
+                        stroke="#82ca9d"
+                        strokeWidth={2}
+                        dot={{ r: 4 }}
+                        name="Avg. Hours"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                  {processingTrends.length === 0 && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        color: "#999",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      No data available
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+            // Example Layout
+            <div className="row">
+              {/* Left Side: Your Charts/Stats (Width 8) */}
+              <div className="col-xl-8 col-lg-7">
+                {/* ... existing chart code ... */}
+              </div>
 
-        {/* Documents Overview */}
-        <div className="dashboard-section">
-          <div className="section-header">
-            <h2>Document Overview</h2>
-            <button className="section-action-btn">View All</button>
-          </div>
-          
-          <div className="document-grid">
-            {documents.map(doc => (
-              <DocumentCard key={doc.id} document={doc} />
-            ))}
-          </div>
-        </div>
+            </div>
+            {/* Documents Overview */}
+            <div className="dashboard-section">
+              <div className="section-header">
+                <h2>Document Overview</h2>
+                <button className="section-action-btn">View All</button>
+              </div>
 
-        {/* Quick Actions */}
-        <div className="dashboard-section">
-          <div className="section-header">
-            <h2>Quick Actions</h2>
-          </div>
-          
-          <div className="quick-actions-grid">
-            <button className="quick-action-card" onClick={() => window.location.href = '/department/users'}>
-              <span className="action-label">Manage Users</span>
-            </button>
-            <button className="quick-action-card" onClick={() => window.location.href = '/department/routing'}>
-              <span className="action-label">Routing Rules</span>
-            </button>
-            <button className="quick-action-card" onClick={() => window.location.href = '/department/settings'}>
-              <span className="action-label">Settings</span>
-            </button>
-            <button className="quick-action-card" onClick={() => window.location.href = '/department/audit'}>
-              <span className="action-label">Audit Logs</span>
-            </button>
-          </div>
-        </div>
+              <div className="document-grid">
+                {documents.map((doc) => (
+                  <DocumentCard key={doc.id} document={doc} />
+                ))}
+              </div>
+            </div>
+            {/* Quick Actions */}
+            <div className="dashboard-section">
+              <div className="section-header">
+                <h2>Quick Actions</h2>
+              </div>
+
+              <div className="quick-actions-grid">
+                <button
+                  className="quick-action-card"
+                  onClick={() => (window.location.href = "/department/users")}
+                >
+                  <span className="action-label">Manage Users</span>
+                </button>
+                <button
+                  className="quick-action-card"
+                  onClick={() => (window.location.href = "/department/routing")}
+                >
+                  <span className="action-label">Routing Rules</span>
+                </button>
+                <button
+                  className="quick-action-card"
+                  onClick={() =>
+                    (window.location.href = "/department/settings")
+                  }
+                >
+                  <span className="action-label">Settings</span>
+                </button>
+                <button
+                  className="quick-action-card"
+                  onClick={() => (window.location.href = "/department/audit")}
+                >
+                  <span className="action-label">Audit Logs</span>
+                </button>
+              </div>
+            </div>
           </>
         )}
+        <div className="col-xl-4 col-lg-5">
+          {/* Sticky container to keep chat visible while scrolling */}
+          <div style={{ position: "sticky", top: "20px", zIndex: 99 }}>
+            <OfficerChat />
+          </div>
+        </div>
       </div>
     </div>
   );
