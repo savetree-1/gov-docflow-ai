@@ -31,7 +31,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^7.0.12",
     "pdf-parse": "^1.1.4",
-    "socket.io": "^4.8.3",
+    "socket.io": "^4.7.5",
     "solc": "^0.8.33",
     "tesseract.js": "^7.0.0",
     "web3": "^4.15.0"
