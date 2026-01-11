@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../../components/dashboardSidebar/Sidebar';
 import { departmentAPI } from '../../api/backendAPI';
 import { SuccessMsg, ErrorMsg } from '../../components/alerts';
@@ -12,6 +13,7 @@ import documentsIcon from '../../img/Documents.png';
 import '../dashboards/SuperAdminDashboard.css';
 
 const DepartmentManagement = () => {
+  const { t } = useTranslation();
   const user = useSelector((state) => state.authReducer.user.data);
   const role = user?.role || 'SUPER_ADMIN';
 
@@ -105,6 +107,36 @@ const DepartmentManagement = () => {
           </div>
         </div>
 
+        {/* Summary Metrics - At Top */}
+        {!loading && departments.length > 0 && (
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: '20px', 
+            margin: '24px 0',
+            padding: '0 40px'
+          }}>
+            <div style={metricCardStyle}>
+              <div style={{ ...metricValueStyle, color: '#0f5e59' }}>
+                {departments.length}
+              </div>
+              <div style={metricLabelStyle}>{t('totalDepartments')}</div>
+            </div>
+            <div style={metricCardStyle}>
+              <div style={{ ...metricValueStyle, color: '#28a745' }}>
+                {departments.filter(d => d.isActive).length}
+              </div>
+              <div style={metricLabelStyle}>{t('activeDepartments')}</div>
+            </div>
+            <div style={metricCardStyle}>
+              <div style={{ ...metricValueStyle, color: '#6c757d' }}>
+                {departments.filter(d => !d.isActive).length}
+              </div>
+              <div style={metricLabelStyle}>{t('inactiveDepartments')}</div>
+            </div>
+          </div>
+        )}
+
         {/* Alerts */}
         <div style={{ padding: '0 40px' }}>
           {success && <SuccessMsg message={success} onDismiss={() => setSuccess('')} />}
@@ -195,7 +227,7 @@ const DepartmentManagement = () => {
                   margin: '0 auto 16px auto',
                   animation: 'spin 1s linear infinite'
                 }}></div>
-                <p style={{ color: '#666666', fontSize: '14px' }}>Loading departments...</p>
+                <p style={{ color: '#666666', fontSize: '14px' }}>{t('loadingDepartments')}</p>
               </div>
             ) : filteredDepartments.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '60px 20px' }}>
@@ -205,12 +237,12 @@ const DepartmentManagement = () => {
                   style={{ width: '64px', height: '64px', opacity: 0.5, marginBottom: '16px' }}
                 />
                 <h3 style={{ fontSize: '18px', color: '#333333', margin: '0 0 8px 0' }}>
-                  No Departments Found
+                  {t('noDepartmentsFound')}
                 </h3>
                 <p style={{ fontSize: '14px', color: '#666666', margin: '0' }}>
                   {filter === 'all' 
-                    ? 'No approved departments yet. Approve department registrations from the dashboard.'
-                    : `No ${filter} departments found.`}
+                    ? t('noApprovedDepartments')
+                    : t('noFilteredDepartments', { filter: t(filter) })}
                 </p>
               </div>
             ) : (
@@ -337,34 +369,7 @@ const DepartmentManagement = () => {
             )}
           </div>
 
-          {/* Summary Metrics - Below Table */}
-          {!loading && filteredDepartments.length > 0 && (
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(3, 1fr)', 
-              gap: '20px', 
-              marginTop: '32px' 
-            }}>
-              <div style={metricCardStyle}>
-                <div style={{ ...metricValueStyle, color: '#0f5e59' }}>
-                  {departments.length}
-                </div>
-                <div style={metricLabelStyle}>Total Departments</div>
-              </div>
-              <div style={metricCardStyle}>
-                <div style={{ ...metricValueStyle, color: '#28a745' }}>
-                  {departments.filter(d => d.isActive).length}
-                </div>
-                <div style={metricLabelStyle}>Active Departments</div>
-              </div>
-              <div style={metricCardStyle}>
-                <div style={{ ...metricValueStyle, color: '#6c757d' }}>
-                  {departments.filter(d => !d.isActive).length}
-                </div>
-                <div style={metricLabelStyle}>Inactive Departments</div>
-              </div>
-            </div>
-          )}
+          {/* Summary Metrics - Below Table - REMOVED, NOW AT TOP */}
         </div>
       </div>
 
