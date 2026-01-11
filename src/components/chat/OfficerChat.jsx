@@ -85,6 +85,34 @@ const OfficerChat = () => {
   
   const myDisplayName = getDisplayName();
 
+  // Normalize sender names for display (handles old messages with short names)
+  const normalizeSenderName = (senderName) => {
+    if (!senderName) return "Unknown";
+    
+    // If it's already a proper format, return it
+    if (senderName.includes("Admin")) return senderName;
+    
+    // Convert short names to proper display names
+    if (senderName === "Super") return "Super Admin";
+    
+    // Check if it matches any department (for old messages like "Weather" → "Meteorology Admin")
+    const matchedDept = ALL_DEPARTMENTS.find(dept => 
+      senderName.toLowerCase().includes(dept.toLowerCase()) ||
+      dept.toLowerCase().includes(senderName.toLowerCase())
+    );
+    
+    if (matchedDept) {
+      return `${matchedDept} Admin`;
+    }
+    
+    // If it's a department name without "Admin", add it
+    if (ALL_DEPARTMENTS.some(dept => dept.toLowerCase() === senderName.toLowerCase())) {
+      return `${senderName} Admin`;
+    }
+    
+    return senderName;
+  };
+
   // 3. Contacts
   const getContacts = () => {
     if (myRole === "superadmin") {
@@ -222,6 +250,42 @@ const OfficerChat = () => {
   };
 
   if (myRole !== "superadmin" && myRole !== "admin") return null;
+  
+  // Export chat summary function
+  const exportChatSummary = () => {
+    if (messages.length === 0) {
+      alert("No messages to export");
+      return;
+    }
+
+    const chatPartner = selectedPartner || "Unknown";
+    const timestamp = new Date().toISOString().split('T')[0];
+    
+    // Create formatted text summary
+    let summary = `Chat Summary: ${myDisplayName} ↔ ${chatPartner}\n`;
+    summary += `Exported: ${new Date().toLocaleString()}\n`;
+    summary += `Total Messages: ${messages.length}\n`;
+    summary += `Room ID: ${roomId}\n`;
+    summary += `${'='.repeat(60)}\n\n`;
+    
+    messages.forEach((msg, index) => {
+      const time = new Date(msg.timestamp).toLocaleString();
+      summary += `[${time}] ${msg.senderName}:\n`;
+      summary += `${msg.message}\n\n`;
+    });
+    
+    // Create downloadable file
+    const blob = new Blob([summary], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `chat-summary-${myDept.replace(/\s+/g, '-')}-${timestamp}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
   // Add this inside the component, before return()
   const clearChat = async () => {
     if (
@@ -291,27 +355,71 @@ const OfficerChat = () => {
               {myRole === "superadmin" ? "Super Admin Chat" : `${myDept} Chat`}
             </h3>
           </div>
-          {myRole === "superadmin" && (
-            <button
-              onClick={() => setMessages([])}
-              style={{
-                background: "rgba(255, 255, 255, 0.15)",
-                border: "none",
-                borderRadius: "10px",
-                padding: "8px 12px",
-                color: "#ffffff",
-                fontSize: "13px",
-                cursor: "pointer",
-                transition: "all 0.2s ease",
-                backdropFilter: "blur(10px)"
-              }}
-              onMouseEnter={(e) => e.target.style.background = "rgba(255, 255, 255, 0.25)"}
-              onMouseLeave={(e) => e.target.style.background = "rgba(255, 255, 255, 0.15)"}
-              title="Clear messages"
-            >
-              <i className="fas fa-trash" style={{ fontSize: "12px" }}></i>
-            </button>
-          )}
+          <div style={{ display: "flex", gap: "8px" }}>
+            {myRole === "admin" && (
+              <button
+                onClick={exportChatSummary}
+                disabled={messages.length === 0}
+                style={{
+                  background: messages.length === 0 
+                    ? "rgba(255, 255, 255, 0.08)" 
+                    : "rgba(255, 255, 255, 0.15)",
+                  border: "none",
+                  borderRadius: "10px",
+                  padding: "8px 14px",
+                  color: "#ffffff",
+                  fontSize: "13px",
+                  cursor: messages.length === 0 ? "not-allowed" : "pointer",
+                  transition: "all 0.2s ease",
+                  backdropFilter: "blur(10px)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontWeight: "500",
+                  opacity: messages.length === 0 ? 0.5 : 1
+                }}
+                onMouseEnter={(e) => {
+                  if (messages.length > 0) {
+                    e.target.style.background = "rgba(255, 255, 255, 0.25)";
+                    e.target.style.transform = "translateY(-1px)";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = messages.length === 0 
+                    ? "rgba(255, 255, 255, 0.08)" 
+                    : "rgba(255, 255, 255, 0.15)";
+                  e.target.style.transform = "translateY(0)";
+                }}
+                title="Export chat summary"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15M7 10L12 15M12 15L17 10M12 15V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Export
+              </button>
+            )}
+            {myRole === "superadmin" && (
+              <button
+                onClick={() => setMessages([])}
+                style={{
+                  background: "rgba(255, 255, 255, 0.15)",
+                  border: "none",
+                  borderRadius: "10px",
+                  padding: "8px 12px",
+                  color: "#ffffff",
+                  fontSize: "13px",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  backdropFilter: "blur(10px)"
+                }}
+                onMouseEnter={(e) => e.target.style.background = "rgba(255, 255, 255, 0.25)"}
+                onMouseLeave={(e) => e.target.style.background = "rgba(255, 255, 255, 0.15)"}
+                title="Clear messages"
+              >
+                <i className="fas fa-trash" style={{ fontSize: "12px" }}></i>
+              </button>
+            )}
+          </div>
         </div>
         
         <select
@@ -391,8 +499,9 @@ const OfficerChat = () => {
           </div>
         ) : (
           messages.map((msg, index) => {
-            const isMe = msg.senderName === myDisplayName || msg.senderName === myName;
-            const displaySenderName = msg.senderName;
+            const normalizedSenderName = normalizeSenderName(msg.senderName);
+            const isMe = msg.senderName === myDisplayName || msg.senderName === myName || normalizedSenderName === myDisplayName;
+            const displaySenderName = normalizedSenderName;
             const initials = displaySenderName?.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || '??';
             const showAvatar = index === 0 || messages[index - 1]?.senderName !== msg.senderName;
             
