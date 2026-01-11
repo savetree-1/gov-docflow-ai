@@ -1,9 +1,17 @@
-/**
- * Shared Dashboard Component Styles
- * Government-standard design
- */
+/* ===============================
+   DATA TABLE CONTAINER
+================================ */
+.data-table-container {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow-x: auto;
+  max-width: 100%;
+}
 
-/* Status Badges */
+/* ===============================
+   STATUS BADGES
+================================ */
 .status-badge {
   display: inline-block;
   padding: 4px 12px;
@@ -54,7 +62,9 @@
   color: #666666;
 }
 
-/* Metric Cards - Government Standard */
+/* ===============================
+   METRIC CARDS - GOVERNMENT STANDARD
+================================ */
 .metric-card {
   background: #ffffff;
   border: 1px solid #d0d0d0;
@@ -94,209 +104,199 @@
   display: inline-block;
 }
 
-/* Document Cards */
-.document-card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 12px;
-  transition: box-shadow 0.2s ease;
-}
+/* ===============================
+   DATA TABLE CONTAINER (Additional)
+================================ */
 
-.document-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-}
-
-.document-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
-}
-
-.document-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #333333;
-  margin: 0;
-  flex: 1;
-  margin-right: 12px;
-}
-
-.document-meta {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.document-category {
-  font-size: 13px;
-  color: #666666;
-  background: #f5f5f5;
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-
-.document-urgency {
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.document-urgency.high {
-  background: #ffebee;
-  color: #c62828;
-}
-
-.document-urgency.medium {
-  background: #fff4e6;
-  color: #e67e22;
-}
-
-.document-urgency.low {
-  background: #e8f5e9;
-  color: #27ae60;
-}
-
-.document-summary {
-  font-size: 13px;
-  color: #666666;
-  line-height: 1.5;
-  margin: 0 0 12px 0;
-}
-
-.document-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: #999999;
-  padding-top: 12px;
-  border-top: 1px solid #f0f0f0;
-}
-
-.document-assigned,
-.document-deadline {
-  font-size: 12px;
-}
-
-/* Empty State - Government Standard */
-/* Empty State - Apple HIG Style */
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 80px 32px;
-  background: rgba(15, 94, 89, 0.015);
-  border: 1.5px dashed rgba(15, 94, 89, 0.16);
-  border-radius: 12px;
-  color: #0f5e59;
-}
-
-.empty-state svg {
-  margin: 0 auto 24px auto;
-}
-
-.empty-message {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
-  font-size: 14px;
-  color: #8e8e93;
-  margin: 0;
-  line-height: 1.52857;
-  letter-spacing: -0.154px;
-}
-
-/* Data Table */
-.data-table-container {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  max-width: 100%;
-}
-
+/* ===============================
+   DATA TABLE
+================================ */
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: auto;
-  min-width: 900px;
+  table-layout: auto; /* Allow flexible column widths for document tables */
 }
 
+/* ===============================
+   TABLE HEADER
+================================ */
 .data-table thead {
   background: #0f5e59;
   border-bottom: 2px solid #0d4d49;
 }
 
 .data-table th {
-  padding: 12px 14px;
-  text-align: left;
-  font-size: 12px;
+  padding: 10px 8px;
+  font-size: 11px;
   font-weight: 600;
   color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.04em;
   white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  box-sizing: border-box;
 }
 
+/* First column (Category) */
 .data-table th:first-child {
-  min-width: 280px;
-  max-width: 400px;
-}
-
-.data-table th:nth-child(2) {
-  min-width: 120px;
-}
-
-.data-table th:nth-child(3) {
-  min-width: 120px;
-}
-
-.data-table th:nth-child(4) {
-  min-width: 160px;
+  max-width: 150px;
 }
 
 .data-table th:last-child {
-  min-width: 180px;
+  text-align: center;
+  min-width: 160px;
 }
 
+/* ===============================
+   TABLE BODY
+================================ */
 .data-table td {
-  padding: 12px 14px;
+  padding: 10px 8px;
   font-size: 13px;
-  color: #666666;
+  color: #555555;
   border-bottom: 1px solid #f0f0f0;
-  vertical-align: top;
+  vertical-align: middle;
+  box-sizing: border-box;
 }
 
-.data-table tbody tr:last-child td {
-  border-bottom: none;
+/* First column should wrap text */
+.data-table td:first-child {
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 150px;
+}
+
+/* Other columns can stay nowrap */
+.data-table td:not(:first-child):not(:last-child) {
+  white-space: nowrap;
 }
 
 .data-table tbody tr:hover {
   background: #fafafa;
 }
 
-.table-empty {
-  text-align: center;
-  padding: 40px 20px;
-  color: #999999;
+/* ===============================
+   COLUMN WIDTHS (DEPARTMENT REGISTRATION SPECIFIC)
+================================ */
+
+/* Department registration table needs fixed layout */
+.dept-reg-table {
+  table-layout: fixed !important;
 }
 
-/* Action Buttons in Tables */
+/* ===============================
+   COLUMN WIDTHS (DEPARTMENT REGISTRATION SPECIFIC)
+================================ */
+
+/* Only apply fixed widths to department registration tables */
+.dept-reg-table th:first-child,
+.dept-reg-table td:first-child {
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-reg-table th:nth-child(2),
+.dept-reg-table td:nth-child(2) {
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-reg-table th:nth-child(3),
+.dept-reg-table td:nth-child(3) {
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-reg-table th:nth-child(4),
+.dept-reg-table td:nth-child(4) {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-reg-table th:nth-child(5),
+.dept-reg-table td:nth-child(5) {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-reg-table th:nth-child(6),
+.dept-reg-table td:nth-child(6) {
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===============================
+   STATUS BADGES
+================================ */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-pending {
+  background: #fff4e6;
+  color: #e67e22;
+}
+
+.status-approved {
+  background: #e8f5e9;
+  color: #27ae60;
+}
+
+.status-rejected {
+  background: #ffebee;
+  color: #e74c3c;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
 .table-action-btn {
-  padding: 6px 14px;
+  padding: 6px 12px;
   font-size: 13px;
+  border-radius: 6px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
-  transition: all 0.2s ease;
-  margin-right: 8px;
+  transition: background 0.2s ease;
+  margin-right: 6px;
+}
+
+.table-action-btn:last-child {
+  margin-right: 0;
 }
 
 .table-action-btn.approve {
@@ -316,15 +316,5 @@
 
 .table-action-btn.reject:hover {
   background: #e74c3c;
-  color: #ffffff;
-}
-
-.table-action-btn.view {
-  background: #e3f2fd;
-  color: #1976d2;
-}
-
-.table-action-btn.view:hover {
-  background: #1976d2;
   color: #ffffff;
 }

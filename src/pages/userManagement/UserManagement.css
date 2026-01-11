@@ -26,6 +26,12 @@
   margin-bottom: 28px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.25s ease;
+  overflow-x: auto;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
 }
 
 .dashboard-section:hover {
@@ -141,15 +147,16 @@
 }
 
 .data-table th {
-  padding: 14px 12px;
+  padding: 12px 10px;
   text-align: left;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   border-bottom: 4px solid #0f5e59;
   white-space: nowrap;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  vertical-align: middle;
 }
 
 .data-table tbody tr {
@@ -166,39 +173,79 @@
   transform: translateY(-1px);
 }
 
-.data-table th {
-  padding: 10px 8px;
-  text-align: left;
-  font-weight: 600;
-  font-size: 12px;
-  border-bottom: 4px solid #0f5e59;
-  white-space: nowrap;
-}
-
 .data-table td {
-  padding: 14px 12px;
+  padding: 12px 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   font-size: 14px;
-  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
   color: #1d1d1f;
+  vertical-align: middle;
 }
 
-/* Specific column widths for compactness */
-.data-table td:nth-child(1) { max-width: 40px; } /* Checkbox */
-.data-table td:nth-child(2) { max-width: 110px; } /* Employee ID */
-.data-table td:nth-child(3) { max-width: 140px; } /* Name */
-.data-table td:nth-child(4) { max-width: 200px; } /* Email */
-.data-table td:nth-child(5) { max-width: 100px; } /* Role */
-.data-table td:nth-child(6) { max-width: 140px; } /* Department */
-.data-table td:nth-child(7) { max-width: 90px; } /* Status */
-.data-table td:nth-child(8) { 
-  max-width: 180px;
-  white-space: normal;
+/* Table Layout - Fixed widths for compact, balanced display */
+.data-table {
+  table-layout: fixed;
+  width: 100%;
+  max-width: 1100px;
+  border-collapse: collapse;
+}
+
+/* Specific column widths - 6 columns total - Identical for th and td */
+.data-table th:nth-child(1),
+.data-table td:nth-child(1) { 
+  width: 45px;
+  min-width: 45px;
+  max-width: 45px;
+  padding: 12px 8px !important;
+  text-align: center;
+} /* Checkbox */
+
+.data-table th:nth-child(2),
+.data-table td:nth-child(2) { 
+  width: 110px;
+  min-width: 110px;
+  max-width: 110px;
+  padding: 12px 10px !important;
+} /* Employee ID */
+
+.data-table th:nth-child(3),
+.data-table td:nth-child(3) { 
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  padding: 12px 10px !important;
+} /* Name */
+
+.data-table th:nth-child(4),
+.data-table td:nth-child(4) { 
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  padding: 12px 10px !important;
+} /* Email */
+
+.data-table th:nth-child(5),
+.data-table td:nth-child(5) { 
+  width: 95px;
+  min-width: 95px;
+  max-width: 95px;
+  padding: 12px 10px !important;
+  text-align: center;
+} /* Status */
+
+.data-table th:nth-child(6),
+.data-table td:nth-child(6) { 
+  width: 170px;
+  min-width: 170px;
+  max-width: 170px;
+  padding: 12px 10px !important;
+  text-align: center;
+  vertical-align: middle;
   overflow: visible;
+  box-sizing: border-box;
 } /* Actions */
 
 .data-table tbody tr:hover {
@@ -239,13 +286,15 @@
 
 .status-badge {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 590;
   white-space: nowrap;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
   letter-spacing: -0.078px;
+  min-width: 80px;
+  text-align: center;
 }
 
 .status-badge.approved {
@@ -266,94 +315,85 @@
   border: 1px solid rgba(255, 59, 48, 0.2);
 }
 
-.status-badge.approved {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.status-badge.pending {
-  background: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeeba;
-}
-
-.status-badge.rejected {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
+/* Action Buttons Container - Apple HIG Principles */
 .action-buttons {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+  overflow: visible;
+  padding: 0 4px;
 }
 
 .btn-icon {
-  background: none;
+  background: rgba(0, 0, 0, 0.03);
   border: none;
-  cursor: pointer;
   padding: 0;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  cursor: pointer;
   border-radius: 8px;
-  opacity: 0.75;
-  display: flex;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  -webkit-tap-highlight-color: transparent;
   flex-shrink: 0;
+  flex-grow: 0;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  max-width: 36px;
+  max-height: 36px;
+  box-sizing: border-box;
   position: relative;
-}
-
-.btn-icon .action-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  transition: transform 0.2s ease;
+  overflow: hidden;
 }
 
 .btn-icon:hover {
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.06);
-  transform: scale(1.08) translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.btn-icon:hover .action-icon {
-  transform: scale(1.05);
+  background: rgba(15, 94, 89, 0.1);
+  opacity: 0.95;
 }
 
 .btn-icon:active {
-  background: rgba(0, 0, 0, 0.08);
-  transform: scale(0.98);
-  transition: all 0.1s ease;
-}
-
-.btn-icon:focus-visible {
-  outline: 2px solid #0f5e59;
-  outline-offset: 2px;
-}
-
-.btn-icon.btn-danger {
-  opacity: 0.7;
+  background: rgba(15, 94, 89, 0.15);
+  opacity: 0.9;
 }
 
 .btn-icon.btn-danger:hover {
-  opacity: 1;
   background: rgba(255, 59, 48, 0.1);
+  opacity: 0.95;
 }
 
-.btn-icon.btn-success {
-  opacity: 0.7;
+.btn-icon.btn-danger:active {
+  background: rgba(255, 59, 48, 0.15);
+  opacity: 0.9;
 }
 
 .btn-icon.btn-success:hover {
-  opacity: 1;
   background: rgba(52, 199, 89, 0.1);
+  opacity: 0.95;
+}
+
+.btn-icon.btn-success:active {
+  background: rgba(52, 199, 89, 0.15);
+  opacity: 0.9;
+}
+
+.action-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  object-fit: contain;
+  pointer-events: none;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Bulk Actions Bar */

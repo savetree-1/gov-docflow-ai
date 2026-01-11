@@ -379,3 +379,337 @@
     gap: 12px;
   }
 }
+
+/* Document Management Table - User Management Style */
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  table-layout: fixed;
+  max-width: 1100px;
+}
+
+.doc-table thead {
+  background: #0f5e59;
+  color: white;
+}
+
+.doc-table th {
+  padding: 12px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  border-bottom: 4px solid #0f5e59;
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  vertical-align: middle;
+}
+
+.doc-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.doc-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.doc-table tbody tr:hover {
+  background-color: #f0f4f3;
+  box-shadow: 0 2px 8px rgba(15, 94, 89, 0.08);
+  transform: translateY(-1px);
+}
+
+.doc-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  color: #1d1d1f;
+  vertical-align: middle;
+}
+
+/* Document Table Column Widths */
+.doc-table th:nth-child(1),
+.doc-table td:nth-child(1) { 
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  padding: 12px 10px !important;
+} /* Category */
+
+.doc-table th:nth-child(2),
+.doc-table td:nth-child(2) { 
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  padding: 12px 10px !important;
+} /* Department */
+
+.doc-table th:nth-child(3),
+.doc-table td:nth-child(3) { 
+  width: 130px;
+  min-width: 130px;
+  max-width: 130px;
+  padding: 12px 10px !important;
+  text-align: center;
+} /* Status */
+
+.doc-table th:nth-child(4),
+.doc-table td:nth-child(4) { 
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  padding: 12px 10px !important;
+} /* Created */
+
+.doc-table th:nth-child(5),
+.doc-table td:nth-child(5) { 
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  padding: 12px 10px !important;
+  text-align: center;
+  vertical-align: middle;
+  overflow: visible;
+  box-sizing: border-box;
+} /* Actions */
+
+/* Department Registration Table - User Management Style */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dept-reg-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  table-layout: fixed;
+  max-width: 1200px;
+}
+
+.dept-reg-table thead {
+  background: #0f5e59;
+  color: white;
+}
+
+.dept-reg-table th {
+  padding: 12px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  border-bottom: 4px solid #0f5e59;
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  vertical-align: middle;
+}
+
+.dept-reg-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.dept-reg-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.dept-reg-table tbody tr:hover {
+  background-color: #f0f4f3;
+  box-shadow: 0 2px 8px rgba(15, 94, 89, 0.08);
+  transform: translateY(-1px);
+}
+
+.dept-reg-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  color: #1d1d1f;
+  vertical-align: middle;
+}
+
+/* Department Registration Table Column Widths */
+.dept-reg-table th:nth-child(1),
+.dept-reg-table td:nth-child(1) { 
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  padding: 12px 10px !important;
+} /* Department ID */
+
+.dept-reg-table th:nth-child(2),
+.dept-reg-table td:nth-child(2) { 
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+  padding: 12px 10px !important;
+} /* Department Name */
+
+.dept-reg-table th:nth-child(3),
+.dept-reg-table td:nth-child(3) { 
+  width: 180px;
+  min-width: 180px;
+  max-width: 180px;
+  padding: 12px 10px !important;
+} /* Nodal Officer */
+
+.dept-reg-table th:nth-child(4),
+.dept-reg-table td:nth-child(4) { 
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+  padding: 12px 10px !important;
+} /* Email */
+
+.dept-reg-table th:nth-child(5),
+.dept-reg-table td:nth-child(5) { 
+  width: 95px;
+  min-width: 95px;
+  max-width: 95px;
+  padding: 12px 10px !important;
+  text-align: center;
+} /* Status */
+
+.dept-reg-table th:nth-child(6),
+.dept-reg-table td:nth-child(6) { 
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+  padding: 12px 10px !important;
+  text-align: center;
+  vertical-align: middle;
+  overflow: visible;
+  box-sizing: border-box;
+} /* Actions */
+
+/* Status Badge - User Management Style */
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 590;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  letter-spacing: -0.078px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.status-badge.approved {
+  background: rgba(52, 199, 89, 0.12);
+  color: #28a745;
+  border: 1px solid rgba(52, 199, 89, 0.2);
+}
+
+.status-badge.pending {
+  background: rgba(255, 204, 0, 0.12);
+  color: #d4a017;
+  border: 1px solid rgba(255, 204, 0, 0.2);
+}
+
+.status-badge.rejected {
+  background: rgba(255, 59, 48, 0.12);
+  color: #dc3545;
+  border: 1px solid rgba(255, 59, 48, 0.2);
+}
+
+/* Action Buttons Container - User Management Style */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+  overflow: visible;
+  padding: 0 4px;
+}
+
+.btn-icon {
+  background: rgba(0, 0, 0, 0.03);
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  max-width: 36px;
+  max-height: 36px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-icon:hover {
+  background: rgba(15, 94, 89, 0.1);
+  opacity: 0.95;
+}
+
+.btn-icon:active {
+  background: rgba(15, 94, 89, 0.15);
+  opacity: 0.9;
+}
+
+.btn-icon.btn-danger:hover {
+  background: rgba(255, 59, 48, 0.1);
+  opacity: 0.95;
+}
+
+.btn-icon.btn-danger:active {
+  background: rgba(255, 59, 48, 0.15);
+  opacity: 0.9;
+}
+
+.btn-icon.btn-success:hover {
+  background: rgba(52, 199, 89, 0.1);
+  opacity: 0.95;
+}
+
+.btn-icon.btn-success:active {
+  background: rgba(52, 199, 89, 0.15);
+  opacity: 0.9;
+}
+
+.action-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  object-fit: contain;
+  pointer-events: none;
+  display: block;
+  margin: 0 auto;
+}

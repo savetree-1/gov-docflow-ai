@@ -17,6 +17,11 @@ import { SuccessMsg, ErrorMsg } from '../../components/alerts';
 import BottleneckChart from "../../components/analytics/BottleneckChart";
 import './SuperAdminDashboard.css';
 
+import viewIcon from '../../img/image copy 4.png';
+import editIcon from '../../img/edit.png';
+import tickIcon from '../../img/tick.png';
+import revokeIcon from '../../img/revoke copy.png';
+
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'];
 
@@ -246,19 +251,6 @@ const SuperAdminDashboard = () => {
 
   const documentColumns = [
     { 
-      header: 'Title', 
-      render: (row) => (
-        <div style={{ minWidth: '280px', maxWidth: '400px' }}>
-          <strong style={{ display: 'block', fontSize: '15px', fontWeight: '600', color: '#1d1d1f', marginBottom: '4px', lineHeight: '1.4', wordBreak: 'break-word' }}>
-            {row.title}
-          </strong>
-          <div style={{ fontSize: '13px', color: '#86868b', fontFamily: 'Monaco, Menlo, monospace' }}>
-            {row.referenceNumber}
-          </div>
-        </div>
-      )
-    },
-    { 
       header: 'Category', 
       render: (row) => (
         <span style={{ textTransform: 'capitalize', color: '#1d1d1f', fontSize: '14px' }}>
@@ -407,7 +399,6 @@ const SuperAdminDashboard = () => {
           <MetricCard
             title="Pending Registrations"
             value={metrics.pendingRegistrations}
-            trend={metrics.pendingRegistrations > 0 ? "pending" : ""}
           />
           <MetricCard title="Total Users" value={metrics.totalUsers} />
           <MetricCard
@@ -771,24 +762,55 @@ const SuperAdminDashboard = () => {
                 </p>
               </div>
             ) : (
-              <DataTable
-                columns={registrationColumns}
-                data={allDepartments
-                  .filter((d) => d.status === "Pending")
-                  .map((dept) => ({
-                    id: dept._id,
-                    departmentName: dept.name,
-                    nodalOfficer: dept.nodalOfficer?.name || "Not Assigned",
-                    email:
-                      dept.contactEmail || dept.nodalOfficer?.email || "N/A",
-                    status: dept.status,
-                    submittedOn: new Date(dept.createdAt).toLocaleDateString(),
-                  }))}
-                onAction={(action, id) => {
-                  if (action === "approve") handleApprove(id);
-                  if (action === "reject") handleReject(id);
-                }}
-              />
+              <div className="table-container">
+                <table className="dept-reg-table">
+                  <thead>
+                    <tr>
+                      <th>Department ID</th>
+                      <th>Department Name</th>
+                      <th>Nodal Officer</th>
+                      <th>Email</th>
+                      <th>Status</th>
+                      <th style={{ textAlign: 'center' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {allDepartments
+                      .filter((d) => d.status === "Pending")
+                      .map((dept) => (
+                        <tr key={dept._id}>
+                          <td>{dept._id.slice(-8).toUpperCase()}</td>
+                          <td><strong style={{ color: '#0f5e59' }}>{dept.name}</strong></td>
+                          <td>{dept.nodalOfficer?.name || "Not Assigned"}</td>
+                          <td>{dept.contactEmail || dept.nodalOfficer?.email || "N/A"}</td>
+                          <td>
+                            <span className="status-badge pending">
+                              {dept.status}
+                            </span>
+                          </td>
+                          <td>
+                            <div className="action-buttons">
+                              <button
+                                className="btn-icon btn-success"
+                                onClick={() => handleApprove(dept._id)}
+                                title="Approve"
+                              >
+                                <img src={tickIcon} alt="Approve" className="action-icon" />
+                              </button>
+                              <button
+                                className="btn-icon btn-danger"
+                                onClick={() => handleReject(dept._id)}
+                                title="Reject"
+                              >
+                                <img src={revokeIcon} alt="Reject" className="action-icon" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
             ))}
 
           {registrationTab === "approved" &&
@@ -814,49 +836,55 @@ const SuperAdminDashboard = () => {
                 </p>
               </div>
             ) : (
-              <DataTable
-                columns={[
-                  {
-                    field: "departmentName",
-                    header: "Department Name",
-                    render: (row) => (
-                      <strong style={{ color: "#0f5e59" }}>
-                        {row.departmentName}
-                      </strong>
-                    ),
-                  },
-                  {
-                    field: "nodalOfficer",
-                    header: "Nodal Officer",
-                  },
-                  {
-                    field: "email",
-                    header: "Email",
-                  },
-                  {
-                    field: "status",
-                    header: "Status",
-                    render: (row) => <StatusBadge status={row.status} />,
-                  },
-                  {
-                    field: "submittedOn",
-                    header: "Approved On",
-                  },
-                ]}
-                data={allDepartments
-                  .filter((d) => d.status === "Approved")
-                  .map((dept) => ({
-                    id: dept._id,
-                    departmentName: dept.name,
-                    nodalOfficer: dept.nodalOfficer?.name || "Not Assigned",
-                    email:
-                      dept.contactEmail || dept.nodalOfficer?.email || "N/A",
-                    status: dept.status,
-                    submittedOn: dept.approvedAt
-                      ? new Date(dept.approvedAt).toLocaleDateString()
-                      : new Date(dept.createdAt).toLocaleDateString(),
-                  }))}
-              />
+              <div className="table-container">
+                <table className="dept-reg-table">
+                  <thead>
+                    <tr>
+                      <th>Department ID</th>
+                      <th>Department Name</th>
+                      <th>Nodal Officer</th>
+                      <th>Email</th>
+                      <th>Status</th>
+                      <th style={{ textAlign: 'center' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {allDepartments
+                      .filter((d) => d.status === "Approved")
+                      .map((dept) => (
+                        <tr key={dept._id}>
+                          <td>{dept._id.slice(-8).toUpperCase()}</td>
+                          <td><strong style={{ color: '#0f5e59' }}>{dept.name}</strong></td>
+                          <td>{dept.nodalOfficer?.name || "Not Assigned"}</td>
+                          <td>{dept.contactEmail || dept.nodalOfficer?.email || "N/A"}</td>
+                          <td>
+                            <span className="status-badge approved">
+                              {dept.status}
+                            </span>
+                          </td>
+                          <td>
+                            <div className="action-buttons">
+                              <button
+                                className="btn-icon"
+                                onClick={() => navigate(`/departments/${dept._id}`)}
+                                title="View Details"
+                              >
+                                <img src={viewIcon} alt="View" className="action-icon" />
+                              </button>
+                              <button
+                                className="btn-icon"
+                                onClick={() => navigate(`/departments/${dept._id}/edit`)}
+                                title="Edit"
+                              >
+                                <img src={editIcon} alt="Edit" className="action-icon" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
             ))}
 
           {registrationTab === "rejected" &&
@@ -882,49 +910,48 @@ const SuperAdminDashboard = () => {
                 </p>
               </div>
             ) : (
-              <DataTable
-                columns={[
-                  {
-                    field: "departmentName",
-                    header: "Department Name",
-                    render: (row) => (
-                      <strong style={{ color: "#0f5e59" }}>
-                        {row.departmentName}
-                      </strong>
-                    ),
-                  },
-                  {
-                    field: "nodalOfficer",
-                    header: "Nodal Officer",
-                  },
-                  {
-                    field: "email",
-                    header: "Email",
-                  },
-                  {
-                    field: "status",
-                    header: "Status",
-                    render: (row) => <StatusBadge status={row.status} />,
-                  },
-                  {
-                    field: "submittedOn",
-                    header: "Rejected On",
-                  },
-                ]}
-                data={allDepartments
-                  .filter((d) => d.status === "Rejected")
-                  .map((dept) => ({
-                    id: dept._id,
-                    departmentName: dept.name,
-                    nodalOfficer: dept.nodalOfficer?.name || "Not Assigned",
-                    email:
-                      dept.contactEmail || dept.nodalOfficer?.email || "N/A",
-                    status: dept.status,
-                    submittedOn: dept.rejectedAt
-                      ? new Date(dept.rejectedAt).toLocaleDateString()
-                      : new Date(dept.createdAt).toLocaleDateString(),
-                  }))}
-              />
+              <div className="table-container">
+                <table className="dept-reg-table">
+                  <thead>
+                    <tr>
+                      <th>Department ID</th>
+                      <th>Department Name</th>
+                      <th>Nodal Officer</th>
+                      <th>Email</th>
+                      <th>Status</th>
+                      <th style={{ textAlign: 'center' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {allDepartments
+                      .filter((d) => d.status === "Rejected")
+                      .map((dept) => (
+                        <tr key={dept._id}>
+                          <td>{dept._id.slice(-8).toUpperCase()}</td>
+                          <td><strong style={{ color: '#0f5e59' }}>{dept.name}</strong></td>
+                          <td>{dept.nodalOfficer?.name || "Not Assigned"}</td>
+                          <td>{dept.contactEmail || dept.nodalOfficer?.email || "N/A"}</td>
+                          <td>
+                            <span className="status-badge rejected">
+                              {dept.status}
+                            </span>
+                          </td>
+                          <td>
+                            <div className="action-buttons">
+                              <button
+                                className="btn-icon"
+                                onClick={() => navigate(`/departments/${dept._id}`)}
+                                title="View Details"
+                              >
+                                <img src={viewIcon} alt="View" className="action-icon" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
             ))}
         </div>
 
@@ -939,6 +966,22 @@ const SuperAdminDashboard = () => {
             marginBottom: "24px",
           }}
         >
+          {/* Document Metrics */}
+          <div className="metrics-grid" style={{ marginBottom: "24px" }}>
+            <MetricCard
+              title="Total Documents"
+              value={metrics.documentsProcessed}
+            />
+            <MetricCard
+              title="Active Documents"
+              value={documents.filter(d => !d.isDeleted).length}
+            />
+            <MetricCard
+              title="Deleted Documents"
+              value={deletedDocuments.length}
+            />
+          </div>
+
           <div
             className="section-header"
             style={{
@@ -947,7 +990,8 @@ const SuperAdminDashboard = () => {
               alignItems: "center",
               marginBottom: "20px",
               paddingBottom: "16px",
-              borderBottom: "1px solid #f0f0f0",
+              borderTop: "1px solid #f0f0f0",
+              paddingTop: "16px",
             }}
           >
             <div>
@@ -999,8 +1043,56 @@ const SuperAdminDashboard = () => {
                 Recent documents in the system. Click "View" to see details or
                 "Delete" to soft-delete a document.
               </p>
-              <div style={{ overflowX: "auto" }}>
-                <DataTable columns={documentColumns} data={documents} />
+              <div className="table-container">
+                <table className="doc-table">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Department</th>
+                      <th>Status</th>
+                      <th>Created</th>
+                      <th style={{ textAlign: 'center' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {documents.length === 0 ? (
+                      <tr>
+                        <td colSpan="5" style={{ textAlign: 'center', padding: '20px' }}>
+                          No documents available
+                        </td>
+                      </tr>
+                    ) : (
+                      documents.map((doc) => (
+                        <tr key={doc._id}>
+                          <td style={{ textTransform: 'capitalize' }}>{doc.category}</td>
+                          <td>{doc.department?.name || 'N/A'}</td>
+                          <td>
+                            <StatusBadge status={doc.status} />
+                          </td>
+                          <td>{new Date(doc.createdAt).toLocaleDateString()}</td>
+                          <td>
+                            <div className="action-buttons">
+                              <button
+                                className="btn-icon"
+                                onClick={() => navigate(`/document/${doc._id}`)}
+                                title="View Document"
+                              >
+                                <img src={viewIcon} alt="View" className="action-icon" />
+                              </button>
+                              <button
+                                className="btn-icon btn-danger"
+                                onClick={() => handleDeleteDocument(doc._id, doc.title)}
+                                title="Delete Document"
+                              >
+                                <img src={revokeIcon} alt="Delete" className="action-icon" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
               </div>
             </>
           ) : (
