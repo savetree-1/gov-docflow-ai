@@ -107,13 +107,14 @@ async function suggestRouting(documentText, documentMetadata = {}) {
 You are an AI routing assistant for Uttarakhand Government.
 
 Available Departments:
-- Finance (budget, payments, audit)
+- Finance Department (budget, payments, audit)
 - Land & Revenue (land records, property, revenue)
-- Agriculture (farming, irrigation, crops)
+- Agriculture Department (farming, irrigation, crops)
 - Human Resources (employees, recruitment, training)
-- Infrastructure (construction, maintenance, public works)
+- Infrastructure Department (construction, maintenance, public works)
 - Legal & Compliance (legal matters, contracts)
-- Disaster Management (emergencies, disasters, relief)
+- Disaster Management Department (emergencies, disasters, relief)
+- Weather & Meteorology Department (weather forecasts, climate, meteorology, rainfall)
 
 Document: ${documentMetadata.title || 'Untitled'}
 Category: ${documentMetadata.category || 'General'}
