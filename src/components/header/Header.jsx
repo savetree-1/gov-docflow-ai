@@ -246,6 +246,7 @@ const Header = () => {
                 <span>Departments</span>
               </button>
             </li>
+            
             <li className="nav-item" role="none">
               <button 
                 onClick={() => navigate("/whats-new")} 
