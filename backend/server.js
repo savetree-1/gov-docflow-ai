@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const http = require("http");
 const { Server } = require("socket.io");
-const Message = require("./models/Message"); 
+const Message = require("./models/Message");
 
 /****** Loading environment variables ******/
 dotenv.config({ path: path.join(__dirname, ".env") });
@@ -18,12 +18,18 @@ const departmentRoutes = require("./routes/departments");
 const routingRoutes = require("./routes/routing");
 const auditRoutes = require("./routes/audit");
 const notificationRoutes = require("./routes/notifications");
-const chatRoutes = require('./routes/chat'); 
+const chatRoutes = require("./routes/chat");
+
+/****** Import Services (Merged) ******/
+const blockchainService = require("./services/blockchain");
+const websocketService = require("./services/websocket");
 
 const app = express();
 
+// 1. Create HTTP Server (Required for Socket.io)
 const server = http.createServer(app);
 
+// 2. Initialize Socket.io (For Officer Chat)
 const io = new Server(server, {
   cors: {
     origin: ["http://localhost:3000", process.env.FRONTEND_URL],
@@ -51,7 +57,7 @@ console.log("Connecting to MongoDB...");
 const connectDB = require("./config/db");
 connectDB();
 
-/****** SOCKET.IO LOGIC (The "Post Office") ******/
+/****** SOCKET.IO LOGIC (Officer Chat) ******/
 io.on("connection", (socket) => {
   console.log("⚡ New Client Connected:", socket.id);
 
@@ -62,16 +68,15 @@ io.on("connection", (socket) => {
   });
 
   // 2. Handle Sending Messages
-  // 2. Handle Sending Messages
   socket.on("send_message", async (data) => {
-    console.log("📩 Message Received from Frontend:", data); // LOG 1
+    console.log("📩 Message Received from Frontend:", data);
 
     try {
-      // Step A: Send to everyone INSTANTLY (don't wait for DB)
+      // Step A: Send to everyone INSTANTLY
       io.to(data.adminId).emit("receive_message", data);
-      console.log("📡 Message Broadcasted to Room:", data.adminId); // LOG 2
+      console.log("📡 Message Broadcasted to Room:", data.adminId);
 
-      // Step B: Save to MongoDB in the background
+      // Step B: Save to MongoDB
       if (data.adminId && data.message) {
         const newMessage = new Message({
           adminId: data.adminId,
@@ -80,10 +85,10 @@ io.on("connection", (socket) => {
           timestamp: new Date(),
         });
         await newMessage.save();
-        console.log("✅ Message Saved to DB"); // LOG 3
+        console.log("✅ Message Saved to DB");
       }
     } catch (err) {
-      console.error("❌ Chat Error (DB Save Failed):", err.message); // LOG 4
+      console.error("❌ Chat Error (DB Save Failed):", err.message);
     }
   });
 });
@@ -116,25 +121,30 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5001;
 
-// Initialize blockchain service
-const blockchainService = require("./services/blockchain"); // Ensure this file path is correct in your project
+/****** Initialization Logic (Merged) ******/
 const initializeServices = async () => {
   console.log("🔄 Initializing blockchain service...");
   try {
-    // Wrapped in try/catch so Chat works even if Blockchain fails
     await blockchainService.initialize();
   } catch (error) {
     console.log("⚠️ Blockchain init skipped/failed, but Server is ON.");
   }
 };
 
-// 👇 CRITICAL CHANGE: Use server.listen instead of app.listen
+// 👇 MERGED SERVER STARTUP
 server.listen(PORT, async () => {
   console.log(`\n🚀 Server running on port ${PORT}`);
   console.log(`   API: http://localhost:${PORT}/api`);
   console.log(`   Health Check: http://localhost:${PORT}/api/health\n`);
 
   await initializeServices();
+
+  if (websocketService && typeof websocketService.initialize === "function") {
+    websocketService.initialize(server);
+    console.log(`   WebSocket Service (Notifications): Active`);
+  }
+
+  console.log(`   Officer Chat (Socket.io): Active\n`);
 });
 
-module.exports = app;
+module.exports = { app, server, websocketService };

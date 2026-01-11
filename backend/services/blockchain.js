@@ -28,7 +28,7 @@ class BlockchainService {
       const deployment = JSON.parse(fs.readFileSync(deploymentPath, 'utf8'));
 
       /****** Connecting to Polygon Amoy ******/
-      this.provider = new ethers.JsonRpcProvider(process.env.POLYGON_RPC_URL);
+     this.provider = new ethers.JsonRpcProvider(process.env.BLOCKCHAIN_NETWORK);
       this.wallet = new ethers.Wallet(process.env.BLOCKCHAIN_PRIVATE_KEY, this.provider);
       
       /****** Initializing the contract ******/

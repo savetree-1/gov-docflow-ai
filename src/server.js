@@ -1,181 +1,154 @@
-/**
- * Backend Server Integration Example
- * Express.js setup with authentication & authorization
- * 
- * This file shows how to integrate all auth components
- */
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const path = require("path");
+const http = require("http");
+const { Server } = require("socket.io");
+const Message = require("./models/Message");
 
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
+/****** Loading environment variables ******/
+dotenv.config({ path: path.join(__dirname, ".env") });
 
-// Import routes
-const authRoutes = require('./routes/authRoutes');
-const departmentRoutes = require('./routes/departmentRoutes');
-const userRoutes = require('./routes/userRoutes');
+/****** Importing routes ******/
+const authRoutes = require("./routes/auth");
+const documentRoutes = require("./routes/documents");
+const userRoutes = require("./routes/users");
+const departmentRoutes = require("./routes/departments");
+const routingRoutes = require("./routes/routing");
+const auditRoutes = require("./routes/audit");
+const notificationRoutes = require("./routes/notifications");
+const chatRoutes = require("./routes/chat");
 
-// Import middleware
-const { requireAuth, requireRole } = require('./middleware/rbacMiddleware');
-const { USER_ROLES } = require('./constants/auth');
+/****** Import Services (Merged) ******/
+const blockchainService = require("./services/blockchain");
+const websocketService = require("./services/websocket");
 
-// Initialize Express app
 const app = express();
 
-// ============================================
-// MIDDLEWARE SETUP
-// ============================================
+// 1. Create HTTP Server (Required for Socket.io)
+const server = http.createServer(app);
 
-// Security headers
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      scriptSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "https:"],
-    }
+// 2. Initialize Socket.io (For Officer Chat)
+const io = new Server(server, {
+  cors: {
+    origin: ["http://localhost:3000", process.env.FRONTEND_URL],
+    methods: ["GET", "POST"],
+    credentials: true,
   },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true
-  }
-}));
-
-// CORS configuration
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
-// Body parsing
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-// Request logging
-app.use(morgan('combined'));
-
-// Rate limiting for auth endpoints
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // 5 requests per window
-  message: {
-    success: false,
-    code: 'RATE_LIMIT_EXCEEDED',
-    message: 'Too many login attempts. Please try again after 15 minutes.'
-  },
-  standardHeaders: true,
-  legacyHeaders: false
 });
 
-// General API rate limiting
-const apiLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 100, // 100 requests per minute
-  message: {
-    success: false,
-    code: 'RATE_LIMIT_EXCEEDED',
-    message: 'Too many requests. Please try again later.'
-  }
-});
-
-// ============================================
-// ROUTES
-// ============================================
-
-// Health check
-app.get('/health', (req, res) => {
-  res.json({
-    status: 'OK',
-    timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV
-  });
-});
-
-// Auth routes (with rate limiting)
-app.use('/api/auth', authLimiter, authRoutes);
-
-// Department routes
-// Registration is public, but approval requires auth
-app.use('/api/departments', apiLimiter, departmentRoutes);
-
-// User management routes (authenticated only)
-app.use('/api/users', apiLimiter, userRoutes);
-
-// Protected example routes
-app.get('/api/admin/stats', 
-  requireAuth,
-  requireRole(USER_ROLES.SUPER_ADMIN),
-  (req, res) => {
-    res.json({
-      success: true,
-      data: {
-        totalDepartments: 0,
-        totalUsers: 0,
-        pendingRequests: 0
-      }
-    });
-  }
+/****** Middlewares ******/
+app.use(
+  cors({
+    origin: ["http://localhost:3000", process.env.FRONTEND_URL],
+    credentials: true,
+  })
 );
 
-// ============================================
-// ERROR HANDLING
-// ============================================
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    code: 'NOT_FOUND',
-    message: 'Endpoint not found'
+/****** Static server files ******/
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+/****** MongoDB Connection ******/
+console.log("Connecting to MongoDB...");
+const connectDB = require("./config/db");
+connectDB();
+
+/****** SOCKET.IO LOGIC (Officer Chat) ******/
+io.on("connection", (socket) => {
+  console.log("⚡ New Client Connected:", socket.id);
+
+  // 1. Join Admin Room (Private Channel)
+  socket.on("join_room", (adminId) => {
+    socket.join(adminId);
+    console.log(`User ${socket.id} joined room: ${adminId}`);
+  });
+
+  // 2. Handle Sending Messages
+  socket.on("send_message", async (data) => {
+    console.log("📩 Message Received from Frontend:", data);
+
+    try {
+      // Step A: Send to everyone INSTANTLY
+      io.to(data.adminId).emit("receive_message", data);
+      console.log("📡 Message Broadcasted to Room:", data.adminId);
+
+      // Step B: Save to MongoDB
+      if (data.adminId && data.message) {
+        const newMessage = new Message({
+          adminId: data.adminId,
+          senderName: data.senderName,
+          message: data.message,
+          timestamp: new Date(),
+        });
+        await newMessage.save();
+        console.log("✅ Message Saved to DB");
+      }
+    } catch (err) {
+      console.error("❌ Chat Error (DB Save Failed):", err.message);
+    }
   });
 });
 
-// Global error handler
+/****** Routes ******/
+app.use("/api/auth", authRoutes);
+app.use("/api/documents", documentRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/departments", departmentRoutes);
+app.use("/api/routing", routingRoutes);
+app.use("/api/audit", auditRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/blockchain", require("./routes/blockchain"));
+app.use("/api/analytics", require("./routes/analytics"));
+
+/****** Health Check ******/
+app.get("/api/health", (req, res) => {
+  res.json({ status: "OK", message: "Server is running" });
+});
+
+/****** Error Handling ******/
 app.use((err, req, res, next) => {
-  console.error('Error:', err);
-
-  // Don't leak error details in production
-  const isDev = process.env.NODE_ENV === 'development';
-
-  res.status(err.status || 500).json({
+  console.error(err.stack);
+  res.status(500).json({
     success: false,
-    code: err.code || 'SERVER_ERROR',
-    message: err.message || 'Internal server error',
-    ...(isDev && { stack: err.stack })
+    message: err.message || "Internal Server Error",
   });
 });
 
-// ============================================
-// START SERVER
-// ============================================
+const PORT = process.env.PORT || 5001;
 
-const PORT = process.env.PORT || 5000;
+/****** Initialization Logic (Merged) ******/
+const initializeServices = async () => {
+  console.log("🔄 Initializing blockchain service...");
+  try {
+    await blockchainService.initialize();
+  } catch (error) {
+    console.log("⚠️ Blockchain init skipped/failed, but Server is ON.");
+  }
+};
 
-app.listen(PORT, () => {
-  console.log(`
-╔════════════════════════════════════════════════════════════╗
-║  Government Platform Backend Server                        ║
-║  Environment: ${process.env.NODE_ENV || 'development'}                                 ║
-║  Port: ${PORT}                                               ║
-║  Started at: ${new Date().toISOString()}          ║
-╚════════════════════════════════════════════════════════════╝
-  `);
+// 👇 MERGED SERVER STARTUP
+// Use server.listen (from http module) so both Socket.io and Express work
+server.listen(PORT, async () => {
+  console.log(`\n🚀 Server running on port ${PORT}`);
+  console.log(`   API: http://localhost:${PORT}/api`);
+  console.log(`   Health Check: http://localhost:${PORT}/api/health\n`);
+
+  // 1. Initialize Blockchain
+  await initializeServices();
+
+  // 2. Initialize Existing WebSocket Service (For Notifications)
+  // We pass the SAME server instance so they share the port
+  if (websocketService && typeof websocketService.initialize === "function") {
+    websocketService.initialize(server);
+    console.log(`   WebSocket Service (Notifications): Active`);
+  }
+
+  console.log(`   Officer Chat (Socket.io): Active\n`);
 });
 
-// Graceful shutdown
-process.on('SIGTERM', () => {
-  console.log('SIGTERM received, shutting down gracefully...');
-  process.exit(0);
-});
-
-process.on('SIGINT', () => {
-  console.log('SIGINT received, shutting down gracefully...');
-  process.exit(0);
-});
-
-module.exports = app;
+module.exports = { app, server, websocketService };
