@@ -42,7 +42,7 @@
 </h3>
 
 <p style="font-size: 1.2em; color: #64748b; max-width: 800px; margin: 0 auto; line-height: 1.6;">
-  Transforming government document management from <strong>chaos to clarity</strong> with <strong>AI summarization</strong>, <strong>smart routing</strong>, and <strong>blockchain-verified audit trails</strong>
+  Helping improve government document management with <strong>AI summarization</strong>, <strong>smart routing</strong>, and <strong>blockchain-verified audit trails</strong>
 </p>
 
 <br/>
@@ -56,15 +56,17 @@
 2. <a href="#problem-statement" style="color: #0066cc;"><strong>Problem Statement</strong></a>
 3. <a href="#users--use-cases" style="color: #0066cc;"><strong>Users & Use Cases</strong></a>
 4. <a href="#existing-solutions" style="color: #0066cc;"><strong>Existing Solutions</strong></a>
-5. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>▶ Architecture & Diagrams</strong></a> <sup style="color: #10b981;">*expandable*</sup>
+5. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>▶ Architecture & Diagrams</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
 6. <a href="#our-solution" style="color: #0066cc;"><strong>Our Solution</strong></a>
-7. <a href="#features-added-in-phase-2" style="color: #0066cc;"><strong>▶ Features Added in Phase 2</strong></a> <sup style="color: #f59e0b;">*new*</sup>
-8. <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup Instructions</strong></a>
-9. <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots & Media</strong></a>
-10. <a href="#technical-stack" style="color: #0066cc;"><strong>Technical Stack</strong></a>
-11. <a href="#research--development" style="color: #0066cc;"><strong>▶ Research & Development</strong></a> <sup style="color: #10b981;">*expandable*</sup>
-12. <a href="#future-enhancements-phase-2" style="color: #0066cc;"><strong>Future Enhancements</strong></a>
-13. <a href="#links--credits" style="color: #0066cc;"><strong>Links & Credits</strong></a>
+7. <a href="#features-added-in-phase-2" style="color: #0066cc;"><strong>▶ Features Added in Phase 2</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+8. <a href="#prototype-demo-phase-2" style="color: #0066cc;"><strong>Prototype Demo (Phase 2)</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+9. <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup Instructions</strong></a>
+10. <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots & Media</strong></a>
+11. <a href="#technical-stack" style="color: #0066cc;"><strong>Technical Stack</strong></a>
+12. <a href="#research--development" style="color: #0066cc;"><strong>▶ Research & Development</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+13. <a href="#individual-contributions" style="color: #0066cc;"><strong>Individual Contributions</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+14. <a href="#future-enhancements-phase-2" style="color: #0066cc;"><strong>Future Enhancements</strong></a>
+15. <a href="#links--credits" style="color: #0066cc;"><strong>Links & Credits</strong></a>
 
 </div>
 
@@ -103,13 +105,13 @@ That's when we knew: This isn't a technology problem waiting for a solution. Thi
 ### What We Aimed to Achieve
 
 Build an **AI-powered document intelligence system** that:
-- **Summarizes** 40-page documents into 2-minute reads
-- **Routes** documents automatically to the right departments
-- **Prioritizes** urgent matters intelligently
-- **Tracks** everything on blockchain for transparency
-- Works in the **real conditions** of Indian government offices (unreliable internet, low-tech literacy, bilingual needs)
+- **Summarizes** long documents into shorter reads
+- **Routes** documents to appropriate departments
+- **Prioritizes** urgent matters based on keywords and categories
+- **Tracks** actions on blockchain for transparency
+- Works in the **real conditions** of Indian government offices (varying internet speeds, different tech comfort levels, bilingual needs)
 
-**We built it. It works. And we're proud of it.**
+**We built it, tested it with demo data, and we're learning from feedback.**
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
@@ -210,7 +212,7 @@ Pravaah is **NOT** a citizen-facing portal. It's for the people *inside* governm
 | Scenario | Traditional Way | With Pravaah |
 |----------|----------------|--------------|
 | **Land Acquisition File (40 pages)** | Officer reads 40 pages (2 hours), manually writes summary, physically routes to Legal Dept (3-5 days) | AI summary in **30 seconds**, auto-routed to Legal Dept in **1 minute** |
-| **Flash Flood Alert** | Mixed with 150 emails, read sequentially, delayed by hours | Detected as **HIGH PRIORITY**, routed to Disaster Management + Revenue + DM **instantly** |
+| **Flash Flood Alert** | Mixed with 150 emails, read sequentially, delayed by hours | Detected as **HIGH PRIORITY**, routed to Disaster Management + Revenue + DM **automatically** |
 | **Routine Circular** | Takes same time as critical documents | Auto-flagged as **LOW priority**, officer can review later |
 | **Budget Approval** | File moves between 5 departments manually (2 weeks) | Smart routing to all departments **simultaneously**, blockchain tracking |
 
@@ -510,6 +512,36 @@ We improved how the system handles different file types. PDFs are parsed directl
 Building these features taught us that government software needs to be reliable more than flashy. Officers care about not losing work, getting accurate information, and having audit trails when needed. We tried to balance modern features with the reality of government offices where internet isn't always fast and computer literacy varies.
 
 </details>
+
+![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
+
+---
+
+## Prototype Demo (Phase 2)
+
+<div align="center">
+  <img src="src/img/Our Solution Banner.png" alt="Phase 2 Demo" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
+
+### **Latest Phase 2 Prototype Walkthrough**
+
+<div align="center">
+
+**Complete Phase 2 Feature Demo**
+
+<a href="https://youtu.be/MtnxQ-BBlpE" style="color: #0066cc;"><strong>Watch Full Playlist</strong></a>
+
+<a href="https://youtu.be/MtnxQ-BBlpE">
+  <img src="src/img/Thumbnail.png" alt="Pravaah Phase 2 Demo" width="800" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #dc2626;"/>
+</a>
+
+<p style="margin-top: 16px; color: #64748b; font-size: 14px;">
+This video series shows the new features we added after Round 1: real-time chat, analytics dashboard, WebSocket notifications, bilingual interface, and improved AI routing. It's a bit rough around the edges, but it demonstrates how everything works together.
+</p>
+
+</div>
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
@@ -1103,6 +1135,111 @@ We're students, not researchers, but these readings helped us build something gr
 </table>
 
 </div>
+
+<br/>
+
+### Individual Contributions
+
+<div align="center">
+
+<table style="width: 100%; border: none; border-collapse: collapse;">
+<tr>
+<td colspan="4" align="center" style="padding: 20px; border: none;">
+  <div style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">
+    PRAVAAH PROJECT
+  </div>
+</td>
+</tr>
+<tr>
+<td align="center" style="border: none; padding: 0; width: 25%;">
+  <div style="width: 2px; height: 40px; background: linear-gradient(180deg, #667EEA 0%, #667EEA 100%); margin: 0 auto;"></div>
+</td>
+<td align="center" style="border: none; padding: 0; width: 25%;">
+  <div style="width: 2px; height: 40px; background: linear-gradient(180deg, #667eea 0%, #10B981 100%); margin: 0 auto;"></div>
+</td>
+<td align="center" style="border: none; padding: 0; width: 25%;">
+  <div style="width: 2px; height: 40px; background: linear-gradient(180deg, #667eea 0%, #F43F5E 100%); margin: 0 auto;"></div>
+</td>
+<td align="center" style="border: none; padding: 0; width: 25%;">
+  <div style="width: 2px; height: 40px; background: linear-gradient(180deg, #667eea 0%, #8B5CF6 100%); margin: 0 auto;"></div>
+</td>
+</tr>
+<tr>
+<td align="center" style="border: none; padding: 10px 5px; width: 25%;">
+  <div style="width: 100%; height: 2px; background: #667EEA;"></div>
+</td>
+<td align="center" style="border: none; padding: 10px 5px; width: 25%;">
+  <div style="width: 100%; height: 2px; background: #10B981;"></div>
+</td>
+<td align="center" style="border: none; padding: 10px 5px; width: 25%;">
+  <div style="width: 100%; height: 2px; background: #F43F5E;"></div>
+</td>
+<td align="center" style="border: none; padding: 10px 5px; width: 25%;">
+  <div style="width: 100%; height: 2px; background: #8B5CF6;"></div>
+</td>
+</tr>
+</table>
+
+</div>
+
+<table style="width: 100%; margin-top: 20px;">
+<tr>
+<td width="25%" align="center" valign="top" style="padding: 15px; border-right: 1px solid #e5e7eb;">
+  <img src="src/img/Abhay Kanojia.jpeg" width="80" style="border-radius: 50%; border: 3px solid #667EEA; margin-bottom: 10px;"/><br/>
+  <strong style="color: #667EEA; font-size: 16px;">Abhay Kanojia</strong><br/>
+  <em style="font-size: 13px; color: #64748b;">Team Lead</em>
+  <hr style="width: 60%; border: 1px solid #667EEA; margin: 10px auto;"/>
+  <ul style="text-align: left; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+    <li>Document routing logic</li>
+    <li>API endpoint handling</li>
+    <li>Backend integration</li>
+    <li>System architecture</li>
+    <li>Project coordination</li>
+  </ul>
+</td>
+<td width="25%" align="center" valign="top" style="padding: 15px; border-right: 1px solid #e5e7eb;">
+  <img src="src/img/Ankush Rawat.jpeg" width="80" style="border-radius: 50%; border: 3px solid #10B981; margin-bottom: 10px;"/><br/>
+  <strong style="color: #10B981; font-size: 16px;">Ankush Rawat</strong><br/>
+  <em style="font-size: 13px; color: #64748b;">Frontend Architect</em>
+  <hr style="width: 60%; border: 1px solid #10B981; margin: 10px auto;"/>
+  <ul style="text-align: left; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+    <li>Blockchain integration</li>
+    <li>LLM layer setup</li>
+    <li>Frontend styling (HIG)</li>
+    <li>UI/UX design</li>
+    <li>Dashboard components</li>
+  </ul>
+</td>
+<td width="25%" align="center" valign="top" style="padding: 15px; border-right: 1px solid #e5e7eb;">
+  <img src="src/img/Ankush Malik.jpeg" width="80" style="border-radius: 50%; border: 3px solid #F43F5E; margin-bottom: 10px;"/><br/>
+  <strong style="color: #F43F5E; font-size: 16px;">Ankush Malik</strong><br/>
+  <em style="font-size: 13px; color: #64748b;">AI Specialist</em>
+  <hr style="width: 60%; border: 1px solid #F43F5E; margin: 10px auto;"/>
+  <ul style="text-align: left; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+    <li>ML model integration</li>
+    <li>OCR implementation</li>
+    <li>Document extraction</li>
+    <li>AI summarization</li>
+    <li>Text processing pipeline</li>
+  </ul>
+</td>
+<td width="25%" align="center" valign="top" style="padding: 15px;">
+  <img src="src/img/Priyanshu Bisht.jpg" width="80" style="border-radius: 50%; border: 3px solid #8B5CF6; margin-bottom: 10px;"/><br/>
+  <strong style="color: #8B5CF6; font-size: 16px;">Priyanshu Bisht</strong><br/>
+  <em style="font-size: 13px; color: #64748b;">Backend Engineer</em>
+  <hr style="width: 60%; border: 1px solid #8B5CF6; margin: 10px auto;"/>
+  <ul style="text-align: left; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+    <li>Chat system integration</li>
+    <li>WebSocket implementation</li>
+    <li>Analytics dashboard</li>
+    <li>Real-time notifications</li>
+    <li>Database optimization</li>
+  </ul>
+</td>
+</tr>
+</table>
+
+<br/>
 
 ### Technologies & Tools Used
 
