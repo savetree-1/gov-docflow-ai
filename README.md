@@ -56,14 +56,15 @@
 2. <a href="#problem-statement" style="color: #0066cc;"><strong>Problem Statement</strong></a>
 3. <a href="#users--use-cases" style="color: #0066cc;"><strong>Users & Use Cases</strong></a>
 4. <a href="#existing-solutions" style="color: #0066cc;"><strong>Existing Solutions</strong></a>
-5. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>Architecture & Diagrams</strong></a>
+5. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>▶ Architecture & Diagrams</strong></a> <sup style="color: #10b981;">*expandable*</sup>
 6. <a href="#our-solution" style="color: #0066cc;"><strong>Our Solution</strong></a>
-7. <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup Instructions</strong></a>
-8. <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots & Media</strong></a>
-9. <a href="#technical-stack" style="color: #0066cc;"><strong>Technical Stack</strong></a>
-10. <a href="#research--development" style="color: #0066cc;"><strong>Research & Development</strong></a>
-11. <a href="#future-enhancements-phase-2" style="color: #0066cc;"><strong>Future Enhancements</strong></a>
-12. <a href="#links--credits" style="color: #0066cc;"><strong>Links & Credits</strong></a>
+7. <a href="#features-added-in-phase-2" style="color: #0066cc;"><strong>▶ Features Added in Phase 2</strong></a> <sup style="color: #f59e0b;">*new*</sup>
+8. <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup Instructions</strong></a>
+9. <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots & Media</strong></a>
+10. <a href="#technical-stack" style="color: #0066cc;"><strong>Technical Stack</strong></a>
+11. <a href="#research--development" style="color: #0066cc;"><strong>▶ Research & Development</strong></a> <sup style="color: #10b981;">*expandable*</sup>
+12. <a href="#future-enhancements-phase-2" style="color: #0066cc;"><strong>Future Enhancements</strong></a>
+13. <a href="#links--credits" style="color: #0066cc;"><strong>Links & Credits</strong></a>
 
 </div>
 
@@ -278,6 +279,9 @@ All existing solutions treat documents like dumb files. They store them, maybe s
 
 ## Architecture & Diagrams
 
+<details>
+<summary><strong>▶ Click to expand - System Architecture & Design</strong></summary>
+
 <div align="center">
   <img src="src/img/Architecture & Diagrams Banner.png" alt="Architecture & Diagrams" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
 </div>
@@ -446,7 +450,66 @@ The system architecture supports horizontal scaling across all tiers:
 - Security testing against OWASP Top 10 vulnerabilities
 - Cross-browser compatibility testing (Chrome, Firefox, Safari, Edge)
 
+</details>
 
+![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
+
+---
+
+## Features Added in Phase 2
+
+<details>
+<summary><strong>▶ Click to expand - New Features We Built</strong></summary>
+
+<br/>
+
+After getting feedback from Round 1, we spent weeks adding features that would make Pravaah actually usable in real government offices. Here's what we built:
+
+**1. Real-Time Chat System**
+
+We added a document-specific chat feature so officers from different departments can discuss a file without endless email chains. When someone mentions you with @, you get notified. It's like WhatsApp for government work, keeping everything in one place with the document.
+
+**2. Smart Form Validations**
+
+Government forms have strict rules. We added proper validation so officers can't accidentally submit incomplete information. Email formats are checked, phone numbers must be 10 digits, dates can't be in the past for deadlines. Small things, but they prevent a lot of back-and-forth corrections.
+
+**3. Analytics Dashboard**
+
+Officers wanted to see their department's workload at a glance. We built charts showing document trends over time, which departments are busiest, how long approvals take on average. Nothing fancy, just helpful visualizations using simple bar and line charts. Helps admins spot bottlenecks.
+
+**4. Intelligent Routing with Confidence Scores**
+
+The AI now tells you how confident it is about routing suggestions (like "85% confidence this goes to Finance"). If it's unsure, officers can manually correct it, and the system learns. We also added keyword matching as a fallback when AI isn't available, checking for words like "flood", "budget", "legal" to route appropriately.
+
+**5. WebSocket Integration for Live Updates**
+
+Instead of refreshing the page constantly, we added WebSockets so you see document status changes in real-time. When someone approves your document, you know immediately. When AI finishes processing, the summary pops up automatically. Makes the system feel responsive.
+
+**6. Notification System (In-App + Email)**
+
+Officers now get notified two ways: a bell icon in the app showing unread notifications, plus email alerts for important actions. When a document gets routed to your department, you receive both. We tried to make notifications helpful without being annoying.
+
+**7. Enhanced Security with Blockchain Verification**
+
+We integrated Polygon blockchain for critical actions like approvals and routing confirmations. Each action gets a transaction hash you can verify on PolygonScan. It's our attempt at making audit trails tamper-proof, though we're still learning how to optimize gas costs.
+
+**8. Bilingual Interface (English/Hindi)**
+
+Many officers in smaller offices prefer Hindi. We added language toggle using i18next, translating all navigation, buttons, and key labels. The content inside documents stays as-is, but the interface adapts. It's not perfect translation everywhere, but it's a start.
+
+**9. Apple HIG-Inspired Design**
+
+We noticed government websites often look cluttered. We redesigned cards, buttons, and layouts following Apple's Human Interface Guidelines. Clean typography, subtle shadows, consistent spacing. The goal was making it look professional and easy on the eyes during long work hours.
+
+**10. Document Processing Pipeline Improvements**
+
+We improved how the system handles different file types. PDFs are parsed directly. If text extraction fails (scanned documents), OCR kicks in automatically. Images go straight to OCR. Then everything feeds into Gemini AI for summarization. We added progress indicators so officers know the system is working.
+
+**What We Learned**
+
+Building these features taught us that government software needs to be reliable more than flashy. Officers care about not losing work, getting accurate information, and having audit trails when needed. We tried to balance modern features with the reality of government offices where internet isn't always fast and computer literacy varies.
+
+</details>
 
 ![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
 
