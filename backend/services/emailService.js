@@ -1,8 +1,11 @@
-/****** Email Notification Service Module which sends email notifications to users about document routing ******/
+/**
+ * Email Notification Service
+ * Send email notifications to users about document routing
+ */
 
 const nodemailer = require('nodemailer');
 
-/****** Creating a transporter using Gmail ******/
+// Create transporter using Gmail
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST || 'smtp.gmail.com',
   port: process.env.EMAIL_PORT || 587,
@@ -13,7 +16,9 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-/****** Send document assignment notification ******/
+/**
+ * Send document assignment notification
+ */
 const sendDocumentAssignment = async (to, document, assignedBy) => {
   try {
     const mailOptions = {
@@ -132,7 +137,9 @@ const sendDocumentAssignment = async (to, document, assignedBy) => {
   }
 };
 
-/****** Send document status update notification ******/
+/**
+ * Send document status update notification
+ */
 const sendStatusUpdate = async (to, document, status, comment) => {
   try {
     const statusColors = {
@@ -263,7 +270,9 @@ const sendStatusUpdate = async (to, document, status, comment) => {
   }
 };
 
-/****** Send routing notification to department ******/
+/**
+ * Send routing notification to department
+ */
 const sendRoutingNotification = async (to, document, department, routedBy) => {
   try {
     const mailOptions = {

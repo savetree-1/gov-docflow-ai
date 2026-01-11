@@ -633,8 +633,29 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Document not found' });
     }
 
-    // Check permission - only uploader or admin can confirm routing
-    if (document.uploadedBy.toString() !== req.user.userId && req.user.role !== 'SUPER_ADMIN') {
+    // Check permission - uploader, department admin, or super admin can confirm routing
+    const isUploader = document.uploadedBy.toString() === req.user.userId;
+    const isSuperAdmin = req.user.role === 'SUPER_ADMIN';
+    
+    // Handle both populated and non-populated department fields
+    const userDeptId = req.user.department?._id ? req.user.department._id.toString() : req.user.department?.toString();
+    const docDeptId = document.department?._id ? document.department._id.toString() : document.department?.toString();
+    const isDepartmentAdmin = req.user.role === 'DEPARTMENT_ADMIN' && 
+                              userDeptId && 
+                              docDeptId &&
+                              userDeptId === docDeptId;
+    
+    console.log('🔐 Permission Check:');
+    console.log('  User ID:', req.user.userId);
+    console.log('  User Role:', req.user.role);
+    console.log('  User Department ID:', userDeptId);
+    console.log('  Document Uploader:', document.uploadedBy.toString());
+    console.log('  Document Department ID:', docDeptId);
+    console.log('  Is Uploader:', isUploader);
+    console.log('  Is Super Admin:', isSuperAdmin);
+    console.log('  Is Department Admin:', isDepartmentAdmin);
+    
+    if (!isUploader && !isSuperAdmin && !isDepartmentAdmin) {
       return res.status(403).json({ success: false, message: 'Not authorized to confirm routing' });
     }
 
@@ -643,10 +664,26 @@ router.post('/:id/confirm-routing', authMiddleware, async (req, res) => {
 
     if (confirmed && !modifiedDepartment) {
       // CONFIRM AI SUGGESTION
+      // Escape special regex characters in department name
+      const escapedName = document.suggestedDepartment.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      
+      // Try exact match first
       finalDepartment = await Department.findOne({
-        name: new RegExp(document.suggestedDepartment, 'i'),
+        name: document.suggestedDepartment,
         isActive: true
       });
+      
+      // If not found, try case-insensitive regex
+      if (!finalDepartment) {
+        finalDepartment = await Department.findOne({
+          name: new RegExp(`^${escapedName}$`, 'i'),
+          isActive: true
+        });
+      }
+
+      console.log('🔍 Department lookup:');
+      console.log('  Looking for:', document.suggestedDepartment);
+      console.log('  Found:', finalDepartment?.name || 'NOT FOUND');
 
       if (!finalDepartment) {
         return res.status(400).json({
