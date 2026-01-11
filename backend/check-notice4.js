@@ -23,11 +23,11 @@ async function checkDocument() {
       console.log('routingConfirmed:', doc.routingConfirmed);
       
       if (!doc.suggestedDepartment) {
-        console.log('\n❌ PROBLEM: No routing information was generated!');
+        console.log('\nPROBLEM: No routing information was generated!');
         console.log('This document needs to be reprocessed with routing.');
       }
     } else {
-      console.log('❌ Document not found');
+      console.log('Document not found');
     }
     
     mongoose.connection.close();

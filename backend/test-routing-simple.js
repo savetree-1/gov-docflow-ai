@@ -29,12 +29,12 @@ This bulletin is issued for immediate circulation to all concerned departments.
 
 async function testAIRouting() {
   try {
-    console.log('🔄 Connecting to MongoDB...\n');
+    console.log('Connecting to MongoDB...\n');
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('✅ MongoDB Connected\n');
+    console.log('MongoDB Connected\n');
 
-    // Step 1: Generate Summary
-    console.log('📝 STEP 1: Testing AI Summary Generation...');
+    /****** Step 1: Generate Summary ******/
+    console.log('STEP 1: Testing AI Summary Generation...');
     console.log('─'.repeat(60));
     const summaryResponse = await generateSummary(testDocumentText, {
       title: 'Weather Alert Bulletin',
@@ -44,19 +44,19 @@ async function testAIRouting() {
     const summaryResult = summaryResponse.data || summaryResponse;
     
     if (summaryResponse.success && summaryResult.summary) {
-      console.log('✅ Summary Generated:');
+      console.log('Summary Generated:');
       console.log(summaryResult.summary);
       if (summaryResult.keyPoints && summaryResult.keyPoints.length > 0) {
         console.log('Key Points:');
         summaryResult.keyPoints.forEach((point, i) => console.log(`   ${i+1}. ${point}`));
       }
     } else {
-      console.log('❌ Summary Generation Failed:', summaryResponse.error);
+      console.log('Summary Generation Failed:', summaryResponse.error);
     }
     console.log('\n');
 
-    // Step 2: Get Routing Suggestion
-    console.log('🎯 STEP 2: Testing AI Routing Suggestion...');
+    /****** Step 2: Get Routing Suggestion ******/
+    console.log('STEP 2: Testing AI Routing Suggestion...');
     console.log('─'.repeat(60));
     const routingResponse = await suggestRouting(testDocumentText, {
       title: 'Weather Alert Bulletin',
@@ -66,34 +66,34 @@ async function testAIRouting() {
     const routingResult = routingResponse.data || routingResponse;
     
     if (routingResult.primaryDepartment) {
-      console.log('✅ Routing Suggestion Generated:');
-      console.log(`   Department: ${routingResult.primaryDepartment}`);
-      console.log(`   Confidence: ${(routingResult.confidence * 100).toFixed(0)}%`);
-      console.log(`   Reasoning: ${routingResult.reasoning}`);
+      console.log('Routing Suggestion Generated:');
+      console.log(`Department: ${routingResult.primaryDepartment}`);
+      console.log(`Confidence: ${(routingResult.confidence * 100).toFixed(0)}%`);
+      console.log(`Reasoning: ${routingResult.reasoning}`);
     } else {
-      console.log('❌ Routing Generation Failed:', routingResponse);
+      console.log('Routing Generation Failed:', routingResponse);
     }
     console.log('\n');
 
-    // Step 3: Match to Database Department
-    console.log('🔍 STEP 3: Testing Department Matching...');
-    console.log('─'.repeat(60));
+    /****** Step 3: Match to Database Department ******/
+    console.log('STEP 3: Testing Department Matching...');
+    console.log('*'.repeat(60));
     
     const suggestedName = routingResult.primaryDepartment;
     
-    // Try exact match first
+    /****** Trying to exact match first ******/
     let matchedDept = await Department.findOne({
       name: { $regex: new RegExp(`^${suggestedName}$`, 'i') }
     });
     
-    // Try partial match
+    /****** Trying partial match ******/
     if (!matchedDept) {
       matchedDept = await Department.findOne({
         name: { $regex: new RegExp(suggestedName, 'i') }
       });
     }
     
-    // Try keyword match
+    /****** Trying keyword match ******/
     if (!matchedDept) {
       const keywords = suggestedName.toLowerCase().split(' ');
       for (const keyword of keywords) {
@@ -107,22 +107,22 @@ async function testAIRouting() {
     }
     
     if (matchedDept) {
-      console.log('✅ Department Match Found:');
-      console.log(`   AI Suggested: "${suggestedName}"`);
-      console.log(`   Database Match: "${matchedDept.name}"`);
-      console.log(`   Department ID: ${matchedDept._id}`);
+      console.log('Department Match Found:');
+      console.log(`AI Suggested: "${suggestedName}"`);
+      console.log(`Database Match: "${matchedDept.name}"`);
+      console.log(`Department ID: ${matchedDept._id}`);
     } else {
-      console.log('❌ No Department Match Found');
-      console.log(`   AI Suggested: "${suggestedName}"`);
-      console.log('   Available Departments:');
+      console.log('No Department Match Found');
+      console.log(`AI Suggested: "${suggestedName}"`);
+      console.log('Available Departments:');
       const allDepts = await Department.find({});
       allDepts.forEach(d => console.log(`   - ${d.name}`));
     }
     console.log('\n');
 
-    // Step 4: Simulate Document Save
-    console.log('💾 STEP 4: Simulating Document Save with Routing...');
-    console.log('─'.repeat(60));
+    /****** Step 4: Simulate Document Save ******/
+    console.log('STEP 4: Simulating Document Save with Routing...');
+    console.log('*'.repeat(60));
     
     if (matchedDept) {
       const documentData = {
@@ -136,26 +136,26 @@ async function testAIRouting() {
         routingConfirmed: false
       };
       
-      console.log('✅ Document Would Be Saved With:');
+      console.log('Document Would Be Saved With:');
       console.log(JSON.stringify(documentData, null, 2));
-      console.log('\n📱 Frontend UI Would Display:');
-      console.log('─'.repeat(60));
-      console.log('   Section: "AI Suggested Routing"');
-      console.log(`   Department: ${documentData.suggestedDepartment}`);
-      console.log(`   Confidence: ${documentData.routingConfidence}%`);
-      console.log(`   Reasoning: ${documentData.routingReason}`);
-      console.log('   Buttons: [Confirm Routing] [Edit Routing]');
+      console.log('\nFrontend UI Would Display:');
+      console.log('*'.repeat(60));
+      console.log('Section: "AI Suggested Routing"');
+      console.log(`Department: ${documentData.suggestedDepartment}`);
+      console.log(`Confidence: ${documentData.routingConfidence}%`);
+      console.log(`Reasoning: ${documentData.routingReason}`);
+      console.log('Buttons: [Confirm Routing] [Edit Routing]');
     } else {
-      console.log('❌ Cannot save - no department match');
+      console.log('Cannot save - no department match');
     }
     
     console.log('\n');
-    console.log('═'.repeat(60));
-    console.log('🎉 TEST COMPLETE - All Steps Executed');
-    console.log('═'.repeat(60));
+    console.log('*'.repeat(60));
+    console.log('TEST COMPLETE - All Steps Executed');
+    console.log('*'.repeat(60));
 
   } catch (error) {
-    console.error('❌ Test Error:', error.message);
+    console.error('Test Error:', error.message);
   } finally {
     await mongoose.disconnect();
     process.exit(0);

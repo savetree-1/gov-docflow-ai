@@ -10,7 +10,7 @@ async function checkData() {
     const collections = await db.listCollections().toArray();
     
     console.log('Database: pravah_prototype');
-    console.log('━'.repeat(60));
+    console.log('*'.repeat(60));
     
     if (collections.length === 0) {
       console.log('No collections found (database is empty)');
@@ -18,18 +18,18 @@ async function checkData() {
       for (const coll of collections) {
         const count = await db.collection(coll.name).countDocuments();
         const emoji = count > 0 ? 'Y' : 'N';
-        console.log(`   ${emoji} ${coll.name.padEnd(25)} ${count.toString().padStart(5)} documents`);
+        console.log(`${emoji} ${coll.name.padEnd(25)} ${count.toString().padStart(5)} documents`);
       }
     }
     
-    console.log('━'.repeat(60));
+    console.log('*'.repeat(60));
     
     // Get total
     let total = 0;
     for (const coll of collections) {
       total += await db.collection(coll.name).countDocuments();
     }
-    console.log(`\n Total Documents: ${total}`);
+    console.log(`\nTotal Documents: ${total}`);
     
     await mongoose.disconnect();
     console.log('\nDisconnected from MongoDB Atlas');

@@ -2,7 +2,7 @@ require('dotenv').config();
 const { generateSummary } = require('./services/geminiService');
 
 async function testGeminiService() {
-  console.log('🧪 Testing Gemini Service...\n');
+  console.log('Testing Gemini Service...\n');
   
   const testDocument = `
   GOVERNMENT NOTICE
@@ -24,37 +24,37 @@ async function testGeminiService() {
   `;
 
   try {
-    console.log('📄 Test Document Preview:');
+    console.log('Test Document Preview:');
     console.log(testDocument.substring(0, 200) + '...\n');
     
-    console.log('🚀 Calling generateSummary...');
+    console.log('Calling generateSummary...');
     const result = await generateSummary(testDocument, {
       title: 'Weather Warning Notice',
       category: 'Weather Alert'
     });
     
-    console.log('📊 Result Structure:');
+    console.log('Result Structure:');
     console.log('Success:', result.success);
     console.log('Has Data:', !!result.data);
     
     if (result.success && result.data) {
-      console.log('\n✅ AI Summary Generated:');
+      console.log('\nAI Summary Generated:');
       console.log('Summary:', result.data.summary);
       console.log('Key Points:', result.data.keyPoints);
       console.log('Urgency:', result.data.aiUrgency);
       console.log('Deadline:', result.data.aiDeadline);
-      console.log('\n📏 Summary Length:', result.data.summary?.length || 0, 'characters');
+      console.log('\nSummary Length:', result.data.summary?.length || 0, 'characters');
     } else {
-      console.log('❌ Failed to generate summary');
+      console.log('Failed to generate summary');
       console.log('Error:', result.error || 'Unknown error');
     }
     
   } catch (error) {
-    console.error('💥 Test Failed:', error.message);
+    console.error('Test Failed:', error.message);
     console.error('Stack:', error.stack);
   }
   
-  console.log('\n🏁 Test Complete');
+  console.log('\nTest Complete');
 }
 
 testGeminiService();

@@ -81,7 +81,7 @@ async function checkNotifications() {
     }
     
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error('Error:', error.message);
   } finally {
     await mongoose.disconnect();
   }

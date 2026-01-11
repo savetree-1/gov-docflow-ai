@@ -6,7 +6,7 @@ const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/
 
 async function testGemini() {
   try {
-    console.log('\n🧪 Testing Gemini API...\n');
+    console.log('\nTesting Gemini API...\n');
     
     const response = await axios.post(
       `${GEMINI_API_URL}?key=${GEMINI_API_KEY}`,
@@ -24,21 +24,21 @@ async function testGemini() {
     );
     
     const result = response.data.candidates[0].content.parts[0].text;
-    console.log('✅ Gemini API is working!');
+    console.log('Gemini API is working!');
     console.log('Response:', result);
-    console.log('\n✅ You can now upload documents and get AI processing!\n');
+    console.log('\nYou can now upload documents and get AI processing!\n');
     
   } catch (error) {
     if (error.response?.data?.error) {
       const err = error.response.data.error;
-      console.log('❌ Gemini API Error:', err.code, err.status);
+      console.log('Gemini API Error:', err.code, err.status);
       console.log('Message:', err.message);
       
       if (err.code === 429) {
-        console.log('\n⏳ Quota exceeded. Please wait or use a different API key.\n');
+        console.log('\nQuota exceeded. Please wait or use a different API key.\n');
       }
     } else {
-      console.log('❌ Error:', error.message);
+      console.log('Error:', error.message);
     }
   }
 }
