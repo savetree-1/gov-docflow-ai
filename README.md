@@ -764,6 +764,83 @@ all **visible**, **traceable**, and **under control**.
 
 ---
 
+---
+
+## Research & Methodology
+
+<div align="center">
+  <img src="src/img/Research Banner.png" alt="Research & Methodology" width="100%" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);"/>
+</div>
+
+<br/>
+
+<h3 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; font-size: 1.8em; margin: 20px 0; text-align: center;">
+  Beyond Coding: The Research Behind Pravaah
+</h3>
+
+<p style="font-size: 1.1em; color: #64748b; text-align: center; max-width: 800px; margin: 0 auto;">
+  We didn't just want to build an app; we wanted to build a solution that works on the ground. Before writing a single line of code, we researched <strong>why government systems fail</strong> and <strong>how to make them legally and economically viable</strong>.
+</p>
+
+<br/>
+
+### 1. Solving the "Latency" Problem in Disasters
+
+We asked ourselves: *Why did the 2013 Uttarakhand floods result in such high casualties?*
+
+We studied **Lindell, M. K., et al. (2019)** in the *International Journal of Disaster Risk Reduction*. Their research on the 2013 floods highlighted **"Information Asymmetry"**—official warnings existed but didn't reach the ground in time.
+
+* **The Problem:** Official channels are too slow compared to the speed of the disaster.
+* **Our Fix:** We implemented **AI Triage**. According to NIH/PMC studies on automated triage, AI decision support reduces "Time-to-Decision" by **60%**.
+* **Result in Pravaah:** Flash flood warnings bypass the queue and alert the District Magistrate immediately.
+
+### 2. Built for the "Whole-of-Government" (IndEA Compliant)
+
+A major issue we found was that the Police database doesn't talk to the Revenue database. We didn't want to create another silo.
+
+* **Framework Used:** We aligned our JSON-based metadata schema with the **IndEA (India Enterprise Architecture) Framework 2.0** mandated by **MeitY**.
+* **The Goal:** Interoperability. By using standardized RESTful APIs, Pravaah allows different departments to exchange data seamlessly, breaking the "departmental silos" that plague Indian governance.
+
+### 3. Security & Chain of Custody (NIST & Blockchain)
+
+Government documents are legal evidence. We couldn't just store them in a database; we had to prove they weren't tampered with.
+
+* **Standard Followed:** **NIST SP 800-53 Rev. 5 (Control SI-7)**.
+* **Implementation:** This control mandates "System and Information Integrity." We implemented **SHA-256 Cryptographic Hashing** at the client side.
+* **The Blockchain Layer:** To take it a step further, we anchor these hashes on the **Polygon Blockchain**. This creates an immutable "Digital Fingerprint" ensuring a perfect chain of custody.
+
+### 4. Privacy by Design (DPDP Act 2023)
+
+With the new **Digital Personal Data Protection Act, 2023**, we knew privacy wasn't optional.
+
+* **Legal Mandate:** **Section 8(4)** requires "reasonable security safeguards" to prevent personal data breaches.
+* **Our Approach:** We strictly implemented **Role-Based Access Control (RBAC)**.
+* **In Practice:** A clerk in the Water Department cannot see a citizen's medical records from the Health Department. This ensures **Data Minimization** and legal compliance.
+
+<br/>
+
+### 5. The Economic Case: Why AI Wins
+
+As students, we know budget is everything. We crunched the numbers to see if Pravaah is actually cheaper than the current manual system.
+
+<div align="center">
+
+| Metric | Manual Processing (Current) | Pravaah AI (Proposed) |
+| :--- | :--- | :--- |
+| **Data Source** | Ministry of Labour (Min. Wages) | Google Vertex AI Pricing |
+| **Cost Basis** | Skilled Data Entry (~₹600/day) | Gemini 1.5 Flash ($0.35/1M tokens) |
+| **Throughput** | ~50 docs/day per person | Unlimited |
+| **Cost Per Document** | **₹12.00** | **₹0.06** |
+| **Conclusion** | Expensive & Slow | **99.5% Cost Reduction** |
+
+</div>
+
+<br/>
+
+> *"We realized that for the price of processing **one** physical file manually, Pravaah can process **200** files using AI. The economic argument is undeniable."*
+
+![](https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif)
+
 ## Future Enhancements (Phase 2)
 
 <div align="center">
@@ -906,6 +983,7 @@ Auditors will receive a **simple verification interface** showing clear confirma
 - Every government officer who wants to serve citizens efficiently but is buried in paperwork
 - The citizens waiting for faster government services
 - Our home state Uttarakhand, which deserves better governance infrastructure
+
 
 ### License
 
