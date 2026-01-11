@@ -463,7 +463,7 @@ The system architecture supports horizontal scaling across all tiers:
 
 <br/>
 
-After getting feedback from Round 1, we spent weeks adding features that would make Pravaah actually usable in real government offices. Here's what we built:
+After getting feedback from Round 1, we spent days adding features that would make Pravaah actually usable in real government offices. Here's what we built:
 
 **1. Real-Time Chat System**
 
