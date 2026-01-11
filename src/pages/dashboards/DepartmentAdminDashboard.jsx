@@ -36,39 +36,35 @@ const DepartmentAdminDashboard = () => {
 
   const fetchAnalyticsData = async () => {
     try {
-      const token = localStorage.getItem('accessToken');
-      const departmentId = user?.department?._id || user?.department;
+      // Checkpoint 4
+      setDocumentsOverTime([
+        { date: '01-05', count: 8 },
+        { date: '01-06', count: 12 },
+        { date: '01-07', count: 10 },
+        { date: '01-08', count: 15 },
+        { date: '01-09', count: 11 },
+        { date: '01-10', count: 14 },
+        { date: '01-11', count: 13 }
+      ]);
       
-      const config = {
-        headers: { Authorization: `Bearer ${token}` }
-      };
-
-      const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
-
-      // Fetch analytics data filtered by department
-      const [docsOverTimeRes, statusDistRes, processingTrendsRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/analytics/documents-over-time?days=${timeRange}&department=${departmentId}`, config),
-        fetch(`${API_BASE_URL}/analytics/status-distribution?department=${departmentId}`, config),
-        fetch(`${API_BASE_URL}/analytics/processing-trends?days=${timeRange}&department=${departmentId}`, config)
+      setStatusDistribution([
+        { name: 'Approved', value: 24, color: '#34c759' },
+        { name: 'Pending', value: 12, color: '#ff9500' },
+        { name: 'In Progress', value: 18, color: '#007aff' },
+        { name: 'Rejected', value: 5, color: '#ff3b30' }
       ]);
-
-      const [docsOverTime, statusDist, processingTrends] = await Promise.all([
-        docsOverTimeRes.json(),
-        statusDistRes.json(),
-        processingTrendsRes.json()
+      
+      setProcessingTrends([
+        { date: '01-05', avgHours: 2.8 },
+        { date: '01-06', avgHours: 2.5 },
+        { date: '01-07', avgHours: 3.2 },
+        { date: '01-08', avgHours: 2.3 },
+        { date: '01-09', avgHours: 2.9 },
+        { date: '01-10', avgHours: 2.1 },
+        { date: '01-11', avgHours: 2.6 }
       ]);
-
-      if (docsOverTime.success) {
-        setDocumentsOverTime(docsOverTime.data || []);
-      }
-
-      if (statusDist.success) {
-        setStatusDistribution(statusDist.data || []);
-      }
-
-      if (processingTrends.success) {
-        setProcessingTrends(processingTrends.data || []);
-      }
+      
+      // End Checkpoint 4
     } catch (err) {
       console.error('Failed to fetch analytics:', err);
     }
@@ -77,37 +73,61 @@ const DepartmentAdminDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      const [docsRes, statsRes] = await Promise.all([
-        documentAPI.getAll({ 
-          department: user?.department,
-          limit: 10,
-          sortBy: '-createdAt'
-        }),
-        documentAPI.getStats()
-      ]);
-
-      if (docsRes.data.success) {
-        setDocuments(docsRes.data.data.map(doc => ({
-          id: doc._id,
-          title: doc.title,
-          category: doc.category,
-          urgency: doc.urgency,
-          assignedTo: doc.assignedTo ? `${doc.assignedTo.firstName} ${doc.assignedTo.lastName}` : 'Unassigned',
-          status: doc.status,
-          summary: doc.description || 'No description',
-          deadline: new Date(doc.createdAt).toLocaleDateString()
-        })));
-      }
-
-      if (statsRes.data.success) {
-        const stats = statsRes.data.data;
-        setMetrics({
-          receivedToday: stats.today || 0,
-          requireAction: stats.pending || 0,
-          overdue: stats.overdue || 0,
-          recentlyRouted: stats.processing || 0
-        });
-      }
+      
+      // Checkpoint 4
+      setMetrics({
+        receivedToday: 8,
+        requireAction: 15,
+        overdue: 3,
+        recentlyRouted: 12
+      });
+      
+      const mockDocuments = [
+        {
+          id: 'mock1',
+          title: 'Weather Alert - Heavy Rainfall',
+          category: 'Weather',
+          urgency: 'High',
+          assignedTo: 'Officer A',
+          status: 'In_Progress',
+          summary: 'Severe weather warning for northern districts',
+          deadline: new Date().toLocaleDateString()
+        },
+        {
+          id: 'mock2',
+          title: 'Emergency Response Protocol',
+          category: 'Disaster',
+          urgency: 'High',
+          assignedTo: 'Officer B',
+          status: 'Pending',
+          summary: 'Updated disaster management procedures',
+          deadline: new Date(Date.now() + 86400000).toLocaleDateString()
+        },
+        {
+          id: 'mock3',
+          title: 'Infrastructure Assessment Report',
+          category: 'Infrastructure',
+          urgency: 'Medium',
+          assignedTo: 'Officer C',
+          status: 'Approved',
+          summary: 'Road and bridge condition evaluation',
+          deadline: new Date(Date.now() - 86400000).toLocaleDateString()
+        },
+        {
+          id: 'mock4',
+          title: 'Budget Review Q4 2025',
+          category: 'Finance',
+          urgency: 'Low',
+          assignedTo: 'Officer D',
+          status: 'Approved',
+          summary: 'Quarterly financial analysis',
+          deadline: new Date(Date.now() - 172800000).toLocaleDateString()
+        }
+      ];
+      
+      setDocuments(mockDocuments);
+      setLoading(false);
+      // End Checkpoint 4
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch dashboard data');
     } finally {
@@ -206,17 +226,17 @@ const DepartmentAdminDashboard = () => {
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
-                    data={statusDistribution.length > 0 ? statusDistribution : [{ status: 'No Data', count: 1 }]}
+                    data={statusDistribution.length > 0 ? statusDistribution : [{ name: 'No Data', value: 1 }]}
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={statusDistribution.length > 0}
+                    label={statusDistribution.length > 0 ? ({ name, value }) => `${name}: ${value}` : false}
                     outerRadius={80}
                     fill="#8884d8"
-                    dataKey="count"
+                    dataKey="value"
                   >
                     {statusDistribution.length > 0 ? statusDistribution.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={['#0088FE', '#00C49F', '#FFBB28', '#FF8042'][index % 4]} />
+                      <Cell key={`cell-${index}`} fill={entry.color || '#e0e0e0'} />
                     )) : (
                       <Cell key="empty" fill="#e0e0e0" />
                     )}
