@@ -18,6 +18,23 @@
   <img src="src/img/After Info.png" alt="Project Overview" width="100%" style="margin: 20px 0;"/>
 </div>
 
+<!-- Live Application Link -->
+<h2 id="live-application" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; color: white;">
+  <strong>LIVE APPLICATION</strong>
+</h2>
+
+<p style="font-size: 1.3em; margin: 20px 0;">
+  <strong>Access the live system:</strong> 
+  <a href="https://gov-docflow-ai.vercel.app" target="_blank" style="color: #0066cc; font-weight: bold; text-decoration: none; background: #f0f9ff; padding: 10px 20px; border-radius: 8px; display: inline-block; margin: 10px 0;">
+    https://gov-docflow-ai.vercel.app
+  </a>
+</p>
+
+<p style="font-size: 1.1em; color: #64748b;">
+  <strong>Backend API:</strong> 
+  <code style="background: #f1f5f9; padding: 8px 15px; border-radius: 6px;">https://gov-docflow-ai.onrender.com/api</code>
+</p>
+
 <!-- Beautiful gradient bar -->
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
@@ -25,7 +42,7 @@
 <p>
   <img src="https://img.shields.io/badge/AI_Powered-Google_Gemini-667EEA?style=for-the-badge&logo=google&logoColor=white" alt="AI Powered"/>
   <img src="https://img.shields.io/badge/Blockchain-Polygon-8B5CF6?style=for-the-badge&logo=polygon&logoColor=white" alt="Blockchain"/>
-  <img src="https://img.shields.io/badge/Status-Live_Demo-10B981?style=for-the-badge" alt="Status"/>
+  <img src="https://img.shields.io/badge/Status-Live_Production-10B981?style=for-the-badge" alt="Status"/>
   <img src="https://img.shields.io/badge/Built_For-Government-3B82F6?style=for-the-badge" alt="Built For Government"/>
 </p>
 
@@ -52,21 +69,22 @@
 
 ### Table of Contents
 
-1. <a href="#introduction" style="color: #0066cc;"><strong>Introduction</strong></a>
-2. <a href="#problem-statement" style="color: #0066cc;"><strong>Problem Statement</strong></a>
-3. <a href="#users--use-cases" style="color: #0066cc;"><strong>Users & Use Cases</strong></a>
-4. <a href="#existing-solutions" style="color: #0066cc;"><strong>Existing Solutions</strong></a>
-5. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>▶ Architecture & Diagrams</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
-6. <a href="#our-solution" style="color: #0066cc;"><strong>Our Solution</strong></a>
-7. <a href="#features-added-in-phase-2" style="color: #0066cc;"><strong>▶ Features Added in Phase 2</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
-8. <a href="#prototype-demo-phase-2" style="color: #0066cc;"><strong>Prototype Demo (Phase 2)</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
-9. <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup Instructions</strong></a>
-10. <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots & Media</strong></a>
-11. <a href="#technical-stack" style="color: #0066cc;"><strong>Technical Stack</strong></a>
-12. <a href="#research--development" style="color: #0066cc;"><strong>▶ Research & Development</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
-13. <a href="#individual-contributions" style="color: #0066cc;"><strong>Individual Contributions</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
-14. <a href="#future-enhancements-phase-2" style="color: #0066cc;"><strong>Future Enhancements</strong></a>
-15. <a href="#links--credits" style="color: #0066cc;"><strong>Links & Credits</strong></a>
+1. <a href="#live-application" style="color: #10b981; font-weight: 800;"><strong>LIVE APPLICATION</strong></a> <sup style="color: #10b981; font-weight: 800;">*Production*</sup>
+2. <a href="#introduction" style="color: #0066cc;"><strong>Introduction</strong></a>
+3. <a href="#problem-statement" style="color: #0066cc;"><strong>Problem Statement</strong></a>
+4. <a href="#users--use-cases" style="color: #0066cc;"><strong>Users & Use Cases</strong></a>
+5. <a href="#existing-solutions" style="color: #0066cc;"><strong>Existing Solutions</strong></a>
+6. <a href="#architecture--diagrams" style="color: #0066cc;"><strong>▶ Architecture & Diagrams</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+7. <a href="#our-solution" style="color: #0066cc;"><strong>Our Solution</strong></a>
+8. <a href="#features-added-in-phase-2" style="color: #0066cc;"><strong>▶ Features Added in Phase 2</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+9. <a href="#prototype-demo-phase-2" style="color: #0066cc;"><strong>Prototype Demo (Phase 2)</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+10. <a href="#setup-instructions" style="color: #0066cc;"><strong>Setup Instructions</strong></a>
+11. <a href="#screenshots--media" style="color: #0066cc;"><strong>Screenshots & Media</strong></a>
+12. <a href="#technical-stack" style="color: #0066cc;"><strong>Technical Stack</strong></a>
+13. <a href="#research--development" style="color: #0066cc;"><strong>▶ Research & Development</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+14. <a href="#individual-contributions" style="color: #0066cc;"><strong>Individual Contributions</strong></a> <sup style="color: #dc2626;">*Phase 2*</sup>
+15. <a href="#future-enhancements-phase-2" style="color: #0066cc;"><strong>Future Enhancements</strong></a>
+16. <a href="#links--credits" style="color: #0066cc;"><strong>Links & Credits</strong></a>
 
 </div>
 
