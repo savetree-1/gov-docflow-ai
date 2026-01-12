@@ -84,7 +84,7 @@
 
 <br/>
 
-Hey there! We're **Team Tech Titans** from **Graphic Era Hill University, Dehradun** — four third-year computer science students who spent building something we genuinely believe can change how government works in India.
+Hey there! We're **Team Tech Resolutions** from **Graphic Era Hill University, Dehradun** — four third-year computer science students who spent building something we genuinely believe can change how government works in India.
 
 This isn't just a hackathon project we threw together in a weekend. This is **<span style="color: #0066cc;">Pravaah</span>** (प्रवाह - meaning "flow" in Hindi), born from frustration, late nights, and a deep desire to solve a problem we saw every day growing up in **Uttarakhand**.
 
@@ -1101,7 +1101,7 @@ We're students, not researchers, but these readings helped us build something gr
 
 ### Team
 
-**Team Tech Titans** - Graphic Era Hill University, Dehradun
+**Team Tech Resolutions** - Graphic Era Hill University, Dehradun
 
 <div align="center">
 
@@ -1325,7 +1325,7 @@ This project is licensed under the MIT License - see the <a href="LICENSE" style
 
 <br/>
 
-**© 2025 Team Tech Titans - GEHU Dehradun**
+**© 2025 Team Tech Resolutions - GEHU Dehradun**
 
 <p>
   <a href="https://github.com/your-username/gov-docflow-ai" style="color: #0066cc;"><strong>GitHub</strong></a> •
