@@ -4,9 +4,9 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGO_URI).then(async () => {
   const User = require('./models/User');
   
-  console.log('🔍 Activating auditor accounts...\n');
+  console.log('Activating auditor accounts...\n');
   
-  // Update only AUDITOR role users
+  /****** Updating only AUDITOR role users for isApproved and isActive ******/
   const result = await User.updateMany(
     { role: 'AUDITOR' },
     { 
@@ -17,13 +17,12 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
     }
   );
   
-  console.log(`✅ Updated ${result.modifiedCount} auditor(s)\n`);
-  
-  // List all auditors
+  /****** Listing out all auditors ******/
+  console.log(`Activated ${result.modifiedCount} auditor accounts!\n`);
   const auditors = await User.find({ role: 'AUDITOR' }).select('email firstName lastName isApproved isActive');
   
   if (auditors.length === 0) {
-    console.log('⚠️  No auditor accounts found in database\n');
+    console.log('No auditor accounts found in database\n');
   } else {
     console.log('Auditor Status:\n');
     auditors.forEach(auditor => {

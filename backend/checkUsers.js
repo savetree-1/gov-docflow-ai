@@ -16,7 +16,7 @@ async function checkUsers() {
       console.log(`Email: ${user.email}`);
       console.log(`Role: ${user.role}`);
       if (user.department) {
-        console.log(`   Department: ${user.department}`);
+        console.log(`Department: ${user.department}`);
       }
     });
     

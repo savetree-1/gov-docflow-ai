@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import { fetchChatHistory } from "../../api/chatAPI";
 
-// Initialize socket with proper configuration
+/****** Initialize socket with proper configuration ******/
 let socket = null;
 
 const getSocket = () => {
@@ -38,7 +38,7 @@ const OfficerChat = () => {
   const { token } = useSelector((state) => state.tokenReducer);
   const userData = user?.data || user || {};
 
-  // 1. Role Logic
+  /****** 1. Role Logic ******/
   let rawRole = (userData.role || "").toLowerCase();
   let myRole = rawRole.replace(/_/g, "");
   if (!myRole && userData.firstName === "Super") myRole = "superadmin";
@@ -48,7 +48,7 @@ const OfficerChat = () => {
   )
     myRole = "admin";
 
-  // 2. Clean Department Name
+  /****** 2. Clean Department Name ******/
   let rawDept = userData.department || userData.dept || "General";
   let deptName = "General";
 
@@ -59,21 +59,21 @@ const OfficerChat = () => {
     deptName = String(rawDept);
   }
 
-  // Remove 'Department' from name and normalize
+  /****** Remove 'Department' from name and normalize ******/
   deptName = deptName.replace(/department/gi, "").replace(/&/g, "").replace(/\s+/g, " ").trim();
   
-  // Match against known departments (Weather & Meteorology -> Meteorology)
+  /****** Match against known departments (Weather & Meteorology -> Meteorology) ******/
   const normalizedDept = ALL_DEPARTMENTS.find(dept => 
     deptName.toLowerCase().includes(dept.toLowerCase())
   ) || deptName;
   
-  // Capitalize first letter of each word
+  /****** Capitalize first letter of each word ******/
   const myDept = normalizedDept.split(' ').map(word => 
     word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
   ).join(' ').trim();
   const myName = userData.name || userData.firstName || "User";
 
-  // Create proper display name for chat
+  /****** Create proper display name for chat ******/
   const getDisplayName = () => {
     if (myRole === "superadmin") {
       return "Super Admin";
@@ -85,17 +85,17 @@ const OfficerChat = () => {
   
   const myDisplayName = getDisplayName();
 
-  // Normalize sender names for display (handles old messages with short names)
+  /****** Normalize sender names for display (handles old messages with short names) ******/
   const normalizeSenderName = (senderName) => {
     if (!senderName) return "Unknown";
     
-    // If it's already a proper format, return it
+    /****** If it's already a proper format, return it ******/
     if (senderName.includes("Admin")) return senderName;
     
-    // Convert short names to proper display names
+    /****** Convert short names to proper display names ******/
     if (senderName === "Super") return "Super Admin";
     
-    // Check if it matches any department (for old messages like "Weather" → "Meteorology Admin")
+    /****** Check if it matches any department (for old messages like "Weather" → "Meteorology Admin") ******/
     const matchedDept = ALL_DEPARTMENTS.find(dept => 
       senderName.toLowerCase().includes(dept.toLowerCase()) ||
       dept.toLowerCase().includes(senderName.toLowerCase())
@@ -105,7 +105,7 @@ const OfficerChat = () => {
       return `${matchedDept} Admin`;
     }
     
-    // If it's a department name without "Admin", add it
+    /****** If it's a department name without "Admin", add it ******/
     if (ALL_DEPARTMENTS.some(dept => dept.toLowerCase() === senderName.toLowerCase())) {
       return `${senderName} Admin`;
     }
@@ -113,7 +113,7 @@ const OfficerChat = () => {
     return senderName;
   };
 
-  // 3. Contacts
+  /****** 3. Contacts ******/
   const getContacts = () => {
     if (myRole === "superadmin") {
       return ALL_DEPARTMENTS;
@@ -127,27 +127,27 @@ const OfficerChat = () => {
   };
   const contacts = getContacts();
 
-  // 4. Auto-Select
+  /****** 4. Auto-Select ******/
   useEffect(() => {
     if (myRole === "admin" && selectedPartner === "") {
       setSelectedPartner("Super Admin");
     }
   }, [myRole, selectedPartner]);
 
-  // 5. Room ID
+  /****** 5. Room ID ******/
   const getRoomId = (partner) => {
     if (!partner) return null;
     const cleanPartner = partner.replace(/department/gi, "").replace(/&/g, "").trim();
 
     if (myRole !== "superadmin" && cleanPartner === "Super Admin") {
-      // Department admin talking to Super Admin
+      /****** Department admin talking to Super Admin ******/
       return `SuperAdmin_${myDept.replace(/\s+/g, '')}`;
     }
     if (myRole === "superadmin") {
-      // Super admin talking to department
+      /****** Super admin talking to department ******/
       return `SuperAdmin_${cleanPartner.replace(/\s+/g, '')}`;
     } else {
-      // Department to department (if applicable)
+      /****** Department to department (if applicable) ******/
       const dept1 = myDept.replace(/\s+/g, '');
       const dept2 = cleanPartner.replace(/\s+/g, '');
       const participants = [dept1, dept2].sort();
@@ -157,8 +157,8 @@ const OfficerChat = () => {
 
   const roomId = getRoomId(selectedPartner);
 
-  // Debug logging
-  console.log('🔍 Chat Debug:', {
+  /****** Debug logging ******/
+  console.log('Chat Debug:', {
     myRole,
     myDept,
     myName,
@@ -166,24 +166,24 @@ const OfficerChat = () => {
     roomId
   });
 
-  // 6. MAIN SOCKET LOOP
+  /****** 6. MAIN SOCKET LOOP ******/
   useEffect(() => {
     if (!roomId) return;
 
     const socket = getSocket();
 
-    // Load cached messages for this room immediately (prevents reset)
+    /****** Load cached messages for this room immediately (prevents reset) ******/
     const cached = messageCache[roomId] || [];
     setMessages(cached);
 
-    console.log(`🔌 SWITCHING TO ROOM: ${roomId}`);
+    console.log(`SWITCHING TO ROOM: ${roomId}`);
     socket.emit("join_room", roomId);
 
     const loadHistory = async () => {
       try {
         const history = await fetchChatHistory(roomId, token);
         if (Array.isArray(history)) {
-          // Create unique message list by timestamp
+          /****** Create unique message list by timestamp ******/
           const msgMap = new Map();
           history.forEach(msg => msgMap.set(msg.timestamp, msg));
           const uniqueMsgs = Array.from(msgMap.values()).sort(
@@ -191,7 +191,7 @@ const OfficerChat = () => {
           );
           
           setMessages(uniqueMsgs);
-          // Update cache
+          /****** Update cache ******/
           setMessageCache(prev => ({ ...prev, [roomId]: uniqueMsgs }));
         }
       } catch (err) {
@@ -201,14 +201,14 @@ const OfficerChat = () => {
     loadHistory();
 
     const handleReceiveMessage = (data) => {
-      console.log("📩 RECEIVED MSG:", data);
-      // Only process messages for the current room
+      console.log("RECEIVED MSG:", data);
+      /****** Only process messages for the current room ******/
       if (data.adminId !== roomId) return;
       
       setMessages((prev) => {
         if (prev.some((m) => m.timestamp === data.timestamp)) return prev;
         const updated = [...prev, data];
-        // Update cache
+        /****** Update cache ******/
         setMessageCache(cache => ({ ...cache, [roomId]: updated }));
         return updated;
       });
@@ -237,7 +237,7 @@ const OfficerChat = () => {
       timestamp: new Date().toISOString(),
     };
 
-    console.log("📤 SENDING MSG:", messageData);
+    console.log("SENDING MSG:", messageData);
     socket.emit("send_message", messageData);
     
     setMessages((prev) => {
@@ -251,7 +251,7 @@ const OfficerChat = () => {
 
   if (myRole !== "superadmin" && myRole !== "admin") return null;
   
-  // Export chat summary function
+  /****** Export chat summary function ******/
   const exportChatSummary = () => {
     if (messages.length === 0) {
       alert("No messages to export");
@@ -261,7 +261,7 @@ const OfficerChat = () => {
     const chatPartner = selectedPartner || "Unknown";
     const timestamp = new Date().toISOString().split('T')[0];
     
-    // Create formatted text summary
+    /****** Create formatted text summary ******/
     let summary = `Chat Summary: ${myDisplayName} ↔ ${chatPartner}\n`;
     summary += `Exported: ${new Date().toLocaleString()}\n`;
     summary += `Total Messages: ${messages.length}\n`;
@@ -274,7 +274,7 @@ const OfficerChat = () => {
       summary += `${msg.message}\n\n`;
     });
     
-    // Create downloadable file
+    /****** Create downloadable file ******/
     const blob = new Blob([summary], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -286,7 +286,6 @@ const OfficerChat = () => {
     window.URL.revokeObjectURL(url);
   };
 
-  // Add this inside the component, before return()
   const clearChat = async () => {
     if (
       !window.confirm(
@@ -296,9 +295,6 @@ const OfficerChat = () => {
       return;
 
     try {
-      // You need to create this endpoint in your backend first,
-      // OR just emit a socket event if your backend supports it.
-      // For now, let's just clear the screen locally:
       setMessages([]);
       alert("Chat cleared locally. (To delete from DB, use MongoDB Compass)");
     } catch (err) {

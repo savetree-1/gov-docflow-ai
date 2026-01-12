@@ -1,7 +1,7 @@
-/**
- * ConfirmDialog Component Tests
- * Tests dialog display, keyboard navigation, and accessibility
- */
+/******
+    ConfirmDialog Component Tests
+    Tests dialog display, keyboard navigation, and accessibility
+******/
 
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
@@ -153,13 +153,7 @@ describe('ConfirmDialog Component', () => {
     
     rerender(<ConfirmDialog {...defaultProps} isOpen={true} />);
     
-    // In actual implementation, body scroll should be prevented
-    // expect(document.body.style.overflow).toBe('hidden');
-    
     rerender(<ConfirmDialog {...defaultProps} isOpen={false} />);
-    
-    // Should restore original overflow
-    // expect(document.body.style.overflow).toBe(initialOverflow);
   });
 
   test('handles rapid open/close cycles', async () => {

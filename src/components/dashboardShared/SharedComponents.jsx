@@ -1,11 +1,11 @@
-/**
- * Reusable Dashboard Components
- */
+/******
+    Reusable Dashboard Components
+******/
 
 import React from 'react';
 import './SharedComponents.css';
 
-// Status Badge Component
+/****** Status Badge Component ******/
 export const StatusBadge = ({ status }) => {
   const getStatusClass = () => {
     switch (status?.toLowerCase()) {
@@ -27,7 +27,7 @@ export const StatusBadge = ({ status }) => {
   );
 };
 
-// Metric Card Component - Government Standard
+/****** Metric Card Component - Government Standard ******/
 export const MetricCard = ({ title, value, trend }) => {
   return (
     <div className="metric-card">
@@ -40,7 +40,7 @@ export const MetricCard = ({ title, value, trend }) => {
   );
 };
 
-// Document Card Component
+/****** Document Card Component ******/
 export const DocumentCard = ({ document, onClick }) => {
   return (
     <div className="document-card" onClick={onClick} style={{ cursor: 'pointer' }}>
@@ -71,7 +71,7 @@ export const DocumentCard = ({ document, onClick }) => {
   );
 };
 
-// Empty State Component - Apple HIG Standard
+/****** Empty State Component - Apple HIG Standard ******/
 export const EmptyState = ({ icon, title, message, actionText, onAction }) => {
   return (
     <div className="empty-state">
@@ -141,7 +141,7 @@ export const EmptyState = ({ icon, title, message, actionText, onAction }) => {
   );
 };
 
-// Table Component
+/****** Table Component ******/
 export const DataTable = ({ columns, data, onAction }) => {
   return (
     <div className="data-table-container">

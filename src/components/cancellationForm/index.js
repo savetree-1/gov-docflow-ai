@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-//COmponents
+/****** COmponents ******/
 import InputField from "../input/InputField";
 
-//Functions
+/****** Functions ******/
 import { postCancellationData } from "../../api/authAPI";
 
 const CancellationForm = () => {

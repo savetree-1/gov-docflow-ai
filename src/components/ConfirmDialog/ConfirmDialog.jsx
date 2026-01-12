@@ -17,17 +17,17 @@ const ConfirmDialog = ({
 
   useEffect(() => {
     if (isOpen) {
-      // Focus confirm button when dialog opens
+      /****** Focus confirm button when dialog opens ******/
       confirmButtonRef.current?.focus();
 
-      // Handle Escape key
+      /****** Handle Escape key ******/
       const handleEscape = (e) => {
         if (e.key === 'Escape') {
           onCancel();
         }
       };
 
-      // Trap focus within dialog
+      /****** Trap focus within dialog ******/
       const handleTabKey = (e) => {
         if (e.key === 'Tab' && dialogRef.current) {
           const focusableElements = dialogRef.current.querySelectorAll(
