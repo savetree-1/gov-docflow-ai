@@ -10,30 +10,30 @@ const { sendRoutingNotification } = require('./services/emailService');
 async function testRoutingNotification() {
   try {
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/pravah_prototype');
-    console.log('✅ Connected to MongoDB\n');
+    console.log('Connected to MongoDB\n');
 
-    // Find Weather Department
+    /****** Finding the Weather Department so that users can be fetched ******/
     const weatherDept = await Department.findOne({ name: /weather.*meteorology/i });
     if (!weatherDept) {
-      console.log('❌ Weather & Meteorology Department not found');
+      console.log('Weather & Meteorology Department not found');
       process.exit(1);
     }
-    console.log(`✅ Found Department: ${weatherDept.name} (${weatherDept.code})\n`);
+    console.log(`Found Department: ${weatherDept.name} (${weatherDept.code})\n`);
 
-    // Find users in Weather Department
+    /****** Finding users in Weather Department for notification testing ******/
     const weatherUsers = await User.find({
       department: weatherDept._id,
       isActive: true,
       role: { $in: ['DEPARTMENT_ADMIN', 'OFFICER'] }
     }).select('email firstName lastName role');
 
-    console.log(`✅ Found ${weatherUsers.length} users in ${weatherDept.name}:`);
+    console.log(`Found ${weatherUsers.length} users in ${weatherDept.name}:`);
     weatherUsers.forEach(u => {
-      console.log(`   - ${u.firstName} ${u.lastName} (${u.role}) - ${u.email}`);
+      console.log(`- ${u.firstName} ${u.lastName} (${u.role}) - ${u.email}`);
     });
     console.log('');
 
-    // Create a test document
+    /****** Creating a test document ******/
     const testDoc = {
       _id: new mongoose.Types.ObjectId(),
       title: 'Heavy Rainfall Warning - Test',
@@ -42,8 +42,8 @@ async function testRoutingNotification() {
       urgency: 'High'
     };
 
-    // Test notifications and emails
-    console.log('📧 Testing notifications and emails...\n');
+    /****** Test notifications and emails for each user ******/
+    console.log('Testing notifications and emails...\n');
     
     for (const user of weatherUsers) {
       // Create in-app notification
@@ -62,9 +62,9 @@ async function testRoutingNotification() {
           routedToDepartment: weatherDept.name
         }
       });
-      console.log(`✅ In-app notification created for ${user.firstName} ${user.lastName}`);
+      console.log(`In-app notification created for ${user.firstName} ${user.lastName}`);
 
-      // Send email
+      /****** Sending email ******/
       if (user.email) {
         const result = await sendRoutingNotification(
           user.email,
@@ -73,19 +73,19 @@ async function testRoutingNotification() {
           'System Test'
         );
         if (result.success) {
-          console.log(`✅ Email sent to ${user.email}`);
+          console.log(`Email sent to ${user.email}`);
         } else {
-          console.log(`❌ Failed to send email to ${user.email}: ${result.error}`);
+          console.log(`Failed to send email to ${user.email}: ${result.error}`);
         }
       }
     }
 
-    console.log('\n✅ Test completed successfully!');
+    console.log('\nTest completed successfully!');
     
     await mongoose.disconnect();
     process.exit(0);
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error('Error:', error.message);
     await mongoose.disconnect();
     process.exit(1);
   }

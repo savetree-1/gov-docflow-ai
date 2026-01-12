@@ -54,20 +54,20 @@ console.log('Connecting to MongoDB...');
 const connectDB = require('./config/db');
 connectDB();
 
-// SOCKET.IO LOGIC (Chat)
+/****** SOCKET.IO LOGIC for Real-time Chat ******/
 io.on("connection", (socket) => {
-  console.log("⚡ New Client Connected (Chat):", socket.id);
+  console.log("New Client Connected (Chat):", socket.id);
 
   socket.on("join_room", (adminId) => {
     socket.join(adminId);
-    console.log(`🚪 User ${socket.id} joined room: ${adminId}`);
-    console.log(`📊 Room ${adminId} now has ${io.sockets.adapter.rooms.get(adminId)?.size || 0} members`);
+    console.log(`User ${socket.id} joined room: ${adminId}`);
+    console.log(`Room ${adminId} now has ${io.sockets.adapter.rooms.get(adminId)?.size || 0} members`);
   });
 
   socket.on("send_message", async (data) => {
     try {
-      console.log(`📤 Broadcasting to room ${data.adminId}:`, data.message);
-      console.log(`📊 Room has ${io.sockets.adapter.rooms.get(data.adminId)?.size || 0} members`);
+      console.log(`Broadcasting to room ${data.adminId}:`, data.message);
+      console.log(`Room has ${io.sockets.adapter.rooms.get(data.adminId)?.size || 0} members`);
       io.to(data.adminId).emit("receive_message", data);
       
       if (data.adminId && data.message) {
@@ -85,7 +85,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("❌ Client disconnected:", socket.id);
+    console.log("Client disconnected:", socket.id);
   });
 });
 

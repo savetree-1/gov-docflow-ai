@@ -7,9 +7,9 @@ const API_BASE = 'http://localhost:5001/api';
 
 async function testWeatherRouting() {
   try {
-    console.log('🧪 Testing Weather Department Routing & Notifications\n');
+    console.log('Testing Weather Department Routing & Notifications\n');
     
-    // Step 1: Login as Super Admin
+    /****** Step 1: Login as Super Admin ******/
     console.log('1. Logging in as Super Admin...');
     const loginRes = await axios.post(`${API_BASE}/auth/login`, {
       email: 'admin@pravah.gov.in',
@@ -17,9 +17,9 @@ async function testWeatherRouting() {
     });
     
     const token = loginRes.data.token;
-    console.log('✅ Logged in successfully\n');
+    console.log('Logged in successfully\n');
     
-    // Step 2: Get Weather department details
+    /****** Step 2: Get Weather department details ******/
     console.log('2. Fetching Weather department...');
     const deptsRes = await axios.get(`${API_BASE}/departments`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -30,13 +30,13 @@ async function testWeatherRouting() {
     );
     
     if (!weatherDept) {
-      console.error('❌ Weather department not found');
+      console.error('Weather department not found');
       return;
     }
     
-    console.log(`✅ Found: ${weatherDept.name} (${weatherDept._id})\n`);
+    console.log(`Found: ${weatherDept.name} (${weatherDept._id})\n`);
     
-    // Step 3: Get Weather admin details
+    /****** Step 3: Get Weather admin details ******/
     console.log('3. Fetching Weather department users...');
     const usersRes = await axios.get(`${API_BASE}/users`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -48,17 +48,17 @@ async function testWeatherRouting() {
     );
     
     if (!weatherAdmin) {
-      console.log('⚠️  Weather admin not found, listing all users:');
+      console.log('Weather admin not found, listing all users:');
       usersRes.data.data.forEach(u => {
         console.log(`  - ${u.firstName} ${u.lastName} (${u.email}) - ${u.role}`);
       });
       return;
     }
     
-    console.log(`✅ Found Weather Admin: ${weatherAdmin.firstName} ${weatherAdmin.lastName}`);
-    console.log(`   Email: ${weatherAdmin.email}\n`);
+    console.log(`Found Weather Admin: ${weatherAdmin.firstName} ${weatherAdmin.lastName}`);
+    console.log(`Email: ${weatherAdmin.email}\n`);
     
-    // Step 4: Create a test document with weather content
+    /****** Step 4: Create a test document with weather content ******/
     console.log('4. Creating test weather document...');
     
     const testContent = `
@@ -105,24 +105,24 @@ Government of Uttarakhand
     });
     
     const documentId = uploadRes.data.data._id;
-    console.log(`✅ Document uploaded: ${documentId}\n`);
+    console.log(`Document uploaded: ${documentId}\n`);
     
-    // Step 5: Wait for AI processing
+    /****** Step 5: Wait for AI processing ******/
     console.log('5. Waiting for AI processing (10 seconds)...');
     await new Promise(resolve => setTimeout(resolve, 10000));
     
-    // Step 6: Get document details
+    /****** Step 6: Get document details ******/
     const docRes = await axios.get(`${API_BASE}/documents/${documentId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
     const doc = docRes.data.data;
-    console.log(`✅ AI Processing complete`);
-    console.log(`   Suggested Dept: ${doc.suggestedDepartment || 'None'}`);
-    console.log(`   Current Dept: ${doc.department?.name || 'None'}`);
-    console.log(`   Routing Confirmed: ${doc.routingConfirmed}\n`);
+    console.log(`AI Processing complete`);
+    console.log(`Suggested Dept: ${doc.suggestedDepartment || 'None'}`);
+    console.log(`Current Dept: ${doc.department?.name || 'None'}`);
+    console.log(`Routing Confirmed: ${doc.routingConfirmed}\n`);
     
-    // Step 7: Confirm routing
+    /****** Step 7: Confirm routing ******/
     console.log('6. Confirming routing to Weather department...');
     const confirmRes = await axios.post(
       `${API_BASE}/documents/${documentId}/confirm-routing`,
@@ -132,12 +132,12 @@ Government of Uttarakhand
       }
     );
     
-    console.log('✅ Routing confirmed\n');
+    console.log('Routing confirmed\n');
     
-    // Step 8: Check notifications
+    /****** Step 8: Check notifications ******/
     console.log('7. Checking notifications for Weather admin...');
     
-    // Login as weather admin to check notifications
+    /****** Making a Login as weather admin to check notifications so that we can see only his notifications ******/
     const weatherLoginRes = await axios.post(`${API_BASE}/auth/login`, {
       email: 'ukweatherdept.gov@gmail.com',
       password: 'Weather@123'
@@ -153,31 +153,31 @@ Government of Uttarakhand
       n.documentId === documentId || n.message.includes('Heavy Rainfall')
     );
     
-    console.log(`✅ Found ${relatedNotifs.length} notification(s):`);
+    console.log(`Found ${relatedNotifs.length} notification(s):`);
     relatedNotifs.forEach(n => {
-      console.log(`   - ${n.title}: ${n.message}`);
-      console.log(`     Created: ${new Date(n.createdAt).toLocaleString()}`);
-      console.log(`     Read: ${n.isRead ? 'Yes' : 'No'}\n`);
+      console.log(`- ${n.title}: ${n.message}`);
+      console.log(`Created: ${new Date(n.createdAt).toLocaleString()}`);
+      console.log(`Read: ${n.isRead ? 'Yes' : 'No'}\n`);
     });
     
-    // Step 9: Check email logs
+    /****** Step 9: Check email logs ******/
     console.log('8. Email notification status:');
-    console.log(`   ✅ Email should be sent to: ${weatherAdmin.email}`);
-    console.log(`   📧 Subject: Document Routed to ${weatherDept.name}`);
-    console.log(`   📄 Document: Heavy Rainfall Warning - Northern Districts\n`);
+    console.log(`Email should be sent to: ${weatherAdmin.email}`);
+    console.log(`Subject: Document Routed to ${weatherDept.name}`);
+    console.log(`Document: Heavy Rainfall Warning - Northern Districts\n`);
     
-    // Cleanup
+    /****** Performing a Cleanup operation ******/
     fs.unlinkSync(testFilePath);
     
-    console.log('🎉 Test completed successfully!\n');
+    console.log('Test completed successfully!\n');
     console.log('Summary:');
-    console.log(`✅ Document routed to: ${weatherDept.name}`);
-    console.log(`✅ Notifications sent: ${relatedNotifs.length}`);
-    console.log(`✅ Email sent to: ${weatherAdmin.email}`);
+    console.log(`Document routed to: ${weatherDept.name}`);
+    console.log(`Notifications sent: ${relatedNotifs.length}`);
+    console.log(`Email sent to: ${weatherAdmin.email}`);
     console.log(`\nDocument ID: ${documentId}`);
     
   } catch (error) {
-    console.error('❌ Test failed:', error.response?.data || error.message);
+    console.error('Test failed:', error.response?.data || error.message);
     if (error.response?.data) {
       console.error('Details:', JSON.stringify(error.response.data, null, 2));
     }

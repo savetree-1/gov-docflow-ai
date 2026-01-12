@@ -29,7 +29,7 @@ async function disapproveAllUsers() {
     /****** Filtering out Super Admin ******/
     const usersToDisapprove = users.filter(user => user.role !== 'SUPER_ADMIN');
     
-    console.log(`🔄 Disapproving ${usersToDisapprove.length} users...\n`);
+    console.log(`Disapproving ${usersToDisapprove.length} users...\n`);
     
     /****** Disapproving each user ******/
     let successCount = 0;

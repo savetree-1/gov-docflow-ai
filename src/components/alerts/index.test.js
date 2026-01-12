@@ -115,7 +115,7 @@ describe('Alert Components', () => {
 
     test('handles empty message gracefully', () => {
       render(<SuccessMsg message="" />);
-      // Component should either not render or handle empty message
+      /****** Component should either not render or handle empty message ******/
       const alerts = screen.queryAllByRole('alert');
       expect(alerts.length).toBeLessThanOrEqual(1);
     });

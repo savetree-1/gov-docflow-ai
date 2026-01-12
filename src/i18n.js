@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Translation resources
+/****** Translation resources ******/
 const resources = {
   en: {
     translation: {
@@ -15,7 +15,7 @@ const resources = {
       "profile": "Profile",
       "notifications": "Notifications",
       
-      // Navigation
+      /****** Navigation ******/
       "home": "Home",
       "about": "About",
       "aboutPravaah": "About Pravaah",
@@ -26,7 +26,7 @@ const resources = {
       "help": "Help",
       "registerDepartment": "Register Department",
       
-      // Dashboard
+      /****** Dashboard ******/
       "dashboard": "Dashboard",
       "myDocuments": "My Documents",
       "uploadDocument": "Upload Document",
@@ -34,7 +34,7 @@ const resources = {
       "departmentManagement": "Department Management",
       "documentManagement": "Document Management",
       
-      // Common
+      /****** Common ******/
       "welcome": "Welcome",
       "viewAll": "View All",
       "search": "Search",
@@ -52,7 +52,7 @@ const resources = {
       "loading": "Loading...",
       "noData": "No data available",
       
-      // Metrics
+      /****** Metrics ******/
       "totalDepartments": "Total Departments",
       "activeDepartments": "Active Departments",
       "inactiveDepartments": "Inactive Departments",
@@ -64,7 +64,7 @@ const resources = {
       "noApprovedDepartments": "No approved departments yet. Approve department registrations from the dashboard.",
       "noFilteredDepartments": "No {{filter}} departments found.",
       
-      // Status
+      /****** Status ******/
       "pending": "Pending",
       "approved": "Approved",
       "rejected": "Rejected",
@@ -73,14 +73,14 @@ const resources = {
       "active": "Active",
       "inactive": "Inactive",
       
-      // Document
+      /****** Document ******/
       "category": "Category",
       "department": "Department",
       "created": "Created",
       "title": "Title",
       "description": "Description",
       
-      // User Management
+      /****** User Management ******/
       "employeeId": "Employee ID",
       "name": "Name",
       "email": "Email",
@@ -89,7 +89,7 @@ const resources = {
       "lastName": "Last Name",
       "role": "Role",
       
-      // Messages
+      /****** Messages ******/
       "successMessage": "Operation completed successfully",
       "errorMessage": "An error occurred",
       "confirmDelete": "Are you sure you want to delete?",
@@ -99,7 +99,7 @@ const resources = {
   },
   hi: {
     translation: {
-      // Header
+      /****** Header ******/
       "skipToContent": "मुख्य सामग्री पर जाएं",
       "sitemap": "साइटमैप",
       "screenReader": "स्क्रीन रीडर एक्सेस",
@@ -109,7 +109,7 @@ const resources = {
       "profile": "प्रोफाइल",
       "notifications": "सूचनाएं",
       
-      // Navigation
+      /****** Navigation ******/
       "home": "होम",
       "about": "के बारे में",
       "aboutPravaah": "प्रवाह के बारे में",
@@ -120,7 +120,7 @@ const resources = {
       "help": "सहायता",
       "registerDepartment": "विभाग पंजीकरण",
       
-      // Dashboard
+      /****** Dashboard ******/
       "dashboard": "डैशबोर्ड",
       "myDocuments": "मेरे दस्तावेज़",
       "uploadDocument": "दस्तावेज़ अपलोड करें",
@@ -128,7 +128,7 @@ const resources = {
       "departmentManagement": "विभाग प्रबंधन",
       "documentManagement": "दस्तावेज़ प्रबंधन",
       
-      // Common
+      /****** Common ******/
       "welcome": "स्वागत है",
       "viewAll": "सभी देखें",
       "search": "खोजें",
@@ -146,7 +146,7 @@ const resources = {
       "loading": "लोड हो रहा है...",
       "noData": "कोई डेटा उपलब्ध नहीं है",
       
-      // Metrics
+      /****** Metrics ******/
       "totalDepartments": "कुल विभाग",
       "activeDepartments": "सक्रिय विभाग",
       "inactiveDepartments": "निष्क्रिय विभाग",
@@ -158,7 +158,7 @@ const resources = {
       "noApprovedDepartments": "अभी तक कोई स्वीकृत विभाग नहीं। डैशबोर्ड से विभाग पंजीकरण स्वीकृत करें।",
       "noFilteredDepartments": "कोई {{filter}} विभाग नहीं मिला।",
       
-      // Status
+      /****** Status ******/
       "pending": "लंबित",
       "approved": "स्वीकृत",
       "rejected": "अस्वीकृत",
@@ -167,14 +167,14 @@ const resources = {
       "active": "सक्रिय",
       "inactive": "निष्क्रिय",
       
-      // Document
+      /****** Document ******/
       "category": "श्रेणी",
       "department": "विभाग",
       "created": "बनाया गया",
       "title": "शीर्षक",
       "description": "विवरण",
       
-      // User Management
+      /****** User Management ******/
       "employeeId": "कर्मचारी आईडी",
       "name": "नाम",
       "email": "ईमेल",
@@ -183,7 +183,7 @@ const resources = {
       "lastName": "अंतिम नाम",
       "role": "भूमिका",
       
-      // Messages
+      /****** Messages ******/
       "successMessage": "ऑपरेशन सफलतापूर्वक पूर्ण हुआ",
       "errorMessage": "एक त्रुटि हुई",
       "confirmDelete": "क्या आप वाकई हटाना चाहते हैं?",

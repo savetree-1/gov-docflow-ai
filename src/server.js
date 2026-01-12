@@ -1,9 +1,7 @@
-/**
- * Backend Server Integration Example
- * Express.js setup with authentication & authorization
- * 
- * This file shows how to integrate all auth components
- */
+/******
+Backend Server Integration Example Including Express.js setup with authentication & authorization 
+This file shows how to integrate all auth components
+******/
 
 const express = require('express');
 const cors = require('cors');
@@ -11,23 +9,21 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 
-// Import routes
+/****** Import routes ******/
 const authRoutes = require('./routes/authRoutes');
 const departmentRoutes = require('./routes/departmentRoutes');
 const userRoutes = require('./routes/userRoutes');
 
-// Import middleware
+/****** Import middleware ******/
 const { requireAuth, requireRole } = require('./middleware/rbacMiddleware');
 const { USER_ROLES } = require('./constants/auth');
 
-// Initialize Express app
+/****** Initialize Express app ******/
 const app = express();
 
-// ============================================
-// MIDDLEWARE SETUP
-// ============================================
+/****** MIDDLEWARE SETUP MODULES ******/
 
-// Security headers
+/****** Security headers ******/
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -44,7 +40,7 @@ app.use(helmet({
   }
 }));
 
-// CORS configuration
+/****** CORS configuration ******/
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
@@ -52,17 +48,17 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Body parsing
+/****** Body parsing through express ******/
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Request logging
+/****** Request logging ******/
 app.use(morgan('combined'));
 
-// Rate limiting for auth endpoints
+/****** Rate limiting for auth endpoints so as to prevent brute-force ******/
 const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // 5 requests per window
+  windowMs: 15 * 60 * 1000, /****** 15 minutes ******/
+  max: 5, /****** 5 requests per window ******/
   message: {
     success: false,
     code: 'RATE_LIMIT_EXCEEDED',
@@ -72,10 +68,10 @@ const authLimiter = rateLimit({
   legacyHeaders: false
 });
 
-// General API rate limiting
+/****** General API rate limiting ******/
 const apiLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 100, // 100 requests per minute
+  windowMs: 1 * 60 * 1000, /****** 1 minute ******/
+  max: 100, /****** 100 requests per minute ******/
   message: {
     success: false,
     code: 'RATE_LIMIT_EXCEEDED',
@@ -83,11 +79,9 @@ const apiLimiter = rateLimit({
   }
 });
 
-// ============================================
-// ROUTES
-// ============================================
+/****** ROUTES MODULES ******/
 
-// Health check
+/****** Health check ******/
 app.get('/health', (req, res) => {
   res.json({
     status: 'OK',
@@ -96,17 +90,18 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Auth routes (with rate limiting)
+/****** Auth routes ******/
 app.use('/api/auth', authLimiter, authRoutes);
 
-// Department routes
-// Registration is public, but approval requires auth
+/****** Department routes ******/
+
+/****** Registration is public, but approval requires auth ******/
 app.use('/api/departments', apiLimiter, departmentRoutes);
 
-// User management routes (authenticated only)
+/****** User management routes authenticated only ******/
 app.use('/api/users', apiLimiter, userRoutes);
 
-// Protected example routes
+/****** Protected example routes ******/
 app.get('/api/admin/stats', 
   requireAuth,
   requireRole(USER_ROLES.SUPER_ADMIN),
@@ -122,11 +117,10 @@ app.get('/api/admin/stats',
   }
 );
 
-// ============================================
-// ERROR HANDLING
-// ============================================
 
-// 404 handler
+/****** ERROR HANDLING MODULES ******/
+
+/****** 404 handler and global error handler ******/
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -135,11 +129,12 @@ app.use((req, res) => {
   });
 });
 
-// Global error handler
+
+/****** Global error handler ******/
 app.use((err, req, res, next) => {
   console.error('Error:', err);
 
-  // Don't leak error details in production
+  /****** Don't leak error details in production ******/
   const isDev = process.env.NODE_ENV === 'development';
 
   res.status(err.status || 500).json({
@@ -150,24 +145,21 @@ app.use((err, req, res, next) => {
   });
 });
 
-// ============================================
-// START SERVER
-// ============================================
-
+/****** START SERVER ******/
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`
 ╔════════════════════════════════════════════════════════════╗
 ║  Government Platform Backend Server                        ║
-║  Environment: ${process.env.NODE_ENV || 'development'}                                 ║
-║  Port: ${PORT}                                               ║
-║  Started at: ${new Date().toISOString()}          ║
+║  Environment: ${process.env.NODE_ENV || 'development'}     ║
+║  Port: ${PORT}                                             ║
+║  Started at: ${new Date().toISOString()}                   ║
 ╚════════════════════════════════════════════════════════════╝
   `);
 });
 
-// Graceful shutdown
+/****** Graceful shutdown ******/
 process.on('SIGTERM', () => {
   console.log('SIGTERM received, shutting down gracefully...');
   process.exit(0);

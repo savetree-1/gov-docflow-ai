@@ -1,10 +1,7 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
+/****** Test setup file ******/
 import '@testing-library/jest-dom';
 
-// Mock localStorage
+/****** Mock localStorage ******/
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
@@ -13,7 +10,7 @@ const localStorageMock = {
 };
 global.localStorage = localStorageMock;
 
-// Mock sessionStorage
+/****** Mock sessionStorage ******/
 const sessionStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
@@ -22,7 +19,7 @@ const sessionStorageMock = {
 };
 global.sessionStorage = sessionStorageMock;
 
-// Mock window.matchMedia
+/****** Mock window.matchMedia ******/
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({
@@ -37,7 +34,7 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-// Suppress console errors in tests
+/****** Suppress console errors in tests ******/
 const originalError = console.error;
 beforeAll(() => {
   console.error = (...args) => {

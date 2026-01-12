@@ -1,7 +1,7 @@
-/**
- * Dashboard Sidebar Component
- * Adapts navigation based on user role
- */
+/******
+    Dashboard Sidebar Component
+    Adapts navigation based on user role
+******/
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -21,13 +21,13 @@ const Sidebar = ({ role }) => {
   const [unreadCount, setUnreadCount] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Image carousel for promotional content
+  /****** Image carousel for promotional content ******/
   const carouselImages = [
     { src: promoImage1, alt: 'Government Scheme Portal 1' },
     { src: promoImage2, alt: 'Government Scheme Portal 2' }
   ];
 
-  // Auto-rotate carousel every 3 seconds
+  /****** Auto-rotate carousel every 3 seconds ******/
   useEffect(() => {
     const carouselInterval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
@@ -35,7 +35,7 @@ const Sidebar = ({ role }) => {
     return () => clearInterval(carouselInterval);
   }, [carouselImages.length]);
 
-  // Fetch unread notification count
+  /****** Fetch unread notification count ******/
   const fetchUnreadCount = async () => {
     try {
       const response = await notificationAPI.getUnreadCount();
@@ -47,14 +47,14 @@ const Sidebar = ({ role }) => {
     }
   };
 
-  // Poll for unread notifications every 30 seconds
+  /****** Poll for unread notifications every 30 seconds ******/
   useEffect(() => {
     fetchUnreadCount();
     const interval = setInterval(fetchUnreadCount, 30000);
     return () => clearInterval(interval);
   }, []);
 
-  // Refresh count when navigating away from notifications page
+  /****** Refresh count when navigating away from notifications page ******/
   useEffect(() => {
     if (location.pathname !== '/notifications') {
       fetchUnreadCount();
@@ -62,16 +62,16 @@ const Sidebar = ({ role }) => {
   }, [location.pathname]);
 
   const handleLogout = () => {
-    // Clear localStorage
+    /****** Clear localStorage ******/
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
     
-    // Clear Redux state
+    /****** Clear Redux state ******/
     dispatch(getLogoutAction());
     dispatch(getSaveTokenAction(null));
     
-    // Redirect to login
+    /****** Redirect to login ******/
     navigate('/login');
   };
 

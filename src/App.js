@@ -15,7 +15,7 @@ import SupportAdmin from "./components/ChatSupport/SupportAdmin/index";
 import SupportEngine from "./components/ChatSupport/SupportEngine/index";
 import Cookies from "js-cookie";
 
-//Pages
+/****** Pages ******/
 import GovLogin from "./pages/GovLogin";
 import DepartmentRegistration from "./pages/DepartmentRegistration";
 import Help from "./pages/Help";
@@ -26,24 +26,9 @@ import VerifyOTP from "./components/verify-otp";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import UpdateProfile from "./pages/updateProfile/index";
 
-// ===== OLD PROJECT FILES MOVED TO _legacy_old_project =====
-// These imports were from the agricultural equipment rental system (Krishi Sadhan)
-// import Dashboard from "./pages/dashboard/Dashboard";
-// import AddProduct from "./pages/addProduct/AddProduct";
-// import Product from "./pages/product/Product";
-// import PartnerDispute from "./pages/PartnerDispute";
-// import CancellationForm from "./components/cancellationForm";
-// import Chat from "./pages/chat/Chat";
-// import BookingRequest from "./pages/bookingRequest/BookingRequest";
-// import CancellationPolicy from "./pages/cancellationPage/CancellationPolicy";
-// import BookingHistory from "./pages/bookingHistory";
-// import Feedback from "./pages/feedback/Feedback";
-// import EquipmentReport from "./pages/EquipmentReport";
-// import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
-// Dashboard Imports
+/****** Dashboard Imports ******/
 import SuperAdminDashboard from "./pages/dashboards/SuperAdminDashboardNew";
-
 import DepartmentAdminDashboard from "./pages/dashboards/DepartmentAdminDashboard";
 import OfficerDashboard from "./pages/dashboards/OfficerDashboard";
 import AuditorDashboard from "./pages/dashboards/AuditorDashboard";
@@ -88,7 +73,7 @@ function App() {
           const parsedUserData = JSON.parse(userData);
           dispatch(getSaveProfileAction({ data: parsedUserData }));
           
-          // Optionally refresh from server
+          /****** Optionally refresh from server so we have latest data ******/
           const uuid = parsedUserData.id || parsedUserData.userId;
           if (uuid) {
             const data = await getProfile({ uuid, accessToken });
@@ -120,7 +105,7 @@ function App() {
         <Route path="how-it-works" element={<><HowItWorks /><Footer /></>} />
         <Route path="departments" element={<><Departments /><Footer /></>} />
         
-        {/* Role-Based Dashboards */}
+        {/****** Role-Based Dashboards ******/}
         <Route 
           path="/admin/dashboard" 
           element={
@@ -154,7 +139,7 @@ function App() {
           } 
         />
         
-        {/* Chat Routes */}
+        {/****** Chat Routes ******/}
         <Route 
           path="/admin/chat" 
           element={
@@ -172,7 +157,7 @@ function App() {
           } 
         />
         
-        {/* Settings - All Roles */}
+        {/****** Settings - All Roles ******/}
         <Route 
           path="/settings" 
           element={
@@ -198,7 +183,7 @@ function App() {
           } 
         />
         
-        {/* Document Upload - Officers and Dept Admins */}
+        {/****** Document Upload - Officers and Dept Admins ******/}
         <Route 
           path="/document/upload" 
           element={
@@ -208,7 +193,7 @@ function App() {
           } 
         />
         
-        {/* Document Detail - All Roles */}
+        {/****** Document Detail - All Roles ******/}
         <Route 
           path="/document/:id" 
           element={
@@ -218,7 +203,7 @@ function App() {
           } 
         />
         
-        {/* My Documents - All Roles */}
+        {/****** My Documents - All Roles ******/}
         <Route 
           path="/my-documents" 
           element={
@@ -228,7 +213,7 @@ function App() {
           } 
         />
         
-        {/* Department Documents */}
+        {/****** Department Documents ******/}
         <Route 
           path="/department/documents" 
           element={
@@ -238,7 +223,7 @@ function App() {
           } 
         />
         
-        {/* Notifications - All Roles */}
+        {/****** Notifications - All Roles ******/}
         <Route 
           path="/notifications" 
           element={
@@ -248,7 +233,7 @@ function App() {
           } 
         />
         
-        {/* User Management - Super Admin and Dept Admin */}
+        {/****** User Management - Super Admin and Dept Admin ******/}
         <Route 
           path="/admin/users" 
           element={
@@ -266,7 +251,7 @@ function App() {
           } 
         />
         
-        {/* Department Management - Super Admin */}
+        {/****** Department Management - Super Admin ******/}
         <Route 
           path="/admin/departments" 
           element={
@@ -276,7 +261,7 @@ function App() {
           } 
         />
         
-        {/* System Logs - Super Admin */}
+        {/****** System Logs - Super Admin ******/}
         <Route 
           path="/admin/logs" 
           element={
@@ -286,7 +271,7 @@ function App() {
           } 
         />
         
-        {/* Department Audit Logs */}
+        {/****** Department Audit Logs ******/}
         <Route 
           path="/department/audit" 
           element={
@@ -296,7 +281,7 @@ function App() {
           } 
         />
         
-        {/* Auditor Logs */}
+        {/****** Auditor Logs ******/}
         <Route 
           path="/audit/logs" 
           element={
@@ -306,7 +291,7 @@ function App() {
           } 
         />
         
-        {/* Routing Configuration - Super Admin and Dept Admin */}
+        {/****** Routing Configuration - Super Admin and Dept Admin ******/}
         <Route 
           path="/admin/routing" 
           element={
@@ -324,7 +309,7 @@ function App() {
           } 
         />
         
-        {/* Still Useful Routes */}
+        {/****** Still Useful Routes ******/}
         <Route path="update-profile" element={<><UpdateProfile /><Footer /></>} />
         <Route path="contact" element={<><ContactUs /><Footer /></>} />
         <Route path="faq" element={<><FAQ /><Footer /></>} />

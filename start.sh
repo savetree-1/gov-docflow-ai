@@ -4,7 +4,7 @@
 # This sets up and runs both frontend and backend
 
 echo "╔════════════════════════════════════════════════════════════╗"
-echo "║  Uttarakhand Government Platform - Quick Start            ║"
+echo "║  Uttarakhand Government Platform - Quick Start             ║"
 echo "╚════════════════════════════════════════════════════════════╝"
 echo ""
 
@@ -16,27 +16,27 @@ NC='\033[0m' # No Color
 
 # Check if .env exists
 if [ ! -f .env ]; then
-    echo -e "${YELLOW}⚠️  .env file not found. Creating from example...${NC}"
+    echo -e "${YELLOW}.env file not found. Creating from example...${NC}"
     cp .env.example .env
-    echo -e "${GREEN}✅ Created .env file. Please update with actual values.${NC}"
+    echo -e "${GREEN} Created .env file. Please update with actual values.${NC}"
     echo ""
 fi
 
 # Install dependencies if needed
 if [ ! -d "node_modules" ]; then
-    echo -e "${YELLOW}📦 Installing frontend dependencies...${NC}"
+    echo -e "${YELLOW} Installing frontend dependencies...${NC}"
     npm install
-    echo -e "${GREEN}✅ Frontend dependencies installed${NC}"
+    echo -e "${GREEN} Frontend dependencies installed${NC}"
     echo ""
 fi
 
 # Start frontend
-echo -e "${GREEN}🚀 Starting React Frontend...${NC}"
+echo -e "${GREEN} Starting React Frontend...${NC}"
 echo "   URL: http://localhost:3000"
 echo ""
 
 # Note about backend
-echo -e "${YELLOW}📌 BACKEND SETUP REQUIRED:${NC}"
+echo -e "${YELLOW} BACKEND SETUP REQUIRED:${NC}"
 echo ""
 echo "To run the complete authentication system, you also need:"
 echo ""
@@ -63,7 +63,7 @@ echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
-# Frontend is already running, just show status
-echo -e "${GREEN}✅ Frontend is running!${NC}"
+# Frontend is already running, just showing status
+echo -e "${GREEN} Frontend is running!${NC}"
 echo ""
 echo "Press Ctrl+C to stop the servers"

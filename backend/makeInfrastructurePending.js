@@ -1,6 +1,6 @@
 /******
     Script to make Infrastructure Department pending
- *  Run: node makeInfrastructurePending.js
+    Run: node makeInfrastructurePending.js
 ******/
 
 const mongoose = require('mongoose');
